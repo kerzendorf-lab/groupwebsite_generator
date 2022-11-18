@@ -6,7 +6,8 @@
         "university": "Michigan State University",
         "start_year": 2018,
         "myrole": "advisor",
-        "mygroup": true
+        "mygroup": true,
+	"directory": "members/jobrien1"
     },
     {
         "name": "Josh Shields",
