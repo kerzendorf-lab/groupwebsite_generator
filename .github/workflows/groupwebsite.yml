@@ -1,0 +1,21 @@
+name: json_pvt YAML
+
+on:
+  push:
+    paths:
+      - '**'
+  repository_dispatch:
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Trigger event
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.testvar }}" \
+            -H "Accept: application/vnd.github+json" \
+            -H "Content-Type: application/json" \
+            -d '{ "event_type": "repo-push" }' \
+            https://api.github.com/repos/kerzendorf-group/kerzendorf-group.github.io/dispatches
