@@ -1,0 +1,39 @@
+[
+    {
+        "name": "Jack O'Brien",
+        "project_title": "Explosion mechanisms for Type Ia supernovae",
+        "role": "PhD",
+        "university": "Michigan State University",
+        "start_year": 2018,
+        "myrole": "advisor",
+        "mygroup": true,
+        "directory": "members/jobrien1"
+    },
+    {
+        "name": "Josh Shields",
+        "project_title": "Surviving Companions of Supernovae",
+        "role": "PhD",
+        "university": "Michigan State University",
+        "start_year": 2019,
+        "myrole": "advisor",
+        "mygroup": true
+    },
+    {
+        "name": "Vicente Olivo-Amado",
+        "project_title": "Identifying expertise in a global science community",
+        "role": "PhD",
+        "university": "Michigan State University",
+        "start_year": 2021,
+        "myrole": "advisor",
+        "mygroup": true
+    },
+    {
+        "name": "Sona Chitchyan",
+        "project_title": "Enhanced Type IIP cosmology with statistics and machine learning",
+        "role": "Master (Fulbright Scholar)",
+        "university": "Michigan State University",
+        "start_year": 2021,
+        "myrole": "advisor",
+        "mygroup": true
+    }
+]
