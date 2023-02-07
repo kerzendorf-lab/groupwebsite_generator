@@ -1,4 +1,4 @@
-name: json_pvt YAML
+name: Dispatch changes
 
 on:
   push:
@@ -14,7 +14,7 @@ jobs:
       - name: Trigger event
         run: |
           curl -X POST \
-            -H "Authorization: Bearer ${{ secrets.testvar }}" \
+            -H "Authorization: Bearer ${{ secrets.DISPATCH_VAR }}" \
             -H "Accept: application/vnd.github+json" \
             -H "Content-Type: application/json" \
             -d '{ "event_type": "repo-push" }' \
