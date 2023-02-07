@@ -3,7 +3,7 @@ name: json_pvt YAML
 on:
   push:
     paths:
-      - '**'
+      - 'groupwebsite_jsons/**'
   repository_dispatch:
 
 jobs:
