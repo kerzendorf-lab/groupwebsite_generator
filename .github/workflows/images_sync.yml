@@ -22,10 +22,9 @@ jobs:
           ref: main
           path: groupwebsite_generator
       - name: Sync images
-        uses: EndBug/sync@v2
+        uses: actions/sync-repo@v2
         with:
-          source: group_data/images/
-          target: groupwebsite_generator/images/
-          delete: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}
+          source-repo: kerzendorf-group/group_data
+          source-path: images/
+          destination-path: groupwebsite_generator/images/
+          github-token: ${{ secrets.GITHUB_TOKEN }}
