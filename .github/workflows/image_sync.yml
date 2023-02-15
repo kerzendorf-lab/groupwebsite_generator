@@ -1,6 +1,7 @@
 name: Sync Images
 
 on:
+  workflow_dispatch:
   push:
     - "images/**"
   repository_dispatch:
