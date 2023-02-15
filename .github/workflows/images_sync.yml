@@ -5,38 +5,25 @@ on:
   push:
     paths:
       - "images/**"
+  repository_dispatch:
 
 jobs:
-  sync-images:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout private repository
+      - name: Checkout
         uses: actions/checkout@v2
-        with:
-          repository: kerzendorf-group/group-data
-          ref: master
-          token: ${{ secrets.DISPATCH_VAR }}
-          path: private-repo
 
-      - name: Checkout public repository
-        uses: actions/checkout@v2
-        with:
-          repository: kerzendorf-group/groupwebsite_generator
-          ref: master
-          token: ${{ secrets.DISPATCH_VAR }}
-          path: public-repo
-
-      - name: Sync images
-        run: |
-          rsync -a --delete private-repo/images/ public-repo/images/
-
-      - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          message: "Sync images from private to public repository"
-          add: public-repo
-          author_name: Your Name
-          author_email: your.email@example.com
-          signoff: true
+      # Copy the 'images' folder
+      - name: push images
+        uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}
+          DISPATCH_VAR: ${{ secrets.DISPATCH_VAR }}
+        with:
+          source_file: "images/" # Folder to copy
+          destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
+          destination_folder: "images/" # Folder where to copy it
+          user_email: "asa@gmail.com"
+          user_name: "Dom"
+          commit_message: "AUTO: Copying "
+          git_server: "github.com"
