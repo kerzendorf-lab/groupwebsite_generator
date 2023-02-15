@@ -4,6 +4,7 @@ on:
   push:
     - "images/**"
   repository_dispatch:
+
 jobs:
   sync_images:
     runs-on: ubuntu-latest
@@ -28,3 +29,5 @@ jobs:
           source: group_data/images/
           target: groupwebsite_generator/images/
           delete: true
+         env:
+        GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}

@@ -20,10 +20,3 @@ jobs:
             -H "Content-Type: application/json" \
             -d '{ "event_type": "repo-push" }' \
             https://api.github.com/repos/kerzendorf-group/kerzendorf-group.github.io/dispatches
-
-      - name: Update images
-        uses: git-chglog/git-chglog-action@v2.1.0
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          command: |
-            git subtree pull --prefix=images https://github.com/kerzendorf-group/group-data images --squash
