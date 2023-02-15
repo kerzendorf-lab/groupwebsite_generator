@@ -3,9 +3,9 @@ name: Sync Images
 on:
   workflow_dispatch:
   push:
-    - "images/**"
+    paths:
+      - "images/**"
   repository_dispatch:
-
 jobs:
   sync_images:
     runs-on: ubuntu-latest
