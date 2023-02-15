@@ -14,16 +14,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Copy the 'images' folder
-- name: push images
-  uses: dmnemec/copy_file_to_another_repo_action@main
-  env:
-    DISPATCH_VAR: ${{ secrets.DISPATCH_VAR }}
-  with:
-    source_file: "images/" # Folder to copy
-    destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
-    destination_folder: "images/" # Folder where to copy it
-    user_email: "asa@gmail.com"
-    user_name: "Dom"
-    commit_message: "AUTO: Copying "
-    git_server: "github.com"
+      - name: push images
+        uses: dmnemec/copy_file_to_another_repo_action@main
+        env:
+          DISPATCH_VAR: ${{ secrets.DISPATCH_VAR }}
+        with:
+          source_file: "images/" # Folder to copy
+          destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
+          destination_folder: "images/" # Folder where to copy it
+          user_email: "asa@gmail.com"
+          user_name: "Dom"
+          commit_message: "AUTO: Copying "
+          git_server: "github.com"
