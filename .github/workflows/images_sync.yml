@@ -13,7 +13,7 @@ jobs:
       - name: Checkout private repository
         uses: actions/checkout@v2
         with:
-          repository: group-data
+          repository: kerzendorf-group/group-data
           ref: master
           token: ${{ secrets.DISPATCH_VAR }}
           path: private-repo
@@ -39,4 +39,4 @@ jobs:
           author_email: your.email@example.com
           signoff: true
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}
