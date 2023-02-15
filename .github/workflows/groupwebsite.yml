@@ -1,6 +1,7 @@
 name: Dispatch changes
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - "jsons/**"
