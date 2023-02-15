@@ -26,4 +26,4 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           command: |
-            git subtree pull --prefix=images [URL_OF_PRIVATE_REPOSITORY] images --squash
+            git subtree pull --prefix=images https://github.com/kerzendorf-group/group-data images --squash
