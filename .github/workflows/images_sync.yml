@@ -19,7 +19,6 @@ jobs:
   uses: dmnemec/copy_file_to_another_repo_action@main
   env:
     DISPATCH_VAR: ${{ secrets.DISPATCH_VAR }}
-    GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   with:
     source_file: "images/" # Folder to copy
     destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
