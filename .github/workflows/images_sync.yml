@@ -26,4 +26,4 @@ jobs:
     user_email: "asa@gmail.com"
     user_name: "Dom"
     commit_message: "AUTO: Copying "
-    git_server: "github.com"
+    git_server: "github.com" 
