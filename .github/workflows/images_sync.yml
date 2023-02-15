@@ -1,0 +1,34 @@
+name: Sync Images
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "images/**"
+  repository_dispatch:
+jobs:
+  sync_images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout group_web
+        uses: actions/checkout@v2
+        with:
+          repository: kerzendorf-group/group_data
+          ref: main
+          path: group_data
+
+      - name: Checkout groupwebsite_generator
+        uses: actions/checkout@v2
+        with:
+          repository: groupwebsite_generator
+          ref: main
+          path: groupwebsite_generator
+
+      - name: Sync images
+        uses: EndBug/sync@v2
+        with:
+          source: group_data/images/
+          target: groupwebsite_generator/images/
+          delete: true
+         env:
+        GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}
