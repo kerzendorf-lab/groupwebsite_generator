@@ -1,10 +1,10 @@
 name: Sync Images
-"on":
-  workflow_dispatch: null
+on:
+  workflow_dispatch:
   push:
     paths:
       - images/**
-  repository_dispatch: null
+  repository_dispatch:
 jobs:
   sync_images:
     runs-on: ubuntu-latest
@@ -27,5 +27,5 @@ jobs:
           source: group_data/images/
           target: groupwebsite_generator/images/
           delete: true
-        env: null
-        GITHUB_TOKEN: "${{ secrets.DISPATCH_VAR }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.DISPATCH_VAR }}
