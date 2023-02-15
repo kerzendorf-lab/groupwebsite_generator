@@ -1,9 +1,10 @@
 name: Sync Images
 
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - master
+    paths:
+      - "images/**"
 
 jobs:
   sync-images:
