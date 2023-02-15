@@ -13,7 +13,7 @@ jobs:
       - name: Checkout private repository
         uses: actions/checkout@v2
         with:
-          repository: kerzendorf-group/group_data
+          repository: kerzendorf-group/group-data
           ref: master
           token: ${{ secrets.DISPATCH_VAR }}
           path: private-repo
