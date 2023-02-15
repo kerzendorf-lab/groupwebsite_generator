@@ -1,30 +1,41 @@
 name: Sync Images
+
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - images/**
-  repository_dispatch:
+    branches:
+      - master
+
 jobs:
-  sync_images:
+  sync-images:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout group_web
+      - name: Checkout private repository
         uses: actions/checkout@v2
         with:
           repository: kerzendorf-group/group_data
-          ref: main
-          path: group_data
-      - name: Checkout groupwebsite_generator
+          ref: master
+          token: ${{ secrets.DISPATCH_VAR }}
+          path: private-repo
+
+      - name: Checkout public repository
         uses: actions/checkout@v2
         with:
-          repository: groupwebsite_generator
-          ref: main
-          path: groupwebsite_generator
+          repository: kerzendorf-group/groupwebsite_generator
+          ref: master
+          token: ${{ secrets.DISPATCH_VAR }}
+          path: public-repo
+
       - name: Sync images
-        uses: actions/sync-repo@v2
+        run: |
+          rsync -a --delete private-repo/images/ public-repo/images/
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
         with:
-          source-repo: kerzendorf-group/group_data
-          source-path: images/
-          destination-path: groupwebsite_generator/images/
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          message: "Sync images from private to public repository"
+          add: public-repo
+          author_name: Your Name
+          author_email: your.email@example.com
+          signoff: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
