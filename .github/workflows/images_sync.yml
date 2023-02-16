@@ -36,6 +36,7 @@ jobs:
         with:
           repository: kerzendorf-group/groupwebsite_generator
           ref: main
+          token: ${{ secrets.API_TOKEN_GITHUB }}
 
       - name: Check for deleted files
         id: deleted_files
@@ -55,8 +56,6 @@ jobs:
 
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v7
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           message: "AUTO: Deleted files based on changes in source repository"
           author_name: "github-actions"
