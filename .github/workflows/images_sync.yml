@@ -24,7 +24,7 @@ jobs:
           TARGET_FOLDER="images"
 
           # Clone the target repository
-          git clone "kerzendorf-group/groupwebsite_generator" target-repo
+          git clone https://github.com/kerzendorf-group/groupwebsite_generator target-repo
           cd target-repo
 
           # Copy the images from the source repository to the target repository
