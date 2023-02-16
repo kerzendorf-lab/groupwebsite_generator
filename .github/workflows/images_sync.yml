@@ -1,4 +1,4 @@
-name: Image Folder Sync
+name: Image Sync
 
 on:
   push:
@@ -7,50 +7,33 @@ on:
   workflow_dispatch:
 
 jobs:
-  copy_files:
+  copy-file:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source repository
+      - name: Checkout source code
         uses: actions/checkout@v2
 
-      - name: List changed files
-        id: list_changes
-        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} images/)"
-
-      - name: Copy changed files to target repository
-        uses: actions/upload-artifact@v2
-        with:
-          name: images
-          path: images
-        if: steps.list_changes.outputs.files != ''
-
-      - name: Checkout target repository
-        uses: actions/checkout@v2
-        with:
-          repository: kerzendorf-group/groupwebsite_generator
-          ref: main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-
-      - name: Delete removed files from target repository
-        if: steps.list_changes.outputs.files != ''
-        run: |
-          git ls-files -z --deleted | xargs -0 git rm --ignore-unmatch
-
-      - name: Restore images folder from source repository
-        if: steps.list_changes.outputs.files != ''
-        run: |
-          rm -rf images
-          mkdir images
-          cp -r ${{ github.workspace }}/images/* images/
-
-      - name: Commit and push changes
-        if: steps.list_changes.outputs.files != ''
+      - name: Copy images to target repository
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         run: |
-          git add -A
-          git config --global user.email "action@github.com"
-          git config --global user.name "github-actions"
-          git commit -m "AUTO: Sync images folder from source repository"
-          git push https://${API_TOKEN_GITHUB}@github.com/kerzendorf-group/groupwebsite_generator.git HEAD:main
+          # Set the source and target repositories and folders
+          SOURCE_REPO="kerzendorf-group/group-data"
+          TARGET_REPO="kerzendorf-group/groupwebsite_generator"
+          SOURCE_FOLDER="images"
+          TARGET_FOLDER="images"
+
+          # Clone the target repository
+          git clone "kerzendorf-group/groupwebsite_generator" target-repo
+          cd target-repo
+
+          # Copy the images from the source repository to the target repository
+          cp -r "kerzendorf-group/group-data/images" "kerzendorf-group/groupwebsite_generator/images"
+
+
+          # Commit and push the changes to the target repository
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add .
+          git commit -m "AUTO: Copied images from source repository"
+          git push origin main
