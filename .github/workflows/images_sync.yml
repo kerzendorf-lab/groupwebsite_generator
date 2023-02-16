@@ -13,16 +13,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Copy the 'post' folder
-      - name: Push images
+      # Copy the 'images' folder
+      - name: Push images folder to groupwebsite_generator
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "/" # Folder to copy
+          source_file: "images/" # Folder to copy
           destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
-          destination_folder: "images/" # Folder where to copy it
+          destination_folder: "/" # Folder where to copy it
           user_email: "action@github.com"
           user_name: "github-actions"
-          commit_message: "AUTO: Copied Images folder from group-data"
+          commit_message: "AUTO: Copied folder from group-data repository"
           git_server: "github.com"
