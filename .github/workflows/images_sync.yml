@@ -43,3 +43,14 @@ jobs:
           rm -rf images
           mkdir images
           cp -r ${{ github.workspace }}/images/* images/
+
+      - name: Commit and push changes
+        if: steps.list_changes.outputs.files != ''
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        run: |
+          git add -A
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git commit -m "AUTO: Sync images folder from source repository"
+          git push https://${API_TOKEN_GITHUB}@github.com/kerzendorf-group/groupwebsite_generator.git HEAD:main
