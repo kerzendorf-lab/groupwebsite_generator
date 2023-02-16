@@ -1,4 +1,4 @@
-name: Image copy
+name: Image Folder Sync
 
 on:
   push:
@@ -7,33 +7,39 @@ on:
   workflow_dispatch:
 
 jobs:
-  copy-file:
+  copy_files:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout source repository
         uses: actions/checkout@v2
 
-      # Copy the changes made to 'images' folder to groupwebsite_generator
-      - name: Push images folder to groupwebsite_generator
-        uses: dmnemec/copy_file_to_another_repo_action@main
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source_file: "images/" # Folder to copy
-          destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
-          destination_folder: "/" # Folder where to copy it
-          user_email: "action@github.com"
-          user_name: "github-actions"
-          commit_message: "AUTO: Copied folder from group-data repository"
-          git_server: "github.com"
+      - name: List changed files
+        id: list_changes
+        run: echo "::set-output name=files::$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }} images/)"
 
-  delete-file:
-    runs-on: ubuntu-latest
-    needs: copy-file
-    steps:
+      - name: Copy changed files to target repository
+        uses: actions/upload-artifact@v2
+        with:
+          name: images
+          path: images
+        if: steps.list_changes.outputs.files != ''
+
       - name: Checkout target repository
         uses: actions/checkout@v2
         with:
           repository: kerzendorf-group/groupwebsite_generator
           ref: main
-          token: ${{ secrets.API_TOKEN_GITHUB }}
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+
+      - name: Delete removed files from target repository
+        if: steps.list_changes.outputs.files != ''
+        run: |
+          git ls-files -z --deleted | xargs -0 git rm --ignore-unmatch
+
+      - name: Restore images folder from source repository
+        if: steps.list_changes.outputs.files != ''
+        run: |
+          rm -rf images
+          mkdir images
+          cp -r ${{ github.workspace }}/images/* images/

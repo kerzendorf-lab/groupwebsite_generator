@@ -1,0 +1,46 @@
+name: Delete files
+
+on:
+  push:
+    paths:
+      - "images/**"
+  workflow_dispatch:
+
+jobs:
+  delete-file:
+    runs-on: ubuntu-latest
+    needs: copy-file
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v2
+        with:
+          repository: kerzendorf-group/groupwebsite_generator
+          ref: main
+
+      - name: Check for deleted files
+        id: deleted_files
+        run: |
+          # Get the list of files in the target repository
+          files=$(git ls-files | grep "^images/")
+
+          # Loop through the list of files
+          for file in $files; do
+            # Remove the "images/" prefix from the target file path
+            file_path=${file#images/}
+
+            # Check if the file has been deleted in the source repository
+            if ! [ -e "images/$file_path" ]; then
+              # If the file has been deleted, delete it from the target repository
+              echo "Deleting $file_path"
+              git rm -f $file
+            fi
+          done
+
+      - name: Commit and push changes
+        uses: EndBug/add-and-commit@v7
+        with:
+          message: "AUTO: Deleted files based on changes in source repository"
+          author_name: "github-actions"
+          author_email: "action@github.com"
+          push: true
+          add: .
