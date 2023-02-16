@@ -1,29 +1,21 @@
-name: Clone group-data repository
+name: Clone Private Repository
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
-  clone-group-data:
+  clone-repo:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Clone group-data repository
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: |
-          mkdir -p data/group-data
-          cd data/group-data
-          git init
-          git remote add origin git@github.com:kerzendorf-group/group-data.git
-          git fetch --depth=1 origin main
-          git checkout main
-
-      - name: Process data
-        run: python process_data.py
+      - name: Clone private repository
+        uses: actions/checkout@v2
+        with:
+          repository: kerzendorf-group/group-data
+          ref: main
+          token: ${{ secrets.ACCESS_DATA }}
+          path: group-data
