@@ -26,39 +26,3 @@ jobs:
           user_name: "github-actions"
           commit_message: "AUTO: Copied folder from group-data repository"
           git_server: "github.com"
-
-  delete-file:
-    runs-on: ubuntu-latest
-    needs: copy-file
-    steps:
-      - name: Checkout target repository
-        uses: actions/checkout@v2
-        with:
-          repository: kerzendorf-group/groupwebsite_generator
-          ref: main
-          token: ${{ secrets.API_TOKEN_GITHUB }}
-
-      - name: Check for deleted files
-        id: deleted_files
-        run: |
-          # Get the list of files in the target repository
-          files=$(git ls-files)
-
-          # Loop through the list of files
-          for file in $files; do
-            # Check if the file has been deleted in the source repository
-            if ! [ -e "images/$file" ]; then
-              # If the file has been deleted, delete it from the target repository
-              echo "Deleting $file"
-              git rm -f $file
-            fi
-          done
-
-      - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          message: "AUTO: Deleted files based on changes in source repository"
-          author_name: "github-actions"
-          author_email: "action@github.com"
-          push: true
-          add: .
