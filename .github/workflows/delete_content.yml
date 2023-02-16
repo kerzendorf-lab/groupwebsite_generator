@@ -1,0 +1,52 @@
+name: Delete content
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["Check changes"]
+    types:
+      - completed
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+      - uses: yaananth/run-notebook@v2
+        env:
+          RUNNER: ${{ toJson(runner) }}
+          SECRETS: ${{ toJson(secrets) }}
+          GITHUB: ${{ toJson(github) }}
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        with:
+          notebook: "notebooks/managing_directories.ipynb"
+          isReport: False
+          poll: True
+
+      - name: Commit files
+        id: commit
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add --all
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "::set-output name=push::false"
+          else
+            git commit -m "Add changes" -a
+            echo "::set-output name=push::true"
+          fi
+        shell: bash
+
+      - name: Push changes
+        if: steps.commit.outputs.push == 'true'
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+          cd kerzendorf-group.github.io
+          git config --local user.email "action@github.com"
+          git config --local user.name "github-actions"
+          git add --all
+          git commit -m "Update files" -a
+          git push origin HEAD

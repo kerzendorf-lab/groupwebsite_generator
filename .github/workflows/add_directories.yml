@@ -1,9 +1,9 @@
-name: Manage hosting submodule
+name: Add directories
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Check changes"]
+    workflows: ["Delete content"]
     types:
       - completed
 
