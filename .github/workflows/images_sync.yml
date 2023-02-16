@@ -1,10 +1,10 @@
 name: Image Sync
 
 on:
-  workflow_dispatch:
   push:
     paths:
       - "images/**"
+    workflow_dispatch:
 
 jobs:
   copy-file:
@@ -19,10 +19,10 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "images/" # Folder to copy
+          source_file: "/" # Folder to copy
           destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
           destination_folder: "images/" # Folder where to copy it
           user_email: "action@github.com"
           user_name: "github-actions"
-          commit_message: "AUTO: Copying Images between repositories"
+          commit_message: "AUTO: Copied Images folder from group-data"
           git_server: "github.com"
