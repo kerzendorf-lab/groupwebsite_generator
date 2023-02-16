@@ -1,4 +1,4 @@
-name: Image Sync
+name: Image folder Sync
 
 on:
   push:
