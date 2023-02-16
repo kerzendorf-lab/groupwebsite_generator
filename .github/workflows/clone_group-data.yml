@@ -1,0 +1,28 @@
+name: Clone group-data repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  clone-group-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Clone group-data repository
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: |
+          mkdir -p data/group-data
+          cd data/group-data
+          git init
+          git remote add origin https://github.com/kerzendorf-group/group-data.git
+          git fetch --depth=1 origin main
+          git checkout main
+
+      - name: Process data
+        run: python process_data.py
