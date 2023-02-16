@@ -1,30 +1,53 @@
-name: "Push directory to another repository"
-description: "Useful to push files to another repository to be used, for example, via github pages"
-inputs:
-  source-directory:
-    description: "images/"
-    required: true
-  destination-github-username:
-    description: "kerzendorf-group"
-    required: true
-  destination-repository-name:
-    description: "groupwebsite_generator"
-    required: true
-  user-email:
-    description: "action@github.com"
-    required: true
-  destination-repository-username:
-    description: "[Optional] Username/organization for the destination repository"
-    required: false
-runs:
-  using: "docker"
-  image: "Dockerfile"
-  args:
-    - ${{ inputs.source-directory }}
-    - ${{ inputs.destination-github-username }}
-    - ${{ inputs.destination-repository-name }}
-    - ${{ inputs.user-email }}
-    - ${{ inputs.destination-repository-username }}
-branding:
-  icon: "git-commit"
-  color: "green"
+name: Images Push
+
+on:
+  push:
+    paths:
+      - "images/**"
+  workflow_dispatch:
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # Create a temporary directory for the copy workflow
+      - name: Create temporary directory
+        id: temp-dir
+        run: |
+          echo "::set-output name=dir::$(mktemp -d)"
+        shell: bash
+
+      # Copy the 'images' folder to the temporary directory
+      - name: Copy images folder to temporary directory
+        run: |
+          cp -R images ${{ steps.temp-dir.outputs.dir }}
+
+      # Push the 'images' folder to the groupwebsite_generator repository
+      - name: Push images folder to groupwebsite_generator
+        run: |
+          cd ${{ steps.temp-dir.outputs.dir }}
+          git init
+          git config user.email "action@github.com"
+          git config user.name "github-actions"
+          git remote add origin https://github.com/kerzendorf-group/groupwebsite_generator.git
+          git pull origin main --no-rebase
+          git add .
+          git commit -m "AUTO: Copied folder from group-data repository"
+          git push origin main
+
+      # Delete the files in the 'images' folder that were deleted in the source repo
+      - name: Delete files from groupwebsite_generator
+        run: |
+          cd ${{ steps.temp-dir.outputs.dir }}
+          git rm -r --ignore-unmatch images/
+          git commit -m "AUTO: Deleted files from groupwebsite_generator"
+          git push origin main
+
+      # Clean up the temporary directory
+      - name: Clean up temporary directory
+        run: |
+          rm -rf ${{ steps.temp-dir.outputs.dir }}
+        shell: bash
