@@ -1,0 +1,3 @@
+[submodule "group-data"]
+	path = group-data
+	url = https://github.com/kerzendorf-group/group-data.git
