@@ -31,33 +31,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: copy-file
     steps:
-      - name: Checkout target repository
+      - name: Checkout
         uses: actions/checkout@v2
+
+      # Delete the deleted files from 'images' folder from groupwebsite_generator
+      - name: Delete images folder from groupwebsite_generator
+        uses: dmnemec/delete_file_from_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ env.API_TOKEN_GITHUB }}
         with:
-          repository: kerzendorf-group/groupwebsite_generator
-          ref: main
-
-      - name: Check for deleted files
-        id: deleted_files
-        run: |
-          # Get the list of files in the target repository
-          files=$(git ls-files)
-
-          # Loop through the list of files
-          for file in $files; do
-            # Check if the file has been deleted in the source repository
-            if ! [ -e "images/$file" ]; then
-              # If the file has been deleted, delete it from the target repository
-              echo "Deleting $file"
-              git rm -f $file
-            fi
-          done
-
-      - name: Commit and push changes
-        uses: EndBug/add-and-commit@v7
-        with:
-          message: "AUTO: Deleted files based on changes in source repository"
-          author_name: "github-actions"
-          author_email: "action@github.com"
-          push: true
-          add: .
+          files_to_delete: "images/" # Folder to delete
+          target_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
+          user_email: "action@github.com"
+          user_name: "github-actions"
+          commit_message: "AUTO: Deleted folder from groupwebsite_generator repository"
+          git_server: "github.com"
