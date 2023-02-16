@@ -56,7 +56,7 @@ jobs:
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v7
         env:
-          API_TOKEN_GITHUB: ${{ env.API_TOKEN_GITHUB }}
+        API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
           message: "AUTO: Deleted files based on changes in source repository"
           author_name: "github-actions"
