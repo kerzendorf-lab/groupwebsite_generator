@@ -1,11 +1,10 @@
-name: Sync Images
+name: Image Sync
 
 on:
   workflow_dispatch:
   push:
     paths:
       - "images/**"
-  repository_dispatch:
 
 jobs:
   copy-file:
@@ -14,17 +13,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: push images
+      # Copy the 'post' folder
+      - name: Push images
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
-          DISPATCH_VAR: ${{ secrets.DISPATCH_VAR }}
-
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "images/" # Folder to copy
+          source_file: "group-data/images/" # Folder to copy
           destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
           destination_folder: "images/" # Folder where to copy it
-          user_email: "asa@gmail.com"
-          user_name: "Dom"
-          commit_message: "AUTO: Copying "
+          user_email: "action@github.com"
+          user_name: "github-actions"
+          commit_message: "AUTO: Copying Images between repositories"
           git_server: "github.com"
-          token: ${{ secrets.DISPATCH_VAR }}
