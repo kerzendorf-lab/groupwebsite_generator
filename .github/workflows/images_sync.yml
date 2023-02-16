@@ -13,7 +13,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Copy the 'images' folder
+      # Copy the changes made to 'images' folder to groupwebsite_generator
       - name: Push images folder to groupwebsite_generator
         uses: dmnemec/copy_file_to_another_repo_action@main
         env:
@@ -25,4 +25,18 @@ jobs:
           user_email: "action@github.com"
           user_name: "github-actions"
           commit_message: "AUTO: Copied folder from group-data repository"
+          git_server: "github.com"
+
+      # Delete the files in the 'images' folder that were deleted in the group-web
+      - name: Delete files from groupwebsite_generator/images
+        uses: dmnemec/delete_file_from_another_repo_action@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_file: "images/" # Folder to check for deleted files
+          destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
+          destination_folder: "/" # Folder to delete the files from
+          user_email: "action@github.com"
+          user_name: "github-actions"
+          commit_message: "AUTO: Deleted files from groupwebsite_generator"
           git_server: "github.com"
