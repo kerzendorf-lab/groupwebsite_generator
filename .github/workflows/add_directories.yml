@@ -21,7 +21,7 @@ jobs:
           GITHUB: ${{ toJson(github) }}
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         with:
-          notebook: "notebooks/managing_directories.ipynb"
+          notebook: "notebooks/add_directories.ipynb"
           isReport: False
           poll: True
 
