@@ -19,7 +19,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source_file: "group-data/images/" # Folder to copy
+          source_file: "group-data/images" # Folder to copy
           destination_repo: "kerzendorf-group/groupwebsite_generator" # Target repo
           destination_folder: "images/" # Folder where to copy it
           user_email: "action@github.com"
