@@ -1,4 +1,4 @@
-name: Images Push
+name: Push Images
 
 on:
   push:
@@ -33,21 +33,10 @@ jobs:
           git config user.email "action@github.com"
           git config user.name "github-actions"
           git remote add origin https://github.com/kerzendorf-group/groupwebsite_generator.git
-          git pull origin main --no-rebase
+          git reset --hard HEAD
+          git pull origin main --no-commit
           git add .
           git commit -m "AUTO: Copied folder from group-data repository"
           git push origin main
 
-      # Delete the files in the 'images' folder that were deleted in the source repo
-      - name: Delete files from groupwebsite_generator
-        run: |
-          cd ${{ steps.temp-dir.outputs.dir }}
-          git rm -r --ignore-unmatch images/
-          git commit -m "AUTO: Deleted files from groupwebsite_generator"
-          git push origin main
-
       # Clean up the temporary directory
-      - name: Clean up temporary directory
-        run: |
-          rm -rf ${{ steps.temp-dir.outputs.dir }}
-        shell: bash
