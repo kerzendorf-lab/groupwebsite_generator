@@ -49,4 +49,8 @@ jobs:
           git config --local user.name "github-actions"
           git add --all
           git commit -m "Update files" -a
-          git push origin HEAD
+          git push origin main
+          cd ..
+          git submodule update --remote
+          git commit -am "Update submodule reference"
+          git push origin main
