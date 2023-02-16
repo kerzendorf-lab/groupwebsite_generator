@@ -50,6 +50,3 @@ jobs:
           git add --all
           git commit -m "Update files" -a
           git push origin HEAD
-
-        with:
-          github_token: ${{ secrets.ACCESS_DATA }}
