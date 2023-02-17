@@ -8,8 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-
       - name: Set up Git
         run: |
           git config user.name "harshulgupt"
