@@ -13,17 +13,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Set up Git
-        run: |
-          git config user.name "github-actions"
-          git config user.email "action@github.com"
-          git config credential.helper "store --file=.git/credentials"
-
       - name: Git Subtree Pull
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_DATA }}
         run: |
-          git subtree pull --prefix=group-data https://ACCESS_DATA:x-oauth-basic@github.com/kerzendorf-group/group-data.git main --squash
+          git config user.name "github-actions"
+          git config user.email "action@github.com"
+          git config credential.helper "store --file=.git/credentials"
+          git subtree pull --prefix=group-data git@github.com:kerzendorf-group/group-data.git main --squash
 
       - name: Commit and Push Changes
         run: |
