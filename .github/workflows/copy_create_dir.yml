@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  copy_files:
+  create_files:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -15,7 +15,7 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd kerzendorf-group.github.io/
-          mkdir people sub_research
+          mkdir -p people sub_research
 
       - name: Copy Assets
         env:
