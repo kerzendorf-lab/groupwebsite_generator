@@ -1,26 +1,36 @@
-name: Push website
+name: Push Website
 
 on:
-  push:
-    paths:
-      - "**"
   workflow_dispatch:
 
 jobs:
-  deploy:
+  create_files:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
+      - name: Checkout Repo
         uses: actions/checkout@v2
-        with:
-          submodules: "recursive"
-      - name: Build and deploy changes
+
+      - name: Push website
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd kerzendorf-group.github.io
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
+
+      - name: Copy Assets
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: cp -r assets kerzendorf-group.github.io/
+
+      - name: Copy Images
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: cp -r group-data/images kerzendorf-group.github.io/
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
           git add .
-          git commit -m "Deploy changes to kerzendorf-group.github.io"
+          git commit -m "Pushing website files"
+          cd .. 
+          git subtree push --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
           git push
