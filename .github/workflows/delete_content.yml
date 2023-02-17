@@ -2,8 +2,6 @@ name: Delete content
 
 on:
   workflow_dispatch:
-    types:
-      - completed
 
 jobs:
   run:

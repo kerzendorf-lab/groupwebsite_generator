@@ -2,8 +2,6 @@ name: Copy & create directories
 
 on:
   workflow_dispatch:
-    types:
-      - completed
 
 jobs:
   copy_files:
