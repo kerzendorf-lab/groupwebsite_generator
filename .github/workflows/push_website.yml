@@ -2,7 +2,8 @@ name: Push website
 
 on:
   workflow_dispatch:
-
+permissions:
+  contents: write
 jobs:
   push-subtree:
     runs-on: ubuntu-latest
@@ -13,8 +14,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config user.name "harshulgupt"
-          git config user.email "harshulgupt@gmail.com"
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
           git config credential.helper store
 
       - name: Push changes to repository
