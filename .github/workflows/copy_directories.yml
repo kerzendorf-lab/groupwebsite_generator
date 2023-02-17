@@ -1,9 +1,9 @@
-name: Add content
+name: Copy directories
 
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Delete content"]
+    workflows: ["Delete contt"]
     types:
       - completed
 

@@ -32,6 +32,7 @@ jobs:
       - name: Add changes (delete)
         run: |
           cd kerzendorf-group.github.io
+          mkdir people sub_research
           git add .
           git commit -m "Update clone with changes from main repository"
       - name: Push changes to main repository

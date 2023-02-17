@@ -3,7 +3,7 @@ name: Run Notebooks
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["Add directories"]
+    workflows: ["Copy & create directories"]
     types:
       - completed
 
