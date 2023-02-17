@@ -20,12 +20,12 @@ jobs:
       - name: Copy Assets
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: cp -r assets/ kerzendorf-group.github.io/$ACCESS_DATA
+        run: cp -r assets kerzendorf-group.github.io/
 
       - name: Copy Images
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: cp -r group-data/images/ kerzendorf-group.github.io/$ACCESS_DATA
+        run: cp -r group-data/images kerzendorf-group.github.io/
 
       - name: Commit Changes
         run: |
