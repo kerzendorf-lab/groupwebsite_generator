@@ -16,7 +16,7 @@ jobs:
         submodules: 'recursive'
     - name: Build and deploy changes
         env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }} 
       run: |
         cd kerzendorf-group.github.io
         git config user.email "actions@github.com"
