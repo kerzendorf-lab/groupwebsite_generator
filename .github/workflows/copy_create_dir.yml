@@ -2,8 +2,6 @@ name: Copy & create directories
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Delete content"]
     types:
       - completed
 
