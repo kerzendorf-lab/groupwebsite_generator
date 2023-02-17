@@ -1,9 +1,6 @@
 name: Push website
 
 on:
-  push:
-    paths:
-      - "**"
   workflow_dispatch:
 
 jobs:
