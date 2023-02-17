@@ -13,8 +13,8 @@ jobs:
 
       - name: Set up Git
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
+          git config user.name "harshulgupt"
+          git config user.email "harshulgupt@gmail.com"
           git config credential.helper store
 
       - name: Push changes to repository
