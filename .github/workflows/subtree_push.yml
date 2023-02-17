@@ -1,0 +1,29 @@
+name: Push Subtree Changes
+
+on:
+  workflow_dispatch:
+
+jobs:
+  push-subtree:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo1
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+      - name: Make Subtree Changes
+        run: |
+          cd kerzendorf-group.github.io
+          # Make any necessary changes to the subtree
+          git add .
+          git commit -m "To the main"
+      - name: Push Subtree Changes to Repo1
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_DATA }}
+          branch: ${{ env.repo1-branch }}
+          force: true
+          directory: kerzendorf-group.github.io
+        env:
+          subtree-directory: kerzendorf-group.github.io
+          repo1-branch: main
