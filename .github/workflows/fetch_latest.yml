@@ -3,8 +3,8 @@ name: Update group-data
 on:
   workflow_dispatch:
   push:
-    paths:
-      - "**"
+    branches:
+      - main
 
 jobs:
   update-group-data:
@@ -20,10 +20,10 @@ jobs:
       - name: Configure SSH key
         uses: webfactory/ssh-agent@v0.4.0
         with:
-          ssh-private-key: ${{ secrets.TO_FETCH }}
+          ssh-private-key: ${{ secrets.GROUP_DATA_DEPLOY_KEY }}
 
       - name: Fetch latest changes
-        run: git fetch --depth=1 git@github.com:kerzendorf-group/group-data.git main
+        run: git fetch --depth=1 https://github.com/kerzendorf-group/group-data.git main
 
       - name: Merge changes
         run: |
