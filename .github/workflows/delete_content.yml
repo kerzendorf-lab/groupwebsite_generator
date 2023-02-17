@@ -29,15 +29,15 @@ jobs:
           isReport: False
           poll: True
 
-      - name: Add changes
+      - name: Add changes (delete)
         run: |
           cd kerzendorf-group.github.io
           git add .
-          git commit -m "Update submodule with changes from main repository"
+          git commit -m "Update clone with changes from main repository"
       - name: Push changes to main repository
         run: |
           git push
-      - name: Push changes to submodule
+      - name: Push changes
         run: |
           cd kerzendorf-group.github.io
           git push
