@@ -15,6 +15,7 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           mkdir -p kerzendorf-group.github.io/people kerzendorf-group.github.io/sub_research
+          touch kerzendorf-group.github.io/people/.gitkeep kerzendorf-group.github.io/sub_research/.gitkeep
 
       - name: Copy Assets
         env:
