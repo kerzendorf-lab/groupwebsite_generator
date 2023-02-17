@@ -1,0 +1,36 @@
+name: Fetch to group-data
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "**"
+
+jobs:
+  update_group_data_subtree:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: main
+          fetch-depth: 0
+          submodules: "recursive"
+
+      - name: Fetch latest changes in group-data subtree
+        run: git fetch --depth=1 git@github.com:kerzendorf-group/group-data.git main
+
+      - name: Merge changes in group-data subtree
+        run: git subtree merge --prefix=group-data --squash FETCH_HEAD
+
+      - name: Commit changes
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "Update group-data subtree"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_DATA }}
