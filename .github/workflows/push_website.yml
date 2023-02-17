@@ -10,17 +10,17 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
-    - name: Build and deploy changes
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          submodules: "recursive"
+      - name: Build and deploy changes
         env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }} 
-      run: |
-        cd kerzendorf-group.github.io
-        git config user.email "actions@github.com"
-        git config user.name "GitHub Actions"
-        git add .
-        git commit -m "Deploy changes to kerzendorf-group.github.io"
-        git push https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git HEAD:main
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: |
+          cd kerzendorf-group.github.io
+          git config user.email "actions@github.com"
+          git config user.name "GitHub Actions"
+          git add .
+          git commit -m "Deploy changes to kerzendorf-group.github.io"
+          git push https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git HEAD:main
