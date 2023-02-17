@@ -27,7 +27,6 @@ jobs:
 
       - name: Add changes (delete)
         run: |
-          touch kerzendorf-group.github.io/ .gitkeep 
           cd kerzendorf-group.github.io
           git add .
           git commit -m "Update clone with changes from main repository"
