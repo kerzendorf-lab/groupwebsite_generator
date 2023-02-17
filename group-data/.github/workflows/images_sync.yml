@@ -1,0 +1,39 @@
+name: Image Sync
+
+on:
+  push:
+    paths:
+      - "images/**"
+  workflow_dispatch:
+
+jobs:
+  copy-file:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+
+      - name: Copy images to target repository
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        run: |
+          # Set the source and target repositories and folders
+          SOURCE_REPO="kerzendorf-group/group-data"
+          TARGET_REPO="kerzendorf-group/groupwebsite_generator"
+          SOURCE_FOLDER="images"
+          TARGET_FOLDER="images"
+
+          # Clone the target repository
+          git clone https://github.com/kerzendorf-group/groupwebsite_generator target-repo
+          cd target-repo
+
+          # Copy the images from the source repository to the target repository
+          cp -r "kerzendorf-group/group-data/images" "kerzendorf-group/groupwebsite_generator/images"
+
+
+          # Commit and push the changes to the target repository
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add .
+          git commit -m "AUTO: Copied images from source repository"
+          git push origin main
