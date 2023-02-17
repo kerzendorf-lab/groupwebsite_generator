@@ -19,8 +19,10 @@ jobs:
           token: ${{ secrets.ACCESS_DATA }}
 
       - name: Pull group-data repository
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          git subtree pull --prefix=group-data https://github.com/kerzendorf-group/group-data.git main --squash
+          git subtree pull --prefix=group-data https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git main --squash
 
       - name: Commit and push changes
         run: |
