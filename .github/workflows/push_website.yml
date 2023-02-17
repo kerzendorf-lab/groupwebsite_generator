@@ -23,4 +23,4 @@ jobs:
           git config user.name "GitHub Actions"
           git add .
           git commit -m "Deploy changes to kerzendorf-group.github.io"
-          git push https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git HEAD:main
+          git push
