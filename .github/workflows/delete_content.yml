@@ -25,32 +25,15 @@ jobs:
           isReport: False
           poll: True
 
-      - name: Commit files
-        id: commit
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          if [ -z "$(git status --porcelain)" ]; then
-            echo "::set-output name=push::false"
-          else
-            git commit -m "Add changes" -a
-            echo "::set-output name=push::true"
-          fi
-        shell: bash
-
-      - name: Push changes
-        if: steps.commit.outputs.push == 'true'
-        env:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+      - name: Add changes to submodule
         run: |
           cd kerzendorf-group.github.io
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-          git add --all
-          git commit -m "Update files" -a
-          git push origin main
-          cd ..
-          git submodule update --remote
-          git commit -am "Update submodule reference"
-          git push origin main
+          git add .
+          git commit -m "Update submodule with changes from main repository"
+      - name: Push changes to main repository
+        run: |
+          git push
+      - name: Push changes to submodule
+        run: |
+          cd kerzendorf-group.github.io
+          git push
