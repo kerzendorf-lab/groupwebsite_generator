@@ -1,3 +1,6 @@
 [submodule "group-data"]
 	path = group-data
 	url = https://github.com/kerzendorf-group/group-data.git
+[submodule "kerzendorf-group.github.io"]
+	path = kerzendorf-group.github.io
+	url = https://github.com/kerzendorf-group/kerzendorf-group.github.io.git
