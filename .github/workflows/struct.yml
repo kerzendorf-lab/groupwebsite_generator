@@ -1,14 +1,14 @@
-name: List directory structure of "notebooks"
+name: List files in notebooks directory
 
 on:
   workflow_dispatch:
-  
+
 jobs:
-  list-notebooks-directory:
+  list-notebooks-files:
     runs-on: ubuntu-latest
     steps:
-      - name: List directory structure of "notebooks"
+      - name: List files in notebooks directory
         run: |
-          tree notebooks
-          output=$(tree notebooks)
+          ls notebooks
+          output=$(ls notebooks)
           echo "$output"
