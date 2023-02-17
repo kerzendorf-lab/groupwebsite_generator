@@ -18,8 +18,7 @@ jobs:
           git config credential.helper store
 
       - name: Push changes to repository
-        run: |
-          git subtree push --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main
-
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_DATA}}
+        run: |
+          git subtree push --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main
