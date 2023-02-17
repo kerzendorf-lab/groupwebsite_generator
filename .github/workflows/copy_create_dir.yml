@@ -14,8 +14,8 @@ jobs:
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          mkdir kerzendorf-group.github.io/people
-          mkdir kerzendorf-group.github.io/sub_research
+          cd kerzendorf-group.github.io/
+          mkdir people sub_research
 
       - name: Copy Assets
         env:
