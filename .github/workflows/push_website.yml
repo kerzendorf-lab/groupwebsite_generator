@@ -4,20 +4,22 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  push-subtree:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-        with:
-          submodules: "recursive"
-      - name: Build and deploy changes
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+
+      - name: Set up Git
         run: |
-          cd kerzendorf-group.github.io
-          git config user.email "actions@github.com"
           git config user.name "GitHub Actions"
-          git add .
-          git commit -m "Deploy changes to kerzendorf-group.github.io"
-          git push
+          git config user.email "actions@github.com"
+          git config credential.helper store
+
+      - name: Push changes to repository
+        run: |
+          git subtree push --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main
+
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
