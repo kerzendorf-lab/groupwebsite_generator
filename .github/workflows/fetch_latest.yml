@@ -1,13 +1,13 @@
-name: Update group-data
+name: Fetch to group-data
 
 on:
   workflow_dispatch:
   push:
-    branches:
-      - main
+    paths:
+      - "**"
 
 jobs:
-  update-group-data:
+  update_group_data_subtree:
     runs-on: ubuntu-latest
 
     steps:
@@ -15,27 +15,22 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: main
+          fetch-depth: 0
           submodules: "recursive"
 
-      - name: Configure SSH key
-        uses: webfactory/ssh-agent@v0.4.0
-        with:
-          ssh-private-key: ${{ secrets.GROUP_DATA_DEPLOY_KEY }}
+      - name: Fetch latest changes in group-data subtree
+        run: git fetch --depth=1 https://github.com/kerzendorf-group/group-data.git
 
-      - name: Fetch latest changes
-        run: git fetch --depth=1 https://github.com/kerzendorf-group/group-data.git main
+      - name: Merge changes in group-data subtree
+        run: git subtree merge --prefix=group-data --squash FETCH_HEAD
 
-      - name: Merge changes
+      - name: Commit changes
         run: |
-          git subtree split -P group-data -b group-data-update
-          git checkout group-data-update
-          git merge FETCH_HEAD --allow-unrelated-histories --no-commit
-          git commit -m "Merge latest changes from kerzendorf-group/group-data"
-          git checkout main
-          git merge group-data-update --no-edit
-          git branch -D group-data-update
+          git config --global user.email "action@github.com"
+          git config --global user.name "github-actions"
+          git commit -am "Update group-data subtree"
 
       - name: Push changes
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git push origin main
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.ACCESS_DATA }}
