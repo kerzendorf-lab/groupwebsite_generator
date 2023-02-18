@@ -1,0 +1,28 @@
+name: Pull subtrees
+on:
+  workflow_dispatch:
+
+jobs:
+  create_files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+
+      - name: Pull group-data
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: git subtree pull --prefix=group-data https://github.com/kerzendorf-group/group-data.git main --squash
+
+      - name: Pull kerzendorf-group.github.io
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: git subtree pull --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
+
+      - name: Commit Changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git commit -m "Pulled subtrees latest"
+          git push
