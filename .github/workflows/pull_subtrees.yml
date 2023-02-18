@@ -12,7 +12,7 @@ jobs:
       - name: Pull kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: git subtree add --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
+        run: git subtree pull --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
 
       - name: Pull group-data
         env:
