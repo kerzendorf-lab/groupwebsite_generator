@@ -9,15 +9,15 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2
 
-      - name: Pull group-data
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: git subtree pull --prefix=group-data https://github.com/kerzendorf-group/group-data.git main --squash
-
       - name: Pull kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: git subtree pull --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
+
+      - name: Pull group-data
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: git subtree pull --prefix=group-data https://github.com/kerzendorf-group/group-data.git main --squash
 
       - name: Commit Changes
         run: |
