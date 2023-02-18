@@ -12,7 +12,9 @@ jobs:
       - name: Pull kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: git remote add kerzendorf-group https://github.com/kerzendorf-group/kerzendorf-group
+        run: |
+          git subtree pull --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
+          git push
 
       - name: Pull group-data
         env:
