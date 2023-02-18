@@ -1,4 +1,4 @@
-name: Pull subtree changes
+name: Pull subtree
 
 on:
   workflow_dispatch:
