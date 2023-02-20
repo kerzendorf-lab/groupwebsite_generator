@@ -15,5 +15,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_DATA }}
         run: |
+          git remote -v
           git remote add kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git
+          git remote add group-data https://github.com/kerzendorf-group/group-data.git
           git subtree pull --prefix=kerzendorf-group.github.io/ kerzendorf-group.github.io main --squash
