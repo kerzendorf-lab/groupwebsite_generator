@@ -16,6 +16,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_DATA }}
         run: |
           git remote add kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git
-          git subtree add --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main --squash
           git remote -v
-          git subtree pull --prefix=kerzendorf-group.github.io/ kerzendorf-group.github.io main --squash
+          git subtree pull --prefix=kerzendorf-group.github.io kerzendorf-group.github.io main --squash
