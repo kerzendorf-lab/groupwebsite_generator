@@ -18,7 +18,7 @@ jobs:
           git remote add kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git
           git subtree pull --prefix=kerzendorf-group.github.io/ kerzendorf-group.github.io main --squash
 
-      - name: View remotes
+      -  name: View remotes
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_DATA }}
         run: |
