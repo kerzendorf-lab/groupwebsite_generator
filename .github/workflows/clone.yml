@@ -17,6 +17,7 @@ jobs:
           else
             cd kerzendorf-group.github.io
             git fetch 
+            git merge
           fi
 
       - name: Clone or fetch group-data
@@ -26,6 +27,7 @@ jobs:
           else
             cd group-data
             git fetch 
+            git merge
           fi
 
       - name: Configure git
