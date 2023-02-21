@@ -13,7 +13,13 @@ jobs:
       - name: Delete content
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: find kerzendorf-group.github.io/* -maxdepth 0 ! -name .gitignore ! -name .github ! -name hello.txt ! -name .git -exec rm -rv {} \;
+        run: |
+          cd kerzendorf-group.github.io
+          rm *.html
+          rm -rf assets
+          rm -rf people
+          rm -rf images
+          rm -rf sub_research
 
       - name: Configure git
         run: |
