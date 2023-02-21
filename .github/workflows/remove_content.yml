@@ -16,10 +16,10 @@ jobs:
         run: |
           cd kerzendorf-group.github.io
 
-          rm -rf assets
-          rm -rf people
-          rm -rf images
-          rm -rf sub_research
+          git rm -rf assets
+          git rm -rf people
+          git rm -rf images
+          git rm -rf sub_research
 
       - name: Configure git
         run: |
@@ -30,4 +30,4 @@ jobs:
         run: |
           git add .
           git commit -m "Cleaned repository"
-          git push origin website_push
+          git push origin main:website
