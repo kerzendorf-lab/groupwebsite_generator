@@ -7,17 +7,15 @@ jobs:
   clone-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
-        with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Clone group-data
-        run: git clone git@github.com:kerzendorf-group/group-data.git
+      - name: Checkout current repository
+        uses: actions/checkout@v2
 
       - name: Clone kerzendorf-group.github.io
-        run: git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
+        run: git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
+
+      - name: Clone group-data
+        run: |
+          git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
 
       - name: Configure git
         run: |
@@ -26,7 +24,6 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git init
           git add .
           git commit -m "Clone my-other-repo"
           git push
