@@ -10,10 +10,10 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v2
 
-      - name: Clone or fetch kerzendorf-group.github.io
+      - name: Delete content
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: find kerzendorf-group.github.io/* -maxdepth 0 ! -name .gitignore ! -name .github ! -name .git -exec rm -rv {} \;
+        run: find kerzendorf-group.github.io* -maxdepth 0 ! -name .gitignore ! -name .github ! -name .git -exec rm -rv {} \;
 
       - name: Configure git
         run: |
