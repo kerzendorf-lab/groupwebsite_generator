@@ -30,10 +30,6 @@ jobs:
           cd kerzendorf-group.github.io
           git add .
           git commit -m "Cleaning repo"
-      - name: Push changes to main repository
+      - name: Push changes to current repository
         run: |
-          git push
-      - name: Push changes
-        run: |
-          cd kerzendorf-group.github.io
           git push

@@ -16,10 +16,12 @@ jobs:
         run: |
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
-          git config credential.helper store
 
-      - name: Push changes to repository
+      - name: Push to website repo
         env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA}}
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          git subtree push --prefix=kerzendorf-group.github.io https://github.com/kerzendorf-group/kerzendorf-group.github.io.git main
+          cd kerzendorf-group.github.io
+          git add .
+          git commit -m "Pushing website"
+          git push
