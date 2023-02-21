@@ -15,6 +15,7 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd kerzendorf-group.github.io
+
           rm -rf assets
           rm -rf people
           rm -rf images
@@ -29,4 +30,4 @@ jobs:
         run: |
           git add .
           git commit -m "Cleaned repository"
-          git push origin main -f
+          git push origin website_push
