@@ -29,5 +29,6 @@ jobs:
       - name: Commit and push changes
         run: |
           git add .
+          git status
           git commit -m "Cleaned repository"
           git push origin main:website

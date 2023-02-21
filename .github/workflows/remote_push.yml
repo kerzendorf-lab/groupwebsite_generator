@@ -21,6 +21,5 @@ jobs:
           cd kerzendorf-group.github.io
           touch pushing_remote.txt
           git add .
-          git status
           git commit -m "to remote"
           git push
