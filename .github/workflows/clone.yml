@@ -14,18 +14,18 @@ jobs:
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           
     - name: Clone group-data
-      run: git clone git@github.com:kerzendorf-group/group-data.git
+        run: git clone git@github.com:kerzendorf-group/group-data.git
 
     - name: Clone kerzendorf-group.github.io
       run: git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
 
-      - name: Configure git
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
+    - name: Configure git
+      run: |
+        git config --global user.name "GitHub Actions"
+        git config --global user.email "actions@github.com"
 
-      - name: Commit and push changes
-        run: |
-          git add .
-          git commit -m "Clone my-other-repo"
-          git push
+    - name: Commit and push changes
+      run: |
+        git add .
+        git commit -m "Clone my-other-repo"
+        git push
