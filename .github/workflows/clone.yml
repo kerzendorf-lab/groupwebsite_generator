@@ -26,6 +26,7 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          git init
           git add .
           git commit -m "Clone my-other-repo"
           git push
