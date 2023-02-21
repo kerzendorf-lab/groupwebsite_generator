@@ -15,10 +15,6 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd kerzendorf-group.github.io
-          rm index.html
-          rm People.html
-          rm Research.html
-          rm Contact.html
           rm -rf assets
           rm -rf people
           rm -rf images
