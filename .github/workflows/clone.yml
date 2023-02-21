@@ -10,12 +10,25 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v2
 
-      - name: Clone kerzendorf-group.github.io
-        run: git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
-
-      - name: Clone group-data
+      - name: Clone or fetch kerzendorf-group.github.io
         run: |
-          git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
+          if [ ! -d "kerzendorf-group.github.io" ]; then
+            git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
+          else
+            cd kerzendorf-group.github.io
+            git fetch origin
+            git checkout main
+          fi
+
+      - name: Clone or fetch group-data
+        run: |
+          if [ ! -d "group-data" ]; then
+            git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
+          else
+            cd group-data
+            git fetch origin
+            git checkout main
+          fi
 
       - name: Configure git
         run: |
