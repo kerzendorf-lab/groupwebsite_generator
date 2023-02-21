@@ -1,0 +1,38 @@
+name: Pull from repos
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout current repository
+        uses: actions/checkout@v2
+
+      - name: Clone or fetch kerzendorf-group.github.io
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: |
+          cd kerzendorf-group.github.io
+          git fetch 
+          git merge
+
+      - name: Clone or fetch group-data
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: |
+          cd group-data
+          git fetch 
+          git merge
+
+      - name: Configure git
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Commit and push changes
+        run: |
+          git add .
+          git commit -m "Clone my-other-repo"
+          git push
