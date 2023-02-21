@@ -16,8 +16,7 @@ jobs:
             git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
           else
             cd kerzendorf-group.github.io
-            git fetch origin
-            git checkout main
+            git fetch 
           fi
 
       - name: Clone or fetch group-data
@@ -26,8 +25,7 @@ jobs:
             git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
           else
             cd group-data
-            git fetch origin
-            git checkout main
+            git fetch 
           fi
 
       - name: Configure git
