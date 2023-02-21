@@ -18,9 +18,7 @@ jobs:
       - name: Clone or fetch group-data
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run:
-          git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
-          else
+        run: git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
 
       - name: Configure git
         run: |
