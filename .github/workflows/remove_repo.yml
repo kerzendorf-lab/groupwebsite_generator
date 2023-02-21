@@ -10,13 +10,6 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v2
 
-      - name: Remove else
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: |
-          git rm --cached else
-          rm -rf else
-
       - name: Remove kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
