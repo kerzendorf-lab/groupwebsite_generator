@@ -1,35 +1,27 @@
-name: Delete content
+name: Delete old website content
 
 on:
   workflow_dispatch:
 
 jobs:
-  run:
+  clone-and-push:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Git identity
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "github-actions"
-      - name: Set up Python
-        uses: actions/setup-python@v2
-      - uses: yaananth/run-notebook@v2
-        env:
-          RUNNER: ${{ toJson(runner) }}
-          SECRETS: ${{ toJson(secrets) }}
-          GITHUB: ${{ toJson(github) }}
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        with:
-          notebook: "notebooks/delete_content.ipynb"
-          isReport: False
-          poll: True
+      - name: Checkout current repository
+        uses: actions/checkout@v2
 
-      - name: Add changes (delete)
+      - name: Clone or fetch kerzendorf-group.github.io
+        env:
+          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
+        run: find kerzendorf-group.github.io/* -maxdepth 0 ! -name .gitignore ! -name .github ! -name .git -exec rm -rv {} \;
+
+      - name: Configure git
         run: |
-          cd kerzendorf-group.github.io
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+
+      - name: Commit and push changes
+        run: |
           git add .
-          git commit -m "Cleaning repo"
-      - name: Push changes to current repository
-        run: |
+          git commit -m "Cleaned repository"
           git push
