@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  clone-and-push:
+  delete_and_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current repository
@@ -15,7 +15,10 @@ jobs:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd kerzendorf-group.github.io
-          rm *.html
+          rm index.html
+          rm People.html
+          rm Research.html
+          rm Contact.html
           rm -rf assets
           rm -rf people
           rm -rf images
