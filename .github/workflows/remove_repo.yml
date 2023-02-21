@@ -1,4 +1,4 @@
-name: Pull from repos
+name: Remove repositories
 
 on:
   workflow_dispatch:
@@ -10,21 +10,19 @@ jobs:
       - name: Checkout current repository
         uses: actions/checkout@v2
 
-      - name: Clone or fetch kerzendorf-group.github.io
+      - name: Remove kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd kerzendorf-group.github.io
-          git fetch 
-          git merge
+          git rm --cached kerzendorf-group.github.io
+          rm -rf kerzendorf-group.github.io
 
-      - name: Clone or fetch group-data
+      - name: Remove group-data
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd group-data
-          git fetch 
-          git merge
+          git rm --cached group-data
+          rm -rf group-data
 
       - name: Configure git
         run: |
@@ -34,5 +32,5 @@ jobs:
       - name: Commit and push changes
         run: |
           git add .
-          git commit -m "Clone my-other-repo"
+          git commit -m "Removed cloned repo"
           git push

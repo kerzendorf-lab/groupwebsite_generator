@@ -1,4 +1,4 @@
-name: Clone repo
+name: Clone repositories
 
 on:
   workflow_dispatch:
@@ -13,26 +13,14 @@ jobs:
       - name: Clone or fetch kerzendorf-group.github.io
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: |
-          if [ ! -d "kerzendorf-group.github.io" ]; then
-            git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
-          else
-            cd kerzendorf-group.github.io
-            git fetch 
-            git merge
-          fi
+        run: git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
 
       - name: Clone or fetch group-data
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
-        run: |
-          if [ ! -d "group-data" ]; then
-            git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
+        run:
+          git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
           else
-            cd group-data
-            git fetch 
-            git merge
-          fi
 
       - name: Configure git
         run: |
