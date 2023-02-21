@@ -7,20 +7,17 @@ jobs:
   clone-and-push:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current repository
-        uses: actions/checkout@v2
+    - name: Setup SSH
+      uses: MrSquaare/ssh-setup-action@v1
+      with:
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+    - name: Clone group-data
+      run: git clone git@github.com:kerzendorf-group/group-data.git
 
-      - name: List items
-        run: |
-          cd group-data
-          ls -a
-
-      - name: Clone kerzendorf-group.github.io
-        run: git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/kerzendorf-group.github.io.git
-
-      - name: Clone group-data
-        run: |
-          git clone https://${{ secrets.ACCESS_DATA }}@github.com/kerzendorf-group/group-data.git
+    - name: Clone kerzendorf-group.github.io
+      run: git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
 
       - name: Configure git
         run: |
