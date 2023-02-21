@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  delete_and_push:
+  remote_push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout current repository
@@ -20,6 +20,6 @@ jobs:
         run: |
           cd kerzendorf-group.github.io
           touch pushing_remote.txt
-          git add.
+          git add .
           git commit -m "to remote"
           git push
