@@ -23,6 +23,8 @@ jobs:
         run: |
           cd group-data
           ls -a
+          # Don't do that. Leave them where they are and change the notebook to take the right files from
+          # the right places. The only copy you need to make 
           cp -r groupwebsite_data ../groupwebsite_generator/group-data/
           cp -r images ../groupwebsite_generator/kerzendorf-group.github.io/
           cp -r members ../groupwebsite_generator/group-data/
@@ -35,6 +37,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
+          # not at all you need to only go to the kerzendorf-group.github.io and commmit and push there.
           cd groupwebsite_generator
           git add .
           git commit -m "Repo Files"
