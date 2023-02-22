@@ -1,0 +1,22 @@
+[
+    {
+        "head_title": "Post Doctorates"
+    },
+    {
+        "name": "Andrew Fullard",
+        "project_title": "Inferring explosion conditions from late-time Type Ia supernova spectra",
+        "org": "Fusce efficitur velit.",
+        "role": "Postdoc",
+        "myrole": "advisor",
+        "tags": [],
+        "university": "Morbi rhoncus.",
+        "introduction": "Post doc Quisque eu placerat erat. Donec vitae urna eget metus imperdiet dictum quis nec dui. In ullamcorper lectus quis dolor aliquam ullamcorper. Proin gravida nibh pharetra nisi condimentum venenatis. Donec eget pharetra nisi, elementum pharetra magna. Nulla in erat a elit blandit congue. Nunc nec nunc ullamcorper, aliquet purus nec, laoreet lectus. Curabitur ut varius lorem. Vestibulum id tempus nunc. Nullam eget quam ultricies, molestie libero ut, lobortis neque.",
+        "start_year": 2020,
+        "end_year": "None",
+        "image_path": "images/persons/blank.png",
+        "website": "https://google.com",
+        "twitter": "None",
+        "linkedin": "https://linkedin.com",
+        "email": "fakeemail@gmail.com"
+    }
+]
