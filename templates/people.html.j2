@@ -3,8 +3,8 @@
     <title> {{ general.website_title }} </title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../assets/css/main.css" />
-    <link rel="stylesheet" href="../assets/css/card.css" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="assets/css/card.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 <body class="right-sidebar is-preload">
@@ -39,7 +39,7 @@
                 </header>
             </section>
         </div>
-        <!-- Instructor -->
+        <!-- Instructor,post_doc,grad_students,undergrads -->
         {% for role in [instructor, post_docs,grad_students, undergrads] %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
@@ -86,7 +86,7 @@
             </div>
         </div>
         {% endfor %}
-        <!-- End_sec -->
+        <!-- End Instructor,post_doc,grad_students,undergrads -->
 
 
 
@@ -131,6 +131,8 @@
                                 <p><button></button></p>
                             </div>
                         </div>
+                        {% else %}
+                        {# do nothing if end_year is not None #}
                         {% endif %}
                         {% endfor %}
                         {% endfor %}
@@ -153,11 +155,11 @@
             </div>
         </div>
         <!-- Scripts -->
-        <script src="../assets/js/jquery.min.js"></script>
-        <script src="../assets/js/jquery.dropotron.min.js"></script>
-        <script src="../assets/js/browser.min.js"></script>
-        <script src="../assets/js/breakpoints.min.js"></script>
-        <script src="../assets/js/util.js"></script>
-        <script src="../assets/js/main.js"></script>
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/jquery.dropotron.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
 </body>
 </html>
