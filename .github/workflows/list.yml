@@ -4,15 +4,11 @@ on:
   workflow_dispatch:
 
 jobs:
-  clone:
-    name: Clone
+  create_files:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
-        with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: List Repo
+        uses: actions/checkout@v2
 
       - name: LIST
         run: |
