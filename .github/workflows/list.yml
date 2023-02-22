@@ -1,0 +1,19 @@
+name: LIST
+
+on:
+  workflow_dispatch:
+
+jobs:
+  clone:
+    name: Clone
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup SSH
+        uses: MrSquaare/ssh-setup-action@v1
+        with:
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: LIST
+        run: |
+          ls -a
