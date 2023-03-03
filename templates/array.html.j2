@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="assets/css/card.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="right-sidebar is-preload">
     <div id="page-wrapper">
@@ -42,11 +40,11 @@
             </section>
         </div>
         <!-- Instructor,post_doc,grad_students,undergrads -->
-        {% for role in [instructor, post_docs,grad_students, undergrads] %}
+        {% for role, people in people | groupby('role') %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
                 <header>
-                    <h2> {{ role[0]['head_title'] }} </h2>
+		<h2> {{ role[0]['role'] }} </h2>
                 </header>
             </section>
         </div>
@@ -105,7 +103,7 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for role in [instructor, post_docs,grad_students, undergrads] %}
+                        {% for role in [people] %}
                         {% for person in role %}
                         {% if person['end_year'] != "None" %}
                         <div class="column">
@@ -145,73 +143,17 @@
 
 
 
-        <!-- footer start -->
-        <footer class="footer">
-            <div class="footer_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-4 col-md-6 col-lg-4">
-                            <div class="footer_widget">
-                                <div class="logo_footer">
-                                    <a href="index.html">
-                                        <img src="img/logo.png" alt="">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-lg-3">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Address
-                                </h3>
-                                <ul style="padding-right: 40%;">
-                                    <li>
-                                        <h6 class="icon maps fa-map"> {{ general.address }}</h6>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-lg-3">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Useful Links
-                                </h3>
-                                <ul>
-                                    {% for link_text, link_url in general.useful_link.items() %}
-                                    <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-md-6 col-lg-2">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Social Links
-                                </h3>
-                                <ul>
-                                    {% for platform, link in general.social_media_links.items() %}
-                                    <li><a href="{{ link }}">{{ platform }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
+
+        <!-- Footer -->
+        <div id="footer-wrapper">
+            <div id="footer">
+                <section id="footer">
+                    <div style="padding-left: 5%;">
+                        <h6 class="icon maps fa-map"> {{ general.address }}</h6>
                     </div>
-                </div>
+                </section>
             </div>
-            <div class="copy-right_text">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <p class="copy_right text-center">
-                                {{ general.footer_message }}
-                                <script>document.write(new Date().getFullYear());</script>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!--footer end-->
+        </div>
         <!-- Scripts -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/jquery.dropotron.min.js"></script>
