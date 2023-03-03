@@ -41,8 +41,8 @@
                 </header>
             </section>
         </div>
-        <!-- Instructor,post_doc,grad_students,undergrads -->
-        {% for role in [instructor, post_docs,grad_students, undergrads] %}
+        <!-- investigator,post_doc,grad_students,undergrads -->
+        {% for role in [investigator, post_docs,grad_students, undergrads] %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
                 <header>
@@ -88,7 +88,7 @@
             </div>
         </div>
         {% endfor %}
-        <!-- End Instructor,post_doc,grad_students,undergrads -->
+        <!-- End investigator,post_doc,grad_students,undergrads -->
 
 
 
@@ -105,7 +105,7 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for role in [instructor, post_docs,grad_students, undergrads] %}
+                        {% for role in [investigator, post_docs,grad_students, undergrads] %}
                         {% for person in role %}
                         {% if person['end_year'] != "None" %}
                         <div class="column">
