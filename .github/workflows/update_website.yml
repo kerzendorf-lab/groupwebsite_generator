@@ -38,6 +38,11 @@ jobs:
           cp -r ../groupwebsite_generator/assets ./
           rsync -av --exclude '*.json' ../group-data/people/ ./data
 
+      - name: Setup directories inside group-data
+        run: |
+          cd group-data
+          mkdir people/common
+
 
       - name: Install Jupyter and Python3
         run: |
@@ -50,6 +55,7 @@ jobs:
         run: |
           cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
+          python3 combine_json.py
           for python_file_name in $(find notebooks -name "*.py")
             do
               python3 "$python_file_name"
