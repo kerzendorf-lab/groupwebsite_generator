@@ -36,7 +36,7 @@ jobs:
           mkdir people sub_research
           mkdir people/data
           cp -r ../groupwebsite_generator/assets ./
-          rsync -av --exclude '*.json' ../group-data/people/ ./data
+          rsync -av --exclude '*.json' ../group-data/people/ ./people/data
 
       - name: Setup directories inside group-data
         run: |
