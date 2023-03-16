@@ -30,12 +30,17 @@ jobs:
           rm -rf *.html
           rm -rf assets images people sub_research
 
+      - name: Copy Images
+          cd kerzendorf-group.github.io
+          cp -r ../group-data/images ./
+
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
           cd kerzendorf-group.github.io
           mkdir people sub_research
           mkdir people/data
           cp -r ../groupwebsite_generator/assets ./
+          cp -r ../group-data/images ./
           rsync -av --exclude '*.json' ../group-data/people/ ./people/data
 
       - name: Setup directories inside group-data
