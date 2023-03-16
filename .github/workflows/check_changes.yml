@@ -1,4 +1,4 @@
-name: Check changes
+name: Check Webhook Dispatch
 
 on:
   repository_dispatch:
