@@ -31,6 +31,7 @@ jobs:
           rm -rf assets images people sub_research
 
       - name: Copy Images
+        run: |
           cd kerzendorf-group.github.io
           cp -r ../group-data/images ./
 
