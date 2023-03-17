@@ -30,21 +30,21 @@ jobs:
         run: |
           cd kerzendorf-group.github.io
           rm -rf *.html
-          rm -rf assets images people sub_research
+          rm -rf assets images members sub_research
 
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
           cd kerzendorf-group.github.io
-          mkdir people sub_research
-          mkdir people/data
+          mkdir members sub_research
+          mkdir members/data
           cp -r ../group-data/images ./
           cp -r ../groupwebsite_generator/assets ./
-          rsync -av --exclude '*.json' ../group-data/people/ ./people/data
+          rsync -av --exclude '*.json' ../group-data/members/ ./members/data
 
       - name: Setup directories inside group-data
         run: |
           cd group-data
-          mkdir people/common
+          mkdir members/common
 
 
       - name: Install Jupyter and Python3
