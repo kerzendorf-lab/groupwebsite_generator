@@ -37,7 +37,7 @@ jobs:
           cd kerzendorf-group.github.io
           mkdir members sub_research
           mkdir members/data
-          cp -r ../group-data/groupwebsite_data/website_files/images ./
+          cp -r ../group-data/groupwebsite_data/website_files ./
           cp -r ../groupwebsite_generator/assets ./
           rsync -av --exclude '*.json' ../group-data/members/ ./members/data
 
