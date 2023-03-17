@@ -42,11 +42,11 @@
             </section>
         </div>
         <!-- investigator,post_doc,grad_students,undergrads -->
-        {% for role in [investigator, post_docs,grad_students, undergrads] %}
+        {% for role in [investigator, post_docs,grads, undergrads, post_grads] %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
                 <header>
-                    <h2> {{ role[0]['head_title'] }} </h2>
+                    <h2> {{ role[0]['role'] }} </h2>
                 </header>
             </section>
         </div>
@@ -60,7 +60,7 @@
                             <div class="card">
                                 <img src="{{ person.image_path }}" style="width:100%">
                                 <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
-                                <p> {{ person.role }} </p>
+                                <p> {{ person.myrole }} </p>
                                 <p> {{ person.project_title }} </p>
                                 <h6> {{ person.university }} </h6>
                                 {% if person['website'] != "None" %}
@@ -112,7 +112,7 @@
                             <div class="card">
                                 <img src="{{ person.image_path }}" style="width:100%">
                                 <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
-                                <p> {{ person.role }} </p>
+                                <p> {{ person.myrole }} </p>
                                 <p> {{ person.project_title }} </p>
                                 <h6> {{ person.university }} </h6>
                                 {% if person['website'] != "None" %}
