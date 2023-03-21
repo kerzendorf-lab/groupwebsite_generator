@@ -42,11 +42,11 @@
             </section>
         </div>
         <!-- investigator,post_doc,grad_students,undergrads -->
-        {% for role in [investigator, post_docs,grads, undergrads, post_grads] %}
+        {% for category in [investigator, post_docs,grads, undergrads, post_grads] %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
                 <header>
-                    <h2> {{ role[0]['role'] }} </h2>
+                    <h2> {{ category[0]['category'] }} </h2>
                 </header>
             </section>
         </div>
@@ -54,7 +54,7 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for person in role %}
+                        {% for person in category %}
                         {% if person['end_year'] == "None" %}
                         <div class="column">
                             <div class="card">
@@ -105,8 +105,8 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for role in [investigator, post_docs,grads, undergrads, post_grads] %}
-                        {% for person in role %}
+                        {% for category in [investigator, post_docs,grads, undergrads, post_grads] %}
+                        {% for person in category %}
                         {% if person['end_year'] != "None" %}
                         <div class="column">
                             <div class="card">
