@@ -8,8 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <link rel="stylesheet" href="../assets/css/carousell.css">
-
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body class="right-sidebar is-preload">
     <div id="page-wrapper">
@@ -68,22 +67,19 @@
 
         </ul>
 
-        <!--div style="display: flex; justify-content: center; align-items: center; margin-top:5%">
-            <iframe src="../{{person.documents}}" style="width:70%; height:500px;"></iframe>
-        </div-->
-        {% if 'documents' in person %}
-        <h2 style="text-align: center; padding-top:5%;"> Posters</h2>
-        <div class="slider">
-        {% for document in person.documents %}
-            <div class="mySlides">
-                <div class="numbertext">1 / 6</div>
-                <iframe src="../{{ document }}" style="width:100%"></iframe>
+        <div id="myCarousel" class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <iframe src="../{{person.documents}}" class="document" style="width:70%; height:90%"></iframe>
+                </div>
+                <div class="swiper-slide">
+                    <iframe src="../{{person.documents}}" class="document" style="width:70%; height:90%"></iframe>
+                </div>
+                <div class="swiper-slide">
+                    <iframe src="../{{person.documents}}" class="document" style="width:70%; height:90%"></iframe>
+                </div>
             </div>
-               {% endfor %}
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
         </div>
-        {% endif %}
 
     </div>
 
@@ -161,6 +157,5 @@
     <script src="../assets/js/breakpoints.min.js"></script>
     <script src="../assets/js/util.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/carousell.js"></script>
 </body>
 </html>
