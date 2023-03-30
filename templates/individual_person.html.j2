@@ -9,7 +9,80 @@
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/carousell.css">
+    <style>
+        table,
+        td {
+            border: none;
+            padding: 20px;
+            max-width: 50%;
+            min-width: 100px;
+            word-wrap: break-word;
+        }
 
+        .two {
+            display: inline-block;
+            margin-right: 50px;
+            margin-left: 100px;
+            vertical-align: top;
+        }
+
+        @media only screen and (max-width: 767px) {
+            .two {
+                margin-left: 5px;
+            }
+        }
+
+        .click_button {
+            display: inline-block;
+            padding: 15px 25px;
+            font-size: 24px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            outline: none;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+            max-width: fit-content;
+        }
+
+        .click_button:hover {
+            background-color: #3e8e41
+        }
+
+        .click_button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        .click_button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .click_button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .click_button:hover span {
+            padding-right: 25px;
+        }
+
+        .click_button:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
+    </style>
 </head>
 <body class="right-sidebar is-preload">
     <div id="page-wrapper">
@@ -54,113 +127,245 @@
                         </header>
                         <h4> About Me:</h4>
                         <p> {{ person.introduction }}</p>
+
+
+                        <table>
+                            <tr>
+                                <td>Project Title:</td>
+                                <td>{{ person.project_title }}</td>
+                            </tr>
+                            <tr>
+                                <td>Organization:</td>
+                                <td>{{ person.org }}</td>
+                            </tr>
+                            <tr>
+                                <td>Category:</td>
+                                <td>{{ person.category }}</td>
+                            </tr>
+                            <tr>
+                                <td>Current Role:</td>
+                                <td>{{ person.current_role }}</td>
+                            </tr>
+                            <tr>
+                                <td>Current Institute:</td>
+                                <td>{{ person.current_institute }}</td>
+                            </tr>
+                            <tr>
+                                <td>Duration:</td>
+                                <td>{{ person.group_start_year }}-{{ person.group_end_year }}</td>
+                            </tr>
+
+                        </table>
                     </section>
+
                 </div>
             </div>
         </div>
         <ul class="social-icons" style="margin-left: auto;">
+            {% if person['website'] != "None" %}
             <li><a href="{{person.website}}"><i class="fa fa-globe"></i></a></li>
+            {% endif %}
+            {% if person['github'] != "None" %}
             <li><a href="{{person.github}}"><i class="fab fa-github"></i></a></li>
+            {% endif %}
+            {% if person['twitter'] != "None" %}
             <li><a href="{{person.twitter}}"><i class="fab fa-twitter"></i></a></li>
+            {% endif %}
+            {% if person['linkedin'] != "None" %}
             <li><a href="{{person.linkedin}}"><i class="fab fa-linkedin"></i></a></li>
+            {% endif %}
+            {% if person['email'] != "None" %}
             <li><a href="{{person.email}}"><i class="fa fa-envelope"></i></a></li>
-            <li><a href="{{person.link1}}"><i class="fa fa-link"></i></a></li>
+            {% endif %}
+            {% if person['orcid'] != "None" %}
+            <li><a href="{{person.orchid}}"><i class="fa fa-link"></i></a></li>
+            {% endif %}
 
         </ul>
+        <div style="text-align:center; padding-top:5%;">
+            <a href="https://www.example.com/resume.pdf" target="_blank">
+                <button class="click_button"><span>Download CV</span></button>
+            </a>
+        </div>
 
-        <!--div style="display: flex; justify-content: center; align-items: center; margin-top:5%">
-            <iframe src="../{{person.documents}}" style="width:70%; height:500px;"></iframe>
-        </div-->
-        {% if 'documents' in person %}
-        <h2 style="text-align: center; padding-top:5%;"> Posters</h2>
+
+
+
+        {% if 'posters' in person %}
+        <h2 style="text-align:center; padding-top:5%;">Posters</h2>
         <div class="slider">
-        {% for document in person.documents %}
+            {% for poster in person.posters %}
+            {% for key, values in poster.items() %}
+            {% for value in values %}
             <div class="mySlides">
-                <div class="numbertext">1 / 6</div>
-                <iframe src="../{{ document }}" style="width:100%"></iframe>
+
+                <h3 style="text-align: center;">{{ value.title }}</h3>
+                <iframe src="../{{ value.link }}" style="width:100%"></iframe>
+                <p style="text-align:center; "><b style="color: black;"><i>{{ value.caption }}</i></b></p>
+                <p style="text-align:center; ">{{ value.about }}</p>
             </div>
-               {% endfor %}
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
             <a class="prev" onclick="plusSlides(-1)">❮</a>
             <a class="next" onclick="plusSlides(1)">❯</a>
+
+            {% endif %}
+
+
         </div>
-        {% endif %}
 
-    </div>
 
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <div class="logo_footer">
-                                <a href="index.html">
-                                    <img src="img/logo.png" alt="">
-                                </a>
+
+
+        <div style="display: flex; padding-top:5%">
+            <div style="margin-right: 50px;">
+                {% for section in [ "education","experience", "projects", "books", "documents", "awards",
+                "outreach"] %}
+                {% if section in person %}
+                <div class="two">
+                    {% for heading in person[section][0].headings %}
+                    {% if 'section' in heading %}
+                    <h2>{{ heading.section }}</h2>
+                    {% endif %}
+                    {% endfor %}
+                    <table>
+                        <thead>
+                            <tr>
+                                {% for heading in person[section][0].headings %}
+                                {% for key, value in heading.items() %}
+                                {% if key != "section" %}
+                                <th><b>{{ value }}</b></th>
+                                {% endif %}
+                                {% endfor %}
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in person[section] %}
+                            {% for key, values in item.items() %}
+                            {% if key != "headings" %}
+                            {% for item_values in values %}
+                            <tr>
+                                {% for item_key, item_value in item_values.items() %}
+                                <td>{{ item_value }}</td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                            {% endif %}
+                            {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+
+
+
+        </div>
+<!--slideshow of images-->
+
+        {% if 'media' in person %}
+        <h2 style="text-align:center; padding-top:5%;">Media</h2>
+            <div class="slider_media">
+            {% for media in person.media %}
+            {% for key, values in media.items() %}
+            {% for value in values %}
+            <div class="mySlides_media">
+                <h3 style="text-align: center;">{{ value.title }}</h3>
+                <img src="{{value.link}}" style="width:100%">
+                <p style="text-align:center; "><b style="color: black;"><i>{{ value.caption }}</i></b></p>
+                <p style="text-align:center; ">{{ value.about }}</p>
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% endfor %}
+
+        <a class="prev_media" onclick="plusSlides_media(-1)">❮</a>
+        <a class="next_media" onclick="plusSlides_media(1)">❯</a>
+
+            {% endif %}
+        </div>
+<!-- slideshow of images-->
+ </div>
+
+        <!-- footer start -->
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-6 col-lg-4">
+                            <div class="footer_widget">
+                                <div class="logo_footer">
+                                    <a href="index.html">
+                                        <img src="img/logo.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Address
+                                </h3>
+                                <ul style="padding-right: 40%;">
+                                    <li>
+                                        <h6 class="icon maps fa-map"> {{ general.address }}</h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6 col-lg-3">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Useful Links
+                                </h3>
+                                <ul>
+                                    {% for link_text, link_url in general.useful_link.items() %}
+                                    <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6 col-lg-2">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Social Links
+                                </h3>
+                                <ul>
+                                    {% for platform, link in general.social_media_links.items() %}
+                                    <li><a href="{{ link }}">{{ platform }}</a></li>
+                                    {% endfor %}
+                                </ul>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Address
-                            </h3>
-                            <ul style="padding-right: 40%;">
-                                <li>
-                                    <h6 class="icon maps fa-map"> {{ general.address }}</h6>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Useful Links
-                            </h3>
-                            <ul>
-                                {% for link_text, link_url in general.useful_link.items() %}
-                                <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Social Links
-                            </h3>
-                            <ul>
-                                {% for platform, link in general.social_media_links.items() %}
-                                <li><a href="{{ link }}">{{ platform }}</a></li>
-                                {% endfor %}
-                            </ul>
+                </div>
+            </div>
+            <div class="copy-right_text">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center">
+                                {{ general.footer_message }}
+                                <script>document.write(new Date().getFullYear());</script>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="copy-right_text">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            {{ general.footer_message }}
-                            <script>document.write(new Date().getFullYear());</script>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--footer end-->
-    <!-- Scripts -->
-    <script src="../assets/js/jquery.min.js"></script>
-    <script src="../assets/js/jquery.dropotron.min.js"></script>
-    <script src="../assets/js/browser.min.js"></script>
-    <script src="../assets/js/breakpoints.min.js"></script>
-    <script src="../assets/js/util.js"></script>
-    <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/carousell.js"></script>
+        </footer>
+        <!--footer end-->
+        <!-- Scripts -->
+        <script src="../assets/js/jquery.min.js"></script>
+        <script src="../assets/js/jquery.dropotron.min.js"></script>
+        <script src="../assets/js/browser.min.js"></script>
+        <script src="../assets/js/breakpoints.min.js"></script>
+        <script src="../assets/js/util.js"></script>
+        <script src="../assets/js/main.js"></script>
+        <script src="../assets/js/carousell.js"></script>
+   
 </body>
 </html>

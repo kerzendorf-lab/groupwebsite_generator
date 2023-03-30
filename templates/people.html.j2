@@ -1,4 +1,4 @@
-<html>
+ <html>
 <head>
     <title> {{ general.website_title }} </title>
     <meta charset="utf-8" />
@@ -42,11 +42,11 @@
             </section>
         </div>
         <!-- investigator,post_doc,grad_students,undergrads -->
-        {% for category in [investigator, post_docs,grads, undergrads, post_grads] %}
+        {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
         <div class="row">
             <section class="col-6 col-12-narrower feature">
                 <header>
-                    <h2> {{ category[0]['category'] }} </h2>
+                    <h2> {{ key[0]['category'] }} </h2>
                 </header>
             </section>
         </div>
@@ -54,29 +54,29 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for person in category %}
-                        {% if person['end_year'] == "None" %}
+                        {% for person in key %}
+                        {% if person['group_end_year'] == "Present" %}
                         <div class="column">
                             <div class="card">
                                 <img src="{{ person.image_path }}" style="width:100%">
                                 <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
-                                <p> {{ person.myrole }} </p>
+                                <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
-                                <h6> {{ person.university }} </h6>
+                                <h6> {{ person.current_institute }} </h6>
                                 {% if person['website'] != "None" %}
                                 <a href="{{ person.website }}"><i class="fa fa-dribbble"></i></a>
                                 {% endif %}
                                 {% if person['twitter'] != "None" %}
-                                <a href={{ person.twitter }}><i class="fa fa-twitter"></i></a>
+                                <a href="{{ person.twitter }}"><i class="fa fa-twitter"></i></a>
                                 {% endif %}
                                 {% if person['linkedin'] != "None" %}
-                                <a href={{ person.linkedin }}><i class="fa fa-linkedin"></i></a>
+                                <a href="{{ person.linkedin }}"><i class="fa fa-linkedin"></i></a>
                                 {% endif %}
                                 {% if person['github'] != "None" %}
-                                <a href={{ person['github'] }}><i class="fa fa-github"></i></a>
+                                <a href="{{ person['github'] }}"><i class="fa fa-github"></i></a>
                                 {% endif %}
                                 {% if person['orcid'] != "None" %}
-                                <a href={{ "https://orcid.org/" ~person['orcid'] }}><i class="fa fa-id-card-o"></i></a>
+                                <a href="{{ person.orchid }}"><i class="fa fa-id-card-o"></i></a>
                                 {% endif %}
                                 <p><button></button></p>
                             </div>
@@ -105,16 +105,16 @@
             <div class="container" id="main">
                 <article id="content">
                     <div class="row">
-                        {% for category in [investigator, post_docs,grads, undergrads, post_grads] %}
-                        {% for person in category %}
-                        {% if person['end_year'] != "None" %}
+                        {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
+                        {% for person in key %}
+                        {% if person['group_end_year'] != "Present" %}
                         <div class="column">
                             <div class="card">
                                 <img src="{{ person.image_path }}" style="width:100%">
                                 <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
-                                <p> {{ person.myrole }} </p>
+                                <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
-                                <h6> {{ person.university }} </h6>
+                                <h6> {{ person.current_institute }} </h6>
                                 {% if person['website'] != "None" %}
                                 <a href="{{ person.website }}"><i class="fa fa-dribbble"></i></a>
                                 {% endif %}
@@ -134,7 +134,7 @@
                             </div>
                         </div>
                         {% else %}
-                        {# do nothing if end_year is not None #}
+                        {# do nothing if group_end_year is not None #}
                         {% endif %}
                         {% endfor %}
                         {% endfor %}
