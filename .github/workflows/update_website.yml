@@ -29,17 +29,16 @@ jobs:
       - name: Clear cloned website repo
         run: |
           cd kerzendorf-group.github.io
-          rm -rf *.html
+          rm -rf index.html Research.html Contact.html People.html
           rm -rf assets website_files members sub_research
 
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
           cd kerzendorf-group.github.io
           mkdir members sub_research
-          mkdir members/data
           cp -r ../group-data/groupwebsite_data/website_files ./
           cp -r ../groupwebsite_generator/assets ./
-          rsync -av --exclude '*.json' ../group-data/members/ ./members/data
+          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
       - name: Setup directories inside group-data
         run: |

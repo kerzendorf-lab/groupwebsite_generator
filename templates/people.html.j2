@@ -58,8 +58,8 @@
                         {% if person['group_end_year'] == "Present" %}
                         <div class="column">
                             <div class="card">
-                                <img src="{{ person.image_path }}" style="width:100%">
-                                <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
+                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}" style="width:100%">
+                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
                                 <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
                                 <h6> {{ person.current_institute }} </h6>
@@ -110,7 +110,7 @@
                         {% if person['group_end_year'] != "Present" %}
                         <div class="column">
                             <div class="card">
-                                <img src="{{ person.image_path }}" style="width:100%">
+                                <img src="members/s/{{ person.image_path }}" style="width:100%">
                                 <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
                                 <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
