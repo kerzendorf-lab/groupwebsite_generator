@@ -1,4 +1,4 @@
- <html>
+<html>
 <head>
     <title> {{ general.website_title }} </title>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-  <body class="right-sidebar is-preload" style="overflow-x:hidden;">
+<body class="right-sidebar is-preload" style="overflow-x:hidden;">
     <div id="page-wrapper">
         <!-- Header -->
         <div id="header-wrapper">
@@ -55,28 +55,30 @@
                 <article id="content">
                     <div class="row">
                         {% for person in key %}
-                        {% if person['group_end_year'] == "Present" %}
+                       {% if person['group_end_year']|lower == "present" %}
                         <div class="column">
                             <div class="card">
-                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}" style="width:100%">
-                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
+                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}"
+                                    style="width:100%">
+                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{
+                                        person.name }}</a></h1>
                                 <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
                                 <h6> {{ person.current_institute }} </h6>
-                                {% if person['website'] != "None" %}
-                                <a href="{{ person.website }}"><i class="fa fa-dribbble"></i></a>
+                                {% if person.social_media['website'] != "" %}
+                                <a href="{{ person.social_media['website'] }}"><i class="fa fa-dribbble"></i></a>
                                 {% endif %}
-                                {% if person['twitter'] != "None" %}
-                                <a href="{{ person.twitter }}"><i class="fa fa-twitter"></i></a>
+                                {% if person.social_media['twitter'] != "" %}
+                                <a href="{{ person.social_media['twitter'] }}"><i class="fa fa-twitter"></i></a>
                                 {% endif %}
-                                {% if person['linkedin'] != "None" %}
-                                <a href="{{ person.linkedin }}"><i class="fa fa-linkedin"></i></a>
+                                {% if person.social_media['linkedin'] != "" %}
+                                <a href="{{ person.social_media['linkedin'] }}"><i class="fa fa-linkedin"></i></a>
                                 {% endif %}
-                                {% if person['github'] != "None" %}
-                                <a href="{{ person['github'] }}"><i class="fa fa-github"></i></a>
+                                {% if person.social_media['github'] != "" %}
+                                <a href="{{ person.social_media['github'] }}"><i class="fa fa-github"></i></a>
                                 {% endif %}
-                                {% if person['orcid'] != "None" %}
-                                <a href="{{ person.orchid }}"><i class="fa fa-id-card-o"></i></a>
+                                {% if person.social_media['orcid'] != "" %}
+                                <a href="{{ person.social_media['orcid'] }}"><i class="fa fa-id-card-o"></i></a>
                                 {% endif %}
                                 <p><button></button></p>
                             </div>
@@ -110,25 +112,27 @@
                         {% if person['group_end_year'] != "Present" %}
                         <div class="column">
                             <div class="card">
-                                <img src="members/s/{{ person.image_path }}" style="width:100%">
-                                <h1><a href="members/{{page_link(person.name) }}.html">{{ person.name }}</a></h1>
+                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}"
+                                    style="width:100%">
+                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{
+                                        person.name }}</a></h1>
                                 <p> {{ person.group_role }} </p>
                                 <p> {{ person.project_title }} </p>
                                 <h6> {{ person.current_institute }} </h6>
-                                {% if person['website'] != "None" %}
-                                <a href="{{ person.website }}"><i class="fa fa-dribbble"></i></a>
+                                {% if person.social_media['website'] != "" %}
+                                <a href="{{ person.social_media['website'] }}"><i class="fa fa-dribbble"></i></a>
                                 {% endif %}
-                                {% if person['twitter'] != "None" %}
-                                <a href={{ person.twitter }}><i class="fa fa-twitter"></i></a>
+                                {% if person.social_media['twitter'] != "" %}
+                                <a href="{{ person.social_media['twitter'] }}"><i class="fa fa-twitter"></i></a>
                                 {% endif %}
-                                {% if person['linkedin'] != "None" %}
-                                <a href={{ person.linkedin }}><i class="fa fa-linkedin"></i></a>
+                                {% if person.social_media['linkedin'] != "" %}
+                                <a href="{{ person.social_media['linkedin'] }}"><i class="fa fa-linkedin"></i></a>
                                 {% endif %}
-                                {% if person['github'] != "None" %}
-                                <a href={{ person['github'] }}><i class="fa fa-github"></i></a>
+                                {% if person.social_media['github'] != "" %}
+                                <a href="{{ person.social_media['github'] }}"><i class="fa fa-github"></i></a>
                                 {% endif %}
-                                {% if person['orcid'] != "None" %}
-                                <a href={{ "https://orcid.org/" ~person['orcid'] }}><i class="fa fa-id-card-o"></i></a>
+                                {% if person.social_media['orcid'] != "" %}
+                                <a href="{{ person.social_media['orcid'] }}"><i class="fa fa-id-card-o"></i></a>
                                 {% endif %}
                                 <p><button></button></p>
                             </div>

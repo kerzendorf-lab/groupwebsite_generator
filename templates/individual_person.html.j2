@@ -167,22 +167,22 @@
 
 
         <ul class="social-icons" style="margin-left: auto;">
-            {% if person['social_media']['website'] != "None" %}
+            {% if person['social_media']['website'] != "" %}
             <li><a href="{{person.social_media.website}}"><i class="fa fa-globe"></i></a></li>
             {% endif %}
-            {% if person['social_media']['github'] != "None" %}
+            {% if person['social_media']['github'] != "" %}
             <li><a href="{{person.social_media.github}}"><i class="fab fa-github"></i></a></li>
             {% endif %}
-            {% if person['social_media']['twitter'] != "None" %}
+            {% if person['social_media']['twitter'] != "" %}
             <li><a href="{{person.social_media.twitter}}"><i class="fab fa-twitter"></i></a></li>
             {% endif %}
-            {% if person['social_media']['linkedin'] != "None" %}
+            {% if person['social_media']['linkedin'] != "" %}
             <li><a href="{{person.social_media.linkedin}}"><i class="fab fa-linkedin"></i></a></li>
             {% endif %}
-            {% if person['social_media']['email'] != "None" %}
+            {% if person['social_media']['email'] != "" %}
             <li><a href="{{person.social_media.email}}"><i class="fa fa-envelope"></i></a></li>
             {% endif %}
-            {% if person['social_media']['orcid'] != "None" %}
+            {% if person['social_media']['orcid'] != "" %}
             <li><a href="{{person.social_media.orcid}}"><i class="fa fa-link"></i></a></li>
             {% endif %}
         </ul>
