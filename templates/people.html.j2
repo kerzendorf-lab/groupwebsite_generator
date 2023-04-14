@@ -1,228 +1,656 @@
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title> {{ general.website_title }} </title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="assets/css/card.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
+
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+
+
+
+
+    <!-- Rotating card-->
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
+    <link href="css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="css/rotating-card.css" rel="stylesheet">
+    <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+
 </head>
-<body class="right-sidebar is-preload" style="overflow-x:hidden;">
-    <div id="page-wrapper">
-        <!-- Header -->
-        <div id="header-wrapper">
-            <div id="header" class="container">
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li>
-                            {% for page in general["navigation_bar"] %}
-                        <li>
-                            <a href="{{ page_link(page) }}.html">{{ page }}</a>
-                            {% if page in general %}
-                            <ul>
-                                {% for sub_page in general[page] %}
-                                <li><a href="sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a></li>
-                                {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% endfor %}
-                        </li>
-                    </ul>
-                </nav>
+
+<body>
+
+    <!-- top header >
+<section class="w3l-top-header">
+    <div class="container">
+        <div class="top-content-w3ls d-flex align-items-center justify-content-between">
+            <div class="top-headers">
+                <ul>
+                    <li>
+                        <i class="fa fa-map-marker-alt"></i><a href="#address">London, 235 Terry, 10001</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-phone"></i><a href="tel:+1(21) 234 4567">+1(21) 234 4567</a>
+                    </li>
+                    <li>
+                        <i class="fa fa-envelope"></i><a href="mailto:mail@example.com">mail@example.com</a>
+                    </li>
+                </ul>
             </div>
-            <!-- Hero -->
-            <section id="hero" class="container">
-                <header>
-                    <h2>About Section</h2>
-                </header>
-            </section>
-        </div>
-        <!-- investigator,post_doc,grad_students,undergrads -->
-        {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
-        <div class="row">
-            <section class="col-6 col-12-narrower feature">
-                <header>
-                    <h2> {{ key[0]['category'] }} </h2>
-                </header>
-            </section>
-        </div>
-        <div class="wrapper">
-            <div class="container" id="main">
-                <article id="content">
-                    <div class="row">
-                        {% for person in key %}
-                       {% if person['group_end_year']|lower == "present" %}
-                        <div class="column">
-                            <div class="card">
-                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}"
-                                    style="width:100%">
-                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{
-                                        person.name }}</a></h1>
-                                <p> {{ person.group_role }} </p>
-                                <p> {{ person.project_title }} </p>
-                                <h6> {{ person.current_institute }} </h6>
-                                {% if person.social_media['website'] != "" %}
-                                <a href="{{ person.social_media['website'] }}"><i class="fa fa-dribbble"></i></a>
-                                {% endif %}
-                                {% if person.social_media['twitter'] != "" %}
-                                <a href="{{ person.social_media['twitter'] }}"><i class="fa fa-twitter"></i></a>
-                                {% endif %}
-                                {% if person.social_media['linkedin'] != "" %}
-                                <a href="{{ person.social_media['linkedin'] }}"><i class="fa fa-linkedin"></i></a>
-                                {% endif %}
-                                {% if person.social_media['github'] != "" %}
-                                <a href="{{ person.social_media['github'] }}"><i class="fa fa-github"></i></a>
-                                {% endif %}
-                                {% if person.social_media['orcid'] != "" %}
-                                <a href="{{ person.social_media['orcid'] }}"><i class="fa fa-id-card-o"></i></a>
-                                {% endif %}
-                                <p><button></button></p>
-                            </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                </article>
+            <div class="top-headers top-headers-2">
+                <ul>
+                    <li>
+                        <a href="#facebook"><span class="fab fa-facebook-f"></span></a>
+                    </li>
+                    <li>
+                        <a href="#twitter"><span class="fab fa-twitter"></span></a>
+                    </li>
+                    <li>
+                        <a href="#instagram"><span class="fab fa-instagram"></span></a>
+                </li>
+                <li class=" mr-0">
+                        <a href="#linkedin"><span class="fab fa-linkedin-in"></span></a>
+                    </li>
+                </ul>
             </div>
         </div>
-        {% endfor %}
-        <!-- End investigator,post_doc,grad_students,undergrads -->
+    </div>
+</section>
+<!-- //top header -->
+
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand" href="index.html">
+                        <span class="fa fa-lightbulb"></span> Intelligence
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
+            <a class="navbar-brand" href="#index.html">
+                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+            </a> -->
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ms-lg-auto">
+                        {% for page in general["navigation_bar"] %}
+                        {% if page not in general %}
+                        <!--<li class="nav-item active">-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }} <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
 
 
-
-
-
-        <div class="row">
-            <section class="col-6 col-12-narrower feature">
-                <header>
-                    <h2> Alumni </h2>
-                </header>
-            </section>
-        </div>
-        <div class="wrapper">
-            <div class="container" id="main">
-                <article id="content">
-                    <div class="row">
-                        {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
-                        {% for person in key %}
-                        {% if person['group_end_year'] != "Present" %}
-                        <div class="column">
-                            <div class="card">
-                                <img src="members/{{page_link(person.name) }}/{{ person.image_path }}"
-                                    style="width:100%">
-                                <h1><a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{
-                                        person.name }}</a></h1>
-                                <p> {{ person.group_role }} </p>
-                                <p> {{ person.project_title }} </p>
-                                <h6> {{ person.current_institute }} </h6>
-                                {% if person.social_media['website'] != "" %}
-                                <a href="{{ person.social_media['website'] }}"><i class="fa fa-dribbble"></i></a>
-                                {% endif %}
-                                {% if person.social_media['twitter'] != "" %}
-                                <a href="{{ person.social_media['twitter'] }}"><i class="fa fa-twitter"></i></a>
-                                {% endif %}
-                                {% if person.social_media['linkedin'] != "" %}
-                                <a href="{{ person.social_media['linkedin'] }}"><i class="fa fa-linkedin"></i></a>
-                                {% endif %}
-                                {% if person.social_media['github'] != "" %}
-                                <a href="{{ person.social_media['github'] }}"><i class="fa fa-github"></i></a>
-                                {% endif %}
-                                {% if person.social_media['orcid'] != "" %}
-                                <a href="{{ person.social_media['orcid'] }}"><i class="fa fa-id-card-o"></i></a>
-                                {% endif %}
-                                <p><button></button></p>
-                            </div>
-                        </div>
                         {% else %}
-                        {# do nothing if group_end_year is not None #}
+                        {% if page in general %}
+                        <li class="nav-item">
+
+                            <a class="nav-link dropdown-toggle" href="{{ page_link(page) }}.html" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ page }} <span class="fas fa-angle-down"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for sub_page in general[page] %}
+                                <a class="dropdown-item"
+                                    href="sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a>
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% endif %}
+
                         {% endif %}
                         {% endfor %}
-                        {% endfor %}
-                    </div>
-                </article>
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5">
+                    <!--h2 class="w3l-title-breadcrumb mb-3">About Us</h2-->
+                    <p class="inner-page-para px-lg-5">Advancing knowledge, transforming society</p>
+                </div>
             </div>
         </div>
+    </section>
+    <!-- //about banner -->
 
 
 
-        <!-- footer start -->
-        <footer class="footer">
-            <div class="footer_top">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-4 col-md-6 col-lg-4">
-                            <div class="footer_widget">
-                                <div class="logo_footer">
-                                    <a href="index.html">
-                                        <img src="img/logo.png" alt="">
-                                    </a>
+
+
+    <!-- Team Section -->
+    <div class="team-area py-5" id="people">
+        <div class="container py-lg-5 py-md-4 py-2">
+            <div class="text-center">
+                <h6 class="w3l-title-small"> Our People</h6>
+                <h3 class="w3l-title-main"> Meet Our Team</h3>
+
+            </div>
+
+            {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
+            <div class="text-center" style="padding-top: 5%;">
+                <h1> {{ key[0]['category'] }}</h1>
+            </div>
+            <div class="cardtainer" style="padding-top: 3%;">
+                <div class="row">
+                    {% for person in key %}
+                    {% if person['group_end_year']|lower == "present" %}
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card-container">
+                                <div class="card">
+                                    <div class="front">
+                                        <div class="cover">
+                                            <img src="images/rotating_card_thumb2.png">
+                                        </div>
+                                        <div class="user">
+                                            <img class="img-circle"
+                                                src="members/{{page_link(person.name) }}/{{ person.image_path }}">
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h3 class="name">{{person.name }}</h3>
+                                                <p class="profession">{{ person.current_role }} </p>
+                                                <!--para 11853-->
+                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
+                                                    person.project_title }}</p>
+                                            </div>
+                                            <div class="footer">
+                                                <!--a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html"><i class="fa fa-mail-forward"></i> Auto Rotation</a-->
+                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
+                                                    person.current_institute }} </p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end front panel -->
+                                    <div class="back">
+                                        <div class="header">
+                                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h4 class="text-center">Job Description</h4>
+                                                <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel
+                                                    and many
+                                                    others...</p>
+
+                                                <div class="stats-container">
+                                                    <div class="stats">
+                                                        <h4>235</h4>
+                                                        <p>
+                                                            Followers
+                                                        </p>
+                                                    </div>
+                                                    <div class="stats">
+                                                        <h4>114</h4>
+                                                        <p>
+                                                            Following
+                                                        </p>
+                                                    </div>
+                                                    <div class="stats">
+                                                        <h4>35</h4>
+                                                        <p>
+                                                            Projects
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <div class="social-links text-center">
+                                            {% if person.social_media['website'] != "" %}
+                                            <a href="{{ person.social_media['website'] }}"><i class="fa fa-globe fa-fw"></i></a>
+                                              {% endif %}
+                                {% if person.social_media['twitter'] != "" %}
+                                            <a href="{{ person.social_media['twitter'] }}" ><i class="fa fa-twitter fa-fw"></i></a>
+                                                    {% endif %}
+                                {% if person.social_media['linkedin'] != "" %}
+                                            <a href="{{ person.social_media['linkedin'] }}"><i class="fab fa-linkedin-in"></i></a>
+                                                     {% endif %}
+                                {% if person.social_media['github'] != "" %}
+                                            <a href="{{ person.social_media['github'] }}" ><i class="fa fa-github"></i></a>
+                                                           {% endif %}
+                                {% if person.social_media['orcid'] != "" %}
+                                            <a href="{{ person.social_media['orcid'] }}" ><i class="fa fa-newspaper"></i></a>
+                                               {% endif %}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6 col-lg-3">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Address
-                                </h3>
-                                <ul style="padding-right: 40%;">
-                                    <li>
-                                        <h6 class="icon maps fa-map"> {{ general.address }}</h6>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 col-lg-3">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Useful Links
-                                </h3>
-                                <ul>
-                                    {% for link_text, link_url in general.useful_link.items() %}
-                                    <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-xl-2 col-md-6 col-lg-2">
-                            <div class="footer_widget">
-                                <h3 class="footer_title">
-                                    Social Links
-                                </h3>
-                                <ul>
-                                    {% for platform, link in general.social_media_links.items() %}
-                                    <li><a href="{{ link }}">{{ platform }}</a></li>
-                                    {% endfor %}
-                                </ul>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div> <!-- end row -->
+
+            </div>
+            {% endfor %}
+
+
+
+
+
+            <!--Alumni Start-->
+           <div class="alumni">
+            <div class="text-center" style="padding-top: 5%;">
+                <h1> Alumni</h1>
+            </div>
+            <div class="cardtainer" style="padding-top: 3%;">
+                <div class="row">
+                 {% for key in [investigator, post_docs,grads, undergrads, post_grads] %}
+                    {% for person in key %}
+                    {% if person['group_end_year']|lower != "present" %}
+                    <div class="col-sm-10 col-sm-offset-1">
+                        <div class="col-md-4 col-sm-6">
+                            <div class="card-container">
+                                <div class="card">
+                                    <div class="front">
+                                        <div class="cover">
+                                            <img src="images/rotating_card_thumb2.png">
+                                        </div>
+                                        <div class="user">
+                                            <img class="img-circle"
+                                                src="members/{{page_link(person.name) }}/{{ person.image_path }}">
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h3 class="name">{{person.name }}</h3>
+                                                <p class="profession">{{ person.current_role }} </p>
+                                                <!--para 11853-->
+                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
+                                                    person.project_title }}</p>
+                                            </div>
+                                            <div class="footer">
+                                                <!--a href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html"><i class="fa fa-mail-forward"></i> Auto Rotation</a-->
+                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
+                                                    person.current_institute }} </p>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end front panel -->
+                                    <div class="back">
+                                        <div class="header">
+                                            <h5 class="motto">"To be or not to be, this is my awesome motto!"</h5>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h4 class="text-center">Job Description</h4>
+                                                <p class="text-center">Web design, Adobe Photoshop, HTML5, CSS3, Corel
+                                                    and many
+                                                    others...</p>
+
+                                                <div class="stats-container">
+                                                    <div class="stats">
+                                                        <h4>235</h4>
+                                                        <p>
+                                                            Followers
+                                                        </p>
+                                                    </div>
+                                                    <div class="stats">
+                                                        <h4>114</h4>
+                                                        <p>
+                                                            Following
+                                                        </p>
+                                                    </div>
+                                                    <div class="stats">
+                                                        <h4>35</h4>
+                                                        <p>
+                                                            Projects
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="footer">
+                                            <div class="social-links text-center">
+                                            <a href="https://creative-tim.com" class="google"><i class="fa fa-globe fa-fw"></i></a>
+                                            <a href="https://creative-tim.com" class="twitter"><i class="fa fa-twitter fa-fw"></i></a>
+                                            <a href="https://creative-tim.com" class="linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                            <a href="https://creative-tim.com" class="github"><i class="fa fa-github"></i></a>
+                                            <a href="https://creative-tim.com" ><i class="fa fa-newspaper"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                    {% else %}
+                        <style>
+                        .alumni {
+                            display: none;
+
+                        }
+                        </style>
+                    {% endif %}
+                    {% endfor %}
+                     {% endfor %}
+                </div> 
+
             </div>
-            <div class="copy-right_text">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <p class="copy_right text-center">
-                                {{ general.footer_message }}
-                                <script>document.write(new Date().getFullYear());</script>
-                            </p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </footer>
-        <!--footer end-->
-        <!-- Scripts -->
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="assets/js/jquery.dropotron.min.js"></script>
-        <script src="assets/js/browser.min.js"></script>
-        <script src="assets/js/breakpoints.min.js"></script>
-        <script src="assets/js/util.js"></script>
-        <script src="assets/js/main.js"></script>
+
+
+
+
+
+
+
+        </div>
     </div>
+    <!-- //Team Section -->
+
+<!--
+    <section class="w3l-covers-14 py-5">
+        <div class="container py-md-5 py-4">
+            <div class="banner-play-w3 covers14-text text-center mx-auto" style="max-width:780px">
+                <h3 class="w3l-title-main text-white">We Are Here To Manage
+                    your Quality IT-Consulting Services</h3>
+                <div class="video-section mt-5 pt-lg-4">
+                    <!--//video>
+                    <a href="#small-dialog" class="popup-with-zoom-anim play-view text-center pl-3">
+                        <span class="video-play-icon">
+                            <span class="fa fa-play"></span>
+                        </span>
+                    </a>
+                    <!-- dialog itself, mfp-hide class is required to make dialog hidden >
+                    <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                        <iframe src="https://player.vimeo.com/video/236931378" frameborder="0"
+                            allow="autoplay; fullscreen" allowfullscreen></iframe>
+                    </div>
+                    <!--//video
+                </div>
+            </div>
+        </div>
+    </section>
+-->
+
+    <!-- Company logos -->
+    <section class="company-logos ">
+        <div class="container py-md-4">
+            <div class="row py-5 justify-content-center">
+                <div class="col-lg-2 col-md-3 col-4">
+                    <a href="#url">
+                        <img src="assets/images/brand1.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4">
+                    <a href="#url">
+                        <img src="assets/images/brand2.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4">
+                    <a href="#url">
+                        <img src="assets/images/brand6.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4 mt-md-0 mt-4">
+                    <a href="#url">
+                        <img src="assets/images/brand3.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4 mt-lg-0 mt-4">
+                    <a href="#url">
+                        <img src="assets/images/brand4.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-3 col-4 mt-lg-0 mt-4">
+                    <a href="#url">
+                        <img src="assets/images/brand5.png" alt="" class="img-fluid">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //Company logos -->
+
+
+    <!-- footer block -->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 pt-5 pb-4">
+            <div class="container pt-md-4">
+                <div class="row footer-top-29">
+                    <div class="col-lg-4 col-md-6 footer-list-29">
+                        <h6 class="footer-title-29">Contact Info </h6>
+                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
+                        </p>
+                        <p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+                        <p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
+                        <ul>
+                            <h6 class="footer-title-29">Quick Links</h6>
+                            {% for link_text, link_url in general.useful_link.items() %}
+                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+                             {% endfor %}
+        
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
+                        <ul>
+                            <h6 class="footer-title-29">Social Links</h6>
+                             {% for platform, link in general.social_media_links.items() %}
+                            <li><a href="{{ link }}"  target="_blank">{{ platform }}</a></li>
+                     {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
+                        <h6 class="footer-title-29">Subscribe</h6>
+                        <form action="#" class="subscribe d-flex" method="post">
+                            <input type="email" name="email" placeholder="Email Address" required="">
+                            <button class="button-style"><span class="fa fa-paper-plane"
+                                    aria-hidden="true"></span></button>
+                        </form>
+                        <p class="mt-4">Subscribe to our mailing list and get updates to your email inbox.</p>
+                    </div>
+                </div>
+                <!-- copyright -->
+                <p class="copy-footer-29 text-center mt-5 pb-2">© 2022 Intelligence. All rights reserved. Design
+                    by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+                <!-- //copyright -->
+            </div>
+        </div>
+    </footer>
+    <!-- //footer block -->
+
+
+
+
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!--/stats-number-counter-->
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/jquery.countup.js"></script>
+    <script>
+        $('.counter').countUp();
+
+    </script>
+    <!--//stats-number-counter-->
+
+    <!--/owlcarousel-->
+    <script src="assets/js/owl.carousel.js"></script>
+    <!-- //tesimonials-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //tesimonials-->
+
+    <!-- magnific popup -->
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
+
 </body>
+
 </html>

@@ -1,345 +1,432 @@
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <title> {{ general.website_title }} </title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <link rel="stylesheet" href="../../assets/css/main.css" />
-    <link rel="stylesheet" href="../../assets/css/card.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../assets/css/style.css">
-    <link rel="stylesheet" href="../../assets/css/carousell.css">
-    <style>
-        table,
-        td {
-            border: none;
-            padding: 20px;
-            max-width: 50%;
-            min-width: 100px;
-            word-wrap: break-word;
-        }
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{{ general.website_title }}</title>
 
-        .two {
-            display: inline-block;
-            margin-right: 50px;
-            margin-left: 100px;
-            vertical-align: top;
-        }
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
 
-        @media only screen and (max-width: 767px) {
-            .two {
-                margin-left: 5px;
-            }
-        }
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="../../assets/css/style-liberty.css">
 
-        .click_button {
-            display: inline-block;
-            padding: 15px 25px;
-            font-size: 24px;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            outline: none;
-            color: #fff;
-            background-color: #4CAF50;
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 9px #999;
-            max-width: fit-content;
-        }
-
-        .click_button:hover {
-            background-color: #3e8e41
-        }
-
-        .click_button:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        }
-
-        .click_button span {
-            cursor: pointer;
-            display: inline-block;
-            position: relative;
-            transition: 0.5s;
-        }
-
-        .click_button span:after {
-            content: '\00bb';
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-
-        .click_button:hover span {
-            padding-right: 25px;
-        }
-
-        .click_button:hover span:after {
-            opacity: 1;
-            right: 0;
-        }
-    </style>
 </head>
-<body class="right-sidebar is-preload">
-    <div id="page-wrapper">
-        <!-- Header -->
-        <div id="header-wrapper">
-            <div id="header" class="container">
-                <!-- Nav -->
-                <nav id="nav">
-                    <ul>
-                        <li>
-                            {% for page in general["navigation_bar"] %}
-                        <li>
-                            <a href="../../{{ page_link(page) }}.html">{{ page }}</a>
-                            {% if page in general %}
-                            <ul>
+
+<body>
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand" href="index.html">
+                        <span class="fa fa-lightbulb"></span> Intelligence
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
+            <a class="navbar-brand" href="#index.html">
+                <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
+            </a> -->
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ms-lg-auto">
+                        {% for page in general["navigation_bar"] %}
+                        {% if page not in general %}
+                        <!--<li class="nav-item active">-->
+                        <li class="nav-item">
+                            <a class="nav-link" href="../../{{ page_link(page) }}.html">{{ page }} <span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+
+
+                        {% else %}
+                        {% if page in general %}
+                        <li class="nav-item">
+
+                            <a class="nav-link dropdown-toggle" href="../../{{ page_link(page) }}.html"
+                                id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                {{ page }} <span class="fas fa-angle-down"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
-                                <li><a href="../../sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a></li>
+                                <a class="dropdown-item"
+                                    href="../../sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a>
                                 {% endfor %}
-                            </ul>
-                            {% endif %}
-                        </li>
-                        {% endfor %}
-                        </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-    <!-- Features 1 -->
-    <div class="wrapper" style="background-color: #e4ebf5;">
-        <div class="container" id="main">
-            <div class="row gtr-150">
-                <div>
-                    <section class="content">
-                        <div class="image-wrapper" style="width:35%; margin:auto;">
-                            <section>
-                                <a href="#" class="image featured"><img src="{{ person.image_path }}" alt="" /></a>
-                            </section>
-                        </div>
-                        <header>
-                            <h2 style="text-align: center;"> {{ person.name }} </h2>
-                        </header>
-                        <h4> About Me:</h4>
-                        <p> {{ person.introduction }}</p>
-
-
-                        <table>
-                            <tr>
-                                <td>Project Title:</td>
-                                <td>{{ person.project_title }}</td>
-                            </tr>
-                            <tr>
-                                <td>Organization:</td>
-                                <td>{{ person.org }}</td>
-                            </tr>
-                            <tr>
-                                <td>Category:</td>
-                                <td>{{ person.category }}</td>
-                            </tr>
-                            <tr>
-                                <td>Current Role:</td>
-                                <td>{{ person.current_role }}</td>
-                            </tr>
-                            <tr>
-                                <td>Current Institute:</td>
-                                <td>{{ person.current_institute }}</td>
-                            </tr>
-                            <tr>
-                                <td>Duration:</td>
-                                <td>{{ person.group_start_year }}-{{ person.group_end_year }}</td>
-                            </tr>
-
-                        </table>
-                    </section>
-
-                </div>
-            </div>
-        </div>
-
-
-
-
-
-        <ul class="social-icons" style="margin-left: auto;">
-            {% if person['social_media']['website'] != "" %}
-            <li><a href="{{person.social_media.website}}"><i class="fa fa-globe"></i></a></li>
-            {% endif %}
-            {% if person['social_media']['github'] != "" %}
-            <li><a href="{{person.social_media.github}}"><i class="fab fa-github"></i></a></li>
-            {% endif %}
-            {% if person['social_media']['twitter'] != "" %}
-            <li><a href="{{person.social_media.twitter}}"><i class="fab fa-twitter"></i></a></li>
-            {% endif %}
-            {% if person['social_media']['linkedin'] != "" %}
-            <li><a href="{{person.social_media.linkedin}}"><i class="fab fa-linkedin"></i></a></li>
-            {% endif %}
-            {% if person['social_media']['email'] != "" %}
-            <li><a href="{{person.social_media.email}}"><i class="fa fa-envelope"></i></a></li>
-            {% endif %}
-            {% if person['social_media']['orcid'] != "" %}
-            <li><a href="{{person.social_media.orcid}}"><i class="fa fa-link"></i></a></li>
-            {% endif %}
-        </ul>
-
-        {% if 'curriculum_vitae' in person %}
-        <div style="text-align:center; padding-top:5%;">
-            <a href="{{person.curriculum_vitae}}" target="_blank">
-                <button class="click_button"><span>Download CV</span></button>
-            </a>
-        </div>
-        {% endif %}
-
-
-
-        {% if 'posters' in person %}
-        <h2 style="text-align:center; padding-top:5%;">Posters</h2>
-        <div class="slider">
-            {% for poster in person.posters.values() %}
-            <div class="mySlides">
-
-                <h3 style="text-align: center;">{{ poster.title }}</h3>
-                <iframe src="{{ poster.link }}" style="width:100%"></iframe>
-                <p style="text-align:center; "><b style="color: black;"><i>{{ poster.caption }}</i></b></p>
-                <p style="text-align:center; ">{{ poster.about }}</p>
-            </div>
-            {% endfor %}
-            <a class="prev" onclick="plusSlides(-1)">❮</a>
-            <a class="next" onclick="plusSlides(1)">❯</a>
-        </div>
-        {% endif %}
-
-
-
-        <!-- Table of details-->
-        <div style="display: flex; padding-top:5%">
-            <div style="margin-right: 50px;">
-                {% for data in [ "education", "experience", "projects", "books", "documents", "awards", "outreach" ]
-                %}
-                {% if data in person %}
-
-                {% for key, value in person[data].items() %}
-                 {% if key == "section" and value %}
-                <div class="two">
-                    <h2>{{ value }}</h2>
-
-                    <table>
-                        <thead>
-                            <tr>
-                                {% for key, value in person[data].headings.items() %}
-
-                                <th><b>{{ value }}</b></th>
-
-                                {% endfor %}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for key, value in person[data].items() %}
-                            {% if key != "headings" and key != "section" %}
-                            <tr>
-                                {% for k, v in value.items() %}
-                                <td>{{ v }}</td>
-                                {% endfor %}
-                            </tr>
-                            {% endif %}
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                </div>
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-            </div>
-        </div>
-
-
-        <!-- End Table of details-->
-
-
-    </div>
-
-    <!-- footer start -->
-    <footer class="footer">
-        <div class="footer_top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-4 col-md-6 col-lg-4">
-                        <div class="footer_widget">
-                            <div class="logo_footer">
-                                <a href="index.html">
-                                    <img src="img/logo.png" alt="">
-                                </a>
                             </div>
+                        </li>
+                        {% endif %}
+
+                        {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
                         </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5">
+                    <h2 class="w3l-title-breadcrumb mb-3">Know me</h2>
+                    <!--p class="inner-page-para px-lg-5">Feel free to learn more about our team and company on this page.
+                        We are always happy to help you!</p-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about banner -->
+
+
+
+
+    <!-- About Section -->
+    <section class="w3l-content-6" id="skills">
+        <div class="content-6-mian py-5">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="content-info-in row">
+                    <div class="content-gd col-lg-6 pe-lg-5">
+                        <img src="{{ person.image_path }}" alt="" class="img-fluid" />
                     </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Address
-                            </h3>
-                            <ul style="padding-right: 40%;">
-                                <li>
-                                    <h6 class="icon maps fa-map"> {{ general.address }}</h6>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-md-6 col-lg-3">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Useful Links
-                            </h3>
-                            <ul>
-                                {% for link_text, link_url in general.useful_link.items() %}
-                                <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-xl-2 col-md-6 col-lg-2">
-                        <div class="footer_widget">
-                            <h3 class="footer_title">
-                                Social Links
-                            </h3>
-                            <ul>
-                                {% for platform, link in general.social_media_links.items() %}
-                                <li><a href="{{ link }}">{{ platform }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
+                    <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
+                        <h6 class="w3l-title-small mb-1">About Me</h6>
+                        <h3 class="w3l-title-main mb-lg-4 mb-3">Introduction</h3>
+                        <p class="my-4 pe-lg-5">{{ person.introduction }}</p>
+
+
                     </div>
                 </div>
             </div>
         </div>
-        <div class="copy-right_text">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xl-12">
-                        <p class="copy_right text-center">
-                            {{ general.footer_message }}
-                            <script>document.write(new Date().getFullYear());</script>
+    </section>
+    <!-- About Section -->
+
+    <section style="padding-left: 10%; padding-right:10%;">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Description</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Project Title:</th>
+                    <td>{{ person.project_title }}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Organization:</th>
+                    <td>{{ person.org }}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Category:</th>
+                    <td>{{ person.category }}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Current Role:</th>
+                    <td>{{ person.current_role }}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Current Institute:</th>
+                    <td>{{ person.current_institute }}</td>
+
+                </tr>
+                <tr>
+                    <th scope="row">Duration:</th>
+                    <td>{{ person.group_start_year }}-{{ person.group_end_year }}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+
+
+
+    <section style="padding-left: 10%; padding-right:10%;">
+        {% for data in [ "education", "experience", "projects", "books", "documents", "awards", "outreach" ]
+        %}
+        {% if data in person %}
+
+        {% for key, value in person[data].items() %}
+        {% if key == "section" and value %}
+        <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+            <h3 class="w3l-title-main">{{ value }}</h3>
+        </div>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    {% for key, value in person[data].headings.items() %}
+                    <th scope="col">{{ value }}</th>
+                    {% endfor %}
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for key, value in person[data].items() %}
+                {% if key != "headings" and key != "section" %}
+
+                <tr>
+                    {% for k, v in value.items() %}
+                    <td>{{ v }}</td>
+                    {% endfor %}
+
+
+                </tr>
+                {% endif %}
+                {% endfor %}
+
+
+            </tbody>
+        </table>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endfor %}
+    </section>
+
+
+
+
+    <!-- footer block -->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 pt-5 pb-4">
+            <div class="container pt-md-4">
+                <div class="row footer-top-29">
+                    <div class="col-lg-4 col-md-6 footer-list-29">
+                        <h6 class="footer-title-29">Contact Info </h6>
+                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
                         </p>
+                        <p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+                        <p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
+                        <ul>
+                            <h6 class="footer-title-29">Quick Links</h6>
+                            {% for link_text, link_url in general.useful_link.items() %}
+                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
+                        <ul>
+                            <h6 class="footer-title-29">Social Links</h6>
+                            {% for platform, link in general.social_media_links.items() %}
+                            <li><a href="{{ link }}" target="_blank">{{ platform }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
+                        <h6 class="footer-title-29">Subscribe</h6>
+                        <form action="#" class="subscribe d-flex" method="post">
+                            <input type="email" name="email" placeholder="Email Address" required="">
+                            <button class="button-style"><span class="fa fa-paper-plane"
+                                    aria-hidden="true"></span></button>
+                        </form>
+                        <p class="mt-4">Subscribe to our mailing list and get updates to your email inbox.</p>
                     </div>
                 </div>
+                <!-- copyright -->
+                <p class="copy-footer-29 text-center mt-5 pb-2">© 2022 Intelligence. All rights reserved. Design
+                    by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+                <!-- //copyright -->
             </div>
         </div>
     </footer>
+    <!-- //footer block -->
 
-    <!--footer end-->
-    <!-- Scripts -->
-    <script src="../../assets/js/jquery.min.js"></script>
-    <script src="../../assets/js/jquery.dropotron.min.js"></script>
-    <script src="../../assets/js/browser.min.js"></script>
-    <script src="../../assets/js/breakpoints.min.js"></script>
-    <script src="../../assets/js/util.js"></script>
-    <script src="../../assets/js/main.js"></script>
-    <script src="../../assets/js/carousell.js"></script>
+
+
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="../../assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="../../assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!--/stats-number-counter-->
+    <script src="../../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../../assets/js/jquery.countup.js"></script>
+    <script>
+        $('.counter').countUp();
+
+    </script>
+    <!--//stats-number-counter-->
+
+    <!--/owlcarousel-->
+    <script src="../../assets/js/owl.carousel.js"></script>
+    <!-- //tesimonials-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    }
+                }
+            })
+        })
+
+    </script>
+    <!-- //tesimonials-->
+
+    <!-- magnific popup -->
+    <script src="../../assets/js/jquery.magnific-popup.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+            $('.popup-with-move-anim').magnificPopup({
+                type: 'inline',
+
+                fixedContentPos: false,
+                fixedBgPos: true,
+
+                overflowY: 'auto',
+
+                closeBtnInside: true,
+                preloader: false,
+
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-slide-bottom'
+            });
+        });
+    </script>
+    <!-- //magnific popup -->
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!--bootstrap-->
+    <script src="../../assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
 
 </body>
+
 </html>
