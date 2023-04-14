@@ -222,7 +222,50 @@
     </section>
 
 
+    <section class="w3l-contacts-12">
 
+        <div class="container py-lg-4">
+
+
+
+            <div class="social-icons-con" style="text-align:center; padding-top:3%;">
+                <h4 class="mb-3">Connect with me:</h4>
+                {% if person['social_media']['website'] != "" %}
+                <a href="{{person.social_media.website}}"><span class="fa fa-globe" aria-hidden="true"></span></a>
+                {% endif %}
+                {% if person['social_media']['github'] != "" %}
+                <a href="{{person.social_media.github}}"><span class="fab fa-github-square"
+                        aria-hidden="true"></span></a>
+                {% endif %}
+                {% if person['social_media']['twitter'] != "" %}
+                <a href="{{person.social_media.twitter}}"><span class="fab fa-twitter-square"
+                        aria-hidden="true"></span></a>
+                {% endif %}
+                {% if person['social_media']['linkedin'] != "" %}
+                <a href="{{person.social_media.linkedin}}"><span class="fab fa-linkedin-in"
+                        aria-hidden="true"></span></a>
+                {% endif %}
+                {% if person['social_media']['email'] != "" %}
+                <a href="{{person.social_media.email}}"><span class="fa fa-envelope" aria-hidden="true"></span></a>
+                {% endif %}
+                {% if person['social_media']['orcid'] != "" %}
+                <a href="{{person.social_media.orcid}}"><span class="fa fa-link" aria-hidden="true"></span></a>
+                {% endif %}
+            </div>
+
+
+            <!-- //contact address -->
+
+        </div>
+{% if 'curriculum_vitae' in person %}
+        <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
+            <a href="{{person.curriculum_vitae}}" target="_blank">
+                <button class="click_button"><span>Download CV</span></button>
+            </a>
+        </div>
+        {% endif %}
+
+    </section>
 
     <!-- footer block -->
     <footer class="w3l-footer-29-main">
