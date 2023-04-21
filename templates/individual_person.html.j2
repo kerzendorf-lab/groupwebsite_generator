@@ -257,7 +257,7 @@
             <!-- //contact address -->
 
         </div>
-{%  if person.curriculum_vitae!= "" %}
+{% if 'curriculum_vitae' in person %}
         <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
             <a href="{{person.curriculum_vitae}}" target="_blank">
                 <button class="click_button"><span>Download CV</span></button>
