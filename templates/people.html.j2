@@ -24,10 +24,10 @@
 
     <!-- Rotating card-->
 
-    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style-liberty.css">
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet">
-    <link href="css/rotating-card.css" rel="stylesheet">
+    <link href="assets/css/pe-icon-7-stroke.css" rel="stylesheet">
+    <link href="assets/css/rotating-card.css" rel="stylesheet">
     <link href="https://netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 
 
@@ -98,12 +98,19 @@
                         {% for page in general["navigation_bar"] %}
                         {% if page not in general %}
                         <!--<li class="nav-item active">-->
+                        {% if page == "index" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page_link(page) }}.html">Home<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }} <span
                                     class="sr-only">(current)</span></a>
                         </li>
 
-
+                        {% endif %}
                         {% else %}
                         {% if page in general %}
                         <li class="nav-item">
@@ -188,7 +195,8 @@
                                 <div class="card">
                                     <div class="front">
                                         <div class="cover">
-                                            <img src="images/rotating_card_thumb2.png">
+                                            <img
+                                                src="members/{{page_link(person.your_directory_name) }}/{{ person.cover_image_path }}">
                                         </div>
                                         <div class="user">
                                             <img class="img-circle"
@@ -291,7 +299,8 @@
                                     <div class="card">
                                         <div class="front">
                                             <div class="cover">
-                                                <img src="images/rotating_card_thumb2.png">
+                                                <img
+                                                    src="members/{{page_link(person.name) }}/{{ person.cover_image_path }}">
                                             </div>
                                             <div class="user">
                                                 <img class="img-circle"
@@ -421,32 +430,32 @@
             <div class="row py-5 justify-content-center">
                 <div class="col-lg-2 col-md-3 col-4">
                     <a href="#url">
-                        <img src="assets/images/brand1.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand1.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4">
                     <a href="#url">
-                        <img src="assets/images/brand2.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand2.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4">
                     <a href="#url">
-                        <img src="assets/images/brand6.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand6.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4 mt-md-0 mt-4">
                     <a href="#url">
-                        <img src="assets/images/brand3.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand3.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4 mt-lg-0 mt-4">
                     <a href="#url">
-                        <img src="assets/images/brand4.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand4.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <div class="col-lg-2 col-md-3 col-4 mt-lg-0 mt-4">
                     <a href="#url">
-                        <img src="assets/images/brand5.png" alt="" class="img-fluid">
+                        <img src="website_files/images/brand5.png" alt="" class="img-fluid">
                     </a>
                 </div>
             </div>

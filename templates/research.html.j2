@@ -242,16 +242,23 @@ RIGHT SIDEBAR TOGGLE SECTION
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav ms-lg-auto">
+                   <ul class="navbar-nav ms-lg-auto">
                         {% for page in general["navigation_bar"] %}
                         {% if page not in general %}
                         <!--<li class="nav-item active">-->
+                        {% if page == "index" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page_link(page) }}.html">Home<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
+
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }} <span
                                     class="sr-only">(current)</span></a>
                         </li>
 
-
+                        {% endif %}
                         {% else %}
                         {% if page in general %}
                         <li class="nav-item">
