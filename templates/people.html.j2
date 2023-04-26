@@ -283,7 +283,7 @@
 
 
 
-           
+
             <!--Alumni Start-->
             <div class="alumni">
                 <div class="text-center" style="padding-top: 5%;">
@@ -301,17 +301,17 @@
                                         <div class="front">
                                             <div class="cover">
                                                 <img
-                                                    src="members/{{page_link(person.name) }}/{{ person.cover_image_path }}">
+                                                    src="members/{{page_link(person.your_directory_name) }}/{{ person.cover_image_path }}">
                                             </div>
-                                            <div class="user">
-                                                <img class="img-circle"
-                                                    src="members/{{page_link(person.name) }}/{{ person.image_path }}">
-                                            </div>
-                                            <div class="content">
-                                                <div class="main">
-                                                    <h3 class="name"><a
-                                                            href="members/{{page_link(person.name) }}/{{page_link(person.name) }}.html">{{person.name
-                                                            }}</a></h3>
+                                             <div class="user">
+                                            <img class="img-circle"
+                                                src="members/{{page_link(person.your_directory_name) }}/{{ person.image_path }}">
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h3 class="name"><a
+                                                        href="members/{{page_link(person.your_directory_name) }}/{{page_link(person.your_directory_name) }}.html">{{person.name
+                                                        }}</a></h3>
                                                     <p class="profession">{{ person.current_role }} </p>
                                                     <p class="text-center" style="color:black;  line-height: 16px;">{{
                                                         person.project_title }}</p>
