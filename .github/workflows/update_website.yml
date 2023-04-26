@@ -57,7 +57,7 @@ jobs:
         run: |
           cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
-          python3 notebooks/create_person_json.py
+          python3 notebooks/append_json.py
           python3 notebooks/combine_json.py
           python3 notebooks/homepage.py
           python3 notebooks/contact.py
