@@ -2,24 +2,24 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> {{ general.website_title }} </title>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title> {{ general.website_title }} </title>
 
-    <!-- google-fonts -->
-    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
-    <!-- //google-fonts -->
+	<!-- google-fonts -->
+	<link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+	<!-- //google-fonts -->
 
-    <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="../assets/css/style-liberty.css">
+	<!-- Template CSS Style link -->
+	<link rel="stylesheet" href="../assets/css/style-liberty.css">
 
 </head>
 
 <body>
 
-    <!-- top header >
+	<!-- top header >
 <section class="w3l-top-header">
     <div class="container">
         <div class="top-content-w3ls d-flex align-items-center justify-content-between">
@@ -57,64 +57,64 @@
 </section>
 <!-- //top header -->
 
-    <!--header-->
-    <header id="site-header" class="fixed-top">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg stroke">
-                <h1>
-                    <a class="navbar-brand" href="../index.html">
-                        <span class="fa fa-lightbulb"></span> Intelligence
-                    </a>
-                </h1>
-                <!-- if logo is image enable this   
+	<!--header-->
+	<header id="site-header" class="fixed-top">
+		<div class="container">
+			<nav class="navbar navbar-expand-lg stroke">
+				<h1>
+					<a class="navbar-brand" href="../index.html">
+						<span class="fa fa-lightbulb"></span> Intelligence
+					</a>
+				</h1>
+				<!-- if logo is image enable this   
             <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
             </a> -->
-                <button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                </button>
+				<button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+					data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+					<span class="navbar-toggler-icon fa icon-close fa-times"></span>
+				</button>
 
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                     <ul class="navbar-nav ms-lg-auto">
-                        {% for page in general["navigation_bar"] %}
-                        {% if page not in general %}
-                        <!--<li class="nav-item active">-->
-                        {% if page == "index" %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="../{{ page_link(page) }}.html">Home<span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="../{{ page_link(page) }}.html">{{ page }} <span
-                                    class="sr-only">(current)</span></a>
-                        </li>
-                        {% endif %}
+				<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+					<ul class="navbar-nav ms-lg-auto">
+						{% for page in general["navigation_bar"] %}
+						{% if page not in general %}
+						<!--<li class="nav-item active">-->
+						{% if page == "index" %}
+						<li class="nav-item">
+							<a class="nav-link" href="../{{ page_link(page) }}.html">Home<span
+									class="sr-only">(current)</span></a>
+						</li>
+						{% else %}
+						<li class="nav-item">
+							<a class="nav-link" href="../{{ page_link(page) }}.html">{{ page }} <span
+									class="sr-only">(current)</span></a>
+						</li>
+						{% endif %}
 
 
-                        {% else %}
-                        {% if page in general %}
-                        <li class="nav-item">
+						{% else %}
+						{% if page in general %}
+						<li class="nav-item">
 
-                            <a class="nav-link dropdown-toggle" href="../{{ page_link(page) }}.html" id="navbarDropdown"
-                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ page }} <span class="fas fa-angle-down"></span>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                {% for sub_page in general[page] %}
-                                <a class="dropdown-item" href="{{ page_link(sub_page) }}.html">{{sub_page}}</a>
-                                {% endfor %}
-                            </div>
-                        </li>
-                        {% endif %}
+							<a class="nav-link dropdown-toggle" href="../{{ page_link(page) }}.html" id="navbarDropdown"
+								role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								{{ page }} <span class="fas fa-angle-down"></span>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								{% for sub_page in general[page] %}
+								<a class="dropdown-item" href="{{ page_link(sub_page) }}.html">{{sub_page}}</a>
+								{% endfor %}
+							</div>
+						</li>
+						{% endif %}
 
-                        {% endif %}
-                        {% endfor %}
-                    </ul>
-                </div>
+						{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
 
 				<!-- toggle switch for light and dark theme -->
 				<div class="cont-ser-position">
@@ -142,8 +142,8 @@
 		<div class="breadcrumb-bg breadcrumb-bg-about py-5">
 			<div class="container py-lg-5 py-md-4">
 				<div class="banner-info-grid px-md-5">
-	            <h2 class="w3l-title-breadcrumb mb-3">Researches & Articles</h2>
-                    <p class="inner-page-para px-lg-5">The more we know the more we grow</p>
+					<h2 class="w3l-title-breadcrumb mb-3">Researches & Articles</h2>
+					<p class="inner-page-para px-lg-5">The more we know the more we grow</p>
 				</div>
 			</div>
 		</div>
@@ -161,18 +161,19 @@
 						<h3 class="title-style mb-sm-3 mb-2">{{ research.name }}</h3>
 					</div>
 					<div class="single-post-image mb-4">
-                                <ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-                                    <li class="circle avatar"><img src="../members/{{ research.authon_image }}" class="img-fluid"
-                                            alt=""></li>
-                                    <li>Article by <a href="#URL">{{ research.author }}</a></li>
-                                    <li class="single-date">March 11, 2022</li>
-                                </ul>
-                              <img src="../{{ research.image_path.cover_image }}" class="img-fluid img-responsive" alt="blog-post-image">
+						<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
+							<li class="circle avatar"><img src="../members/{{ research.authon_image }}"
+									class="img-fluid" alt=""></li>
+							<li>Article by <a href="#URL">{{ research.author }}</a></li>
+							<li class="single-date">March 11, 2022</li>
+						</ul>
+						<img src="../{{ research.image_path.cover_image }}" class="img-fluid img-responsive"
+							alt="blog-post-image">
 
-                            </div>
+					</div>
 
 					<div class="single-post-content">
-						<p class="mb-4"> {{ research.long_description.para1 }}</p>
+						<p class="mb-4"> {{ research.long_description }}</p>
 						<!--p class="mb-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, corrupti odit? At
 							iure
 							facere, porro repellat officia quas, dolores magnam assumenda soluta odit harum voluptate
@@ -195,39 +196,17 @@
 							eu ullamcorper. Nunc id ipsum fringilla, gravida felis vitae. Phasellus lacinia id, sunt in
 							culpa quis. . </p-->
 					</div>
+					
 					<div class="content-text-9">
 						<div class="single-post-content-1 row mt-5 no-gutters">
-							<div class="col-md-4">
-                                    <img src="../website_files/images/about.jpg" class="img-fluid img-responsive mt-3"
+							<div class="single-post-image mb-4" style="max-width:500px; display: block; margin: auto;">
+								<img src="../website_files/images/research/big.jpeg" class="img-fluid img-responsive mt-3"
 									alt="blog-post-image">
+									
 							</div>
-							<div class="col-md-8 align-self">
-								<p class="mt-md-0 mt-4 ml-md-4 ml-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-									elit. Animi
-									necessitatibus error dolore dolorem, aut possimus libero saepe doloremque sequi
-									consequatur non
-									veritatis quidem enim minima
-									totam. </p>
-								<p class="mt-4 ml-md-4 ml-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-									elit. Animi sequi consequatur non veritatis quidem enim minima totam.
-									sequi consequatur non veritatis enim minima totam. </p>
+							<div class="single-post-content">
+								<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ research.content.para1}} </p>	
 							</div>
-							<div class="col-md-8 align-self mt-md-4">
-								<p class="mt-md-0 mt-4 mr-md-4 mr-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-									elit. Animi
-									necessitatibus error dolore dolorem, aut possimus libero saepe doloremque sequi
-									consequatur non
-									veritatis. </p>
-								<p class="mt-4 mr-md-4 mr-0">Lorem ipsum dolor sit amet, consectetur adipisicing
-									elit. Quis esse laborum magnam dolorem excepturi fuga consequatur a cumque incidunt
-									aspernatur. sequi consequatur non veritatis quidem enim minima totam. sequi
-									consequatur non veritatis quidem enim minima totam. </p>
-							</div>
-							<div class="col-md-4 mt-md-5 mt-3">
-                                        <img src="../website_files/images/about1.jpg" class="img-fluid img-responsive mt-3"
-									alt="blog-post-image">
-							</div>
-
 						</div>
 					</div>
 					<!--ul class="share-post my-5">
@@ -354,53 +333,53 @@
 	<!-- //Blog Section -->
 
 
-    <!-- footer block -->
-    <footer class="w3l-footer-29-main">
-        <div class="footer-29 pt-5 pb-4">
-            <div class="container pt-md-4">
-                <div class="row footer-top-29">
-                    <div class="col-lg-4 col-md-6 footer-list-29">
-                        <h6 class="footer-title-29">Contact Info </h6>
-                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
-                        </p>
-                        <p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
-                        <p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_link.items() %}
-                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                             {% endfor %}
-        
-                        </ul>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Social Links</h6>
-                             {% for platform, link in general.social_media_links.items() %}
-                            <li><a href="{{ link }}"  target="_blank">{{ platform }}</a></li>
-                     {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
-                        <h6 class="footer-title-29">Subscribe</h6>
-                        <form action="#" class="subscribe d-flex" method="post">
-                            <input type="email" name="email" placeholder="Email Address" required="">
-                            <button class="button-style"><span class="fa fa-paper-plane"
-                                    aria-hidden="true"></span></button>
-                        </form>
-                        <p class="mt-4">Subscribe to our mailing list and get updates to your email inbox.</p>
-                    </div>
-                </div>
-                <!-- copyright -->
-                <p class="copy-footer-29 text-center mt-5 pb-2">© 2022 Intelligence. All rights reserved. Design
-                    by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
-                <!-- //copyright -->
-            </div>
-        </div>
-    </footer>
-    <!-- //footer block -->
+	<!-- footer block -->
+	<footer class="w3l-footer-29-main">
+		<div class="footer-29 pt-5 pb-4">
+			<div class="container pt-md-4">
+				<div class="row footer-top-29">
+					<div class="col-lg-4 col-md-6 footer-list-29">
+						<h6 class="footer-title-29">Contact Info </h6>
+						<p class="mb-2 pe-xl-5">Address : {{ general.address }}
+						</p>
+						<p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
+						<p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
+						<ul>
+							<h6 class="footer-title-29">Quick Links</h6>
+							{% for link_text, link_url in general.useful_link.items() %}
+							<li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+							{% endfor %}
+
+						</ul>
+					</div>
+					<div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
+						<ul>
+							<h6 class="footer-title-29">Social Links</h6>
+							{% for platform, link in general.social_media_links.items() %}
+							<li><a href="{{ link }}" target="_blank">{{ platform }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+					<div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
+						<h6 class="footer-title-29">Subscribe</h6>
+						<form action="#" class="subscribe d-flex" method="post">
+							<input type="email" name="email" placeholder="Email Address" required="">
+							<button class="button-style"><span class="fa fa-paper-plane"
+									aria-hidden="true"></span></button>
+						</form>
+						<p class="mt-4">Subscribe to our mailing list and get updates to your email inbox.</p>
+					</div>
+				</div>
+				<!-- copyright -->
+				<p class="copy-footer-29 text-center mt-5 pb-2">© 2022 Intelligence. All rights reserved. Design
+					by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+				<!-- //copyright -->
+			</div>
+		</div>
+	</footer>
+	<!-- //footer block -->
 
 
 
