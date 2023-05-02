@@ -179,7 +179,7 @@
 
             </div>
 
-            {% for key in [investigator, post_docs, grads, undergrads, research_engineers, researchers] %}
+            {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
             {% if key|length > 0 %}
             <div class="text-center" style="padding-top: 5%;">
                 <h1> {{ key[0]['category'] }}</h1>
@@ -291,7 +291,7 @@
                 </div>
                 <div class="cardtainer" style="padding-top: 3%;">
                     <div class="row">
-                        {% for key in [investigator, post_docs, grads, undergrads, research_engineers, researchers] %}
+                        {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
                         {% for person in key %}
                         {% if person['group_end_year']|lower != "present" %}
                         <div class="col-sm-10 col-sm-offset-1">
