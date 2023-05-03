@@ -60,7 +60,7 @@ jobs:
           jupyter nbconvert --to python notebooks/*.ipynb
           python3 notebooks/append_json.py
           python3 notebooks/combine_json.py
-          python3 combine_researches.py
+          python3 notebooks/combine_researches.py
           python3 notebooks/homepage.py
           python3 notebooks/contact.py
           python3 notebooks/individual_person_pages.py
