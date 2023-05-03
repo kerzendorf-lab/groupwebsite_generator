@@ -44,6 +44,7 @@ jobs:
         run: |
           cd group-data
           mkdir members/common
+          mkdir groupwebsite_data/research/sub_research_data/combined
 
 
       - name: Install Jupyter and Python3
