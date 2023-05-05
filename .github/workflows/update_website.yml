@@ -81,5 +81,5 @@ jobs:
           cd kerzendorf-group.github.io
           git add .
           git commit -m "Pushed from website generator"
-          git pull
+          git config pull.rebase true
           git push
