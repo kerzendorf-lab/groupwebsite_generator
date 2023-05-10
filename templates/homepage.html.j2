@@ -63,7 +63,7 @@
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
                     <a class="navbar-brand" href="index.html">
-                        <span class="fa fa-lightbulb"></span> {{general.logo_title}}
+                        <!--span class="fa fa-lightbulb"></span--> {{general.logo_title}}
                     </a>
                 </h1>
                 <!-- if logo is image enable this   
@@ -140,20 +140,20 @@
 
 
 
-    <!-- banner section -->
-    <section id="home" class="w3l-banner py-5">
-        <div class="container py-lg-5 py-md-4">
-            <div class="py-lg-5 py-4">
-                <!--div class="banner-info-grid">
-                    <h3 class="mb-4"><sup>This is</sup> Kerzendorf Group</h3>
-                    <p>Pushing the limits of what we know, and expanding our understanding.</p>
-                    <a class="btn btn-secondary btn-style mt-5 me-2" href="#discover"> Discover Now </a>
-                    <a class="btn btn-style transparent-btn mt-5" href="#"> Get Started </a>
-                </div-->
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5">
+                    <p class="inner-page-para px-lg-5">Welcome to</p>
+
+                    <h2 class="w3l-title-breadcrumb mb-3">Kerzendorf Group</h2>
+                </div>
             </div>
         </div>
     </section>
-    <!-- //banner section -->
+    <!-- //about banner -->
+
 
 
     <!-- About Section-->
@@ -161,124 +161,75 @@
         <div class="container py-md-5 py-2">
             <div class="row w3l-row">
                 <div class="col-lg-6 w3l-image pe-lg-5 mb-lg-0 mb-md-5 mb-4">
-                    <img src="website_files/images/group.jpg" alt="" class="img-fluid">
+                    <img src="{{ Homepage.about_images.img_1 }}" alt="" class="img-fluid">
+                    <br><br>
+                    <img src="{{ Homepage.about_images.img_2 }}" alt="" class="img-fluid">
                 </div>
                 <div class="col-lg-6 w3l-about-info px-lg-4 align-center">
                     <h6 class="w3l-title-small mb-1">About Us</h6>
                     <h3 class="w3l-title-main mb-2">{{ Homepage.header }}</h3>
-                    <p class="my-4 pe-lg-5">{{ Homepage.main_paragraph }}</h5>
-                        <!--div class="w3l-btn">
-                        <a href="#" class="btn btn-style btn-secondary mt-lg-5 mt-4 me-2">Read More </a>
-                    </div-->
+                    <p class="my-4 pe-lg-5">{{ Homepage.main_paragraph }}</p>
+                    
+                     <a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
+                        aria-controls="offcanvasExample">
+                        Our Research
+                    </a>
+
+
+                    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+                        aria-labelledby="offcanvasExampleLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Our Research Areas</h5>
+                            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="offcanvas-body">
+                            <div>
+                        
+                            <ul>
+                                {% for key, value in Homepage.our_research.items() %}
+                                <li><a class="dropdown-item" href="#">{{ value }}</a></li>
+                                {% endfor %}
+                            </ul>
+                            </div>
+                          
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
     <!-- //About Section-->
 
-
-    <!-- Services Section -->
-    <section class="about-section py-5">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-                <h3 class="w3l-title-main">Pushing the limits of what we know, and expanding our understanding</h3>
-            </div>
-            <div class="row justify-content-center">
-                <div class="col-lg-4 col-md-6">
-                    <div class="about-single">
-                        <div class="about-icon mb-4">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="about-content">
-                            <h5 class="mb-3"><a href="#url">The Earthshaking</a></h5>
-                            <p>Shaking up the world, one discovery at a time.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-md-0 mt-3">
-                    <div class="about-single">
-                        <div class="about-icon mb-4">
-                            <i class="fas fa-mountain"></i>
-                        </div>
-                        <div class="about-content">
-                            <h5 class="mb-3"><a href="#url"> The Groudbreaking</a></h5>
-                            <p>Breaking new ground, paving the way for tomorrow.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 mt-lg-0 mt-3">
-                    <div class="about-single">
-                        <div class="about-icon mb-4">
-                            <i class="fas fa-city"></i>
-                        </div>
-                        <div class="about-content">
-                            <h5 class="mb-3"><a href="#url"> The Breathtaking</a></h5>
-                            <p>Breathless discovery, breathtaking impact.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- Projects Section -->
+<section class="about-section py-5">
+    <div class="container py-lg-5 py-md-4 py-2">
+        <div class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+            <h3 class="w3l-title-main">Our Projects</h3>
         </div>
-    </section>
-    <!-- //Services Section -->
-
-
-    <!-- Why Choose Us Section>
-    <section class="w3l-whychooseus py-5" id="about1">
-        <div class="container py-lg-5 py-md-4 py-2">
-            <div class="row align-items-center">
-                <div class="col-lg-7 pe-lg-5 align-center">
-                    <h6 class="w3l-title-small mb-2">Why choose us</h6>
-                    <h3 class="w3l-title-main mb-2">The Creative Features, we provide to our clients</h3>
-                    <p class="mt-3">Lorem ipsum viverra feugiat. Pellen tesque libero ut justo,
-                        ultrices in ligula. Semper at. Lorem ipsum dolor sit amet consectetur adipisicing
-                        elit.</p>
-                    <div class="row two-grids mt-5">
-                        <div class="col-sm-6 grids_info d-flex">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <div class="detail ms-3">
-                                <h4 class="w3l-subtitle">Online Service</h4>
-                                <p>Lorem ipsum viverra libero set. Pellen ut justo, in ligula at.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 grids_info d-flex mt-sm-0 mt-4">
-                            <i class="fas fa-lightbulb"></i>
-                            <div class="detail ms-3">
-                                <h4 class="w3l-subtitle"> Creative Idea</h4>
-                                <p>Lorem ipsum viverra libero set. Pellen ut justo, in ligula at.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 grids_info d-flex mt-md-5 mt-4">
-                            <i class="fas fa-headset"></i>
-                            <div class="detail ms-3">
-                                <h4 class="w3l-subtitle">Unlimited Support</h4>
-                                <p>Lorem ipsum viverra libero set. Pellen ut justo, in ligula at.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="col-sm-6 grids_info d-flex mt-md-5 mt-4">
-                            <i class="fab fa-servicestack"></i>
-                            <div class="detail ms-3">
-                                <h4 class="w3l-subtitle">Digital Services</h4>
-                                <p>Lorem ipsum viverra libero set. Pellen ut justo, in ligula at.
-                                </p>
-                            </div>
-                        </div>
+        <div class="row justify-content-center">
+            {% for project in Homepage.our_projects.values() %}
+            <div class="col-lg-4 col-md-6">
+                <div class="about-single">
+                    <div class="about-icon mb-4" >
+                        <img style="max-width: 100%;" src="{{ project.image }}">
+                    </div>
+                    <div class="about-content">
+                        <h5 class="mb-3" style="align-items: center;"><a href="{{ project.link }}">{{ project.title }}</a></h5>
+                        <p>{{ project.about }}</p>
                     </div>
                 </div>
-                <div class="col-lg-5 mt-lg-0 mt-5 position-relative">
-                    <img src="website_files/images/homepage/about1.jpg" alt="" class="img-fluid">
-                </div>
             </div>
+            {% endfor %}
         </div>
-    </section>
-    <!-- //Why Choose Us Section-->
+    </div>
+</section>
+<!-- //Projects Section -->
 
 
 
-    <!-- Stats Section-->
+    <!-- Stats Section>
     <section class="w3l-stats-section py-5" id="stats">
         <div class="container py-lg-5 py-md-4 py-3">
             <div class="w3l-stats-inner-inf py-lg-4">
@@ -441,174 +392,28 @@
     <!-- //testimonials -->
 
 
-    <!-- Blog Section >
-    <section class="w3l-blog">
-        <div class="blog py-5" id="Newsblog">
-            <div class="container py-lg-5 py-md-4 py-2">
-                <div class="text-center mb-sm-5 mb-4">
-                    <h5 class="w3l-title-small mb-1">Recent Articles</h5>
-                    <h3 class="w3l-title-main">Our Latest Blog Posts</h3>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single" class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="website_files/images/homepage/blog1.jpg"
-                                        alt="Card image cap">
-                                </a>
-                                <div class="date">
-                                    <p>20 Mar, 22</p>
-                                </div>
-                            </div>
-                            <div class="card-body blog-details">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p>Startup Business</p>
-                                </div>
-                                <a href="#blog-single" class="blog-desc">How will you know success when it shows </a>
-                            </div>
-                            <div class="card-footer">
-                                <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="website_files/images/homepage/team1.jpg" alt="" class="img-fluid rounded-circle">
-                                    </a>
-                                    <ul class="blog-meta">
-                                        <li>
-                                            <span class="meta-value">by</span><a href="#author"> Charlotte lucy</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 item mt-md-0 mt-5">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single" class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="website_files/images/homepage/blog2.jpg"
-                                        alt="Card image cap">
-                                </a>
-                                <div class="date">
-                                    <p>20 Mar, 22</p>
-                                </div>
-                            </div>
-                            <div class="card-body blog-details">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p>Marketing Strategy</p>
-                                </div>
-                                <a href="#blog-single" class="blog-desc">What we are capable to usually discovered.</a>
-                            </div>
-                            <div class="card-footer">
-                                <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="website_files/images/homepage/team2.jpg" alt="" class="img-fluid rounded-circle">
-                                    </a>
-                                    <ul class="blog-meta">
-                                        <li>
-                                            <span class="meta-value">by</span><a href="#author"> Olivia stella</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6 item mt-lg-0 mt-5">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="#blog-single" class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="website_files/images/homepage/blog3.jpg"
-                                        alt="Card image cap">
-                                </a>
-                                <div class="date">
-                                    <p>20 Mar, 22</p>
-                                </div>
-                            </div>
-                            <div class="card-body blog-details">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p>Web Development</p>
-                                </div>
-                                <a href="#blog-single" class="blog-desc">Company opens green design data center</a>
-                            </div>
-                            <div class="card-footer">
-                                <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="website_files/images/homepage/team3.jpg" alt="" class="img-fluid rounded-circle">
-                                    </a>
-                                    <ul class="blog-meta">
-                                        <li>
-                                            <span class="meta-value">by</span><a href="#author"> Jackson jack</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //Blog Section -->
-
-    <!-- call block >
-    <section class="w3l-call-to-action-6">
-        <div class="container py-5">
-            <div class="d-lg-flex align-items-center justify-content-between">
-                <div class="left-content-call">
-                    <span class="mb-2 text-italic">Fresh Ideas for your business</span>
-                    <h3 class="w3l-title-main text-white">Enhancing your success</h3>
-                </div>
-                <div class="right-content-call mt-lg-0 mt-4">
-                    <ul class="buttons">
-                        <li class="phone-sec me-lg-4"><i class="fas fa-phone-volume"></i>
-                            <a class="call-style-w3" href="tel:+1(23) 456 789 0000">+1(23) 456 789 0000</a>
-                        </li>
-                        <li><a href="contact.html" class="btn btn-style transparent-btn mt-lg-0 mt-3">Get Free Quote</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //call block -->
-
     <!-- footer block -->
     <footer class="w3l-footer-29-main">
         <div class="footer-29 pt-5 pb-4">
             <div class="container pt-md-4">
-                <div class="row footer-top-29">
-                    <div class="col-lg-4 col-md-6 footer-list-29">
+                <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
+                    <div class="col-lg-6 col-md-6 footer-list-29">
                         <h6 class="footer-title-29">Contact Info </h6>
                         <p class="mb-2 pe-xl-5">Address : {{ general.address }}
                         </p>
-                        <!--p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
-                        <p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p-->
+                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
+                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
+                    <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
                         <ul>
                             <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_link.items() %}
+                            {% for link_text, link_url in general.useful_links.items() %}
                             <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
                             {% endfor %}
 
                         </ul>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Social Links</h6>
-                            {% for platform, link in general.social_media_links.items() %}
-                            <li><a href="{{ link }}" target="_blank">{{ platform }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
-                      <ul>
-                            <h6 class="footer-title-29">Join our Group</h6>
-                            <li><a href="https://deepthought-initiative.github.io/" target="_blank">Join Us</a></li>
-                        </ul>
-
-                    </div>
+                    
                 </div>
                 <!-- copyright -->
                 <p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>

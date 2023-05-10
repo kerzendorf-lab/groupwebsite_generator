@@ -18,7 +18,14 @@
 
     <style>
         .social-icon {
-            font-size: 25px;
+            font-size: 20px;
+            margin-top: -23%;
+        }
+
+        .external_affiliation {
+            background-color: lightgreen;
+            inline-size: 100%;
+            
         }
     </style>
 
@@ -154,7 +161,7 @@
 
 
     <!-- about banner -->
-       <section class="w3l-about-breadcrumb text-center">
+    <section class="w3l-about-breadcrumb text-center">
         <div class="breadcrumb-bg breadcrumb-bg-people py-5">
             <div class="container py-lg-5 py-md-4">
                 <div class="banner-info-grid px-md-5" style="margin-top: 3%;">
@@ -210,28 +217,8 @@
                                                 <p class="text-center" style="color:black;  line-height: 16px;">{{
                                                     person.project_title }}</p>
                                                 <br><br>
-                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute }} </p>
-                                            </div>
-                                            <div class="footer">
-                                                <button class="btn btn-simple" onclick="rotateCard(this)">
-                                                    <i class="fa fa-mail-forward">More</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div> <!-- end front panel -->
-                                    <div class="back">
-                                        <div class="header">
-                                            <h5 class="motto">{{ person.secondary_role }}</h5>
-                                        </div>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h4 class="text-center">Areas of Interests</h4>
-                                                <p class="text-center">{{ person.interests }}"</p>
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <div class="social-icon">
+
+                                                <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
                                                             {% if person.social_media['website'] != "" %}
@@ -257,6 +244,43 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+
+
+
+
+
+
+
+                                            </div>
+                                            <div class="footer">
+                                                <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                    <i class="fa fa-mail-forward">More</i>
+                                                </button>
+
+                                            </div>
+                                        </div>
+                                    </div> <!-- end front panel -->
+                                    <div class="back">
+                                        <div class="header">
+                                            <h5 class="motto">{{ person.secondary_role }}</h5>
+                                        </div>
+                                        <div class="content">
+                                            <div class="main">
+                                                <h4 class="text-center">Areas of Interests</h4>
+                                                <p class="text-center">{{ person.interests }}"</p>
+
+                                                <br><br><br><br>
+                                                {% if person.current_institute != "Michigan State University" %}
+                                                <p class="text-center external_affiliation" style="color:black;  line-height: 16px;">{{
+                                                    person.current_institute }} </p>
+                                                {% else%}
+                                                <p class="text-center" style="color:black;  line-height: 16px;">{{
+                                                    person.current_institute }} </p>
+                                                {% endif %}
+
+
+
                                             </div>
                                         </div>
                                         <div class="footer">
@@ -450,42 +474,29 @@
     </section>
     <!-- //Company logos -->
 
-  <!-- footer block -->
+
+    <!-- footer block -->
     <footer class="w3l-footer-29-main">
         <div class="footer-29 pt-5 pb-4">
             <div class="container pt-md-4">
-                <div class="row footer-top-29">
-                    <div class="col-lg-4 col-md-6 footer-list-29">
+                <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
+                    <div class="col-lg-6 col-md-6 footer-list-29">
                         <h6 class="footer-title-29">Contact Info </h6>
                         <p class="mb-2 pe-xl-5">Address : {{ general.address }}
                         </p>
-                        <!--p class="mb-2">Phone Number : <a href="tel:+1(21) 234 4567">+1(21) 234 4567</a></p>
-                        <p class="mb-2">Email : <a href="mailto:info@example.com">info@example.com</a></p-->
+                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
+                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-6 footer-list-29 mt-md-0 mt-4">
+                    <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
                         <ul>
                             <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_link.items() %}
+                            {% for link_text, link_url in general.useful_links.items() %}
                             <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
                             {% endfor %}
 
                         </ul>
                     </div>
-                    <div class="col-lg-2 col-md-3 col-6 ps-lg-5 ps-lg-4 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Social Links</h6>
-                            {% for platform, link in general.social_media_links.items() %}
-                            <li><a href="{{ link }}" target="_blank">{{ platform }}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </div>
-                    <div class="col-lg-4 col-md-6 footer-list-29 mt-lg-0 mt-4 ps-lg-5">
-                      <ul>
-                            <h6 class="footer-title-29">Join our Group</h6>
-                            <li><a href="https://deepthought-initiative.github.io/" target="_blank">Join Us</a></li>
-                        </ul>
 
-                    </div>
                 </div>
                 <!-- copyright -->
                 <p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>
@@ -495,7 +506,6 @@
         </div>
     </footer>
     <!-- //footer block -->
-
 
 
 
