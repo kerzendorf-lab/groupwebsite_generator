@@ -76,9 +76,10 @@ jobs:
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
+          cd kerzendorf-group.github.io
           git config user.name github-actions
           git config user.email github-actions@github.com
-          cd kerzendorf-group.github.io
+         
           git add .
           git commit -m "Pushed from website generator"
           git push
