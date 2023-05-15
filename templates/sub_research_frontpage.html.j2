@@ -11,7 +11,7 @@
     <!-- //google-fonts -->
 
     <!-- Template CSS Style link -->
-    <link rel="stylesheet" href="assets/css/style-liberty.css">
+    <link rel="stylesheet" href="../assets/css/style-liberty.css">
 
     <div id="_bsa_srv-CKYI627U_0"></div>
     <div id="_bsa_srv-CKYI653J_1"></div>
@@ -250,7 +250,7 @@ RIGHT SIDEBAR TOGGLE SECTION
         <div class="container">
             <nav class="navbar navbar-expand-lg stroke">
                 <h1>
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="../index.html">
                         <span class="fa fa-lightbulb"></span> {{general.logo_title}}
                     </a>
                 </h1>
@@ -272,13 +272,13 @@ RIGHT SIDEBAR TOGGLE SECTION
                         <!--<li class="nav-item active">-->
                         {% if page == "index" %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ page_link(page) }}.html">Home<span
+                            <a class="nav-link" href="../{{ page_link(page) }}.html">Home<span
                                     class="sr-only">(current)</span></a>
                         </li>
 
                         {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }} <span
+                            <a class="nav-link" href="../{{ page_link(page) }}.html">{{ page }} <span
                                     class="sr-only">(current)</span></a>
                         </li>
 
@@ -287,14 +287,14 @@ RIGHT SIDEBAR TOGGLE SECTION
                         {% if page in general %}
                         <li class="nav-item">
 
-                            <a class="nav-link dropdown-toggle" href="{{ page_link(page) }}.html" id="navbarDropdown"
+                            <a class="nav-link dropdown-toggle" href="../{{ page_link(page) }}.html" id="navbarDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ page }} <span class="fas fa-angle-down"></span>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                    href="sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a>
+                                    href="{{ page_link(sub_page) }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -351,16 +351,14 @@ RIGHT SIDEBAR TOGGLE SECTION
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
-                    <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
-
                     {% for project in project_list %}
                     {% if not loop.first %}
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
                                     class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
+                                    <img class="card-img-bottom d-block" src="../{{ project.image_path['cover_image'] }}"
                                         alt="array">
                                 </a>
                                 <div class="date">
@@ -368,7 +366,7 @@ RIGHT SIDEBAR TOGGLE SECTION
                                 </div>
                             </div>
                             <div class="card-body blog-details">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
                                     class="blog-desc"> {{ project.name }} </a>
                                 <div class="price-review mb-1 align-items-center">
                                     <p>{{ project.short_description }} </p>
@@ -378,7 +376,7 @@ RIGHT SIDEBAR TOGGLE SECTION
                             <div class="card-footer">
                                 <div class="author align-items-center">
                                     <a href="#author" class="post-author">
-                                        <img src="members/{{ project.authon_image }}" alt=""
+                                        <img src="../members/{{ project.authon_image }}" alt=""
                                             class="img-fluid rounded-circle">
                                     </a>
                                     <ul class="blog-meta">
@@ -393,20 +391,6 @@ RIGHT SIDEBAR TOGGLE SECTION
                     </div>
                     {% endif %}
                     {% endfor %}
-
-
-
-                    <pagination>
-                        <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
-                            <ul class="page-pagination">
-
-                                <!--li><a class="next" href="#url">Next <span class="fa fa-angle-right"></span></a></li-->
-                                <button class="button text-center" style="max-width: 160px;"><a
-                                        href="astrophysical_ansients.html" style="color: white;"> Read more</a></button>
-                            </ul>
-                        </div>
-                    </pagination>
-
                 </div>
             </div>
             {% endif %}
@@ -482,16 +466,16 @@ RIGHT SIDEBAR TOGGLE SECTION
     <!-- //move top -->
 
     <!-- common jquery plugin -->
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
     <!-- //common jquery plugin -->
 
     <!-- theme switch js (light and dark)-->
-    <script src="assets/js/theme-change.js"></script>
+    <script src="../assets/js/theme-change.js"></script>
     <!-- //theme switch js (light and dark)-->
 
     <!--/stats-number-counter-->
-    <script src="assets/js/jquery.waypoints.min.js"></script>
-    <script src="assets/js/jquery.countup.js"></script>
+    <script src="../assets/js/jquery.waypoints.min.js"></script>
+    <script src="../assets/js/jquery.countup.js"></script>
     <script>
         $('.counter').countUp();
 
@@ -499,7 +483,7 @@ RIGHT SIDEBAR TOGGLE SECTION
     <!--//stats-number-counter-->
 
     <!--/owlcarousel-->
-    <script src="assets/js/owl.carousel.js"></script>
+    <script src="../assets/js/owl.carousel.js"></script>
     <!-- //tesimonials-->
     <script>
         $(document).ready(function () {
@@ -563,7 +547,7 @@ RIGHT SIDEBAR TOGGLE SECTION
     <!-- //disable body scroll which navbar is in active -->
 
     <!--bootstrap-->
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
     <!-- //bootstrap-->
     <!-- //Js scripts -->
 
