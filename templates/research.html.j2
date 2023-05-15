@@ -15,6 +15,30 @@
 
     <div id="_bsa_srv-CKYI627U_0"></div>
     <div id="_bsa_srv-CKYI653J_1"></div>
+    <!-- Buttons-->
+<style>
+    .button {
+      padding: 15px 25px;
+      font-size: 20px;
+      text-align: center;
+      cursor: pointer;
+      outline: none;
+      color: #fff;
+      background-color: #7750bb;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 9px #999;
+    }
+    
+    .button:hover {background-color: #9669e5}
+    
+    .button:active {
+      background-color: #a087cc;
+      box-shadow: 0 5px #666;
+      transform: translateY(4px);
+    }
+    </style>
+
 </head>
 
 <body>
@@ -321,22 +345,22 @@ RIGHT SIDEBAR TOGGLE SECTION
     <section class="w3l-blog">
         <div class="blog py-5" id="Newsblog">
             {% for project_list in [astrophysical_transients, computational_metascience] %}
-            {% set cat_name = project | string %}
             {% if project_list|length > 0 %}
             <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list.category }}</h1>
+                <h1> {{ project_list[0]['category'] }}</h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
-                 <p>{{project_list.about}}</p>
+                    <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
+
                     {% for project in project_list %}
-                   
+                    {% if not loop.first %}
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
                                     class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path.cover_image }}"
+                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
                                         alt="array">
                                 </a>
                                 <div class="date">
@@ -367,23 +391,21 @@ RIGHT SIDEBAR TOGGLE SECTION
                             </div>
                         </div>
                     </div>
-
+                    {% endif %}
                     {% endfor %}
 
 
 
-                    <!-- pagination >
-                <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
-                    <ul class="page-pagination">
-                        <li><span aria-current="page" class="page-numbers current">1</span></li>
-                        <li><a class="page-numbers" href="#url">2</a></li>
-                        <li><a class="page-numbers" href="#url">3</a></li>
-                        <li><a class="page-numbers" href="#url">...</a></li>
-                        <li><a class="page-numbers" href="#url">15</a></li>
-                        <li><a class="next" href="#url">Next <span class="fa fa-angle-right"></span></a></li>
-                    </ul>
-                </div>
-                <!-- //pagination -->
+                    <pagination>
+                        <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
+                            <ul class="page-pagination">
+
+                                <!--li><a class="next" href="#url">Next <span class="fa fa-angle-right"></span></a></li-->
+                                <button class="button text-center" style="max-width: 160px;"><a
+                                        href="astrophysical_ansients.html" style="color: white;"> Read more</a></button>
+                            </ul>
+                        </div>
+                    </pagination>
 
                 </div>
             </div>
@@ -395,7 +417,7 @@ RIGHT SIDEBAR TOGGLE SECTION
 
 
 
-    
+
     <!-- footer block -->
     <footer class="w3l-footer-29-main">
         <div class="footer-29 pt-5 pb-4">
@@ -417,7 +439,7 @@ RIGHT SIDEBAR TOGGLE SECTION
 
                         </ul>
                     </div>
-                    
+
                 </div>
                 <!-- copyright -->
                 <p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>
