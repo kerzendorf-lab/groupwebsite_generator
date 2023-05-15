@@ -3,7 +3,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Intelligence - Corporate Category Bootstrap Responsive Website Template - Blog : W3Layouts</title>
+    <title>{{ general.website_title }} </title>
 
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet">
@@ -308,7 +308,7 @@ RIGHT SIDEBAR TOGGLE SECTION
             <div class="container py-lg-5 py-md-4">
                 <div class="banner-info-grid px-md-5">
                     <h2 class="w3l-title-breadcrumb mb-3">Researches & Articles</h2>
-                    <p class="inner-page-para px-lg-5">The more we know the more we grow</p>
+                    <p class="inner-page-para px-lg-5">Take a look at research articles</p>
                 </div>
             </div>
         </div>
@@ -324,16 +324,17 @@ RIGHT SIDEBAR TOGGLE SECTION
             {% set cat_name = project | string %}
             {% if project_list|length > 0 %}
             <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
+                <h1> {{ project_list.category }}</h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
+                 <p>{{project_list.about}}</p>
                     {% for project in project_list %}
-
+                   
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ cat_name }}/{{ page_link(project.name) }}.html"
+                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
                                     class="zoom d-block">
                                     <img class="card-img-bottom d-block" src="{{ project.image_path.cover_image }}"
                                         alt="array">
