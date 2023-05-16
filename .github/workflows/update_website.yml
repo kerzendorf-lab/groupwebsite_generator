@@ -60,8 +60,9 @@ jobs:
         run: |
           cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
+          python3 notebooks/ids.py
           python3 notebooks/append_json.py
-          python3 notebooks/combine_json.py
+          python3 notebooks/combine_people_categories.py
           python3 notebooks/combine_researches.py
           python3 notebooks/homepage.py
           python3 notebooks/contact.py
