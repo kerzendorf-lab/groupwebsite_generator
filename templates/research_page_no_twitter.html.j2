@@ -99,8 +99,9 @@
 						{% if page in general %}
 						<li class="nav-item">
 
-							<a class="nav-link dropdown-toggle" href="../../{{ page_link(page) }}.html" id="navbarDropdown"
-								role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<a class="nav-link dropdown-toggle" href="../../{{ page_link(page) }}.html"
+								id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true"
+								aria-expanded="false">
 								{{ page }} <span class="fas fa-angle-down"></span>
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -174,41 +175,27 @@
 
 					<div class="single-post-content">
 						<p class="mb-4"> {{ research.long_description }}</p>
-						<!--p class="mb-4">Lorem ipsum, dolor sit amet consectetur adipisicing elit. At, corrupti odit? At
-							iure
-							facere, porro repellat officia quas, dolores magnam assumenda soluta odit harum voluptate
-							inventore ipsa maiores fugiat accusamus eos nulla. Iure voluptatibus explicabo officia.</p>
-						<blockquote class="blockquote quote my-5">
-							<q>
-								Lorem ipsum dolor sit amet,Ea consequuntur illum facere aperiam sequi optio
-								consectetur. Ea illum facere aperiam sequi optio consectetur.</q>
-							<footer class="blockquote-footer mt-3">
-								Momahi Jock</footer>
 
-						</blockquote>
-						<p class="mb-4">Excepteur sint occaecat non proident, sunt in culpa quis. Phasellus lacinia id
-							erat
-							eu ullamcorper. Nunc id ipsum fringilla, gravida felis vitae. Phasellus lacinia id, sunt in
-							culpa quis. . </p>
-
-						<p class="mb-4">Excepteur sint occaecat non proident, sunt in culpa quis. Phasellus lacinia id
-							erat
-							eu ullamcorper. Nunc id ipsum fringilla, gravida felis vitae. Phasellus lacinia id, sunt in
-							culpa quis. . </p-->
 					</div>
-					
+
 					<div class="content-text-9">
 						<div class="single-post-content-1 row mt-5 no-gutters">
-							<div class="single-post-image mb-4" style="max-width:500px; display: block; margin: auto;">
-								<img src="../../website_files/images/research/big.jpeg" class="img-fluid img-responsive mt-3"
+							{% for key, value in research.content.items() %}
+							{% if key.startswith('img') %}
+							<div class="single-post-image mb-4"
+								style="max-width:fit-content; display: block; margin: auto;">
+								<img src="../../{{ value }}" class="img-fluid img-responsive mt-3"
 									alt="blog-post-image">
-									
 							</div>
+							{% elif key.startswith('para') %}
 							<div class="single-post-content">
-								<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ research.content.para1}} </p>	
+								<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ value }}</p>
 							</div>
+							{% endif %}
+							{% endfor %}
 						</div>
 					</div>
+
 					<!--ul class="share-post my-5">
 						<li>
 							<a href="#link" class="facebook" title="Facebook">
@@ -333,38 +320,38 @@
 	<!-- //Blog Section -->
 
 
-	
-    <!-- footer block -->
-    <footer class="w3l-footer-29-main">
-        <div class="footer-29 pt-5 pb-4">
-            <div class="container pt-md-4">
-                <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
-                    <div class="col-lg-6 col-md-6 footer-list-29">
-                        <h6 class="footer-title-29">Contact Info </h6>
-                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
-                        </p>
-                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
-                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_links.items() %}
-                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                            {% endfor %}
 
-                        </ul>
-                    </div>
-                    
-                </div>
-                <!-- copyright -->
-                <p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>
-                    Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
-                <!-- //copyright -->
-            </div>
-        </div>
-    </footer>
-    <!-- //footer block -->
+	<!-- footer block -->
+	<footer class="w3l-footer-29-main">
+		<div class="footer-29 pt-5 pb-4">
+			<div class="container pt-md-4">
+				<div class="row footer-top-29 d-flex justify-content-center justify-md-start">
+					<div class="col-lg-6 col-md-6 footer-list-29">
+						<h6 class="footer-title-29">Contact Info </h6>
+						<p class="mb-2 pe-xl-5">Address : {{ general.address }}
+						</p>
+						<p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
+						<p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
+					</div>
+					<div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
+						<ul>
+							<h6 class="footer-title-29">Quick Links</h6>
+							{% for link_text, link_url in general.useful_links.items() %}
+							<li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+							{% endfor %}
+
+						</ul>
+					</div>
+
+				</div>
+				<!-- copyright -->
+				<p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>
+					Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+				<!-- //copyright -->
+			</div>
+		</div>
+	</footer>
+	<!-- //footer block -->
 
 
 
