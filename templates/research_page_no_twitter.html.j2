@@ -106,7 +106,7 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								{% for sub_page in general[page] %}
-								<a class="dropdown-item" href="../{{ page_link(sub_page) }}.html">{{sub_page}}</a>
+								<a class="dropdown-item" href="../{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
 								{% endfor %}
 							</div>
 						</li>
