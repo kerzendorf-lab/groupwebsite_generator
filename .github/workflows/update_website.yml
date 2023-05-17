@@ -36,8 +36,6 @@ jobs:
         run: |
           cd kerzendorf-group.github.io
           mkdir members sub_research
-          mkdir sub_research/astrophysical_transients 
-          mkdir sub_research/computational_metascience
           cp -r ../group-data/groupwebsite_data/website_files ./
           cp -r ../groupwebsite_generator/assets ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
