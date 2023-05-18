@@ -209,19 +209,43 @@
             <h3 class="w3l-title-main">Recent Research</h3>
         </div>
         <div class="row justify-content-center">
-            {% for project in Homepage.our_projects.values() %}
+            
             <div class="col-lg-4 col-md-6">
                 <div class="about-single">
                     <div class="about-icon mb-4" >
-                        <img style="max-width: 100%;" src="{{ project.image }}">
+                        <img style="max-width: 100%;" src="{{ astrophysical_transients[1]['image_path']['cover_image'] }}">
                     </div>
                     <div class="about-content">
-                        <h5 class="mb-3" style="align-items: center;"><a href="{{ project.link }}">{{ project.title }}</a></h5>
-                        <p>{{ project.about }}</p>
+                        <h5 class="mb-3" style="align-items: center;"><a href="sub_research/{{ astrophysical_transients[0]['category']|replace(' ', '_')|lower }}/{{ page_link(astrophysical_transients[1]['name']) }}.html">{{ astrophysical_transients[1]['name']}}</a></h5>
+                        <p>{{ astrophysical_transients[1]['short_description']}}</p>
                     </div>
                 </div>
             </div>
-            {% endfor %}
+
+             <div class="col-lg-4 col-md-6">
+                <div class="about-single">
+                    <div class="about-icon mb-4" >
+                        <img style="max-width: 100%;" src="{{ astrophysical_transients[2]['image_path']['cover_image'] }}">
+                    </div>
+                    <div class="about-content">
+                        <h5 class="mb-3" style="align-items: center;"><a href="sub_research/{{ astrophysical_transients[0]['category']|replace(' ', '_')|lower }}/{{ page_link(astrophysical_transients[2]['name']) }}.html">{{ astrophysical_transients[2]['name']}}</a></h5>
+                        <p>{{ astrophysical_transients[2]['short_description']}}</p>
+                    </div>
+                </div>
+            </div>
+
+             <div class="col-lg-4 col-md-6">
+                <div class="about-single">
+                    <div class="about-icon mb-4" >
+                        <img style="max-width: 100%;" src="{{computational_metascience[1]['image_path']['cover_image'] }}">
+                    </div>
+                    <div class="about-content">
+                        <h5 class="mb-3" style="align-items: center;"><a href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[1]['name']) }}.html">{{ computational_metascience[1]['name']}}</a></h5>
+                        <p>{{ computational_metascience[1]['short_description']}}</p>
+                    </div>
+                </div>
+            </div>
+           
         </div>
     </div>
 </section>
