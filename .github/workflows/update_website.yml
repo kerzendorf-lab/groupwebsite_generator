@@ -68,6 +68,7 @@ jobs:
           python3 notebooks/research.py
           python3 notebooks/individual_research_pages.py
           python3 notebooks/people.py
+          python3 notebooks/support.py
           #for python_file_name in $(find notebooks -name "*.py")
           # do
           #    python3 "$python_file_name"
