@@ -300,116 +300,106 @@
 
 
             <!--Alumni Start-->
-            <div class="alumni">
-                <div class="text-center" style="padding-top: 5%;">
-                    <h1> Alumni</h1>
-                </div>
-                <div class="cardtainer" style="padding-top: 3%;">
-                    <div class="row">
-                        <div class="col-sm-10 col-sm-offset-1">
-                        {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
-                        {% for person in key %}
-                        {% if person['group_end_year']|lower != "present" %}
-                            <div class="col-md-4 col-sm-6">
-                                <div class="card-container manual-flip">
-                                    <div class="card">
-                                        <div class="front">
-                                            <div class="cover">
-                                                <img
-                                                    src="members/{{page_link(person.your_directory_name) }}/{{ person.cover_image_path }}">
-                                            </div>
-                                            <div class="user">
-                                                <img class="img-circle"
-                                                    src="members/{{page_link(person.your_directory_name) }}/{{ person.image_path }}">
-                                            </div>
-                                             <div class="content">
-                                            <div class="main">
-                                                <h3 class="name"><a
-                                                        href="members/{{page_link(person.your_directory_name) }}/{{page_link(person.your_directory_name) }}.html">{{person.name
-                                                        }}</a></h3>
-                                                     {% if person.primary_role != "" %}
-                                                    <p class="profession">{{ person.primary_role }} </p>
-                                                    {% endif %}
-                                                    {% if person.project_title != "" %}
-                                                    <p class="content main">{{
-                                                        person.project_title }}</p>
-                                                    {% endif %}
-                                                <div class="social-icon w3l-contacts-12">
-                                                    <div class="stats-container">
-                                                        <div class="social-links text-center">
-                                                            {% if person.social_media['website'] != "" %}
-                                                            <a href="{{ person.social_media['website'] }}"><i
-                                                                    class="fa fa-globe fa-fw"></i></a>
-                                                            {% endif %}
-                                                            {% if person.social_media['twitter'] != "" %}
-                                                            <a href="{{ person.social_media['twitter'] }}"><i
-                                                                    class="fa fa-twitter fa-fw"></i></a>
-                                                            {% endif %}
-                                                            {% if person.social_media['linkedin'] != "" %}
-                                                            <a href="{{ person.social_media['linkedin'] }}"><i
-                                                                    class="fab fa-linkedin-in"></i></a>
-                                                            {% endif %}
-                                                            {% if person.social_media['github'] != "" %}
-                                                            <a href="{{ person.social_media['github'] }}"><i
-                                                                    class="fa fa-github"></i></a>
-                                                            {% endif %}
-                                                            {% if person.social_media['orcid'] != "" %}
-                                                            <a href="{{ person.social_media['orcid'] }}"><i
-                                                                    class="fa fa-newspaper"></i></a>
-                                                            {% endif %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer">
-                                                <button class="btn btn-simple" onclick="rotateCard(this)">
-                                                    <i class="fa fa-mail-forward">More</i>
-                                                </button>
-
-                                            </div>
-                                        </div>
-                                        </div> <!-- end front panel -->
-                                        <div class="back">
-                                        <div class="header">
-                                               {% if person.secondary_role != "" %}
-                                                <h5 class="motto">{{ person.secondary_role }}</h5>
+<div class="alumni">
+    <div class="text-center" style="padding-top: 5%;">
+        <h1> Alumni</h1>
+    </div>
+    <div class="cardtainer" style="padding-top: 3%;">
+        <div class="row">
+            {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
+            {% for person in key %}
+            {% if person['group_end_year']|lower != "present" %}
+            <div class="col-md-4 col-sm-6">
+                <div class="card-container manual-flip">
+                    <div class="card">
+                        <div class="front">
+                            <div class="cover">
+                                <img src="members/{{page_link(person.your_directory_name) }}/{{ person.cover_image_path }}">
+                            </div>
+                            <div class="user">
+                                <img class="img-circle" src="members/{{page_link(person.your_directory_name) }}/{{ person.image_path }}">
+                            </div>
+                            <div class="content">
+                                <div class="main">
+                                    <h3 class="name"><a href="members/{{page_link(person.your_directory_name) }}/{{page_link(person.your_directory_name) }}.html">{{person.name}}</a></h3>
+                                    {% if person.primary_role != "" %}
+                                    <p class="profession">{{ person.primary_role }} </p>
+                                    {% endif %}
+                                    {% if person.project_title != "" %}
+                                    <p class="content main">{{ person.project_title }}</p>
+                                    {% endif %}
+                                    <div class="social-icon w3l-contacts-12">
+                                        <div class="stats-container">
+                                            <div class="social-links text-center">
+                                                {% if person.social_media['website'] != "" %}
+                                                <a href="{{ person.social_media['website'] }}"><i class="fa fa-globe fa-fw"></i></a>
                                                 {% endif %}
-                                        </div>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h4 class="text-center">Areas of Interests</h4>
-                                                <p class="text-center">{{ person.interests }}</p>
-
-                                                <br><br><br><br>
-                                                {% if person.current_institute != "Michigan State University" %}
-                                                <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute }} </p>
-                                                {% else%}
-                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute }} </p-->
+                                                {% if person.social_media['twitter'] != "" %}
+                                                <a href="{{ person.social_media['twitter'] }}"><i class="fa fa-twitter fa-fw"></i></a>
+                                                {% endif %}
+                                                {% if person.social_media['linkedin'] != "" %}
+                                                <a href="{{ person.social_media['linkedin'] }}"><i class="fab fa-linkedin-in"></i></a>
+                                                {% endif %}
+                                                {% if person.social_media['github'] != "" %}
+                                                <a href="{{ person.social_media['github'] }}"><i class="fa fa-github"></i></a>
+                                                {% endif %}
+                                                {% if person.social_media['orcid'] != "" %}
+                                                <a href="{{ person.social_media['orcid'] }}"><i class="fa fa-newspaper"></i></a>
                                                 {% endif %}
                                             </div>
                                         </div>
-                                        <div class="footer">
-                                            <button class="btn btn-simple" rel="tooltip" title=""
-                                                onclick="rotateCard(this)" data-original-title="Flip Card">
-                                                <i class="fa fa-reply">Back</i>
-                                            </button>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
+                                <div class="footer">
+                                    <button class="btn btn-simple" onclick="rotateCard(this)">
+                                        <i class="fa fa-mail-forward">More</i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        {% endif %}
-                        {% endfor %}
-                        {% endfor %}
-                    </div>
-                </div>
-            </div>
-        </div>
+                        </div> <!-- end front panel -->
+                        <div class="back">
+<div class="header">
+    {% if person.secondary_role != "" %}
+    <h5 class="motto">{{ person.secondary_role }}</h5>
+    {% endif %}
+</div>
+<div class="content">
+    <div class="main">
+        <h4 class="text-center">Areas of Interests</h4>
+        <p class="text-center">{{ person.interests }}</p>
+
+        <br><br><br><br>
+        {% if person.current_institute != "Michigan State University" %}
+        <p class="text-center external_affiliation" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
+        {% else %}
+        <!--p class="text-center" style="color:black;  line-height: 16px;">{{
+            person.current_institute }} </p-->
+        {% endif %}
     </div>
+</div>
+<div class="footer">
+    <button class="btn btn-simple" rel="tooltip" title="" onclick="rotateCard(this)" data-original-title="Flip Card">
+        <i class="fa fa-reply">Back</i>
+    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endif %}
+{% endfor %}
+{% endfor %}
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
     <!-- //Team Section -->
 
     <!--
