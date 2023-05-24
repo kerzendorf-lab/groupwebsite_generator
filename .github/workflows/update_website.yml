@@ -63,6 +63,7 @@ jobs:
           python3 notebooks/append_json.py
           python3 notebooks/combine_people_categories.py
           python3 notebooks/combine_researches.py
+          python3 notebooks/news_append.ipynb
           python3 notebooks/create_htmls.py
           #for python_file_name in $(find notebooks -name "*.py")
           # do
