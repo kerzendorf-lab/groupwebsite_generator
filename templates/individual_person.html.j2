@@ -388,7 +388,7 @@
             {% for poster_key, poster in person.posters.items() if poster_key.startswith('poster') %}
             <div class="item {% if loop.first %}active{% endif %}">
                 <h3 class="text-center" style="padding-bottom:3%">{{ poster.title }}</h3>
-                <embed src="{{ poster.link }}" style="width: 100%;">
+                <embed src="{{ poster.link }}" style="width: 100%; height: 600px;">
                 <p class="text-center" style="padding-bottom:1%"><i>{{ poster.caption }}</i></p>
                 <p class="text-center" style="padding-bottom:3%">{{ poster.about }}</p>
             </div>
