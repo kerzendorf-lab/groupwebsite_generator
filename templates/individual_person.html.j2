@@ -242,48 +242,39 @@
 
 
     <section style="padding-left: 10%; padding-right:10%;">
-        {% for data in [ "education", "experience", "projects", "awards", "outreach" ]
-        %}
-        {% if data in person %}
+    {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
+    {% if data in person %}
+    {% if person[data].display|lower in ["true", "yes"] %}
+    <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+        <h3 class="w3l-title-main">{{ person[data].section }}</h3>
+    </div>
 
-        {% for key, value in person[data].items() %}
-        {% if person[data].display|lower in ["true", "yes"] %}
-        <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-            <h3 class="w3l-title-main">{{ value }}</h3>
-        </div>
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    {% for key, value in person[data].headings.items() %}
-                    <th scope="col">{{ value }}</th>
-                    {% endfor %}
-
-
-                </tr>
-            </thead>
-            <tbody>
-                {% for key, value in person[data].items() %}
-                {% if key != "headings" and key != "section" and key != "display" %}
-
-                <tr>
-                    {% for k, v in value.items() %}
-                    <td>{{ v }}</td>
-                    {% endfor %}
-
-
-                </tr>
-                {% endif %}
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                {% for key, value in person[data].headings.items() %}
+                <th scope="col">{{ value }}</th>
                 {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, row in person[data].items() %}
+            {% if "row" in key %}
+            <tr>
+                {% for cell in row.values() %}
+                <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody>
+    </table>
 
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+</section>
 
-            </tbody>
-        </table>
-        {% endif %}
-        {% endfor %}
-        {% endif %}
-        {% endfor %}
-    </section>
 
 <section style="padding-left: 10%; padding-right:10%;">
 	{% for data in [ "books", "documents" ] %}
