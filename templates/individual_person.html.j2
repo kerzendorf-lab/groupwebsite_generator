@@ -264,7 +264,7 @@
             </thead>
             <tbody>
                 {% for key, value in person[data].items() %}
-                {% if key != "headings" and key != "section" %}
+                {% if key != "headings" and key != "section" and key != "display" %}
 
                 <tr>
                     {% for k, v in value.items() %}
@@ -309,7 +309,7 @@
             </thead>
             <tbody>
                 {% for key, value in person[data].items() %}
-                {% if key != "headings" and key != "section" %}
+                {% if key != "headings" and key != "section" and key != "display"%}
                 <tr>
                     {% for k, v in value.items() %}
                     {% if k == "entry3" %}
@@ -380,7 +380,7 @@
 <!-- posters and media-->
 
 
-    {% if 'posters' in person and person.posters.display|lower == 'yes' %}
+    {% if 'posters' in person and person.posters.display|lower == 'true' %}
     <h3 class="text-center" style="padding-top:5%" >Posters</h3>
     <div id="myCarousel" class="carousel slide" style="width: 60%; margin-left: 20%; padding-top:2%">
         <!-- Wrapper for slides -->
