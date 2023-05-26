@@ -18,9 +18,9 @@ jobs:
 
       - name: Clone repositories
         run: |
-          git clone git@github.com:deepthought-initiative/dti_group_data.git
-          git clone git@github.com:deepthought-initiative/dtiwebsite_generator.git
-          git clone git@github.com:deepthought-initiative/deepthought-initiative.github.io.git
+          git clone git@github.com:kerzendorf-group/group-data.git
+          git clone git@github.com:kerzendorf-group/groupwebsite_generator.git
+          git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
 
       - name: List clones
         run: |
@@ -28,22 +28,22 @@ jobs:
 
       - name: Clear cloned website repo
         run: |
-          cd deepthought-initiative.github.io
+          cd kerzendorf-group.github.io
           rm -rf index.html Research.html Contact.html People.html Support.html
           rm -rf assets website_files members sub_research support_images
 
-      - name: Setup directories inside deepthought-initiative.github.io
+      - name: Setup directories inside kerzendorf-group.github.io
         run: |
-          cd deepthought-initiative.github.io
+          cd kerzendorf-group.github.io
           mkdir members sub_research
-          cp -r ../dti_group_data/website_data/website_files ./
-          cp -r ../dti_group_data/website_data/support_images ./
-          cp -r ../dtiwebsite_generator/assets ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../dti_group_data/members/ ./members
+          cp -r ../group-data/website_data/website_files ./
+          cp -r ../group-data/website_data/support_images ./
+          cp -r ../groupwebsite_generator/assets ./
+          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
-      - name: Setup directories inside dti_group_data
+      - name: Setup directories inside group-data
         run: |
-          cd dti_group_data
+          cd group-data
           mkdir members/common
           mkdir website_data/research/sub_research_data/combined
 
@@ -57,7 +57,7 @@ jobs:
 
       - name: Run Notebooks
         run: |
-          cd dtiwebsite_generator
+          cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
           python3 notebooks/jsons_prep.py
           python3 notebooks/create_htmls.py
@@ -70,7 +70,7 @@ jobs:
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd deepthought-initiative.github.io
+          cd kerzendorf-group.github.io
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
