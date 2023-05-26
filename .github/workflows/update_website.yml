@@ -36,8 +36,8 @@ jobs:
         run: |
           cd kerzendorf-group.github.io
           mkdir members sub_research
-          cp -r ../group-data/groupwebsite_data/website_files ./
-          cp -r ../group-data/groupwebsite_data/support_images ./
+          cp -r ../group-data/website_data/website_files ./
+          cp -r ../group-data/website_data/support_images ./
           cp -r ../groupwebsite_generator/assets ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
@@ -45,7 +45,7 @@ jobs:
         run: |
           cd group-data
           mkdir members/common
-          mkdir groupwebsite_data/research/sub_research_data/combined
+          mkdir website_data/research/sub_research_data/combined
 
 
       - name: Install Jupyter and Python3
