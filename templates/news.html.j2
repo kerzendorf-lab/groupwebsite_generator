@@ -92,7 +92,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                    href="news/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -156,7 +156,7 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="news/{{ page_link(project.name) }}.html"
                                     class="zoom d-block">
                                     <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
                                         alt="array">
@@ -166,7 +166,7 @@
                                 </div>
                             </div>
                             <div class="card-body blog-details">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="news/{{ page_link(project.name) }}.html"
                                     class="blog-desc"> {{ project.name }} </a>
                                 <div class="price-review mb-1 align-items-center">
                                     <p>{{ project.short_description }} </p>
