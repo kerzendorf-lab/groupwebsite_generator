@@ -156,17 +156,16 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="news/{{ page_link(project.name) }}.html"
+                                 <a href="news/{{project.name }}.html"
                                     class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
-                                        alt="array">
+                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}" alt="array">
                                 </a>
                                 <div class="date">
                                     <p>{{ project.article_date }} </p>
                                 </div>
                             </div>
                             <div class="card-body blog-details">
-                                <a href="news/{{ page_link(project.name) }}.html"
+                                <a href="news/{{project.name }}.html"
                                     class="blog-desc"> {{ project.name }} </a>
                                 <div class="price-review mb-1 align-items-center">
                                     <p>{{ project.short_description }} </p>
@@ -175,13 +174,13 @@
                             </div>
                             <div class="card-footer">
                                 <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="members/{{ project.authon_image }}" alt=""
+                                    <a href="members/{{ project.author_id}}/{{ project.author_id}}.html" class="post-author">
+                                        <img src="members/{{ project.author_image }}" alt=""
                                             class="img-fluid rounded-circle">
                                     </a>
                                     <ul class="blog-meta">
                                         <li>
-                                            <span class="meta-value">Article by </span><a href="#author">{{
+                                            <span class="meta-value">Article by </span><a href="members/{{ project.author_id}}/{{ project.author_id}}.html">{{
                                                 project.author }}</a>
                                         </li>
                                     </ul>
