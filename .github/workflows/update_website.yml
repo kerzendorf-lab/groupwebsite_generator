@@ -29,8 +29,8 @@ jobs:
       - name: Clear cloned website repo
         run: |
           cd kerzendorf-group.github.io
-          rm -rf index.html Research.html Contact.html People.html Support.html
-          rm -rf assets website_files members sub_research support_images
+          rm -rf index.html Research.html Contact.html People.html Support.html News.html
+          rm -rf assets website_files members sub_research support_images news
 
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
