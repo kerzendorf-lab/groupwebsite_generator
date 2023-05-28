@@ -165,7 +165,7 @@
                                 </div>
                             </div>
                             <div class="card-body blog-details">
-                                <a href="news/{{project.name }}.html"
+                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html"
                                     class="blog-desc"> {{ project.name }} </a>
                                 <div class="price-review mb-1 align-items-center">
                                     <p>{{ project.short_description }} </p>
