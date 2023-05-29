@@ -277,7 +277,7 @@
 
 
 <section style="padding-left: 10%; padding-right:10%;">
-	{% for data in [ "books", "documents" ] %}
+	{% for data in [ "publications", "documents" ] %}
 	{% if data in person %}
 	{% if person[data].display|lower in ["true", "yes"] %}
 	{% for key, value in person[data].items() %}
