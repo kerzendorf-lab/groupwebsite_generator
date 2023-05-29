@@ -150,11 +150,10 @@
                 <h1> {{ project_list[0]['category'] }}</h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
+                {% for project in project_list %}
                 <div class="row">
                     <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
-
-                    {% for project in project_list %}
-                   <div class="col-lg-6 col-md-6 item">
+                    <div class="col-lg-6 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{project.name|replace(' ', '_')|lower  }}.html" class="zoom d-block">
@@ -181,10 +180,8 @@
 
                         </div>
                     </div>
-                    <br>
-                    <br>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
             {% endif %}
             {% endfor %}
