@@ -142,7 +142,9 @@
 
 
                                 <div class="social-icons-con" style="text-align:center; padding-top:3%;">
+                                    {% if person['social_media']['display'] == "true" %}
                                     <h4 class="mb-3">Connect with me:</h4>
+                                    {% endif %}
                                     {% if person['social_media']['website'] != "" %}
                                     <a href="{{person.social_media.website}}" target="_blank"><span class="fa fa-globe"
                                             aria-hidden="true"></span></a>
@@ -159,12 +161,8 @@
                                     <a href="{{person.social_media.linkedin}}" target="_blank"><span class="fab fa-linkedin-in"
                                             aria-hidden="true"></span></a>
                                     {% endif %}
-                                    {% if person['social_media']['email'] != "" %}
-                                    <a href="{{person.social_media.email}}" target="_blank"><span class="fa fa-envelope"
-                                            aria-hidden="true"></span></a>
-                                    {% endif %}
                                     {% if person['social_media']['orcid'] != "" %}
-                                    <a href="{{person.social_media.orcid}}" target="_blank"><span class="fa fa-link"
+                                    <a href="{{person.social_media.orcid}}" target="_blank"><span class="fa fa-newspaper"
                                             aria-hidden="true"></span></a>
                                     {% endif %}
                                 </div>
