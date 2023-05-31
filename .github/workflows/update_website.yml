@@ -8,12 +8,14 @@ on:
       - main
     types:
       - completed
+    result:
+      success
   push:
     paths:
       - "assets/**"
       - "notebooks/**"
       - "templates/**"
-
+      
 jobs:
   Update_website:
     name: Updating website
