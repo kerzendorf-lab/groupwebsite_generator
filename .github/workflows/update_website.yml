@@ -1,9 +1,15 @@
 name: Update Group Website
 
 on:
-  workflow_dispatch:
   workflow_run:
     workflows: ["Check Webhook Dispatch"]
+    types: 
+      - completed
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'group-data/**'
 
 jobs:
   Update_website:
