@@ -4,12 +4,6 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: ["Check Webhook Dispatch"]
-    branches:
-      - main
-    types:
-      - completed
-    result:
-      success
   push:
     paths:
       - "assets/**"
@@ -20,8 +14,6 @@ jobs:
   Update_website:
     name: Updating website
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
-
     steps:
       - name: Setup SSH
         uses: MrSquaare/ssh-setup-action@v1
@@ -60,6 +52,7 @@ jobs:
           mkdir members/common
           mkdir website_data/research/sub_research_data/combined
 
+
       - name: Install Jupyter and Python3
         run: |
           sudo apt-get update
@@ -73,13 +66,16 @@ jobs:
           jupyter nbconvert --to python notebooks/*.ipynb
           python3 notebooks/jsons_prep.py
           python3 notebooks/create_htmls.py
+          #for python_file_name in $(find notebooks -name "*.py")
+          # do
+          #    python3 "$python_file_name"
+          #  done
 
       - name: Push Website
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           cd kerzendorf-group.github.io
-          git pull
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
