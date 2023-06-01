@@ -331,14 +331,21 @@
                                         <div class="content">
                                             <div class="main">
                                                 <h3 class="name">
+                                                    {% if person.name != "" and not
+                                                    person.name.strip().lower().startswith("enter") %}
                                                     <a
-                                                        href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">{{
-                                                        person.name }}</a>
+                                                        href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                        {{person.name }}</a>
+                                                    {% endif %}
                                                 </h3>
-                                                {% if person.primary_role != "" %}
+                                                {% if person.primary_role != "" and not
+                                                person.primary_role.strip().lower().startswith("enter") %}
+
                                                 <p class="profession">{{ person.primary_role }}</p>
                                                 {% endif %}
-                                                {% if person.project_title != "" %}
+                                                {% if person.project_title != "" and not
+                                                person.project_title.strip().lower().startswith("enter") %}
+
                                                 <p class="text-center" style="color:black;  line-height: 16px;">{{
                                                     person.project_title }}</p>
                                                 {% endif %}
@@ -346,23 +353,37 @@
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                            {% if person.social_media['website'] != "" %}
+                                                            {% if person.social_media['website'] != "" and not
+                                                            person.social_media['website'].strip().lower().startswith("enter")
+                                                            %}
                                                             <a href="{{ person.social_media['website'] }}"
                                                                 target="_blank"><i class="fa fa-globe fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.social_media['twitter'] != "" %}
+                                                            {% if person.social_media['twitter'] != "" and not
+                                                            person.social_media['twitter'].strip().lower().startswith("enter")
+                                                            %}
+
                                                             <a href="{{ person.social_media['twitter'] }}"
                                                                 target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.social_media['linkedin'] != "" %}
+                                                            {% if person.social_media['linkedin'] != "" and not
+                                                            person.social_media['linkedin'].strip().lower().startswith("enter")
+                                                            %}
+
                                                             <a href="{{ person.social_media['linkedin'] }}"
                                                                 target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
-                                                            {% if person.social_media['github'] != "" %}
+                                                            {% if person.social_media['github'] != "" and not
+                                                            person.social_media['github'].strip().lower().startswith("enter")
+                                                            %}
+
                                                             <a href="{{ person.social_media['github'] }}"
                                                                 target="_blank"><i class="fa fa-github"></i></a>
                                                             {% endif %}
-                                                            {% if person.social_media['orcid'] != "" %}
+                                                            {% if person.social_media['orcid'] != "" and not
+                                                            person.social_media['orcid'].strip().lower().startswith("enter")
+                                                            %}
+
                                                             <a href="{{ person.social_media['orcid'] }}"
                                                                 target="_blank"><i class="fa fa-newspaper"></i></a>
                                                             {% endif %}
@@ -379,19 +400,25 @@
                                     </div> <!-- end front panel -->
                                     <div class="back">
                                         <div class="header">
-                                            {% if person.secondary_role != "" %}
+                                            {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+
                                             <h5 class="motto">{{ person.secondary_role }}</h5>
                                             {% endif %}
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                                <h4 class="text-center">Areas of Interests</h4>
-                                                <p class="text-center">{{ person.interests }}</p>
+                                             {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
+
+                                                <div>
+                                                    <h4 class="text-center">Areas of Interests</h4>
+                                                    <p class="text-center">{{ person.interests }}</p>
+                                                </div>
+                                                 {% endif %}
                                                 <br><br><br><br>
-                                                {% if person.current_institute != "Michigan State University" %}
+                                                {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "MSU" %}
+
                                                 <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{ person.current_institute
-                                                    }}</p>
+                                                    style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
                                                 {% else %}
                                                 <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
                                                 {% endif %}
@@ -458,17 +485,22 @@
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                                <h3 class="name"><a
-                                                        href="members/{{page_link(person.id) }}/{{page_link(person.id) }}.html">{{person.name
-                                                        }}</a></h3>
-                                                {% if person.primary_role !=
-                                                "" %}
-                                                <p class="profession">{{
-                                                    person.primary_role }}
-                                                </p>
+                                                <h3 class="name">
+                                                   {% if person.name != "" and not
+                                                    person.name.strip().lower().startswith("enter") %}
+                                                    <a
+                                                        href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                        {{person.name }}</a>
+                                                    {% endif %}
+                                                </h3>
+                                                {% if person.primary_role != "" and not
+                                                person.primary_role.strip().lower().startswith("enter") %}
+
+                                                <p class="profession">{{ person.primary_role }}</p>
                                                 {% endif %}
-                                                {% if person.project_title
-                                                != "" %}
+                                                {% if person.project_title != "" and not
+                                                person.project_title.strip().lower().startswith("enter") %}
+
                                                 <p class="text-center" style="color:black;  line-height: 16px;">{{
                                                     person.project_title }}</p>
                                                 {% endif %}
@@ -476,35 +508,39 @@
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                            {% if
-                                                            person.social_media['website']
-                                                            != "" %}
-                                                            <a href="{{ person.social_media['website'] }}"><i
-                                                                    class="fa fa-globe fa-fw"></i></a>
+                                                            {% if person.social_media['website'] != "" and not
+                                                            person.social_media['website'].strip().lower().startswith("enter")
+                                                            %}
+                                                            <a href="{{ person.social_media['website'] }}"
+                                                                target="_blank"><i class="fa fa-globe fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if
-                                                            person.social_media['twitter']
-                                                            != "" %}
-                                                            <a href="{{ person.social_media['twitter'] }}"><i
-                                                                    class="fa fa-twitter fa-fw"></i></a>
+                                                            {% if person.social_media['twitter'] != "" and not
+                                                            person.social_media['twitter'].strip().lower().startswith("enter")
+                                                            %}
+
+                                                            <a href="{{ person.social_media['twitter'] }}"
+                                                                target="_blank"><i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if
-                                                            person.social_media['linkedin']
-                                                            != "" %}
-                                                            <a href="{{ person.social_media['linkedin'] }}"><i
-                                                                    class="fab fa-linkedin-in"></i></a>
+                                                            {% if person.social_media['linkedin'] != "" and not
+                                                            person.social_media['linkedin'].strip().lower().startswith("enter")
+                                                            %}
+
+                                                            <a href="{{ person.social_media['linkedin'] }}"
+                                                                target="_blank"><i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
-                                                            {% if
-                                                            person.social_media['github']
-                                                            != "" %}
-                                                            <a href="{{ person.social_media['github'] }}"><i
-                                                                    class="fa fa-github"></i></a>
+                                                            {% if person.social_media['github'] != "" and not
+                                                            person.social_media['github'].strip().lower().startswith("enter")
+                                                            %}
+
+                                                            <a href="{{ person.social_media['github'] }}"
+                                                                target="_blank"><i class="fa fa-github"></i></a>
                                                             {% endif %}
-                                                            {% if
-                                                            person.social_media['orcid']
-                                                            != "" %}
-                                                            <a href="{{ person.social_media['orcid'] }}"><i
-                                                                    class="fa fa-newspaper"></i></a>
+                                                            {% if person.social_media['orcid'] != "" and not
+                                                            person.social_media['orcid'].strip().lower().startswith("enter")
+                                                            %}
+
+                                                            <a href="{{ person.social_media['orcid'] }}"
+                                                                target="_blank"><i class="fa fa-newspaper"></i></a>
                                                             {% endif %}
                                                         </div>
                                                     </div>
@@ -514,37 +550,32 @@
                                                 <button class="btn btn-simple" onclick="rotateCard(this)">
                                                     <i class="fa fa-mail-forward">More</i>
                                                 </button>
-
                                             </div>
                                         </div>
                                     </div> <!-- end front panel -->
                                     <div class="back">
                                         <div class="header">
-                                            {% if person.secondary_role !=
-                                            "" %}
-                                            <h5 class="motto">{{
-                                                person.secondary_role }}</h5>
+                                            {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+
+                                            <h5 class="motto">{{ person.secondary_role }}</h5>
                                             {% endif %}
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                                <h4 class="text-center">Areas
-                                                    of Interests</h4>
-                                                <p class="text-center">{{
-                                                    person.interests }}</p>
+                                             {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
 
+                                                <div>
+                                                    <h4 class="text-center">Areas of Interests</h4>
+                                                    <p class="text-center">{{ person.interests }}</p>
+                                                </div>
+                                                 {% endif %}
                                                 <br><br><br><br>
-                                                {% if
-                                                person.current_institute !=
-                                                "Michigan State University"
-                                                %}
+                                                {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "MSU" %}
+
                                                 <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute
-                                                    }} </p>
-                                                {% else%}
-                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute }} </p-->
+                                                    style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
+                                                {% else %}
+                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
                                                 {% endif %}
                                             </div>
                                         </div>
