@@ -280,7 +280,7 @@
     <section style="padding-left: 10%; padding-right:10%;">
         {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
         {% if data in person %}
-        {% if person[data].display|lower in ["true", "yes"] %}
+        {% if person[data].display%}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
             {% if person[data].section != "" and not person[data].section.strip().lower().startswith("enter") %}
 
