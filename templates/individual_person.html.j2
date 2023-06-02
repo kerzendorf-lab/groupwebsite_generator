@@ -5,7 +5,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ person.name }} | {{ general.website_title }}</title>
+    <title> {% if person.nick_name != "" and not
+        person.nick_name.strip().lower().startswith("enter")
+        %}
+        {{ person.nick_name }}
+        {{% else %}}
+        {{person.first_name}}
+
+        {% endif %}| {{ general.website_title }}</title>
 
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -131,7 +138,18 @@
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
                         <h3 class="w3l-title-main mb-lg-4 mb-3">Introduction</h3>
-                        <h6 class="w3l-title-small mb-1">I'm {{ person.name }}</h6>
+                        <h6 class="w3l-title-small mb-1">I'm
+                            {% if person.nick_name != "" and not
+                            person.nick_name.strip().lower().startswith("enter")
+                            %}
+                            {{ person.nick_name }}
+                            {{% else %}}
+                            {{person.first_name}}
+                            {% endif %}
+                        </h6>
+                        
+
+
                         <p class="my-4 pe-lg-5">{{ person.introduction }}</p>
 
 
@@ -353,7 +371,7 @@
                     {% else %}
                     {% if value != "" and not value.strip().lower().startswith("enter") %}
                     <td>{{ value }}</td>
-                     {% endif %}
+                    {% endif %}
                     {% endif %}
                     {% endfor %}
                 </tr>
@@ -427,16 +445,16 @@
             {% for poster_key, poster in person.posters.items() if poster_key.startswith('poster') %}
             {% set slide_count = slide_count + 1 %}
             <div class="item {% if loop.first %}active{% endif %}">
-            {% if poster.title != "" and not poster.title.strip().lower().startswith("enter") %}
+                {% if poster.title != "" and not poster.title.strip().lower().startswith("enter") %}
                 <h3 class="text-center" style="padding-bottom:3%">{{ poster.title }}</h3>
-             {% endif %}
+                {% endif %}
                 <embed src="{{ poster.link }}" style="width: 100%; height: 600px;">
                 {% if poster.caption != "" and not poster.caption.strip().lower().startswith("enter") %}
                 <p class="text-center" style="padding-bottom:1%"><i>{{ poster.caption }}</i></p>
-                 {% endif %}
-                   {% if poster.about != "" and not poster.about.strip().lower().startswith("enter") %}
+                {% endif %}
+                {% if poster.about != "" and not poster.about.strip().lower().startswith("enter") %}
                 <p class="text-center" style="padding-bottom:3%">{{ poster.about }}</p>
-                 {% endif %}
+                {% endif %}
             </div>
             {% endfor %}
         </div>
@@ -574,7 +592,7 @@
 
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">
-        <span class="fas fa-level-up-alt" aria-hidden= true></span>
+        <span class="fas fa-level-up-alt" aria-hidden=true></span>
     </button>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
