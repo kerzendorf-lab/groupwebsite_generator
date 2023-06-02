@@ -203,10 +203,10 @@
                                                 <h3 class="name"><a
                                                         href="members/{{page_link(person.id) }}/{{page_link(person.id) }}.html">{{person.name
                                                         }}</a></h3>
-                                                {% if person.primary_role !=
+                                                {% if person.academic_role !=
                                                 "" %}
                                                 <p class="profession">{{
-                                                    person.primary_role }}
+                                                    person.academic_role }}
                                                 </p>
                                                 {% endif %}
                                                 {% if person.project_title
@@ -342,10 +342,10 @@
                                                         {{person.name }}</a>
                                                     {% endif %}
                                                 </h3>
-                                                {% if person.primary_role != "" and not
-                                                person.primary_role.strip().lower().startswith("enter") %}
+                                                {% if person.academic_role != "" and not
+                                                person.academic_role.strip().lower().startswith("enter") %}
 
-                                                <p class="profession">{{ person.primary_role }}</p>
+                                                <p class="profession">{{ person.academic_role }}</p>
                                                 {% endif %}
                                                 {% if person.project_title != "" and not
                                                 person.project_title.strip().lower().startswith("enter") %}
@@ -497,10 +497,10 @@
                                                         {{person.name }}</a>
                                                     {% endif %}
                                                 </h3>
-                                                {% if person.primary_role != "" and not
-                                                person.primary_role.strip().lower().startswith("enter") %}
+                                                {% if person.academic_role != "" and not
+                                                person.academic_role.strip().lower().startswith("enter") %}
 
-                                                <p class="profession">{{ person.primary_role }}</p>
+                                                <p class="profession">{{ person.academic_role }}</p>
                                                 {% endif %}
                                                 {% if person.project_title != "" and not
                                                 person.project_title.strip().lower().startswith("enter") %}

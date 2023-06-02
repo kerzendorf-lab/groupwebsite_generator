@@ -234,11 +234,11 @@
 
                 </tr>
                 {% endif %}
-                {% if person.primary_role != "" and not person.primary_role.strip().lower().startswith("enter") %}
+                {% if person.academic_role != "" and not person.academic_role.strip().lower().startswith("enter") %}
 
                 <tr>
                     <th scope="row">Primary Role:</th>
-                    <td>{{ person.primary_role }}</td>
+                    <td>{{ person.academic_role }}</td>
 
                 </tr>
                 {% endif %}
