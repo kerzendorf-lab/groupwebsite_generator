@@ -142,7 +142,7 @@
 
 
                                 <div class="social-icons-con" style="text-align:center; padding-top:3%;">
-                                    {% if person['social_media']['display'] == "true" %}
+                                    {% if person['social_media']['display'] %}
                                     <h4 class="mb-3">Connect with me:</h4>
                                     {% endif %}
                                     {% if person.social_media['website'] != "" and not
@@ -322,7 +322,7 @@
     <section style="padding-left: 10%; padding-right:10%;">
         {% for data in [ "publications", "documents" ] %}
         {% if data in person %}
-        {% if person[data].display|lower in ["true", "yes"] %}
+        {% if person[data].display%}
         {% for key, value in person[data].items() %}
         {% if key == "section" and value %}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
@@ -418,7 +418,7 @@
 
     <!-- posters and media-->
 
-    {% if 'posters' in person and person.posters.display|lower == 'true' %}
+    {% if person.posters.display %}
     <h3 class="text-center" style="padding-top:5%">Posters</h3>
     <div id="myCarousel" class="carousel slide" style="width: 60%; margin-left: 20%; padding-top:2%">
         <!-- Wrapper for slides -->
@@ -574,7 +574,7 @@
 
     <!-- move top -->
     <button onclick="topFunction()" id="movetop" title="Go to top">
-        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+        <span class="fas fa-level-up-alt" aria-hidden= true></span>
     </button>
     <script>
         // When the user scrolls down 20px from the top of the document, show the button
