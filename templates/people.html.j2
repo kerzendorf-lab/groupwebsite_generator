@@ -200,9 +200,16 @@
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                                <h3 class="name"><a
-                                                        href="members/{{page_link(person.id) }}/{{page_link(person.id) }}.html">{{person.name
-                                                        }}</a></h3>
+                                                <h3 class="name">
+    {% if person.nick_name != "" and not person.nick_name.strip().lower().startswith("enter") %}
+        <a href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+            {{ person.nick_name }} {{ person.last_name }}</a>
+    {% elif person.first_name != "" and not person.first_name.strip().lower().startswith("enter") %}
+        <a href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+            {{ person.first_name }}{{ person.last_name }}</a>
+    {% endif %}
+</h3>
+
                                                 {% if person.academic_role !=
                                                 "" %}
                                                 <p class="profession">{{
@@ -312,7 +319,7 @@
 
             <!-- Code without categorizing-->
 
-              <div class="text-center" style="padding-top: 5%;">
+            <div class="text-center" style="padding-top: 5%;">
                 <h1> Our Group</h1>
             </div>
             <div class="cardtainer" style="padding-top: 3%;">
@@ -335,13 +342,19 @@
                                         <div class="content">
                                             <div class="main">
                                                 <h3 class="name">
-                                                    {% if person.name != "" and not
-                                                    person.name.strip().lower().startswith("enter") %}
+                                                    {% if person.nick_name != "" and not
+                                                    person.nick_name.strip().lower().startswith("enter") %}
                                                     <a
                                                         href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
-                                                        {{person.name }}</a>
+                                                        {{ person.nick_name }} {{ person.last_name }}</a>
+                                                    {% elif person.first_name != "" and not
+                                                    person.first_name.strip().lower().startswith("enter") %}
+                                                    <a
+                                                        href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                        {{ person.first_name }} {{ person.last_name }}</a>
                                                     {% endif %}
                                                 </h3>
+
                                                 {% if person.academic_role != "" and not
                                                 person.academic_role.strip().lower().startswith("enter") %}
 
@@ -404,25 +417,31 @@
                                     </div> <!-- end front panel -->
                                     <div class="back">
                                         <div class="header">
-                                            {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+                                            {% if person.secondary_role != "" and not
+                                            person.secondary_role.strip().lower().startswith("enter") %}
 
                                             <h5 class="motto">{{ person.secondary_role }}</h5>
                                             {% endif %}
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                             {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
+                                                {% if person.interests != "" and not
+                                                person.interests.strip().lower().startswith("enter") %}
 
                                                 <div>
                                                     <h4 class="text-center">Areas of Interests</h4>
                                                     <p class="text-center">{{ person.interests }}</p>
                                                 </div>
-                                                 {% endif %}
+                                                {% endif %}
                                                 <br><br><br><br>
-                                                {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "MSU" %}
+                                                {% if person.current_institute != "" and
+                                                person.current_institute.strip().lower() != "michigan state university"
+                                                and person.current_institute.strip().lower() != "enter" and
+                                                person.current_institute.strip().lower() != "MSU" %}
 
                                                 <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
+                                                    style="color:black;  line-height: 16px;">{{ person.current_institute
+                                                    }}</p>
                                                 {% else %}
                                                 <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
                                                 {% endif %}
@@ -490,13 +509,19 @@
                                         <div class="content">
                                             <div class="main">
                                                 <h3 class="name">
-                                                   {% if person.name != "" and not
-                                                    person.name.strip().lower().startswith("enter") %}
+                                                    {% if person.nick_name != "" and not
+                                                    person.nick_name.strip().lower().startswith("enter") %}
                                                     <a
                                                         href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
-                                                        {{person.name }}</a>
+                                                        {{ person.nick_name }} {{ person.last_name }}</a>
+                                                    {% elif person.first_name != "" and not
+                                                    person.first_name.strip().lower().startswith("enter") %}
+                                                    <a
+                                                        href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                        {{ person.first_name }} {{ person.last_name }}</a>
                                                     {% endif %}
                                                 </h3>
+
                                                 {% if person.academic_role != "" and not
                                                 person.academic_role.strip().lower().startswith("enter") %}
 
@@ -559,25 +584,31 @@
                                     </div> <!-- end front panel -->
                                     <div class="back">
                                         <div class="header">
-                                            {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+                                            {% if person.secondary_role != "" and not
+                                            person.secondary_role.strip().lower().startswith("enter") %}
 
                                             <h5 class="motto">{{ person.secondary_role }}</h5>
                                             {% endif %}
                                         </div>
                                         <div class="content">
                                             <div class="main">
-                                             {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
+                                                {% if person.interests != "" and not
+                                                person.interests.strip().lower().startswith("enter") %}
 
                                                 <div>
                                                     <h4 class="text-center">Areas of Interests</h4>
                                                     <p class="text-center">{{ person.interests }}</p>
                                                 </div>
-                                                 {% endif %}
+                                                {% endif %}
                                                 <br><br><br><br>
-                                                {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "MSU" %}
+                                                {% if person.current_institute != "" and
+                                                person.current_institute.strip().lower() != "michigan state university"
+                                                and person.current_institute.strip().lower() != "enter" and
+                                                person.current_institute.strip().lower() != "MSU" %}
 
                                                 <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
+                                                    style="color:black;  line-height: 16px;">{{ person.current_institute
+                                                    }}</p>
                                                 {% else %}
                                                 <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
                                                 {% endif %}
