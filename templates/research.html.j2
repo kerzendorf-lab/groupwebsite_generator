@@ -158,7 +158,7 @@
                     {% if counter < 3 %} {% set counter=counter + 1 %} <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
                                     class="zoom d-block">
                                     <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
                                         alt="array">
@@ -168,7 +168,7 @@
                                 </div>
                             </div>
                             <div class="card-body blog-details">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
+                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
                                     class="blog-desc">{{ project.name }}</a>
                                 <div class="price-review mb-1 align-items-center">
                                     <p>{{ project.short_description }}</p>
