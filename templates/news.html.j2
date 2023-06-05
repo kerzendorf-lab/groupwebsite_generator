@@ -154,7 +154,7 @@
             {% for project_list in [news] %}
             {% if project_list|length > 0 %}
             <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
+                <h1> News</h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 {% for project in project_list %}
@@ -164,7 +164,7 @@
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{project.name|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
+                                    <img class="card-img-bottom d-block" src="news/{{ project.cover_image }}"
                                         alt="array">
                                 </a>
                                 <div class="date">
