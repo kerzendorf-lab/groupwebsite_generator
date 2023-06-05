@@ -229,74 +229,116 @@
     </style>
 
 
+    <div class="content-info-in row">
+        <div class="content-gd col-lg-6 pe-lg-5 infotable">
+
+            <section style="padding-left: 7.2%; ">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Title</th>
+                            <th scope="col">Description</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if person.project_title != "" and not
+                        person.project_title.strip().lower().startswith("enter") %}
+                        <tr>
+                            <th scope="row">Project&#40;s&#41;:</th>
+                            <td>{{ person.project_title }}</td>
+
+                        </tr>
+                        {% endif %}
+                        {% if person.org != "" and not person.org.strip().lower().startswith("enter") %}
+
+                        <tr>
+                            <th scope="row">Organization:</th>
+                            <td>{{ person.org }}</td>
+
+                        </tr>
+                        {% endif %}
+                        {% if person.academic_role != "" and not
+                        person.academic_role.strip().lower().startswith("enter") %}
+
+                        <tr>
+                            <th scope="row">Primary Role:</th>
+                            <td>{{ person.academic_role }}</td>
+
+                        </tr>
+                        {% endif %}
+                        {% if person.secondary_role != "" and not
+                        person.secondary_role.strip().lower().startswith("enter") %}
+
+                        <tr>
+                            <th scope="row">Secondary Role:</th>
+                            <td>{{ person.secondary_role }}</td>
+
+                        </tr>
+                        {% endif %}
+                        {% if person.current_institute != "" and not
+                        person.current_institute.strip().lower().startswith("enter") %}
+
+                        <tr>
+                            <th scope="row">Current Institute:</th>
+                            <td>{{ person.current_institute }}</td>
+
+                        </tr>
+                        {% endif %}
+                        {% if person.group_start_year != "" and person.group_end_year != "" and not
+                        person.group_start_year.strip().lower().startswith("enter") and not
+                        person.group_end_year.strip().lower().startswith("enter") %}
+
+                        <tr>
+                            <th scope="row">Duration:</th>
+                            <td>{{ person.group_start_year }}-{{ person.group_end_year }}</td>
+
+                        </tr>
+                        {% endif %}
+
+                    </tbody>
+                </table>
+            </section>
+
+        </div>
 
 
-    <section style="padding-left: 10%; padding-right:10%;">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th scope="col">Title</th>
-                    <th scope="col">Description</th>
+        <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
+            <!-- right side bar -->
+            <div class="col-lg-6 right-side-bar mt-lg-0 mt-5 ps-lg-5">
+                <aside class="posts p-4">
+                    <h3 class="aside-title">News Involved</h3>
+                    <ul class="category">
+                        {% for news_article in news %}
+                        {% if person.id == news_article.author_id %}
+                        <li><a href="../../news/{{news_article.name|replace(' ', '_')|lower  }}.html"><span class="fas fa-angle-right"></span>{{ news_article.name }}</a></li>
+                        {% endif %}
+                        {% endfor %}
 
-                </tr>
-            </thead>
-            <tbody>
-                {% if person.project_title != "" and not person.project_title.strip().lower().startswith("enter") %}
-                <tr>
-                    <th scope="row">Project&#40;s&#41;:</th>
-                    <td>{{ person.project_title }}</td>
+                    </ul>
+                </aside>
+            </div>
+            <!-- //right side bar -->
+        </div>
 
-                </tr>
-                {% endif %}
-                {% if person.org != "" and not person.org.strip().lower().startswith("enter") %}
+        <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
+            <!-- right side bar -->
+            <div class="col-lg-6 right-side-bar mt-lg-0 mt-5 ps-lg-5">
+                <aside class="posts p-4">
+                    <h3 class="aside-title">News Involved</h3>
+                    <ul class="category">
+                        {% for news_article in news %}
+                        {% if person.id == news_article.author_id %}
+                        <li><a href="../../news/{{news_article.name|replace(' ', '_')|lower  }}.html"><span class="fas fa-angle-right"></span>{{ news_article.name }}</a></li>
+                        {% endif %}
+                        {% endfor %}
 
-                <tr>
-                    <th scope="row">Organization:</th>
-                    <td>{{ person.org }}</td>
-
-                </tr>
-                {% endif %}
-                {% if person.academic_role != "" and not person.academic_role.strip().lower().startswith("enter") %}
-
-                <tr>
-                    <th scope="row">Primary Role:</th>
-                    <td>{{ person.academic_role }}</td>
-
-                </tr>
-                {% endif %}
-                {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
-
-                <tr>
-                    <th scope="row">Secondary Role:</th>
-                    <td>{{ person.secondary_role }}</td>
-
-                </tr>
-                {% endif %}
-                {% if person.current_institute != "" and not
-                person.current_institute.strip().lower().startswith("enter") %}
-
-                <tr>
-                    <th scope="row">Current Institute:</th>
-                    <td>{{ person.current_institute }}</td>
-
-                </tr>
-                {% endif %}
-                {% if person.group_start_year != "" and person.group_end_year != "" and not
-                person.group_start_year.strip().lower().startswith("enter") and not
-                person.group_end_year.strip().lower().startswith("enter") %}
-
-                <tr>
-                    <th scope="row">Duration:</th>
-                    <td>{{ person.group_start_year }}-{{ person.group_end_year }}</td>
-
-                </tr>
-                {% endif %}
-
-            </tbody>
-        </table>
-    </section>
-
-
+                    </ul>
+                </aside>
+            </div>
+            <!-- //right side bar -->
+        </div>
+    </div>
 
 
     <section style="padding-left: 10%; padding-right:10%;">
@@ -486,51 +528,6 @@
 
     <!-- posters end-->
 
-    <div class="content-info-in row">
-        <div class="content-gd col-lg-6 pe-lg-5 infotable">
-
-
-            <div class="col-lg-6 right-side-bar mt-lg-6 mt-6 ps-lg-5">
-                <aside class="posts p-4">
-                    <h3 class="aside-title">Researches Associated</h3>
-                    <ul class="category">
-                        {% for research_article in [astrophysical_transients, computational_metascience] %}
-                        {% if person.id == research_article.author_id %}
-                        <li><a href="../../news/{{news_article.name|replace(' ', '_')|lower  }}.html"><span
-                                    class="fas fa-angle-right"></span>{{ research_article.name }}</a></li>
-                        {% endif %}
-                        {% endfor %}
-
-                    </ul>
-                </aside>
-            </div>
-
-
-        </div>
-
-
-        <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
-            <!-- right side bar -->
-            <div class="col-lg-6 right-side-bar mt-lg-0 mt-5 ps-lg-5">
-    <aside class="posts p-4">
-        <h3 class="aside-title">News Associated</h3>
-        <ul class="category">
-            {% for news_article in news %}
-                {% if person.id in news_article.people_involved_ids %}
-                    <li>
-                        <a href="../../news/{{ news_article.name|replace(' ', '_')|lower }}.html">
-                            <span class="fas fa-angle-right"></span>{{ news_article.name }}
-                        </a>
-                    </li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </aside>
-</div>
-
-            <!-- //right side bar -->
-        </div>
-    </div>
     <br><br><br><br>
 
     <!-- footer block -->
