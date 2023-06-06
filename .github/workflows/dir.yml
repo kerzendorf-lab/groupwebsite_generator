@@ -4,18 +4,14 @@ on:
   workflow_dispatch:
 
 jobs:
-  Update_website:
-    name: Updating website
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: List 
-        run: |
-          ls -a
-
-      - name: cd ..
-        run: |
-          cd ../groupwebsite_generator
-          ls -a
-
+    list_files:
+        runs-on: ubuntu-latest
+        
+        steps:
+        - name: Checkout repository
+          uses: actions/checkout@v2
+        
+        - name: List files
+          run: |
+            ls -R
     
