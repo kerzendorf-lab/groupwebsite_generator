@@ -490,17 +490,15 @@
         <div class="content-gd col-lg-6 pe-lg-5 infotable">
             <div class="col-lg-6 right-side-bar mt-lg-6 mt-6 ps-lg-5">
                 <aside class="posts p-4">
-                    <h3 class="aside-title">Researches Associated</h3>
+                    <h3 class="aside-title">Research</h3>
                     <ul class="category">
-                        {% for research_article in [astrophysical_transients, computational_metascience] %}
-                        {% if not loop.first %}
-                        {% if person.id in research_article.people_involved_ids %}
-                        <li><a href="../../sub_research/{{research_article.category}}{{ research_article.name|replace(' ', '_')|lower }}.html"><span
-                                    class="fas fa-angle-right"></span>{{ research_article.name }}</a></li>
-                        {% endif %}
-                        {% endif %}
+                    {% for category in [astrophysical_transients, computational_metascience] %}
+                        {% for research_article in category %}
+                            {% if person.id in research_article.people_involved_ids %}
+                                <li><a href="../../sub_research/{{ research_article.category|replace(' ', '_')|lower }}/{{ research_article.name|replace(' ', '_')|lower }}.html"><span class="fas fa-angle-right"></span>{{ research_article.name }}</a></li>
+                            {% endif %}
                         {% endfor %}
-
+                    {% endfor %}
                     </ul>
                 </aside>
             </div>
@@ -509,7 +507,7 @@
             <!-- right side bar -->
             <div class="col-lg-6 right-side-bar mt-lg-0 mt-5 ps-lg-5">
                 <aside class="posts p-4">
-                    <h3 class="aside-title">News Associated</h3>
+                    <h3 class="aside-title">News</h3>
                     <ul class="category">
                         {% for news_article in news %}
                         {% if person.id in news_article.people_involved_ids %}
