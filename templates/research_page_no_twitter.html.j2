@@ -163,14 +163,13 @@
 					</div>
 					<div class="single-post-image mb-4">
 							<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-							{% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]
-							%}
+							{% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]%}
 							{% for person in key %}
 							{% if person.id == research.author_id%}
 
 							<li class="circle avatar"><img src="../../members/{{ research.author_id}}/{{ person.image_path }}"
 									class="img-fluid" alt=""></li>
-							<li>Research Article by <a href="../../members/{{ research.author_id }}/{{ research.author_id}}.html">{{
+							<li>Research Article by <a href="../../members/{{ research.author_id }}/{{ research.author_id}}.html" target="_blank">{{
 									person.first_name }} {{ person.last_name }}</a></li>
 							<li class="single-date">{{research.article_date}}</li>
 							{%endif%}

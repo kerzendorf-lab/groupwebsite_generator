@@ -158,13 +158,13 @@
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 {% for project in project_list %}
-                <div class="row">
+                <div class="row" style="padding-top: 5%;">
                     <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
                     <div class="col-lg-6 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{project.name|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="news/{{ project.cover_image }}"
+                                    <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block" src="news/{{ project.cover_image }}"
                                         alt="array">
                                 </a>
                                 <div class="date">
@@ -174,13 +174,13 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="card">
-                            <div class="card-body blog-details">
-                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc"> {{
-                                    project.name }} </a>
+                    <div class="col-lg-4 col-md-6 item" >
+                        <div class="card" >
+                            <div class="card-body blog-details" style="max-height: 330px">
+                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"> {{project.name }} </a>
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p>{{ project.short_description }} </p>
+                                    <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical;">{{ project.short_description }} </p>
                                 </div>
 
                             </div>

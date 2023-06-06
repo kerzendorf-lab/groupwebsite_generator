@@ -160,34 +160,41 @@
                             <div class="card-header p-0 position-relative">
                                 <a href="{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
                                     class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="../{{ project.cover_image}}"
+                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block" src="../{{ project.cover_image}}"
                                         alt="array">
                                 </a>
                                 <div class="date">
                                     <p>{{ project.article_date }} </p>
                                 </div>
                             </div>
-                            <div class="card-body blog-details">
-                                <a href="{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
-                                    class="blog-desc"> {{ project.name }} </a>
+                              <div class="card-body blog-details" style="max-height: 220px">
+                                <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
+                                    class="blog-desc">{{ project.name }}</a>
+                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p>{{ project.short_description }} </p>
+                                    <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ project.short_description }}</p>
                                 </div>
-
                             </div>
                             <div class="card-footer">
+                                {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]%}
+                                {% for person in key %}
+                                {% if person.id == project.author_id%}
                                 <div class="author align-items-center">
-                                    <a href="../members/{{ project.author_id}}/{{ project.author_id}}.html" class="post-author">
-                                        <img src="../members/{{ project.author_image }}" alt=""
+                                    <a href="../members/{{ project.author_id}}/{{ project.author_id}}.html"
+                                        class="post-author" target="_blank">
+                                        <img src="../members/{{ project.author_id}}/{{ person.image_path }}" alt="Author's Image"
                                             class="img-fluid rounded-circle">
                                     </a>
                                     <ul class="blog-meta">
                                         <li>
-                                            <span class="meta-value">Article by </span><a href="../members/{{ project.author_id}}/{{ project.author_id}}.html">{{
-                                                project.author }}</a>
+                                            <span class="meta-value">Article by </span>
+                                            <a href="../members/{{ project.author_id}}/{{ project.author_id}}.html" target="_blank">{{person.first_name }} {{ person.last_name }}</a>
                                         </li>
                                     </ul>
                                 </div>
+                                {%endif%}
+                                {%endfor%}
+                                {%endfor%}
                             </div>
                         </div>
                     </div>
