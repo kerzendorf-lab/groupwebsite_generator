@@ -514,7 +514,7 @@
                         {% for news_article in news %}
                         {% if person.id in news_article.people_involved_ids %}
                         <li>
-                            <a href="../../news/{{ news_article.name|replace(' ', '_')|lower }}.html">
+                            <a href="../../news/{{ news_article.name|replace(' ', '_')|lower }}.html" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;">
                                 <span class="fas fa-angle-right"></span>{{ news_article.name }}
                             </a>
                         </li>
