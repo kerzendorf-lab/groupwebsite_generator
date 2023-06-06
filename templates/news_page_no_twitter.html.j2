@@ -58,7 +58,8 @@
 							</a>
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 								{% for sub_page in general[page] %}
-								<a class="dropdown-item" href="../sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+								<a class="dropdown-item"
+									href="../sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
 								{% endfor %}
 							</div>
 						</li>
@@ -147,43 +148,69 @@
 					</div>
 
 					<!-- right side bar -->
-					<div class="col-lg-6 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
-
-						<aside class="posts p-6">
-							<h3 class="aside-title">People Associated</h3>
-							<ul class="category">
-								{% for key_id in news.people_involved_ids%}
-								{% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]
-								%}
-								{% for person in key %}
-								{% if person.id == key_id%}
-								<li>
-									<a href="../members/{{ person.id }}/{{ person.id }}.html" target="_blank">
-										<span class="fas fa-user"></span>{{ person.first_name}} {{ person.last_name}}
-									</a>
-								</li>
-								{%endif%}
-								{% endfor %}
-								{% endfor %}
-								{% if key_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-								key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-								<li>
-									<a href="{{ key_id.strip().split(' ')[-1]}}" target="_blank">
-										<span class="fas fa-external-link-alt"></span>{{ ' '.join(key_id.strip().split(' ')[0:-1]) }}
-									</a>
-								</li>
-								{% endif %}
-								{% endfor%}
-							</ul>
-						</aside>
+					<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
+						<div class="row">
+							{% if news.people_involved_ids %}
+							<div class="col text-center">
+								<aside class="posts p-6">
+									<h3 class="aside-title">People Associated</h3>
+									<ul class="category">
+										{% for key_id in news.people_involved_ids%}
+										{% for key in [faculty, post_docs, grads, undergrads, research_engineers,
+										researchers]
+										%}
+										{% for person in key %}
+										{% if person.id == key_id%}
+										<li>
+											<a href="../members/{{ person.id }}/{{ person.id }}.html" target="_blank">
+												<span class="fas fa-user"></span>{{ person.first_name}} {{
+												person.last_name}}
+											</a>
+										</li>
+										{%endif%}
+										{% endfor %}
+										{% endfor %}
+										{% if key_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+										<li>
+											<a href="{{ key_id.strip().split(' ')[-1]}}" target="_blank">
+												<span class="fas fa-external-link-alt"></span>{{ '
+												'.join(key_id.strip().split(' ')[0:-1]) }}
+											</a>
+										</li>
+										{% endif %}
+										{% endfor%}
+									</ul>
+								</aside>
+							</div>
+							{%endif%}
+							{% if news.links %}
+							<div class="col text-center">
+								<aside class="posts p-6">
+									<h3 class="aside-title">Refrences & Resources</h3>
+									<ul class="category">
+										{% for link_id in news.links%}
+										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+										<li>
+											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
+												<span class="fas fa-external-link-alt"></span>{{
+												''.join(link_id.strip().split(' ')[0:-1]) }}
+											</a>
+										</li>
+										{% endif %}
+										{% endfor%}
+									</ul>
+								</aside>
+							</div>
+							{%endif%}
+						</div>
+						<!-- //right side bar -->
 
 					</div>
-					<!-- //right side bar -->
 
 				</div>
-
 			</div>
-		</div>
 		</div>
 		</div>
 	</section>
