@@ -1,6 +1,7 @@
 name: Update Group Website
 
 on:
+  workflow_dispatch:
   workflow_run:
     workflows: ["Check Webhook Dispatch"]
     types: 
