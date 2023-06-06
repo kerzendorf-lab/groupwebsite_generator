@@ -370,7 +370,7 @@
                     {% for key, value in value.items() %}
                     {% if key == "entry3" %}
                     {% if value != "" and not value.strip().lower().startswith("enter") %}
-                    <td><a href="{{ value }}" target="_blank">Document Link</a></td>
+                    <td><a href="{{ value }}" target="_blank"><span class="fas fa-external-link-alt"> Link</span></a></td>
                     {% endif %}
                     {% else %}
                     {% if value != "" and not value.strip().lower().startswith("enter") %}
