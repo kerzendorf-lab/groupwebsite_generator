@@ -8,11 +8,6 @@ jobs:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
-        with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: List 
         run: |
@@ -22,10 +17,7 @@ jobs:
         run: |
           cd ..
           ls -a
-
-      - name: Setup directories inside kerzendorf-group.github.io
-        run: |
-          cd . 
+          cd groupwebsite_generator
           ls -a
 
     
