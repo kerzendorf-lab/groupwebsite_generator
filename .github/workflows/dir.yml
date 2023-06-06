@@ -13,5 +13,7 @@ jobs:
         
         - name: List files
           run: |
+            cd ./notebooks
             ls -R
+            
     
