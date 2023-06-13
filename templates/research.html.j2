@@ -39,6 +39,21 @@
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
+
+            .heading {
+            color: #000;
+            /* Default color */
+            text-decoration: none;
+        }
+
+        .heading:hover {
+            background-image: linear-gradient(to left, #673ab7, #673ab7);
+            /* Gradient from right to left */
+            -webkit-background-clip: text;
+            /* Apply gradient as text color */
+            -webkit-text-fill-color: transparent;
+            /* Make text transparent */
+        }
     </style>
 
 </head>
@@ -145,8 +160,8 @@
         <div class="blog py-5" id="Newsblog">
             {% for project_list in [astrophysical_transients, computational_metascience] %}
             {% if project_list|length > 0 %}
-            <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
+            <div class="text-center heading" style="padding-top: 5%;">
+                <h1><a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}.html" style="color: black;"> {{ project_list[0]['category'] }}</a></h1>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
@@ -158,18 +173,22 @@
                             <div class="card-header p-0 position-relative">
                                 <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
                                     class="zoom d-block">
-                                    <img style="max-width: 380px; max-height: 230px;"  class="card-img-bottom d-block" src="{{ project.cover_image}}" alt="array">
+                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
+                                        src="{{ project.cover_image}}" alt="array">
                                 </a>
                                 <div class="date">
                                     <p>{{ project.article_date }}</p>
                                 </div>
                             </div>
                             <div class="card-body blog-details" style="max-height: 220px">
-                                <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
+                                <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;"
+                                    href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
                                     class="blog-desc">{{ project.name }}</a>
-                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ project.short_description }}</p>
+                                    <p
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                        {{ project.short_description }}</p>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -179,13 +198,14 @@
                                 <div class="author align-items-center">
                                     <a href="members/{{ project.author_id}}/{{ project.author_id}}.html"
                                         class="post-author" target="_blank">
-                                        <img src="members/{{ project.author_id}}/{{ person.image_path }}" alt="Author's Image"
-                                            class="img-fluid rounded-circle">
+                                        <img src="members/{{ project.author_id}}/{{ person.image_path }}"
+                                            alt="Author's Image" class="img-fluid rounded-circle">
                                     </a>
                                     <ul class="blog-meta">
                                         <li>
                                             <span class="meta-value">Article by </span>
-                                            <a href="members/{{ project.author_id}}/{{ project.author_id}}.html" target="_blank">{{person.first_name }} {{ person.last_name }}</a>
+                                            <a href="members/{{ project.author_id}}/{{ project.author_id}}.html"
+                                                target="_blank">{{person.first_name }} {{ person.last_name }}</a>
                                         </li>
                                     </ul>
                                 </div>

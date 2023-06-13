@@ -94,7 +94,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                   href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -126,8 +126,8 @@
     <!--//header-->
 
 
-     <!-- about banner -->
-        <section class="w3l-about-breadcrumb text-center">
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
         <div class="breadcrumb-bg breadcrumb-bg-people py-5">
             <div class="container py-lg-5 py-md-4">
                 <div class="banner-info-grid px-md-5" style="margin-top: 3%;">
@@ -139,13 +139,13 @@
     </section>
     <!-- //about banner -->
 
-<style>
-    @media (min-width: 998px) {
-  .container {
-    padding-left: 10%; 
-  }
-}
-</style>
+    <style>
+        @media (min-width: 998px) {
+            .container {
+                padding-left: 10%;
+            }
+        }
+    </style>
 
 
     <!-- Blog Section -->
@@ -164,8 +164,8 @@
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 <a href="news/{{project.name|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                    <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block" src="news/{{ project.cover_image }}"
-                                        alt="array">
+                                    <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
+                                        src="news/{{ project.cover_image }}" alt="array">
                                 </a>
                                 <div class="date">
                                     <p>{{ project.article_date }} </p>
@@ -174,13 +174,17 @@
 
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 item" >
-                        <div class="card" >
+                    <div class="col-lg-4 col-md-6 item">
+                        <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
-                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc" style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"> {{project.name }} </a>
+                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc"
+                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                    {{project.name }} </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical;">{{ project.short_description }} </p>
+                                    <p
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical;">
+                                        {{ project.short_description }} </p>
                                 </div>
 
                             </div>
