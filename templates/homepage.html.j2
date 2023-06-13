@@ -189,12 +189,13 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="about-single">
                         <div class="about-icon mb-4">
-                            <img style="max-width: 380px; max-height: 230px;" src="{{ astrophysical_transients[1]['cover_image'] }}">
+                           <a href="sub_research/{{ astrophysical_transients[0]['category']|replace(' ', '_')|lower }}/{{ page_link(astrophysical_transients[1]['name'])|lower  }}.html"><img style="max-width: 380px; max-height: 230px;" src="{{ astrophysical_transients[1]['cover_image'] }}"></a>
                         </div>
                         <div class="about-content">
                             <h5 class="mb-3" style="align-items: center; min-height: 53px;"><a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ astrophysical_transients[0]['category']|replace(' ', '_')|lower }}/{{ page_link(astrophysical_transients[1]['name'])|lower  }}.html">{{astrophysical_transients[1]['name']}}</a></h5>
                              <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ astrophysical_transients[1]['short_description']}}</p>
+                             <a href="sub_research/{{ astrophysical_transients[0]['category']|replace(' ', '_')|lower }}/{{ page_link(astrophysical_transients[1]['name'])|lower  }}.html" style="color:black">
+                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;"> {{ astrophysical_transients[1]['short_description']}}</p></a>
                         </div>
                     </div>
                 </div>
@@ -202,12 +203,13 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="about-single">
                         <div class="about-icon mb-4">
-                            <img style="max-width: 380px; max-height: 230px;" src="{{computational_metascience[1]['cover_image'] }}">
+                           <a href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[1]['name'])|lower  }}.html"> <img style="max-width: 380px; max-height: 230px;" src="{{computational_metascience[1]['cover_image'] }}"></a>
                         </div>
                         <div class="about-content">
                             <h5 class="mb-3" style="align-items: center; min-height: 53px;"><a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[1]['name'])|lower  }}.html">{{computational_metascience[1]['name']}}</a></h5>
                              <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ computational_metascience[1]['short_description']}}</p>
+                             <a  href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[1]['name'])|lower  }}.html">
+                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ computational_metascience[1]['short_description']}}</p></a>
                         </div>
                     </div>
                 </div>
@@ -215,12 +217,13 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="about-single">
                         <div class="about-icon mb-4">
-                            <img style="max-width: 100%;" style="max-width: 380px; max-height: 230px;" src="{{computational_metascience[2]['cover_image'] }}">
+                           <a  href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[2]['name'])|lower  }}.html"> <img style="max-width: 100%;" style="max-width: 380px; max-height: 230px;" src="{{computational_metascience[2]['cover_image'] }}"></a>
                         </div>
                         <div class="about-content">
                             <h5 class="mb-3" style="align-items: center; min-height: 53px;" ><a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[2]['name'])|lower  }}.html">{{computational_metascience[2]['name']}}</a></h5>
                              <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ computational_metascience[2]['short_description']}}</p>
+                             <a href="sub_research/{{ computational_metascience[0]['category']|replace(' ', '_')|lower }}/{{ page_link(computational_metascience[2]['name'])|lower  }}.html">
+                            <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ computational_metascience[2]['short_description']}}</p></a>
                         </div>
                     </div>
                 </div>
