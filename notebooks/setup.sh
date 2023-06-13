@@ -1,7 +1,9 @@
 #!/bin/bash
 
 cd ../../group-data
-mkdir members/common
+mkdir members
+mkdir temp
+mkdir temp/members
 mkdir website_data/research/sub_research_data/combined
 
 cd ..
