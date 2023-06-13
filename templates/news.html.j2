@@ -178,12 +178,12 @@
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                                 <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc"
-                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; min-height: 82px;">
                                     {{project.name }} </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
                                     <p
-                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical;">
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; min-height: 155px;">
                                         {{ project.short_description }} </p>
                                 </div>
 
