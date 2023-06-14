@@ -94,7 +94,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                   href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -128,130 +128,122 @@
 
     <!-- about banner -->
     <section class="w3l-about-breadcrumb text-center">
-        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
             <div class="container py-lg-5 py-md-4">
-                <div class="banner-info-grid px-md-5" style="margin-top: 3%;">
+                <div class="banner-info-grid px-md-5">
                     <h2 class="w3l-title-breadcrumb mb-3">News</h2>
-                    <!--p class="inner-page-para px-lg-5">Our Updates</p-->
+                    <p class="inner-page-para px-lg-5">Our Updates</p>
                 </div>
             </div>
         </div>
     </section>
     <!-- //about banner -->
 
-    <style>
-        @media (min-width: 998px) {
-            .container {
-                padding-left: 10%;
-            }
-        }
-    </style>
+<style>
+    @media (min-width: 998px) {
+  .container {
+    padding-left: 10%; 
+  }
+}
+</style>
 
 
     <!-- Blog Section -->
-    <section class="w3l-blog">
-        <div class="blog py-5" id="Newsblog">
-            {% for project_list in [news] %}
-            {% if project_list|length > 0 %}
-            <!--div class="text-center" style="padding-top: 5%;">
-                <h1> News</h1>
-            </div-->
-            <div class="container py-lg-5 py-md-4 py-2">
-                {% for project in project_list %}
-                <div class="row" style="padding-top: 5%;">
-                    <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
-                    <div class="col-lg-6 col-md-6 item">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="news/{{project.name|replace(' ', '_')|lower  }}.html" class="zoom d-block">
-                                    <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
-                                        src="news/{{ project.cover_image }}" alt="array">
-                                </a>
-                                <div class="date">
-                                    <p>{{ project.article_date }} </p>
-                                </div>
+
+<section class="w3l-blog">
+    <div class="blog py-5" id="Newsblog">
+        <div class="container py-lg-5 py-md-4 py-2">
+            {% for _, news in content.iterrows() %}
+                {% set content_data = ContentData(news['article_id']) %}
+                {% set news_info = content_data.load_json() %}
+            <div class="row" style="padding-top: 5%;">
+                <div class="col-lg-6 col-md-6 item">
+                    <div class="card">
+                        <div class="card-header p-0 position-relative">
+                            {% if news_info.category == category %}
+                            <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
+                            {% endif %}
+                            {% if news_info.category != category %}
+                            <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
+                            {% endif %}
+                                <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
+                                    src="../{{ news_info.cover_image }}" alt="array">
+                            </a>
+                            <div class="date">
+                                <p>{{ news_info.article_date }}</p>
                             </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="card">
-                            <div class="card-body blog-details" style="max-height: 330px">
-                                <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc"
-                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 56px">
-                                    {{project.name }} </a>
-                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p
-                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; min-height: 88px">
-                                        {{ project.short_description }} </p>
-                                </div>
-
-                            </div>
-
-
-                            <div class="card-footer">
-                                <div class="author align-items-center">
-                                    <span style="font-size: 12px;">About:</span>
-                                    <ul class="blog-meta">
-                                        {% for person_id in project.people_involved_ids %}
-                                        {% for key in [faculty, post_docs, grads, undergrads, research_engineers,
-                                        researchers] %}
-                                        {% for person in key %}
-                                        {% if person.id == person_id %}
-                                        <li>
-                                            <a href="members/{{ person.id }}/{{ person.id }}.html"
-                                                style="font-size: 12px;" target="_blank">{{ person.first_name }}</a>
-                                        </li>
-
-                                        {% endif %}
-                                        {% else %}
-                                          {% if person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-                                        person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-                                        <li>
-                                            <a href="{{ person_id.strip().split(' ')[-1]}}" target="_blank"
-                                                style="font-size: 12px;">
-                                                {{ person_id.strip().split(' ')[0] }}
-
-                                            </a>
-                                        </li>
-                                        {% endif %}
-                                         {% if person_id.strip().split(' ')[-1].strip().lower().startswith("#") %}
-                                        <li>
-                                            <a href="{{ person_id.strip().split(' ')[-1]}}" target="_blank"
-                                                style="font-size: 12px;">
-                                                {{ person_id.strip().split(' ')[0] }}
-
-                                            </a>
-                                        </li>
-                                        {% endif %}
-                                        {% endfor %}
-                                        {% endfor %}
-
-           {% if not loop.last %}
-                                        <li>,</li>
-                                        {% endif %}
-
-
-                                      
-
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-            </div>
+                <div class="col-lg-4 col-md-6 item">
+                    <div class="card">
+                        <div class="card-body blog-details" style="max-height: 330px">
+                            {% if news_info.category == category %}
+                            <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog"
+                            {% endif %}
+                            {% if news_info.category != category %}
+                            <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog"
+                            {% endif %}
+                                style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                {{ news_info.title }}
+                            </a>
+                            <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                            <div class="price-review mb-1 align-items-center">
+                                <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical;">
+                                    {{ news_info.short_description }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+    <div class="author align-items-center">
+        <span style="font-size: 12px;">About:</span>
+        <ul class="blog-meta">
+            {% for person_id in news_info.people_involved_ids %}
+            {% for member_id in member_ids.values.tolist() %}
+            {% if person_id == member_id %}
+            {% set member_data = MemberData(member_id) %}
+            {% set member_info = member_data.basic_info() %}
+            
+            {% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
+            {% set member_name = member_info.nick_name ~ ' ' ~ member_info.last_name %}
+            {% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
+            {% set member_name = member_info.first_name ~ ' ' ~ member_info.last_name %}
+            {% endif %}
+            
+            <li>
+                <a href="../../members/{{ member_id }}/{{ member_id }}.html" target="_blank" style="font-size: 12px;">
+                    {{ member_name }}
+                </a>
+            </li>
+            
+            {% if member_id.strip().split(' ')[-1].strip().lower().startswith("http://") or member_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+            <li>
+                <a href="{{ member_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 12px;">
+                    {{ ' '.join(member_id.strip().split(' ')[0:-1]) }}
+                </a>
+            </li>
+            {% endif %}
             {% endif %}
             {% endfor %}
+            {% if not loop.last %}
+                                        <li>, </li>
+                                        {% endif %}
+ 
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    </section>
+   
+    </div>
+</section>
+
+
     <!-- //Blog Section -->
 
 
