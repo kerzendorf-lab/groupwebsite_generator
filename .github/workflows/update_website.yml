@@ -6,7 +6,7 @@ on:
      workflows: ["Check Webhook Dispatch"]
      types: 
        - completed
-   push:
+  push:
      branches:
        - main
      paths-ignore:
