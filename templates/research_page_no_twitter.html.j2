@@ -143,7 +143,7 @@
 		<div class="breadcrumb-bg breadcrumb-bg-about py-5">
 			<div class="container py-lg-5 py-md-4">
 				<div class="banner-info-grid px-md-5">
-					<h2 class="w3l-title-breadcrumb mb-3">Researches & Articles</h2>
+					<h2 class="w3l-title-breadcrumb mb-3">Research</h2>
 					<p class="inner-page-para px-lg-5">The more we know the more we grow</p>
 				</div>
 			</div>
@@ -158,40 +158,49 @@
 		<div class="blog-content-inf py-5">
 			<div class="container py-lg-5 py-md-4 py-2">
 				<div class="blog-posthny-info mx-auto" style="max-width:800px">
+				    {% set content_data = ContentData(content['article_id']) %}
+                    {% set project_info = content_data.load_json() %}
+                	{% set author_id = project_info['author_id'] %}
+                    {% set author = MemberData(author_id) %}
+                    {% set author_info = author.basic_info() %}
+					
+					{% if author_info.nick_name != "" and not
+					author_info.nick_name.strip().lower().startswith("enter") %}
+					{% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
+					{% elif author_info.first_name != "" and not
+					author_info.first_name.strip().lower().startswith("enter") %}
+					{% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
+					{% endif %}     
+
 					<div class="style-title position-relative">
-						<h3 class="title-style mb-sm-3 mb-2">{{ research.name }}</h3>
+						<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
 					</div>
 					<div class="single-post-image mb-4">
 						<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-							{% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]%}
-							{% for person in key %}
-							{% if person.id == research.author_id%}
+
 
 							<li class="circle avatar"><img
-									src="../../members/{{ research.author_id}}/{{ person.image_path }}"
+									src="../../members/{{ author_id}}/{{ author_info.image_path }}"
 									class="img-fluid" alt=""></li>
-							<li>Research Article by <a
-									href="../../members/{{ research.author_id }}/{{ research.author_id}}.html"
-									target="_blank">{{
-									person.first_name }} {{ person.last_name }}</a></li>
-							<li class="single-date">{{research.article_date}}</li>
-							{%endif%}
-							{%endfor%}
-							{%endfor%}
+							<li>Article by <a
+									href="../../members/{{ author_id }}/{{ author_id }}.html"
+									target="_blank">{{ author_name }}</a></li>
+							<li>{{ project_info['article_date'] }}</li>
 						</ul>
-						<img src="../../{{ research.cover_image }}" class="img-fluid img-responsive"
+						<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
+							
 							alt="blog-post-image">
 
 					</div>
 
 					<div class="single-post-content">
-						<p class="mb-4"> {{ research.long_description }}</p>
+						<p class="mb-4"> {{ project_info.long_description }}</p>
 
 					</div>
 
 					<div class="content-text-9">
 						<div class="single-post-content-1 row mt-5 no-gutters">
-							{% for key, value in research.content.items() %}
+							{% for key, value in project_info.content.items() %}
 							{% if key.startswith('img') %}
 							<div class="single-post-image mb-4"
 								style="max-width:fit-content; display: block; margin: auto;">
@@ -327,49 +336,53 @@
 					<!-- right side bar -->
 					<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
 						<div class="row">
-							{% if research.people_involved_ids %}
+							{% if project_info.people_involved_ids %}
 							<div class="col text-center">
-
 								<aside class="posts p-6">
 									<h3 class="aside-title">People Associated</h3>
 									<ul class="category">
-										{% for key_id in research.people_involved_ids%}
-										{% for key in [faculty, post_docs, grads, undergrads, research_engineers,
-										researchers]
-										%}
-										{% for person in key %}
-										{% if person.id == key_id%}
-										<li>
-											<a href="../../members/{{ person.id }}/{{ person.id }}.html"
-												target="_blank">
-												<span class="fas fa-user"></span>{{ person.first_name}} {{
-												person.last_name}}
-											</a>
-										</li>
-										{%endif%}
+										{% for member_id in project_info['people_involved_ids'] %}
+											{% if member_id in member_ids.values.tolist() %}
+											{% set member_data = MemberData(member_id) %}
+											{% set member_info = member_data.basic_info() %}
+											
+											{% if member_info.nick_name != "" and not
+											member_info.nick_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.nick_name ~ ' ' ~ member_info.last_name %}
+											{% elif member_info.first_name != "" and not
+											member_info.first_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.first_name ~ ' ' ~ member_info.last_name %}
+											{% endif %}
+
+													<a href="../../members/{{ member_id }}/{{ member_id }}.html" target="_blank">
+														<span class="fas fa-user"></span>{{ member_name }}
+													</a>
+													<br>
+												</li>
+												{% if member_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+													member_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+													<li>
+														<a href="{{ member_id.strip().split(' ')[-1]}}" target="_blank">
+															<span class="fas fa-external-link-alt"></span>{{ '
+															'.join(member_id.strip().split('
+															')[0:-1]) }}
+														</a>
+													</li>
+												{% endif %}
+											{% endif %}
 										{% endfor %}
-										{% endfor %}
-										{% if key_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-										<li>
-											<a href="{{ key_id.strip().split(' ')[-1]}}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{ '
-												'.join(key_id.strip().split('
-												')[0:-1]) }}
-											</a>
-										</li>
-										{% endif %}
-										{% endfor%}
 									</ul>
 								</aside>
 							</div>
-							{%endif%}
-							{% if research.links %}
+							{% endif %}
+						</div>
+					</div>
+						{% if project_info.links %}
 							<div class="col text-center">
 								<aside class="posts p-6">
 									<h3 class="aside-title">Refrences & Resources</h3>
 									<ul class="category">
-										{% for link_id in research.links%}
+										{% for link_id in project_info.links%}
 										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
 										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
 										<li>

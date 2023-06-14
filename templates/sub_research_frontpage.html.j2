@@ -136,78 +136,96 @@
     <!-- //about banner -->
 
 
-
-    <!-- Blog Section -->
-    <section class="w3l-blog">
-        <div class="blog py-5" id="Newsblog">
-            {% for project_list in [astrophysical_transients, computational_metascience] %}
-            {% if project_list|length > 0 %}
-            <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
-                <br>
-                <div class="container py-lg-5 py-md-4 py-2">
-                    <div class="row">
-                        <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{ project_list[0]['about'] }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="container py-lg-5 py-md-4 py-2">
-                <div class="row">
-                    {% for project in project_list %}
-                    {% if not loop.first %}
-                    <div class="col-lg-4 col-md-6 item">
-                        <div class="card">
-                            <div class="card-header p-0 position-relative">
-                                <a href="{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
-                                    class="zoom d-block">
-                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block" src="../{{ project.cover_image}}"
-                                        alt="array">
-                                </a>
-                                <div class="date">
-                                    <p>{{ project.article_date }} </p>
-                                </div>
-                            </div>
-                              <div class="card-body blog-details" style="max-height: 220px">
-                                <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name)|lower }}.html"
-                                    class="blog-desc">{{ project.name }}</a>
-                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">{{ project.short_description }}</p>
-                                </div>
-                            </div>
-                            <div class="card-footer">
-                                {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers]%}
-                                {% for person in key %}
-                                {% if person.id == project.author_id%}
-                                <div class="author align-items-center">
-                                    <a href="../members/{{ project.author_id}}/{{ project.author_id}}.html"
-                                        class="post-author" target="_blank">
-                                        <img src="../members/{{ project.author_id}}/{{ person.image_path }}" alt="Author's Image"
-                                            class="img-fluid rounded-circle">
-                                    </a>
-                                    <ul class="blog-meta">
-                                        <li>
-                                            <span class="meta-value">Article by </span>
-                                            <a href="../members/{{ project.author_id}}/{{ project.author_id}}.html" target="_blank">{{person.first_name }} {{ person.last_name }}</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                {%endif%}
-                                {%endfor%}
-                                {%endfor%}
-                            </div>
+        <!-- Blog Section -->
+        
+        <section class="w3l-blog">
+            <div class="blog py-5" id="Newsblog">
+                {% set project_list = content[(content['category'] == category)] %}
+                {% if project_list.shape[0] > 0 %}
+                <div class="text-center" style="padding-top: 5%;">
+                    <h1>{{ category }}</h1>
+                    <br>
+                    <div class="container py-lg-5 py-md-4 py-2">
+                        <div class="row">
+                            <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{ research_general[category]['about'] }}</p>
                         </div>
                     </div>
-                    {% endif %}
-                    {% endfor %}
                 </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-    </section>
-    <!-- //Blog Section -->
+                <div class="container py-lg-5 py-md-4 py-2">
+                    <div class="row">
+                        {% set counter = 0 %}
+                        {% for _, project in project_list.iterrows() %}
+                        {% set content_data = ContentData(project['article_id']) %}
+                        {% set project_info = content_data.load_json() %}
+                        {% if counter < 3 %}
+                        <div class="col-lg-4 col-md-6 item">
+                            <div class="card">
+                                <div class="card-header p-0 position-relative">
+                                    <a href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
+                                        class="zoom d-block">
+                                        <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
+                                            src="../{{ project_info['cover_image'] }}" alt="array">
+                                    </a>
+                                    <div class="date">
+                                        <p>{{ project_info['article_date'] }}</p>
+                                    </div>
+                                </div>
+                                <div class="card-body blog-details" style="max-height: 220px">
+                                    <h5 class="mb-3" style="height: 55px; overflow: hidden; display: flex; align-items: center;">
+                                        <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                            {{ project_info['title'] }}
+                                        </a>
+                                    </h5>
+                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                                    <h5 class="mb-3" style="height: 80px; overflow: hidden; align-items: center;">
+                                        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                        {{ project_info['short_description'] }}
+                                        </p>
+                                    </h5>    
+                                </div>
+                                <div class="card-footer">
+                                    {% set author_id = project_info['author_id'] %}
+                                    {% if author_id %}
+                                        {% set member = MemberData(author_id) %}
+                                        {% set author_info = member.basic_info() %}
 
+                                        {% if author_info.nick_name != "" and not
+                                        author_info.nick_name.strip().lower().startswith("enter") %}
+                                        {% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
+                                        {% elif author_info.first_name != "" and not
+                                        author_info.first_name.strip().lower().startswith("enter") %}
+                                        {% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
+                                        {% endif %} 
+
+                                        <div class="author align-items-center">
+                                            <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
+                                                target="_blank">
+                                                <img src="../members/{{ author_id }}/{{ author_info['image_path'] }}"
+                                                    alt="Author's Image" class="img-fluid rounded-circle">
+                                            </a>
+                                            <ul class="blog-meta">
+                                                <li>
+                                                    <span class="meta-value">Article by </span>
+                                                    <a href="../members/{{ author_id }}/{{ author_id }}.html"
+                                                        target="_blank">{{ author_name }}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% set counter = counter + 1 %}
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+
+
+        <!-- //Blog Section -->
 
 
 
