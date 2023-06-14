@@ -206,7 +206,7 @@
 
                                         {% endif %}
                                         {% else %}
-                                        {% if person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+                                          {% if person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
                                         person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
                                         <li>
                                             <a href="{{ person_id.strip().split(' ')[-1]}}" target="_blank"
@@ -216,9 +216,10 @@
                                             </a>
                                         </li>
                                         {% endif %}
-                                        {% if person_id.strip().split(' ')[-1].strip().lower().startswith("#") %}
+                                         {% if person_id.strip().split(' ')[-1].strip().lower().startswith("#") %}
                                         <li>
-                                            <a style="font-size: 12px;">
+                                            <a href="{{ person_id.strip().split(' ')[-1]}}" target="_blank"
+                                                style="font-size: 12px;">
                                                 {{ person_id.strip().split(' ')[0] }}
 
                                             </a>
@@ -227,12 +228,12 @@
                                         {% endfor %}
                                         {% endfor %}
 
-                                        {% if not loop.last %}
+           {% if not loop.last %}
                                         <li>,</li>
                                         {% endif %}
 
 
-
+                                      
 
                                         {% endfor %}
                                     </ul>
