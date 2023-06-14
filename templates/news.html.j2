@@ -178,16 +178,42 @@
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                                 <a href="news/{{project.name|replace(' ', '_')|lower }}.html" class="blog-desc"
-                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; min-height: 82px;">
+                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; min-height: 56px">
                                     {{project.name }} </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
                                     <p
-                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; min-height: 155px;">
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; min-height: 88px">
                                         {{ project.short_description }} </p>
                                 </div>
 
                             </div>
+
+
+                         <div class="card-footer">
+    <div class="author align-items-center">
+        <span class="meta-value" style="font-size: 12px;">About:</span>
+        <ul class="blog-meta">
+            {% for person_id in project.people_involved_ids %}
+                {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
+                    {% for person in key %}
+                        {% if person.id == person_id %}
+                            <li>
+                                <a href="members/{{ person.id }}/{{ person.id }}.html" style="font-size: 12px;" target="_blank">{{ person.first_name }}</a>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                {% if not loop.last %}
+                    <li>,</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+
 
                         </div>
                     </div>
