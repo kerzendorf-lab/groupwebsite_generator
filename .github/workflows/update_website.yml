@@ -46,7 +46,7 @@ jobs:
           cp -r ../group-data/website_data/website_files ./
           cp -r ../group-data/website_data/support_images ./
           cp -r ../groupwebsite_generator/assets ./
-          cp -r ../group-data/website_data/news/images ./news/
+          cp -r ../group-data/website_data/content ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
       # - name: Setup directories inside group-data
