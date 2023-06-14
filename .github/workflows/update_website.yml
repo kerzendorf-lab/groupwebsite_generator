@@ -3,14 +3,14 @@ name: Update Group Website
 on:
   workflow_dispatch:
   workflow_run:
-  #   workflows: ["Check Webhook Dispatch"]
-  #   types: 
-  #     - completed
-  # push:
-  #   branches:
-  #     - main
-  #   paths-ignore:
-  #     - 'group-data/**'
+     workflows: ["Check Webhook Dispatch"]
+     types: 
+       - completed
+   push:
+     branches:
+       - main
+     paths-ignore:
+       - 'group-data/**'
 
 jobs:
   Update_website:
@@ -36,8 +36,8 @@ jobs:
       - name: Clear cloned website repo
         run: |
           cd kerzendorf-group.github.io
-          rm -rf index.html Research.html Contact.html People.html Support.html
-          rm -rf assets website_files members sub_research support_images
+          rm -rf index.html Research.html Contact.html People.html Support.html News.html
+          rm -rf assets website_files members sub_research support_images content
 
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
@@ -49,11 +49,11 @@ jobs:
           cp -r ../group-data/website_data/news/images ./news/
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
-      - name: Setup directories inside group-data
-        run: |
-          cd group-data
-          mkdir members/common
-          mkdir website_data/research/sub_research_data/combined
+      # - name: Setup directories inside group-data
+      #   run: |
+      #     cd group-data
+      #     mkdir members/common
+      #     mkdir website_data/research/sub_research_data/combined
 
 
       - name: Install Jupyter and Python3
@@ -67,7 +67,7 @@ jobs:
         run: |
           cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
-          python3 notebooks/jsons_prep.py
+          # python3 notebooks/jsons_prep.py
           python3 notebooks/create_htmls.py
           #for python_file_name in $(find notebooks -name "*.py")
           # do
