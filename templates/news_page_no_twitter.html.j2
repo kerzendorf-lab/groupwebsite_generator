@@ -174,8 +174,7 @@
 										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
 										<li>
 											<a href="{{ key_id.strip().split(' ')[-1]}}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{ '
-												'.join(key_id.strip().split(' ')[0:-1]) }}
+												<span class="fas fa-external-link-alt"></span>{{ ''.join(key_id.strip().split(' ')[0:-1]) }}
 											</a>
 										</li>
 										{% endif %}

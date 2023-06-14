@@ -190,27 +190,54 @@
                             </div>
 
 
-                         <div class="card-footer">
-    <div class="author align-items-center">
-        <span class="meta-value" style="font-size: 12px;">About:</span>
-        <ul class="blog-meta">
-            {% for person_id in project.people_involved_ids %}
-                {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
-                    {% for person in key %}
-                        {% if person.id == person_id %}
-                            <li>
-                                <a href="members/{{ person.id }}/{{ person.id }}.html" style="font-size: 12px;" target="_blank">{{ person.first_name }}</a>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-                {% if not loop.last %}
-                    <li>,</li>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-</div>
+                            <div class="card-footer">
+                                <div class="author align-items-center">
+                                    <span class="meta-value" style="font-size: 12px;">About:</span>
+                                    <ul class="blog-meta">
+                                        {% for person_id in project.people_involved_ids %}
+                                        {% for key in [faculty, post_docs, grads, undergrads, research_engineers,
+                                        researchers] %}
+                                        {% for person in key %}
+                                        {% if person.id == person_id %}
+                                        <li>
+                                            <a href="members/{{ person.id }}/{{ person.id }}.html"
+                                                style="font-size: 12px;" target="_blank">{{ person.first_name }}</a>
+                                        </li>
+
+                                        {% endif %}
+                                        {% else %}
+                                        {% if person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+                                        person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+                                        <li>
+                                            <a href="{{ person_id.strip().split(' ')[-1]}}" target="_blank"
+                                                style="font-size: 12px;">
+                                                {{ person_id.strip().split(' ')[0] }}
+
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if person_id.strip().split(' ')[-1].strip().lower().startswith("#") %}
+                                        <li>
+                                            <a style="font-size: 12px;">
+                                                {{ person_id.strip().split(' ')[0] }}
+
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% endfor %}
+                                        {% endfor %}
+
+                                        {% if not loop.last %}
+                                        <li>,</li>
+                                        {% endif %}
+
+
+
+
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
 
 
 
