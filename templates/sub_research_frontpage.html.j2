@@ -172,7 +172,7 @@
                                 </div>
                                 <div class="card-body blog-details" style="max-height: 220px">
                                     <h5 class="mb-3" style="height: 55px; overflow: hidden; display: flex; align-items: center;">
-                                        <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                        <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
                                             {{ project_info['title'] }}
                                         </a>
                                     </h5>
