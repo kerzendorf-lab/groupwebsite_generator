@@ -167,7 +167,7 @@
                             <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
                             {% endif %}
                                 <img style="max-width: 520px; max-height: 330px" class="card-img-bottom d-block"
-                                    src="../{{ news_info.cover_image }}" alt="array">
+                                    src="{{ news_info.cover_image }}" alt="array">
                             </a>
                             <div class="date">
                                 <p>{{ news_info.article_date }}</p>
