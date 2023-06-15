@@ -1,27 +1,22 @@
 <html lang="en">
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>Research | {{ general.website_title }} </title>
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Research | {{ general.website_title }} </title>
 
-        <!-- google-fonts -->
-        <link
-            href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;display=swap"
-            rel="stylesheet">
-        <link
-            href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&amp;display=swap"
-            rel="stylesheet">
-        <!-- //google-fonts -->
+    <!-- google-fonts -->
+    <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&amp;display=swap" rel="stylesheet">
+    <!-- //google-fonts -->
 
-        <!-- Template CSS Style link -->
-        <link rel="stylesheet" href="assets/css/style-liberty.css">
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="assets/css/style-liberty.css">
 
-        <div id="_bsa_srv-CKYI627U_0"></div>
-        <div id="_bsa_srv-CKYI653J_1"></div>
-        <!-- Buttons-->
-        <style>
+    <div id="_bsa_srv-CKYI627U_0"></div>
+    <div id="_bsa_srv-CKYI653J_1"></div>
+    <!-- Buttons-->
+    <style>
         .button {
             padding: 15px 25px;
             font-size: 20px;
@@ -44,259 +39,267 @@
             box-shadow: 0 5px #666;
             transform: translateY(4px);
         }
+
+        .heading {
+            color: #000;
+            /* Default color */
+            text-decoration: none;
+        }
+
+        .heading:hover {
+            background-image: linear-gradient(to left, #673ab7, #673ab7);
+            /* Gradient from right to left */
+            -webkit-background-clip: text;
+            /* Apply gradient as text color */
+            -webkit-text-fill-color: transparent;
+            /* Make text transparent */
+        }
     </style>
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <!--header-->
-        <header id="site-header" class="fixed-top">
-            <div class="container">
-                <nav class="navbar navbar-expand-lg stroke">
-                    <h1>
-                        <a class="navbar-brand" href="index.html">
-                            <!--span class="fa fa-lightbulb"></span-->
-                            {{general.logo_title}}
-                        </a>
-                    </h1>
-                    <!-- if logo is image enable this   
+    <!--header-->
+    <header id="site-header" class="fixed-top">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg stroke">
+                <h1>
+                    <a class="navbar-brand" href="index.html">
+                        <!--span class="fa fa-lightbulb"></span-->
+                        {{general.logo_title}}
+                    </a>
+                </h1>
+                <!-- if logo is image enable this   
             <a class="navbar-brand" href="#index.html">
                 <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
             </a> -->
-                    <button class="navbar-toggler collapsed bg-gradient"
-                        type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
-                        <span class="navbar-toggler-icon fa icon-close fa-times"></span>
-                    </button>
+                <button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon fa icon-expand fa-bars"></span>
+                    <span class="navbar-toggler-icon fa icon-close fa-times"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse"
-                        id="navbarTogglerDemo02">
-                        <ul class="navbar-nav ms-lg-auto">
-                            {% for page in general["navigation_bar"] %}
-                            {% if page not in general %}
-                            <!--<li class="nav-item active">-->
-                            {% if page == "index" %}
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ page_link(page) }}.html">Home<span
-                                        class="sr-only">(current)</span></a>
-                            </li>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav ms-lg-auto">
+                        {% for page in general["navigation_bar"] %}
+                        {% if page not in general %}
+                        <!--<li class="nav-item active">-->
+                        {% if page == "index" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page_link(page) }}.html">Home<span
+                                    class="sr-only">(current)</span></a>
+                        </li>
 
-                            {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ page_link(page) }}.html">{{ page }}
-                                    <span
-                                        class="sr-only">(current)</span></a>
-                            </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ page_link(page) }}.html">{{ page }}
+                                <span class="sr-only">(current)</span></a>
+                        </li>
 
-                            {% endif %}
-                            {% else %}
-                            {% if page in general %}
-                            <li class="nav-item">
+                        {% endif %}
+                        {% else %}
+                        {% if page in general %}
+                        <li class="nav-item">
 
-                                <a class="nav-link dropdown-toggle"
-                                    href="{{ page_link(page) }}.html"
-                                    id="navbarDropdown"
-                                    role="button" data-bs-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                    {{ page }} <span class="fas fa-angle-down"></span>
-                                </a>
-                                <div class="dropdown-menu"
-                                    aria-labelledby="navbarDropdown">
-                                    {% for sub_page in general[page] %}
-                                    <a class="dropdown-item"
-                                        href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
-                                    {% endfor %}
-                                </div>
-                            </li>
-                            {% endif %}
-
-                            {% endif %}
-                            {% endfor %}
-                        </ul>
-                    </div>
-
-                    <!-- toggle switch for light and dark theme -->
-                    <div class="cont-ser-position">
-                        <nav class="navigation">
-                            <div class="theme-switch-wrapper">
-                                <label class="theme-switch" for="checkbox">
-                                    <input type="checkbox" id="checkbox">
-                                    <div class="mode-container">
-                                        <i class="gg-sun"></i>
-                                        <i class="gg-moon"></i>
-                                    </div>
-                                </label>
+                            <a class="nav-link dropdown-toggle" href="{{ page_link(page) }}.html" id="navbarDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ page }} <span class="fas fa-angle-down"></span>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for sub_page in general[page] %}
+                                <a class="dropdown-item"
+                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                {% endfor %}
                             </div>
-                        </nav>
-                    </div>
-                    <!-- //toggle switch for light and dark theme -->
-                </nav>
-            </div>
-        </header>
-        <!--//header-->
+                        </li>
+                        {% endif %}
 
-        <!-- about banner -->
-        <section class="w3l-about-breadcrumb text-center">
-            <div class="breadcrumb-bg breadcrumb-bg-about py-5">
-                <div class="container py-lg-5 py-md-4">
-                    <div class="banner-info-grid px-md-5">
-                        <h2 class="w3l-title-breadcrumb mb-3">Our Research</h2>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- //about banner -->
-
-        <!-- Blog Section -->
-        <section class="w3l-blog">
-            <div class="blog py-5" id="Newsblog">
-                {% for category in content[content['category'] != 'News']['category'].unique() %}
-                {% set project_list = content[(content['category'] == category)] %}
-                {% if project_list.shape[0] > 0 %}
-                <div class="text-center" style="padding-top: 5%;">
-                    <h1>{{ category }}</h1>
-                </div>
-                <div class="container py-lg-5 py-md-4 py-2">
-                    <div class="row">
-                        {% set counter = 0 %}
-                        {% for _, project in project_list.iterrows() %}
-                        {% set content_data = ContentData(project['article_id']) %}
-                        {% set project_info = content_data.load_json() %}
-                        {% if counter < 3 %}
-                        <div class="col-lg-4 col-md-6 item">
-                            <div class="card">
-                                <div class="card-header p-0 position-relative">
-                                    <a href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
-                                        class="zoom d-block">
-                                        <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
-                                            src="{{ project_info['cover_image'] }}" alt="array">
-                                    </a>
-                                    <div class="date">
-                                        <p>{{ project_info['article_date'] }}</p>
-                                    </div>
-                                </div>
-                                <div class="card-body blog-details" style="max-height: 220px">
-                                    <h5 class="mb-3" style="height: 55px; overflow: hidden; display: flex; align-items: center;">
-                                        <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
-                                            {{ project_info['title'] }}
-                                        </a>
-                                    </h5>
-                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                    <h5 class="mb-3" style="height: 80px; overflow: hidden; align-items: center;">
-                                        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
-                                        {{ project_info['short_description'] }}
-                                        </p>
-                                    </h5>    
-                                </div>
-                                <div class="card-footer">
-                                    {% set author_id = project_info['author_id'] %}
-                                    {% if author_id %}
-                                        {% set member = MemberData(author_id) %}
-                                        {% set author_info = member.basic_info() %}
-                                        {% set author_name = author_info['nick_name'] if author_info['nick_name'] else author_info['first_name'] + ' ' + author_info['last_name'] %}
-                                        <div class="author align-items-center">
-                                            <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
-                                                target="_blank">
-                                                <img src="members/{{ author_id }}/{{ author_info['image_path'] }}"
-                                                    alt="Author's Image" class="img-fluid rounded-circle">
-                                            </a>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <span class="meta-value">Article by </span>
-                                                    <a href="members/{{ author_id }}/{{ author_id }}.html"
-                                                        target="_blank">{{ author_name }}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        {% set counter = counter + 1 %}
                         {% endif %}
                         {% endfor %}
-                    </div>
-                    <pagination>
-                        <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
-                            <ul class="page-pagination">
-                                <button class="button text-center" style="max-width: 180px;"><a
-                                        href="sub_research/{{ category|replace(' ', '_')|lower }}.html"
-                                        style="color: white;">More articles</a></button>
-                            </ul>
-                        </div>
-                    </pagination>
+                    </ul>
                 </div>
+
+                <!-- toggle switch for light and dark theme -->
+                <div class="cont-ser-position">
+                    <nav class="navigation">
+                        <div class="theme-switch-wrapper">
+                            <label class="theme-switch" for="checkbox">
+                                <input type="checkbox" id="checkbox">
+                                <div class="mode-container">
+                                    <i class="gg-sun"></i>
+                                    <i class="gg-moon"></i>
+                                </div>
+                            </label>
+                        </div>
+                    </nav>
+                </div>
+                <!-- //toggle switch for light and dark theme -->
+            </nav>
+        </div>
+    </header>
+    <!--//header-->
+
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5">
+                    <h2 class="w3l-title-breadcrumb mb-3">Our Research</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about banner -->
+
+    <!-- Blog Section -->
+    <section class="w3l-blog">
+        <div class="blog py-5" id="Newsblog">
+            {% for category in content[content['category'] != 'News']['category'].unique() %}
+            {% set project_list = content[(content['category'] == category)] %}
+            {% if project_list.shape[0] > 0 %}
+            <div class="text-center heading" style="padding-top: 5%;">
+                <h1><a href="sub_research/{{ category|replace(' ', '_')|lower }}.html" style="color: black;">{{ category
+                        }}</a></h1>
+            </div>
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    {% set counter = 0 %}
+                    {% for _, project in project_list.iterrows() %}
+                    {% set content_data = ContentData(project['article_id']) %}
+                    {% set project_info = content_data.load_json() %}
+                    {% if counter < 3 %} <div class="col-lg-4 col-md-6 item">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative">
+                                <a href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
+                                    class="zoom d-block">
+                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
+                                        src="{{ project_info['cover_image'] }}" alt="array">
+                                </a>
+                                <div class="date">
+                                    <p>{{ project_info['article_date'] }}</p>
+                                </div>
+                            </div>
+                            <div class="card-body blog-details" style="max-height: 220px">
+                            <div class="heading">
+                                <h5 class="mb-3"
+                                    style="height: 55px; overflow: hidden; display: flex; align-items: center;">
+                                    <a style=" text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; color:black"
+                                        href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                        {{ project_info['title'] }}
+                                    </a>
+                                </h5>
+                                </div>
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                                <div class="price-review mb-1 align-items-center" style="height: 80px;">
+
+                                    <p
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                        {{ project_info['short_description'] }}
+                                    </p>
+
+                                </div>
+
+                            </div>
+                            <div class="card-footer">
+                                {% set author_id = project_info['author_id'] %}
+                                {% if author_id %}
+                                {% set member = MemberData(author_id) %}
+                                {% set author_info = member.basic_info() %}
+                                {% set author_name = author_info['nick_name'] if author_info['nick_name'] else
+                                author_info['first_name'] + ' ' + author_info['last_name'] %}
+                                <div class="author align-items-center">
+                                    <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
+                                        target="_blank">
+                                        <img src="members/{{ author_id }}/{{ author_info['image_path'] }}"
+                                            alt="Author's Image" class="img-fluid rounded-circle">
+                                    </a>
+                                    <ul class="blog-meta">
+                                        <li>
+                                            <span class="meta-value">Article by </span>
+                                            <a href="members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{
+                                                author_name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                </div>
+                {% set counter = counter + 1 %}
                 {% endif %}
                 {% endfor %}
             </div>
-        </section>
-
-
-        <!-- //Blog Section -->
-
-        <!-- footer block -->
-        <footer class="w3l-footer-29-main">
-            <div class="footer-29 pt-5 pb-4">
-                <div class="container pt-md-4">
-                    <div
-                        class="row footer-top-29 d-flex justify-content-center justify-md-start">
-                        <div class="col-lg-6 col-md-6 footer-list-29">
-                            <h6 class="footer-title-29">Contact Info </h6>
-                            {% if general.address != "" %}
-                            <p class="mb-2 pe-xl-5">Address : {{ general.address
-                                }}
-                            </p>
-                            {% endif %}
-                            {% if general.phone != "" %}
-                            <p class="mb-2">Phone Number : <a
-                                    href="tel:{{ general.address }}">{{
-                                    general.phone }}</a></p>
-                            {% endif %}
-                            {% if general.email != "" %}
-                            <p class="mb-2">Email : <a
-                                    href="mailto:{{ general.email }}">{{
-                                    general.email }}</a></p>
-                            {% endif %}
-                        </div>
-                        <div
-                            class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
-                            <ul>
-                                <h6 class="footer-title-29">Quick Links</h6>
-                                {% for link_text, link_url in
-                                general.useful_links.items() %}
-                                <li><a href="{{ link_url }}" target="_blank">{{
-                                        link_text }}</a></li>
-                                {% endfor %}
-
-                            </ul>
-                        </div>
-
-                    </div>
-                    <!-- copyright -->
-                    <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}}
-                        <br>
-                        Template by <a href="https://w3layouts.com/"
-                            target="_blank">W3Layouts</a></p>
-                    <!-- //copyright -->
+            <pagination>
+                <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
+                    <ul class="page-pagination">
+                        <button class="button text-center" style="max-width: 180px;"><a
+                                href="sub_research/{{ category|replace(' ', '_')|lower }}.html"
+                                style="color: white;">More articles</a></button>
+                    </ul>
                 </div>
-            </div>
-        </footer>
-        <!-- //footer block -->
+            </pagination>
+        </div>
+        {% endif %}
+        {% endfor %}
+        </div>
+    </section>
 
-        <!-- Js scripts -->
-        <!-- move top -->
-        <button onclick="topFunction()" id="movetop" title="Go to top"
-            style="display: none;">
-            <span class="fas fa-level-up-alt" aria-hidden="true"></span>
-        </button>
-        <script>
+
+    <!-- //Blog Section -->
+
+    <!-- footer block -->
+    <footer class="w3l-footer-29-main">
+        <div class="footer-29 pt-5 pb-4">
+            <div class="container pt-md-4">
+                <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
+                    <div class="col-lg-6 col-md-6 footer-list-29">
+                        <h6 class="footer-title-29">Contact Info </h6>
+                        {% if general.address != "" %}
+                        <p class="mb-2 pe-xl-5">Address : {{ general.address
+                            }}
+                        </p>
+                        {% endif %}
+                        {% if general.phone != "" %}
+                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{
+                                general.phone }}</a></p>
+                        {% endif %}
+                        {% if general.email != "" %}
+                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{
+                                general.email }}</a></p>
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
+                        <ul>
+                            <h6 class="footer-title-29">Quick Links</h6>
+                            {% for link_text, link_url in
+                            general.useful_links.items() %}
+                            <li><a href="{{ link_url }}" target="_blank">{{
+                                    link_text }}</a></li>
+                            {% endfor %}
+
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- copyright -->
+                <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}}
+                    <br>
+                    Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a>
+                </p>
+                <!-- //copyright -->
+            </div>
+        </div>
+    </footer>
+    <!-- //footer block -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top" style="display: none;">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+    <script>
         // When the user scrolls down 20px from the top of the document, show the button
         window.onscroll = function () {
             scrollFunction()
@@ -316,29 +319,29 @@
             document.documentElement.scrollTop = 0;
         }
     </script>
-        <!-- //move top -->
+    <!-- //move top -->
 
-        <!-- common jquery plugin -->
-        <script src="assets/js/jquery-3.3.1.min.js"></script>
-        <!-- //common jquery plugin -->
+    <!-- common jquery plugin -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <!-- //common jquery plugin -->
 
-        <!-- theme switch js (light and dark)-->
-        <script src="assets/js/theme-change.js"></script>
-        <!-- //theme switch js (light and dark)-->
+    <!-- theme switch js (light and dark)-->
+    <script src="assets/js/theme-change.js"></script>
+    <!-- //theme switch js (light and dark)-->
 
-        <!--/stats-number-counter-->
-        <script src="assets/js/jquery.waypoints.min.js"></script>
-        <script src="assets/js/jquery.countup.js"></script>
-        <script>
+    <!--/stats-number-counter-->
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/jquery.countup.js"></script>
+    <script>
         $('.counter').countUp();
 
     </script>
-        <!--//stats-number-counter-->
+    <!--//stats-number-counter-->
 
-        <!--/owlcarousel-->
-        <script src="assets/js/owl.carousel.js"></script>
-        <!-- //tesimonials-->
-        <script>
+    <!--/owlcarousel-->
+    <script src="assets/js/owl.carousel.js"></script>
+    <!-- //tesimonials-->
+    <script>
         $(document).ready(function () {
             $("#owl-demo1").owlCarousel({
                 loop: true,
@@ -358,10 +361,10 @@
         })
 
     </script>
-        <!-- //tesimonials-->
+    <!-- //tesimonials-->
 
-        <!-- MENU-JS -->
-        <script>
+    <!-- MENU-JS -->
+    <script>
         $(window).on("scroll", function () {
             var scroll = $(window).scrollTop();
 
@@ -387,22 +390,22 @@
             });
         });
     </script>
-        <!-- //MENU-JS -->
+    <!-- //MENU-JS -->
 
-        <!-- disable body scroll which navbar is in active -->
-        <script>
+    <!-- disable body scroll which navbar is in active -->
+    <script>
         $(function () {
             $('.navbar-toggler').click(function () {
                 $('body').toggleClass('noscroll');
             })
         });
     </script>
-        <!-- //disable body scroll which navbar is in active -->
+    <!-- //disable body scroll which navbar is in active -->
 
-        <!--bootstrap-->
-        <script src="assets/js/bootstrap.min.js"></script>
-        <!-- //bootstrap-->
-        <!-- //Js scripts -->
+    <!--bootstrap-->
+    <script src="assets/js/bootstrap.min.js"></script>
+    <!-- //bootstrap-->
+    <!-- //Js scripts -->
 
-    </body>
+</body>
 </html>
