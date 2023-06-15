@@ -188,7 +188,7 @@
                 {% for content in recent_content[:3] %}
                 {% set content_data = ContentData(content['article_id']) %}
                 <div class="col-lg-4 col-md-6">
-                    <div class="about-single">
+                    <div class="about-single" style="width: 374px; height: 512px;">
                         <div class="about-icon mb-4">
                         <a href="sub_research/{{ content_data.load_json().category|replace(' ', '_')|lower }}/{{ page_link(content_data.load_json().article_id)|lower }}.html">
                             <img style="max-width: 294px; max-height: 224px;" src="{{ content_data.load_json().cover_image }}"></a>
