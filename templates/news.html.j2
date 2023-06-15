@@ -205,13 +205,14 @@
             {% set member_info = member_data.basic_info() %}
             
             {% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
-            {% set member_name = member_info.nick_name ~ ' ' ~ member_info.last_name %}
+            {% set member_name = member_info.nick_name %}
             {% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
+            {% set member_name = member_info.first_name  %}
             {% endif %}
             
             <li>
                 <a href="../../members/{{ member_id }}/{{ member_id }}.html" target="_blank" style="font-size: 12px;">
-                    {{ member_info.first_name}}
+                    {{ member_name}}
                 </a>
             </li>
             
