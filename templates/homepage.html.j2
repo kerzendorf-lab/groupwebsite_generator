@@ -190,7 +190,8 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="about-single">
                         <div class="about-icon mb-4">
-                            <img style="max-width: 380px; max-height: 230px;" src="{{ content_data.load_json().cover_image }}">
+                        <a href="sub_research/{{ content_data.load_json().category|replace(' ', '_')|lower }}/{{ page_link(content_data.load_json().article_id)|lower }}.html">
+                            <img style="max-width: 380px; max-height: 230px;" src="{{ content_data.load_json().cover_image }}"></a>
                         </div>
                         <div class="about-content">
                             <h5 class="mb-3" style="height: 55px; overflow: hidden; display: flex; align-items: center;">
