@@ -302,14 +302,14 @@
                                                     {% endif %}
                                                     <li>
                                                         <a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 10px;">
-                                                           style="width:440px; height: 300px {{ member_name }}
+                                                           style="width:440px; height: 300px"> {{ member_name }}
                                                         </a>
                                                     </li>
                                                 
                                                 {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
                                                     <li>
                                                         <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 10px;">
-                                                            style="width:440px; height: 300px{{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
+                                                            style="width:440px; height: 300px"> {{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
                                                         </a>
                                                     </li>
 
