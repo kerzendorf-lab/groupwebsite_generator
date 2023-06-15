@@ -169,12 +169,11 @@
         </div>
     </section>
     <!-- //about banner -->
-
-    <!-- Team Section -->
+<!-- Team Section -- Old method>
     <div class="team-area py-5" id="people">
         <div class="container py-lg-5 py-md-4 py-2">
 
-            <!-- Below code will categorize people >
+            <!-- Below code will categorize people>
 
             {% for key in [faculty, post_docs, grads, undergrads,
             research_engineers, researchers] %}
@@ -208,7 +207,7 @@
         <a href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
             {{ person.first_name }}{{ person.last_name }}</a>
     {% endif %}
-</h3>
+    </h3>
 
                                                 {% if person.academic_role !=
                                                 "" %}
@@ -315,9 +314,9 @@
             </div>
             {% endif %}
             {% endfor %}
-            <!--- End code for categorizing people-->
+            <!-- End code for categorizing people>
 
-            <!-- Code without categorizing-->
+            <!-- Code without categorizing>
 
             <div class="text-center" style="padding-top: 5%;">
                 <h1> Our Group</h1>
@@ -414,7 +413,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div> <!-- end front panel -->
+                                    </div> <!-- end front panel>
                                     <div class="back">
                                         <div class="header">
                                             {% if person.secondary_role != "" and not
@@ -443,7 +442,7 @@
                                                     style="color:black;  line-height: 16px;">{{ person.current_institute
                                                     }}</p>
                                                 {% else %}
-                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
+                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -460,16 +459,11 @@
                         {% endif %}
                         {% endfor %}
                         {% endfor %}
-                    </div> <!-- end row -->
+                    </div> <!-- end row>
                 </div>
             </div>
 
-
-            <!-- End code for categorizing without categorizing-->
-
-
-
-            <!--Alumni Start-->
+                        <!--Alumni Start>
 
             {% set break_loop = false %}
             {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
@@ -581,7 +575,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div> <!-- end front panel -->
+                                    </div> <!-- end front panel >
                                     <div class="back">
                                         <div class="header">
                                             {% if person.secondary_role != "" and not
@@ -610,7 +604,7 @@
                                                     style="color:black;  line-height: 16px;">{{ person.current_institute
                                                     }}</p>
                                                 {% else %}
-                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p-->
+                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{ person.current_institute }}</p>
                                                 {% endif %}
                                             </div>
                                         </div>
@@ -627,7 +621,7 @@
 
                         {% endif %}
                         {% endfor %}
-                    </div> <!-- end row -->
+                    </div> <!-- end row >
                 </div>
             </div>
             {% endif %}
@@ -635,9 +629,253 @@
         </div>
     </div>
     </div>
+<!-- End code for categorizing without categorizing-->
+
+<!-- Team Section -->
+
+<div class="team-area py-5" id="people">
+    <div class="container py-lg-5 py-md-4 py-2">
+
+        <div class="text-center" style="padding-top: 5%;">
+            <h1>Present Members</h1>
+        </div>
+        <div class="cardtainer" style="padding-top: 3%;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    {% for member_id in members %}
+                        {% set data = MemberData(member_id) %}
+                        {% set person = data.basic_info() %}
+                        {% if person.group_end_year|lower == "present" %}
+                            <div class="col-md-4 col-sm-6">
+                                <div class="card-container manual-flip">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="cover">
+                                                <img src="members/{{ page_link(member_id) }}/{{ person.cover_image_path }}">
+                                            </div>
+                                            <div class="user">
+                                                <img class="img-circle" src="members/{{ page_link(member_id) }}/{{ person.image_path }}">
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    <h3 class="name">
+                                                        {% if person.nick_name != "" and not person.nick_name.strip().lower().startswith("enter") %}
+                                                            <a href="members/{{ page_link(member_id) }}/{{ page_link(member_id) }}.html">
+                                                                {{ person.nick_name }} {{ person.last_name }}</a>
+                                                        {% elif person.first_name != "" and not person.first_name.strip().lower().startswith("enter") %}
+                                                            <a href="members/{{ page_link(member_id) }}/{{ page_link(member_id) }}.html">
+                                                                {{ person.first_name }} {{ person.last_name }}</a>
+                                                        {% endif %}
+                                                    </h3>
+                                                    {% if person.academic_role != "" and not person.academic_role.strip().lower().startswith("enter") %}
+                                                        <p class="profession">{{ person.academic_role }}</p>
+                                                    {% endif %}
+                                                    {% if person.project_title != "" and not person.project_title.strip().lower().startswith("enter") %}
+                                                        <p class="text-center" style="color:black; line-height: 16px;">{{ person.project_title }}</p>
+                                                    {% endif %}
+                                                    <br><br>
+                                                    <div class="social-icon w3l-contacts-12">
+                                                        <div class="stats-container">
+                                                            <div class="social-links text-center">
+                                                                {% set social_media_links = data.social_links() %}
+                                                                {% if social_media_links %}
+                                                                    {% if social_media_links.social_media.website != "" and not social_media_links.social_media.website.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.website }}" target="_blank">
+                                                                            <i class="fa fa-globe fa-fw"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.twitter != "" and not social_media_links.social_media.twitter.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.twitter }}" target="_blank">
+                                                                            <i class="fa fa-twitter fa-fw"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.linkedin != "" and not social_media_links.social_media.linkedin.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.linkedin }}" target="_blank">
+                                                                            <i class="fab fa-linkedin-in"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.github != "" and not social_media_links.social_media.github.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.github }}" target="_blank">
+                                                                            <i class="fa fa-github"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.orcid != "" and not social_media_links.social_media.orcid.strip().lower().startswith("enter") %}
+                                                                        <a href="https://orcid.org/{{ social_media_links.social_media.orcid }}" target="_blank">
+                                                                            <i class="fa fa-newspaper"></i></a>
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="footer">
+                                                    <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                        <i class="fa fa-mail-forward">More</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end front panel -->
+                                        <div class="back">
+                                            <div class="header">
+                                                {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+                                                    <h5 class="motto">{{ person.secondary_role }}</h5>
+                                                {% endif %}
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
+                                                        <div>
+                                                            <h4 class="text-center">Areas of Interests</h4>
+                                                            <p class="text-center">{{ person.interests }}</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <br><br><br><br>
+                                                    {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "msu" %}
+                                                        <p class="text-center external_affiliation" style="color:black; line-height: 16px;">{{ person.current_institute }}</p>
+                                                    {% else %}
+                                                        <!--p class="text-center" style="color:black; line-height: 16px;">{{ person.current_institute }}</p-->
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="footer">
+                                                <button class="btn btn-simple" rel="tooltip" title onclick="rotateCard(this)" data-original-title="Flip Card">
+                                                    <i class="fa fa-reply">Back</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div> <!-- end row -->
+            </div>
+        </div>
+
+        <!--Alumni Start-->
+
+        {% for member_id in members %}
+        {% set data = MemberData(member_id) %}
+        {% set person = data.basic_info() %}
+            {% if person.group_end_year|lower != "present" %}
+                <div class="text-center" style="padding-top: 5%;">
+                    <h1> Alumni </h1>
+                </div>
+                {% break %}
+            {% endif %}
+        {% endfor %}
 
 
-    <!-- footer block -->
+        <div class="cardtainer" style="padding-top: 3%;">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1">
+                    {% for member_id in members %}
+                        {% set data = MemberData(member_id) %}
+                        {% set person = data.basic_info() %}
+                        {% if person.group_end_year|lower != "present" %}
+                            <div class="col-md-4 col-sm-6">
+                                <div class="card-container manual-flip">
+                                    <div class="card">
+                                        <div class="front">
+                                            <div class="cover">
+                                                <img src="members/{{ page_link(member_id) }}/{{ person.cover_image_path }}">
+                                            </div>
+                                            <div class="user">
+                                                <img class="img-circle" src="members/{{ page_link(member_id) }}/{{ person.image_path }}">
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    <h3 class="name">
+                                                        {% if person.nick_name != "" and not person.nick_name.strip().lower().startswith("enter") %}
+                                                            <a href="members/{{ page_link(member_id) }}/{{ page_link(member_id) }}.html">
+                                                                {{ person.nick_name }} {{ person.last_name }}</a>
+                                                        {% elif person.first_name != "" and not person.first_name.strip().lower().startswith("enter") %}
+                                                            <a href="members/{{ page_link(member_id) }}/{{ page_link(member_id) }}.html">
+                                                                {{ person.first_name }} {{ person.last_name }}</a>
+                                                        {% endif %}
+                                                    </h3>
+                                                    {% if person.academic_role != "" and not person.academic_role.strip().lower().startswith("enter") %}
+                                                        <p class="profession">{{ person.academic_role }}</p>
+                                                    {% endif %}
+                                                    {% if person.project_title != "" and not person.project_title.strip().lower().startswith("enter") %}
+                                                        <p class="text-center" style="color:black; line-height: 16px;">{{ person.project_title }}</p>
+                                                    {% endif %}
+                                                    <br><br>
+                                                    <div class="social-icon w3l-contacts-12">
+                                                        <div class="stats-container">
+                                                            <div class="social-links text-center">
+                                                                {% set social_media_links = data.social_links() %}
+                                                                {% if social_media_links %}
+                                                                    {% if social_media_links.social_media.website != "" and not social_media_links.social_media.website.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.website }}" target="_blank">
+                                                                            <i class="fa fa-globe fa-fw"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.twitter != "" and not social_media_links.social_media.twitter.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.twitter }}" target="_blank">
+                                                                            <i class="fa fa-twitter fa-fw"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.linkedin != "" and not social_media_links.social_media.linkedin.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.linkedin }}" target="_blank">
+                                                                            <i class="fab fa-linkedin-in"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.github != "" and not social_media_links.social_media.github.strip().lower().startswith("enter") %}
+                                                                        <a href="{{ social_media_links.social_media.github }}" target="_blank">
+                                                                            <i class="fa fa-github"></i></a>
+                                                                    {% endif %}
+                                                                    {% if social_media_links.social_media.orcid != "" and not social_media_links.social_media.orcid.strip().lower().startswith("enter") %}
+                                                                        <a href="https://orcid.org/{{ social_media_links.social_media.orcid }}" target="_blank">
+                                                                            <i class="fa fa-newspaper"></i></a>
+                                                                    {% endif %}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="footer">
+                                                    <button class="btn btn-simple" onclick="rotateCard(this)">
+                                                        <i class="fa fa-mail-forward">More</i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end front panel -->
+                                        <div class="back">
+                                            <div class="header">
+                                                {% if person.secondary_role != "" and not person.secondary_role.strip().lower().startswith("enter") %}
+                                                    <h5 class="motto">{{ person.secondary_role }}</h5>
+                                                {% endif %}
+                                            </div>
+                                            <div class="content">
+                                                <div class="main">
+                                                    {% if person.interests != "" and not person.interests.strip().lower().startswith("enter") %}
+                                                        <div>
+                                                            <h4 class="text-center">Areas of Interests</h4>
+                                                            <p class="text-center">{{ person.interests }}</p>
+                                                        </div>
+                                                    {% endif %}
+                                                    <br><br><br><br>
+                                                    {% if person.current_institute != "" and person.current_institute.strip().lower() != "michigan state university" and person.current_institute.strip().lower() != "enter" and person.current_institute.strip().lower() != "msu" %}
+                                                        <p class="text-center external_affiliation" style="color:black; line-height: 16px;">{{ person.current_institute }}</p>
+                                                    {% else %}
+                                                        <!--p class="text-center" style="color:black; line-height: 16px;">{{ person.current_institute }}</p-->
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="footer">
+                                                <button class="btn btn-simple" rel="tooltip" title onclick="rotateCard(this)" data-original-title="Flip Card">
+                                                    <i class="fa fa-reply">Back</i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- footer block -->
     <footer class="w3l-footer-29-main">
         <div class="footer-29 pt-5 pb-4">
             <div class="container pt-md-4">
