@@ -183,7 +183,7 @@
                                 {% if news_info.category != category %}
                                 <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog"
                                 {% endif %}
-                                    style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                    style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
                                     {{ news_info.title }}
                                 </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
