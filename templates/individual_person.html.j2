@@ -427,7 +427,7 @@
                             {% for article in research_articles %}
                                 {% set data = ContentData(article) %}
                                 <li>
-                                    <a href="../../sub_research/{{  data.load_json()['category']|replace(' ', '_')|lower }}/{{ article }}.html" style="width: 100%; display: flex; justify-content: center;">
+                                    <a href="../../sub_research/{{  data.load_json()['category']|replace(' ', '_')|lower }}/{{ article|lower }}.html" style="width: 100%; display: flex; justify-content: center;">
                                         <span class="fas fa-angle-right" style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ data.load_json()['title'] }}</span>
                                     </a>
                                 </li>
@@ -450,7 +450,7 @@
                             {% for article in news_articles %}
                                 {% set data = ContentData(article) %}
                                 <li>
-                                    <a href="../../news/{{ article }}.html" style="width: 100%; display: flex; justify-content: center;">
+                                    <a href="../../news/{{ article|lower }}.html" style="width: 100%; display: flex; justify-content: center;">
                                         <span class="fas fa-angle-right" style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ data.load_json()['title'] }}</span>
                                     </a>
                                 </li>
