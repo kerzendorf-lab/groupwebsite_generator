@@ -3,7 +3,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ general.website_title }} </title>
+    <title>News | {{ general.website_title }} </title>
 
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&amp;display=swap" rel="stylesheet">
@@ -16,234 +16,55 @@
     <div id="_bsa_srv-CKYI627U_0"></div>
     <div id="_bsa_srv-CKYI653J_1"></div>
     <!-- Buttons-->
-<style>
-    .button {
-      padding: 15px 25px;
-      font-size: 20px;
-      text-align: center;
-      cursor: pointer;
-      outline: none;
-      color: #fff;
-      background-color: #7750bb;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
-    }
-    
-    .button:hover {background-color: #9669e5}
-    
-    .button:active {
-      background-color: #a087cc;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
+    <style>
+        .button {
+            padding: 15px 25px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #7750bb;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {
+            background-color: #9669e5
+        }
+
+        .button:active {
+            background-color: #a087cc;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+
+        @media (min-width: 998px) {
+        .w3l-blog {
+            padding-left: 10%; 
+        }
+}
+
+        .heading {
+            color: #000;
+            /* Default color */
+            text-decoration: none;
+        }
+
+        .heading:hover {
+            background-image: linear-gradient(to left, #673ab7, #673ab7);
+            /* Gradient from right to left */
+            -webkit-background-clip: text;
+            /* Apply gradient as text color */
+            -webkit-text-fill-color: transparent;
+            /* Make text transparent */
+        }
     </style>
 
 </head>
 
 <body>
-    <script src="//m.servedby-buysellads.com/monetization.js" type="text/javascript"></script>
-    <script>
-        (function () {
-            if (typeof _bsa !== 'undefined' && _bsa) {
-                // format, zoneKey, segment:value, options
-                _bsa.init('flexbar', 'CKYI627U', 'placement:w3layoutscom');
-            }
-        })();
-    </script>
-    <script>
-        (function () {
-            if (typeof _bsa !== 'undefined' && _bsa) {
-                // format, zoneKey, segment:value, options
-                _bsa.init('fancybar', 'CKYDL2JN', 'placement:demo');
-            }
-        })();
-    </script>
-    <script>
-        (function () {
-            if (typeof _bsa !== 'undefined' && _bsa) {
-                // format, zoneKey, segment:value, options
-                _bsa.init('stickybox', 'CKYI653J', 'placement:w3layoutscom');
-            }
-        })();
-    </script>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-98H8KRKT85"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-98H8KRKT85');
-    </script>
-
-    <meta name="robots" content="noindex">
-    <link rel="stylesheet" href="/assests/css/font-awesome.min.css">
-    <!-- New toolbar-->
-    <style>
-        * {
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        }
-
-
-        #w3lDemoBar.w3l-demo-bar {
-            top: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 9999;
-            padding: 40px 5px;
-            padding-top: 70px;
-            margin-bottom: 70px;
-            background: #0D1326;
-            border-top-left-radius: 9px;
-            border-bottom-left-radius: 9px;
-        }
-
-        #w3lDemoBar.w3l-demo-bar a {
-            display: block;
-            color: #e6ebff;
-            text-decoration: none;
-            line-height: 24px;
-            opacity: .6;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        #w3lDemoBar.w3l-demo-bar span.w3l-icon {
-            display: block;
-        }
-
-        #w3lDemoBar.w3l-demo-bar a:hover {
-            opacity: 1;
-        }
-
-        #w3lDemoBar.w3l-demo-bar .w3l-icon svg {
-            color: #e6ebff;
-        }
-
-        #w3lDemoBar.w3l-demo-bar .responsive-icons {
-            margin-top: 30px;
-            border-top: 1px solid #41414d;
-            padding-top: 40px;
-        }
-
-        #w3lDemoBar.w3l-demo-bar .demo-btns {
-            border-top: 1px solid #41414d;
-            padding-top: 30px;
-        }
-
-        #w3lDemoBar.w3l-demo-bar .responsive-icons a span.fa {
-            font-size: 26px;
-        }
-
-        #w3lDemoBar.w3l-demo-bar .no-margin-bottom {
-            margin-bottom: 0;
-        }
-
-        .toggle-right-sidebar span {
-            background: #0D1326;
-            width: 50px;
-            height: 50px;
-            line-height: 50px;
-            text-align: center;
-            color: #e6ebff;
-            border-radius: 50px;
-            font-size: 26px;
-            cursor: pointer;
-            opacity: .5;
-        }
-
-        .pull-right {
-            float: right;
-            position: fixed;
-            right: 0px;
-            top: 70px;
-            width: 90px;
-            z-index: 99999;
-            text-align: center;
-        }
-
-        /* ============================================================
-RIGHT SIDEBAR SECTION
-============================================================ */
-
-        #right-sidebar {
-            width: 90px;
-            position: fixed;
-            height: 100%;
-            z-index: 1000;
-            right: 0px;
-            top: 0;
-            margin-top: 60px;
-            -webkit-transition: all .5s ease-in-out;
-            -moz-transition: all .5s ease-in-out;
-            -o-transition: all .5s ease-in-out;
-            transition: all .5s ease-in-out;
-            overflow-y: auto;
-        }
-
-
-        /* ============================================================
-RIGHT SIDEBAR TOGGLE SECTION
-============================================================ */
-
-        .hide-right-bar-notifications {
-            margin-right: -300px !important;
-            -webkit-transition: all .3s ease-in-out;
-            -moz-transition: all .3s ease-in-out;
-            -o-transition: all .3s ease-in-out;
-            transition: all .3s ease-in-out;
-        }
-
-
-
-        @media (max-width: 992px) {
-            #w3lDemoBar.w3l-demo-bar a.desktop-mode {
-                display: none;
-
-            }
-        }
-
-        @media (max-width: 767px) {
-            #w3lDemoBar.w3l-demo-bar a.tablet-mode {
-                display: none;
-
-            }
-        }
-
-        @media (max-width: 568px) {
-            #w3lDemoBar.w3l-demo-bar a.mobile-mode {
-                display: none;
-            }
-
-            #w3lDemoBar.w3l-demo-bar .responsive-icons {
-                margin-top: 0px;
-                border-top: none;
-                padding-top: 0px;
-            }
-
-            #right-sidebar,
-            .pull-right {
-                width: 90px;
-            }
-
-            #w3lDemoBar.w3l-demo-bar .no-margin-bottom-mobile {
-                margin-bottom: 0;
-            }
-        }
-    </style>
-    <div class="pull-right toggle-right-sidebar">
-
-    </div>
-
-
-
-
-
-    <!-- top header -->
-
-    <!-- //top header -->
 
     <!--header-->
     <header id="site-header" class="fixed-top">
@@ -294,7 +115,7 @@ RIGHT SIDEBAR TOGGLE SECTION
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                   href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -325,14 +146,12 @@ RIGHT SIDEBAR TOGGLE SECTION
     </header>
     <!--//header-->
 
-
     <!-- about banner -->
     <section class="w3l-about-breadcrumb text-center">
-        <div class="breadcrumb-bg breadcrumb-bg-about py-5">
+        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
             <div class="container py-lg-5 py-md-4">
-                <div class="banner-info-grid px-md-5">
+                <div class="banner-info-grid px-md-5" style="margin-top: 3%; margin-left: 70px;">
                     <h2 class="w3l-title-breadcrumb mb-3">News</h2>
-                    <p class="inner-page-para px-lg-5">Our Updates</p>
                 </div>
             </div>
         </div>
@@ -341,79 +160,110 @@ RIGHT SIDEBAR TOGGLE SECTION
 
 
 
-    <!-- Blog Section -->
-    <section class="w3l-blog">
-        <div class="blog py-5" id="Newsblog">
-            {% for project_list in [news] %}
-            {% if project_list|length > 0 %}
-            <div class="text-center" style="padding-top: 5%;">
-                <h1> {{ project_list[0]['category'] }}</h1>
-            </div>
-            <div class="container py-lg-5 py-md-4 py-2">
-                <div class="row">
-                    <p style="padding-bottom: 3%;">{{ project_list[0]['about'] }}</p>
 
-                    {% for project in project_list %}
-                   
-                    <div class="col-lg-4 col-md-6 item">
+    <!-- Blog Section -->
+
+<section class="w3l-blog">
+    <div class="blog py-5" id="Newsblog">
+        <div class="container py-lg-5 py-md-4 py-2">
+            {% for _, news in content.iterrows() %}
+                {% set content_data = ContentData(news['article_id']) %}
+                {% set news_info = content_data.load_json() %}
+                <div class="row" style="padding-top: 5%;">
+                    <div class="col-lg-6 col-md-6 item">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
-                                    class="zoom d-block">
-                                    <img class="card-img-bottom d-block" src="{{ project.image_path['cover_image'] }}"
-                                        alt="array">
+                                {% if news_info.category == category %}
+                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
+                                {% endif %}
+                                {% if news_info.category != category %}
+                                <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
+                                {% endif %}
+                                    <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
+                                        src="{{ news_info.cover_image }}" alt="array">
                                 </a>
                                 <div class="date">
-                                    <p>{{ project.article_date }} </p>
+                                    <p>{{ news_info.article_date }}</p>
                                 </div>
                             </div>
-                            <div class="card-body blog-details">
-                                <a href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}/{{ page_link(project.name) }}.html"
-                                    class="blog-desc"> {{ project.name }} </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 item">
+                        <div class="card">
+                            <div class="card-body blog-details" style="max-height: 330px">
+                                {% if news_info.category == category %}
+                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog">
+                                {% endif %}
+                                {% if news_info.category != category %}
+                                <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog">
+                                {% endif %}
+                                <div class="heading">
+                                   <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
+                                    {{ news_info.title }}
+                                   </h5>
+                                </a>
+                                </div>
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p>{{ project.short_description }} </p>
+                                    <p style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:110px">
+                                        {{ news_info.short_description }}
+                                    </p>
                                 </div>
-
                             </div>
-                            <div class="card-footer">
-                                <div class="author align-items-center">
-                                    <a href="#author" class="post-author">
-                                        <img src="members/{{ project.authon_image }}" alt=""
-                                            class="img-fluid rounded-circle">
-                                    </a>
+                            <div class="card-footer">                  
+                                <div>
                                     <ul class="blog-meta">
                                         <li>
-                                            <span class="meta-value">Article by </span><a href="#author">{{
-                                                project.author }}</a>
+                                            <a style="font-size:10px">Contributer(s):</a>
                                         </li>
+                                        {% for person_id in news_info.people_involved_ids %}
+                                                {% if person_id in member_ids.values.tolist() %}
+                                                       
+                                                    {% set member_data = MemberData(person_id) %}
+                                                    {% set member_info = member_data.basic_info() %}
+                                                    
+                                                    {% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
+                                                        {% set member_name = member_info.nick_name %}
+                                                    {% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
+                                                        {% set member_name = member_info.first_name  %}
+                                                    {% endif %}
+                                                    <li>
+                                                        <a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank">
+                                                          <p  style="font-size: 10px; height:36px"> {{ member_name }}</p>
+                                                        </a>
+                                                    </li>
+                                                
+                                                {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+                                                    <li>
+                                                        <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 10px;">
+                                                            {{ person_id.strip().split(' ')[0] }}
+                                                        </a>
+                                                    </li>
+
+                                                {% else %}
+                                                <li>
+                                                    <a style="font-size: 10px;">
+                                                        {{ person_id }}
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            
+                                            {% if not loop.last %}
+                                                <li>, </li>
+                                            {% endif %}
+                                        {% endfor %}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
-                    {% endfor %}
-
-
-
-                    <pagination>
-                        <div class="pagination-wrapper mt-5 pt-lg-3 text-center">
-                            <ul class="page-pagination">
-
-                                <!--li><a class="next" href="#url">Next <span class="fa fa-angle-right"></span></a></li-->
-                                <button class="button text-center" style="max-width: 180px;"><a
-                                        href="sub_research/{{ project_list[0]['category']|replace(' ', '_')|lower }}.html" style="color: white;">More articles</a></button>
-                            </ul>
-                        </div>
-                    </pagination>
-
                 </div>
-            </div>
-            {% endif %}
             {% endfor %}
-        </div>
-    </section>
-    <!-- //Blog Section -->
+        </div>  
+    </div>
+</section>
+
+<!-- //Blog Section -->
 
 
 

@@ -5,7 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title> {{ general.website_title }} </title>
+	<title>Research | {{ general.website_title }} </title>
 
 	<!-- google-fonts -->
 	<link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -143,7 +143,7 @@
 		<div class="breadcrumb-bg breadcrumb-bg-about py-5">
 			<div class="container py-lg-5 py-md-4">
 				<div class="banner-info-grid px-md-5">
-					<h2 class="w3l-title-breadcrumb mb-3">Researches & Articles</h2>
+					<h2 class="w3l-title-breadcrumb mb-3">Research</h2>
 					<p class="inner-page-para px-lg-5">The more we know the more we grow</p>
 				</div>
 			</div>
@@ -158,29 +158,49 @@
 		<div class="blog-content-inf py-5">
 			<div class="container py-lg-5 py-md-4 py-2">
 				<div class="blog-posthny-info mx-auto" style="max-width:800px">
+				    {% set content_data = ContentData(content['article_id']) %}
+                    {% set project_info = content_data.load_json() %}
+                	{% set author_id = project_info['author_id'] %}
+                    {% set author = MemberData(author_id) %}
+                    {% set author_info = author.basic_info() %}
+					
+					{% if author_info.nick_name != "" and not
+					author_info.nick_name.strip().lower().startswith("enter") %}
+					{% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
+					{% elif author_info.first_name != "" and not
+					author_info.first_name.strip().lower().startswith("enter") %}
+					{% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
+					{% endif %}     
+
 					<div class="style-title position-relative">
-						<h3 class="title-style mb-sm-3 mb-2">{{ research.name }}</h3>
+						<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
 					</div>
 					<div class="single-post-image mb-4">
 						<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-							<li class="circle avatar"><img src="../../members/{{ research.authon_image }}"
+
+
+							<li class="circle avatar"><img
+									src="../../members/{{ author_id}}/{{ author_info.image_path }}"
 									class="img-fluid" alt=""></li>
-							<li>Article by <a href="#URL">{{ research.author }}</a></li>
-							<li class="single-date">March 11, 2022</li>
+							<li>Article by <a
+									href="../../members/{{ author_id }}/{{ author_id }}.html"
+									target="_blank">{{ author_name }}</a></li>
+							<li>{{ project_info['article_date'] }}</li>
 						</ul>
-						<img src="../../{{ research.image_path.cover_image }}" class="img-fluid img-responsive"
+						<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
+							
 							alt="blog-post-image">
 
 					</div>
 
 					<div class="single-post-content">
-						<p class="mb-4"> {{ research.long_description }}</p>
+						<p class="mb-4"> {{ project_info.long_description }}</p>
 
 					</div>
 
 					<div class="content-text-9">
 						<div class="single-post-content-1 row mt-5 no-gutters">
-							{% for key, value in research.content.items() %}
+							{% for key, value in project_info.content.items() %}
 							{% if key.startswith('img') %}
 							<div class="single-post-image mb-4"
 								style="max-width:fit-content; display: block; margin: auto;">
@@ -313,6 +333,73 @@
 							</div>
 						</form>
 					</div-->
+					<!-- right side bar -->
+					<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
+						<div class="row">
+							{% if project_info.people_involved_ids %}
+							<div class="col text-center">
+								<aside class="posts p-6">
+									<h3 class="aside-title">People Associated</h3>
+									<ul class="category">
+										{% for person_id in project_info.people_involved_ids %}
+											{% if person_id in member_ids.values.tolist() %}
+												{% set member_data = MemberData(person_id) %}
+												{% set member_info = member_data.basic_info() %}
+												
+												{% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
+													{% set member_name = member_info.nick_name %}
+												{% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
+													{% set member_name = member_info.first_name %}
+												{% endif %}
+												
+													<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 15px;">
+														<span class="fas fa-user"></span>{{ member_name }}
+													</a>
+												
+											{% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+													<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 15px;">
+														<span class="fas fa-external-link-alt"></span>{{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
+													</a>
+												</li>
+											{% else %}
+												
+													<a>
+														{{ person_id }}
+													</a>
+												
+											{% endif %}
+											<br>
+										{% endfor %}
+									</ul>
+
+								</aside>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+						{% if project_info.links %}
+							<div class="col text-center">
+								<aside class="posts p-6">
+									<h3 class="aside-title">Refrences & Resources</h3>
+									<ul class="category">
+										{% for link_id in project_info.links%}
+										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+										<li>
+											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
+												<span class="fas fa-external-link-alt"></span>{{
+												''.join(link_id.strip().split(' ')[0:-1]) }}
+											</a>
+										</li>
+										{% endif %}
+										{% endfor%}
+									</ul>
+								</aside>
+							</div>
+							{%endif%}
+						</div>
+					</div>
+					<!-- //right side bar -->
 				</div>
 			</div>
 		</div>
@@ -321,43 +408,40 @@
 
 
 
-	 <!-- footer block -->
-    <footer class="w3l-footer-29-main">
-        <div class="footer-29 pt-5 pb-4">
-            <div class="container pt-md-4">
-                <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
-                    <div class="col-lg-6 col-md-6 footer-list-29">
-                        <h6 class="footer-title-29">Contact Info </h6>
-                        {% if general.address != "" %}
-                        <p class="mb-2 pe-xl-5">Address : {{ general.address }}
-                        </p>
-                        {% endif %}
-                        {% if general.phone != "" %}
-                        <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
-                        {% endif %}
-                        {% if general.email != "" %}
-                        <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
-                        {% endif %}
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
-                        <ul>
-                            <h6 class="footer-title-29">Quick Links</h6>
-                            {% for link_text, link_url in general.useful_links.items() %}
-                            <li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
-                            {% endfor %}
+	<!-- footer block -->
+	<footer class="w3l-footer-29-main">
+		<div class="footer-29 pt-5 pb-4">
+			<div class="container pt-md-4">
+				<div class="row footer-top-29 d-flex justify-content-center justify-md-start">
+					<div class="col-lg-6 col-md-6 footer-list-29">
+						<h6 class="footer-title-29">Contact Info </h6>
+						{% if general.address != "" %}
+						<p class="mb-2 pe-xl-5">Address : {{ general.address }}
+						</p>
+						{% endif %}
+						{% if general.email != "" %}
+						<p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
+						{% endif %}
+					</div>
+					<div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
+						<ul>
+							<h6 class="footer-title-29">Quick Links</h6>
+							{% for link_text, link_url in general.useful_links.items() %}
+							<li><a href="{{ link_url }}" target="_blank">{{ link_text }}</a></li>
+							{% endfor %}
 
-                        </ul>
-                    </div>
+						</ul>
+					</div>
 
-                </div>
-                <!-- copyright -->
-                <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}} <br>
-                    Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
-                <!-- //copyright -->
-            </div>
-        </div>
-    </footer>
-    <!-- //footer block -->
+				</div>
+				<!-- copyright -->
+				<p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}} <br>
+					Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
+				<!-- //copyright -->
+			</div>
+		</div>
+	</footer>
+	<!-- //footer block -->
 
 
 

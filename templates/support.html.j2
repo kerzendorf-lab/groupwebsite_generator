@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> {{ general.website_title }} </title>
+    <title>Support | {{ general.website_title }} </title>
 
     <!-- google-fonts -->
     <link href="//fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
@@ -129,7 +129,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
                                 <a class="dropdown-item"
-                                    href="sub_research/{{ page_link(sub_page) }}.html">{{sub_page}}</a>
+                                    href="sub_research/{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -181,7 +181,7 @@
             <div class="row py-5 justify-content-center d-flex align-items-center">
                     {% for key, value in support.items() %}
                         <div class="col-lg-2 col-md-3 col-4">
-                            <a href={{ value['link'] }}>
+                            <a href={{ value['link'] }} target="_blank">
                                 <img src="{{ value['image_path'] }}" alt={{ key }} class="img-fluid">
                             </a>
                         </div>
@@ -191,18 +191,23 @@
     </section>
     <!-- //Company logos -->
 
-
-    <!-- footer block -->
+ <!-- footer block -->
     <footer class="w3l-footer-29-main">
         <div class="footer-29 pt-5 pb-4">
             <div class="container pt-md-4">
                 <div class="row footer-top-29 d-flex justify-content-center justify-md-start">
                     <div class="col-lg-6 col-md-6 footer-list-29">
                         <h6 class="footer-title-29">Contact Info </h6>
+                        {% if general.address != "" %}
                         <p class="mb-2 pe-xl-5">Address : {{ general.address }}
                         </p>
+                        {% endif %}
+                        {% if general.phone != "" %}
                         <p class="mb-2">Phone Number : <a href="tel:{{ general.address }}">{{ general.phone }}</a></p>
+                        {% endif %}
+                        {% if general.email != "" %}
                         <p class="mb-2">Email : <a href="mailto:{{ general.email }}">{{ general.email }}</a></p>
+                        {% endif %}
                     </div>
                     <div class="col-lg-2 col-md-3 col-12 footer-list-29 mt-md-0 mt-4">
                         <ul>
@@ -216,13 +221,14 @@
 
                 </div>
                 <!-- copyright -->
-                <p class="copy-footer-29 text-center mt-5 pb-2">Made by Kerzendorf Group with passion <br>
+                <p class="copy-footer-29 text-center mt-5 pb-2">{{general.footer_message}} <br>
                     Template by <a href="https://w3layouts.com/" target="_blank">W3Layouts</a></p>
                 <!-- //copyright -->
             </div>
         </div>
     </footer>
     <!-- //footer block -->
+ 
 
 
 
