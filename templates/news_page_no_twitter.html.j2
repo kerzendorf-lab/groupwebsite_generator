@@ -127,14 +127,14 @@
 
 
 							<li class="circle avatar"><img
-									src="../../members/{{ author_id}}/{{ author_info.image_path }}"
+									src="../members/{{ author_id}}/{{ author_info.image_path }}"
 									class="img-fluid" alt=""></li>
 							<li>Article by <a
-									href="../../members/{{ author_id }}/{{ author_id }}.html"
+									href="../members/{{ author_id }}/{{ author_id }}.html"
 									target="_blank">{{ author_name }}</a></li>
 							<li>{{ project_info['article_date'] }}</li>
 						</ul>
-						<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
+						<img src="../{{ project_info.cover_image }}" class="img-fluid img-responsive"
 							
 							alt="blog-post-image">
 
@@ -151,7 +151,7 @@
 							{% if key.startswith('img') %}
 							<div class="single-post-image mb-4"
 								style="max-width:fit-content; display: block; margin: auto;">
-								<img src="../../{{ value }}" class="img-fluid img-responsive mt-3"
+								<img src="../{{ value }}" class="img-fluid img-responsive mt-3"
 									alt="blog-post-image">
 							</div>
 							{% elif key.startswith('para') %}
