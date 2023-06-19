@@ -287,7 +287,7 @@
 							<div class="col text-center">
 								<aside class="posts p-6">
 									<h3 class="aside-title">People Associated</h3>
-									<ul class="category">
+									<ul class="category" >
 										{% for person_id in project_info.people_involved_ids %}
 											{% if person_id in member_ids.values.tolist() %}
 												{% set member_data = MemberData(person_id) %}
@@ -299,7 +299,7 @@
 													{% set member_name = member_info.first_name %}
 												{% endif %}
 												
-													<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 15px;">
+													<a href="../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 15px;">
 														<span class="fas fa-user"></span>{{ member_name }}
 													</a>
 												
@@ -334,8 +334,7 @@
 										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
 										<li>
 											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{
-												''.join(link_id.strip().split(' ')[0:-1]) }}
+												<span class="fas fa-external-link-alt"></span>{{''.join(link_id.strip().split(' ')[0:-1]) }}
 											</a>
 										</li>
 										{% endif %}
