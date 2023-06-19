@@ -42,7 +42,7 @@
 
         @media (min-width: 998px) {
         .shift{
-            padding-left: 10%; 
+            padding-left: 17%; 
         }
 }
 
@@ -170,7 +170,7 @@
                 {% set content_data = ContentData(news['article_id']) %}
                 {% set news_info = content_data.load_json() %}
                 <div class="row" style="padding-top: 5%;">
-                    <div class="col-lg-6 col-md-6 item">
+                    <div class="col-lg-6 col-md-6 item" style="width: 520px;">
                         <div class="card">
                             <div class="card-header p-0 position-relative">
                                 {% if news_info.category == category %}
@@ -179,8 +179,7 @@
                                 {% if news_info.category != category %}
                                 <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-block">
                                 {% endif %}
-                                    <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
-                                        src="{{ news_info.cover_image }}" alt="array">
+                                    <img style="width: 520px; height: 330px" class="card-img-bottom d-block" src="{{ news_info.cover_image }}" alt="array">
                                 </a>
                                 <div class="date">
                                     <p>{{ news_info.article_date }}</p>
@@ -198,14 +197,14 @@
                                 <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html" class="zoom d-blog">
                                 {% endif %}
                                 <div class="heading">
-                                   <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:large; height:67px ">
+                                   <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
                                     {{ news_info.title }}
                                    </h5>
                                 </a>
                                 </div>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
-                                    <p style="font-size: 13px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:110px">
+                                    <p style="font-size: 15px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:109px">
                                         {{ news_info.short_description }}
                                     </p>
                                 </div>
@@ -229,7 +228,7 @@
                                                     {% endif %}
                                                     <li>
                                                         <a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank">
-                                                          <p  style="font-size: 10px; height:36px"> {{ member_name }}</p>
+                                                          <p  style="font-size: 10px; height:35px"> {{ member_name }}</p>
                                                         </a>
                                                     </li>
                                                 
