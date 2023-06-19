@@ -42,9 +42,8 @@ jobs:
       - name: Setup directories inside kerzendorf-group.github.io
         run: |
           cd kerzendorf-group.github.io
-          mkdir members sub_research
+          mkdir members sub_research news
           cp -r ../group-data/website_data/website_files ./
-          cp -r ../group-data/website_data/support_images ./
           cp -r ../groupwebsite_generator/assets ./
           rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
 
