@@ -376,7 +376,8 @@
 							</div>
 							{% endif %}
 						</div>
-					</div>
+					
+					<br>
 						{% if project_info.links %}
 							<div class="col text-center">
 								<aside class="posts p-6">
@@ -384,7 +385,7 @@
 									<ul class="category">
 										{% for link_id in project_info.links%}
 										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-										key_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+										link_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
 										<li>
 											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
 												<span class="fas fa-external-link-alt"></span>{{
