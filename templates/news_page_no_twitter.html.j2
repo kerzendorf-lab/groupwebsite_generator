@@ -109,11 +109,11 @@
                     {% set project_info = content_data.load_json() %}
                 	{% set author_id = project_info['author_id'] %}
                     {% set author = MemberData(author_id) %}
-                    {% set author_info = author.basic_info() %}
+                    {% set  = author.basic_info() %}
 					
 					{% if author_info.nick_name != "" and not
 					author_info.nick_name.strip().lower().startswith("enter") %}
-					{% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
+					{% set author_name = author_info.nick_name ~ ' ' ~ author_info.last_name %}
 					{% elif author_info.first_name != "" and not
 					author_info.first_name.strip().lower().startswith("enter") %}
 					{% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
