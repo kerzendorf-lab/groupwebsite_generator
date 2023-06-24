@@ -285,38 +285,40 @@
 						<div class="row">
 							{% if project_info.people_involved_ids %}
 							<div class="col text-center">
-								<aside class="posts p-6">
+								<aside class="posts p-6" style="overflow-x: scroll;">
 									<h3 class="aside-title">People Associated</h3>
-									<ul class="category" >
-										{% for person_id in project_info.people_involved_ids %}
+									<ul class="category">
+										<li>
+											{% for person_id in project_info.people_involved_ids %}
 											{% if person_id in member_ids.values.tolist() %}
-												{% set member_data = MemberData(person_id) %}
-												{% set member_info = member_data.basic_info() %}
-												
-												{% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
-													{% set member_name = member_info.nick_name %}
-												{% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
-													{% set member_name = member_info.first_name %}
-												{% endif %}
-												
-													<a href="../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 15px;">
-														<span class="fas fa-user"></span>{{ member_name }}
-													</a>
-												
-											{% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-													<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 15px;">
-														<span class="fas fa-external-link-alt"></span>{{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
-													</a>
-												</li>
-											{% else %}
-												
-													<a>
-														{{ person_id }}
-													</a>
-												
+											{% set member_data = MemberData(person_id) %}
+											{% set member_info = member_data.basic_info() %}
+
+											{% if member_info.nick_name != "" and not
+											member_info.nick_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.nick_name %}
+											{% elif member_info.first_name != "" and not
+											member_info.first_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.first_name %}
 											{% endif %}
-											<br>
-										{% endfor %}
+
+											<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank"
+												style="font-size: 15px; display: inline;">
+												<span class="fas fa-user"></span> {{ member_name }}
+											</a>
+											{% elif person_id.strip().split('
+											')[-1].strip().lower().startswith("http://") or person_id.strip().split('
+											')[-1].strip().lower().startswith("https://") %}
+											<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
+												style="font-size: 15px; display: inline; margin-right: 5px;">
+												<span class="fas fa-external-link-alt"></span>{{ '
+												'.join(person_id.strip().split(' ')[0:-1]) }}
+											</a>
+											{% else %}
+											{{ person_id }}
+											{% endif %}
+											{% endfor %}
+										</li>
 									</ul>
 
 								</aside>
@@ -330,17 +332,17 @@
 								<aside class="posts p-6">
 									<h3 class="aside-title">Refrences & Resources</h3>
 									<ul class="category">
-										{% for link_id in project_info.links%}
-										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-										link_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-										<li>
-											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{''.join(link_id.strip().split(' ')[0:-1]) }}
-											</a>
-										</li>
-										{% endif %}
-										{% endfor%}
-									</ul>
+									{% for link_key, link_value in project_info.links.items() %}
+									{% if link_value.strip().lower().startswith("http://") or
+									link_value.strip().lower().startswith("https://") %}
+									<li>
+										<a href="{{ link_value.strip() }}" target="_blank">
+											<span class="fas fa-external-link-alt"></span>{{ link_key }}
+										</a>
+									</li>
+									{% endif %}
+									{% endfor %}
+								</ul>
 								</aside>
 							</div>
 							{%endif%}
