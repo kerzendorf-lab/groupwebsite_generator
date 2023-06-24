@@ -138,6 +138,14 @@
                         <img src="{{ basic_info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
+                           <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if basic_info.nick_name != "" and not
+        basic_info.nick_name.strip().lower().startswith("enter")
+        %}
+        {{ basic_info.nick_name }}
+        {% else %}
+        {{basic_info.first_name}}
+
+        {% endif %}{{basic_info.last_name}}</h4>
                         <p class="my-4 pe-lg-5">{{ basic_info.introduction }}</p>
                         {% set social_links = person.social_links() %}
                         {% if social_links %}
