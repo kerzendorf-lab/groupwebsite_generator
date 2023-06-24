@@ -16,27 +16,29 @@
     <div id="_bsa_srv-CKYI627U_0"></div>
     <div id="_bsa_srv-CKYI653J_1"></div>
     <!-- Buttons-->
-<style>
-    .button {
-      padding: 15px 25px;
-      font-size: 20px;
-      text-align: center;
-      cursor: pointer;
-      outline: none;
-      color: #fff;
-      background-color: #7750bb;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #999;
-    }
-    
-    .button:hover {background-color: #9669e5}
-    
-    .button:active {
-      background-color: #a087cc;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
-    }
+    <style>
+        .button {
+            padding: 15px 25px;
+            font-size: 20px;
+            text-align: center;
+            cursor: pointer;
+            outline: none;
+            color: #fff;
+            background-color: #7750bb;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 9px #999;
+        }
+
+        .button:hover {
+            background-color: #9669e5
+        }
+
+        .button:active {
+            background-color: #a087cc;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
     </style>
 
 </head>
@@ -90,8 +92,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 {% for sub_page in general[page] %}
-                                <a class="dropdown-item"
-                                    href="{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
+                                <a class="dropdown-item" href="{{ page_link(sub_page)|lower }}.html">{{sub_page}}</a>
                                 {% endfor %}
                             </div>
                         </li>
@@ -136,96 +137,99 @@
     <!-- //about banner -->
 
 
-        <!-- Blog Section -->
-        
-        <section class="w3l-blog">
-            <div class="blog py-5" id="Newsblog">
-                {% set project_list = content[(content['category'] == category)] %}
-                {% if project_list.shape[0] > 0 %}
-                <div class="text-center" style="padding-top: 5%;">
-                    <h1>{{ category }}</h1>
-                    <br>
-                    <div class="container py-lg-5 py-md-4 py-2">
-                        <div class="row">
-                            <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{ research_general[category]['about'] }}</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Blog Section -->
+
+    <section class="w3l-blog">
+        <div class="blog py-5" id="Newsblog">
+            {% set project_list = content[(content['category'] == category)] %}
+            {% if project_list.shape[0] > 0 %}
+            <div class="text-center" style="padding-top: 5%;">
+                <h1>{{ category }}</h1>
+                <br>
                 <div class="container py-lg-5 py-md-4 py-2">
                     <div class="row">
-                        {% set counter = 0 %}
-                        {% for _, project in project_list.iterrows() %}
-                        {% set content_data = ContentData(project['article_id']) %}
-                        {% set project_info = content_data.load_json() %}
-                        {% if counter < 3 %}
-                        <div class="col-lg-4 col-md-6 item">
-                            <div class="card">
-                                <div class="card-header p-0 position-relative">
-                                    <a href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
-                                        class="zoom d-block">
-                                        <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
-                                            src="../{{ project_info['cover_image'] }}" alt="array">
-                                    </a>
-                                    <div class="date">
-                                        <p>{{ project_info['article_date'] }}</p>
-                                    </div>
-                                </div>
-                                <div class="card-body blog-details" style="max-height: 220px">
-                                    <h5 class="mb-3" style="height: 55px; overflow: hidden; display: flex; align-items: center;">
-                                        <a style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;" href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
-                                            {{ project_info['title'] }}
-                                        </a>
-                                    </h5>
-                                    <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                    <h5 class="mb-3" style="height: 80px; overflow: hidden; align-items: center;">
-                                        <p style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
-                                        {{ project_info['short_description'] }}
-                                        </p>
-                                    </h5>    
-                                </div>
-                                <div class="card-footer">
-                                    {% set author_id = project_info['author_id'] %}
-                                    {% if author_id %}
-                                        {% set member = MemberData(author_id) %}
-                                        {% set author_info = member.basic_info() %}
-
-                                        {% if author_info.nick_name != "" and not
-                                        author_info.nick_name.strip().lower().startswith("enter") %}
-                                        {% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
-                                        {% elif author_info.first_name != "" and not
-                                        author_info.first_name.strip().lower().startswith("enter") %}
-                                        {% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
-                                        {% endif %} 
-
-                                        <div class="author align-items-center">
-                                            <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
-                                                target="_blank">
-                                                <img src="../members/{{ author_id }}/{{ author_info['image_path'] }}"
-                                                    alt="Author's Image" class="img-fluid rounded-circle">
-                                            </a>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <span class="meta-value">Article by </span>
-                                                    <a href="../members/{{ author_id }}/{{ author_id }}.html"
-                                                        target="_blank">{{ author_name }}</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    {% endif %}
-                                </div>
-                            </div>
-                        </div>
-                        {% set counter = counter + 1 %}
-                        {% endif %}
-                        {% endfor %}
+                        <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{
+                            research_general[category]['about'] }}</p>
                     </div>
                 </div>
-                {% endif %}
             </div>
-        </section>
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="row">
+                    {% set counter = 0 %}
+                    {% for _, project in project_list.iterrows() %}
+                    {% set content_data = ContentData(project['article_id']) %}
+                    {% set project_info = content_data.load_json() %}
+                    {% if counter < 3 %} <div class="col-lg-4 col-md-6 item">
+                        <div class="card">
+                            <div class="card-header p-0 position-relative">
+                                <a href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html"
+                                    class="zoom d-block">
+                                    <img style="max-width: 380px; max-height: 230px;" class="card-img-bottom d-block"
+                                        src="../{{ project_info['cover_image'] }}" alt="array">
+                                </a>
+                                <div class="date">
+                                    <p>{{ project_info['article_date'] }}</p>
+                                </div>
+                            </div>
+                            <div class="card-body blog-details" style="max-height: 220px">
+                                <a href="{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                    <h5 class="mb-3" style="height: 50px; overflow: hidden; display: flex; align-items: center; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; ">
+
+                                        {{ project_info['title'] }}
+                                    </h5>
+                                </a>
+                                </h5>
+                                <hr style="border-top: 1px dotted rgba(143, 143, 143);">
+                                <h5 class="mb-3" style="height: 80px; overflow: hidden; align-items: center;">
+                                    <p
+                                        style="overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;">
+                                        {{ project_info['short_description'] }}
+                                    </p>
+                                </h5>
+                            </div>
+                            <div class="card-footer">
+                                {% set author_id = project_info['author_id'] %}
+                                {% if author_id %}
+                                {% set member = MemberData(author_id) %}
+                                {% set author_info = member.basic_info() %}
+
+                                {% if author_info.nick_name != "" and not
+                                author_info.nick_name.strip().lower().startswith("enter") %}
+                                {% set author_name = member_info.nick_name ~ ' ' ~ author_info.last_name %}
+                                {% elif author_info.first_name != "" and not
+                                author_info.first_name.strip().lower().startswith("enter") %}
+                                {% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
+                                {% endif %}
+
+                                <div class="author align-items-center">
+                                    <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author"
+                                        target="_blank">
+                                        <img src="../members/{{ author_id }}/{{ author_info['image_path'] }}"
+                                            alt="Author's Image" class="img-fluid rounded-circle">
+                                    </a>
+                                    <ul class="blog-meta">
+                                        <li>
+                                            <span class="meta-value">Article by </span>
+                                            <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{
+                                                author_name }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                </div>
+                {% set counter = counter + 1 %}
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        </div>
+    </section>
 
 
-        <!-- //Blog Section -->
+    <!-- //Blog Section -->
 
 
 
