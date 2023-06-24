@@ -160,7 +160,9 @@
             {% set project_list = content[(content['category'] == category)] %}
             {% if project_list.shape[0] > 0 %}
             <div class="text-center heading" style="padding-top: 5%;">
-            <a href="sub_research/{{ category|replace(' ', '_')|lower }}.html" style="color: black;"><h1>{{ category }}</h1></a>
+                <a href="sub_research/{{ category|replace(' ', '_')|lower }}.html" style="color: black;">
+                    <h1>{{ category }}</h1>
+                </a>
             </div>
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="row">
@@ -181,14 +183,16 @@
                                 </div>
                             </div>
                             <div class="card-body blog-details" style="max-height: 220px">
-                            <div class="heading">
-                                <a href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
-                                     <h5 class="mb-3" style="height: 50px; overflow: hidden; display: flex; align-items: center; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; ">
+                                <div class="heading">
+                                    <a
+                                        href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ project['article_id']|lower }}.html">
+                                        <h5 class="mb-3"
+                                            style="height: 50px; overflow: hidden; display: flex; align-items: center; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; ">
 
-                                        {{ project_info['title'] }}
-                                     </h5>
+                                            {{ project_info['title'] }}
+                                        </h5>
                                     </a>
-                                </h5>
+
                                 </div>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center" style="height: 80px;">
