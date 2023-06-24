@@ -14,7 +14,21 @@
 
 	<!-- Template CSS Style link -->
 	<link rel="stylesheet" href="../../assets/css/style-liberty.css">
+	<style>
+		.heading {
+			/* Default color */
+			text-decoration: none;
+		}
 
+		.heading:hover {
+			background-image: linear-gradient(to left, #673ab7, #673ab7);
+			/* Gradient from right to left */
+			-webkit-background-clip: text;
+			/* Apply gradient as text color */
+			-webkit-text-fill-color: transparent;
+			/* Make text transparent */
+		}
+	</style>
 </head>
 
 <body>
@@ -158,19 +172,19 @@
 		<div class="blog-content-inf py-5">
 			<div class="container py-lg-5 py-md-4 py-2">
 				<div class="blog-posthny-info mx-auto" style="max-width:800px">
-				    {% set content_data = ContentData(content['article_id']) %}
-                    {% set project_info = content_data.load_json() %}
-                	{% set author_id = project_info['author_id'] %}
-                    {% set author = MemberData(author_id) %}
-                    {% set author_info = author.basic_info() %}
-					
+					{% set content_data = ContentData(content['article_id']) %}
+					{% set project_info = content_data.load_json() %}
+					{% set author_id = project_info['author_id'] %}
+					{% set author = MemberData(author_id) %}
+					{% set author_info = author.basic_info() %}
+
 					{% if author_info.nick_name != "" and not
 					author_info.nick_name.strip().lower().startswith("enter") %}
 					{% set author_name = author_info.nick_name ~ ' ' ~ author_info.last_name %}
 					{% elif author_info.first_name != "" and not
 					author_info.first_name.strip().lower().startswith("enter") %}
 					{% set author_name = author_info.first_name ~ ' ' ~ author_info.last_name %}
-					{% endif %}     
+					{% endif %}
 
 					<div class="style-title position-relative">
 						<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
@@ -180,15 +194,13 @@
 
 
 							<li class="circle avatar"><img
-									src="../../members/{{ author_id}}/{{ author_info.image_path }}"
-									class="img-fluid" alt=""></li>
-							<li>Article by <a
-									href="../../members/{{ author_id }}/{{ author_id }}.html"
+									src="../../members/{{ author_id}}/{{ author_info.image_path }}" class="img-fluid"
+									alt=""></li>
+							<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html"
 									target="_blank">{{ author_name }}</a></li>
 							<li>{{ project_info['article_date'] }}</li>
 						</ul>
 						<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
-							
 							alt="blog-post-image">
 
 					</div>
@@ -338,71 +350,73 @@
 						<div class="row">
 							{% if project_info.people_involved_ids %}
 							<div class="col text-center">
-								<aside class="posts p-6">
+								<aside class="posts p-6" style="overflow-x: scroll;">
 									<h3 class="aside-title">People Associated</h3>
 									<ul class="category">
-										{% for person_id in project_info.people_involved_ids %}
+										<li>
+											{% for person_id in project_info.people_involved_ids %}
 											{% if person_id in member_ids.values.tolist() %}
-												{% set member_data = MemberData(person_id) %}
-												{% set member_info = member_data.basic_info() %}
-												
-												{% if member_info.nick_name != "" and not member_info.nick_name.strip().lower().startswith("enter") %}
-													{% set member_name = member_info.nick_name %}
-												{% elif member_info.first_name != "" and not member_info.first_name.strip().lower().startswith("enter") %}
-													{% set member_name = member_info.first_name %}
-												{% endif %}
-												
-													<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank" style="font-size: 15px;">
-														<span class="fas fa-user"></span>{{ member_name }}
-													</a>
-												
-											{% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-													<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank" style="font-size: 15px;">
-														<span class="fas fa-external-link-alt"></span>{{ ' '.join(person_id.strip().split(' ')[0:-1]) }}
-													</a>
-												</li>
-											{% else %}
-												
-													<a>
-														{{ person_id }}
-													</a>
-												
-											{% endif %}
-											<br>
-										{% endfor %}
-									</ul>
+											{% set member_data = MemberData(person_id) %}
+											{% set member_info = member_data.basic_info() %}
 
+											{% if member_info.nick_name != "" and not
+											member_info.nick_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.nick_name %}
+											{% elif member_info.first_name != "" and not
+											member_info.first_name.strip().lower().startswith("enter") %}
+											{% set member_name = member_info.first_name %}
+											{% endif %}
+
+											<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank"
+												style="font-size: 15px; display: inline;">
+												<span class="fas fa-user"></span> {{ member_name }}
+											</a>
+											{% elif person_id.strip().split('
+											')[-1].strip().lower().startswith("http://") or person_id.strip().split('
+											')[-1].strip().lower().startswith("https://") %}
+											<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
+												style="font-size: 15px; display: inline; margin-right: 5px;">
+												<span class="fas fa-external-link-alt"></span>{{ '
+												'.join(person_id.strip().split(' ')[0:-1]) }}
+											</a>
+											{% else %}
+											{{ person_id }}
+											{% endif %}
+											{% endfor %}
+										</li>
+									</ul>
 								</aside>
 							</div>
 							{% endif %}
 						</div>
-					
-					<br>
+
+
+						<br>
 						{% if project_info.links %}
-							<div class="col text-center">
-								<aside class="posts p-6">
-									<h3 class="aside-title">Refrences & Resources</h3>
-									<ul class="category">
-										{% for link_id in project_info.links%}
-										{% if link_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-										link_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-										<li>
-											<a href="{{ link_id.strip().split(' ')[-1]}}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{
-												''.join(link_id.strip().split(' ')[0:-1]) }}
-											</a>
-										</li>
-										{% endif %}
-										{% endfor%}
-									</ul>
-								</aside>
-							</div>
-							{%endif%}
+						<div class="col text-center">
+							<aside class="posts p-6">
+								<h3 class="aside-title">References & Resources</h3>
+								<ul class="category">
+									{% for link_key, link_value in project_info.links.items() %}
+									{% if link_value.strip().lower().startswith("http://") or
+									link_value.strip().lower().startswith("https://") %}
+									<li>
+										<a href="{{ link_value.strip() }}" target="_blank">
+											<span class="fas fa-external-link-alt"></span>{{ link_key }}
+										</a>
+									</li>
+									{% endif %}
+									{% endfor %}
+								</ul>
+							</aside>
 						</div>
+						{% endif %}
+
 					</div>
-					<!-- //right side bar -->
 				</div>
+				<!-- //right side bar -->
 			</div>
+		</div>
 		</div>
 	</section>
 	<!-- //Blog Section -->
