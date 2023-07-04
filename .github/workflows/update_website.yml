@@ -45,14 +45,26 @@ jobs:
           mkdir members sub_research news
           cp -r ../group-data/website_data/website_files ./
           cp -r ../groupwebsite_generator/assets ./
-          rsync -av --exclude '*.json' --exclude 'jsons' ../group-data/members/ ./members
+          # rsync -av  --exclude 'jsons' ../group-data/members/ ./members
 
-      # - name: Setup directories inside group-data
-      #   run: |
-      #     cd group-data
-      #     mkdir members/common
-      #     mkdir website_data/research/sub_research_data/combined
 
+          source_directory="../group-data/members/"
+          destination_directory="members"
+          
+          
+          for dir in "$source_directory"/*; do
+              if [ -d "$dir" ]; then
+                  directory_name=$(basename "$dir")
+                  
+                  if [ -f "$dir/jsons/basic_info.json" ]; then
+                      kg_value=$(jq -r '.display.kg' "$dir/jsons/basic_info.json")
+                      
+                      if [ "$kg_value" == "true" ]; then
+                          rsync -av --exclude 'jsons' "$dir/" "$destination_directory/$directory_name"
+                      fi
+                  fi
+              fi
+          done
 
       - name: Install Jupyter and Python3
         run: |
