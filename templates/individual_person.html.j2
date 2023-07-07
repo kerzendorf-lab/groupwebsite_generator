@@ -259,12 +259,21 @@
                     <td>{{ basic_info.current_institute }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.group_start_year != "" and basic_info.group_end_year != "" and not basic_info.group_start_year.strip().lower().startswith("enter") and not basic_info.group_end_year.strip().lower().startswith("enter") %}
+                {% if basic_info.group_end_year %}
+                {% if basic_info.group_end_year != "" and not basic_info.group_start_year.strip().lower().startswith("enter")  %}
                 <tr>
                     <th scope="row">Duration:</th>
-                    <td>{{ basic_info.group_start_year }}-{{ basic_info.group_end_year }}</td>
+                    <td>{{ basic_info.group_start_year }} - {{ basic_info.group_end_year }}</td>
                 </tr>
                 {% endif %}
+                {% else %}
+                <tr>
+                    <th scope="row">Duration:</th>
+                    <td>Since {{ basic_info.group_start_year }}</td>
+                </tr>
+                {% endif %}
+                
+             
             </tbody>
         </table>
     </section>

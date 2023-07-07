@@ -645,7 +645,7 @@
                     {% for member_id in members %}
                         {% set data = MemberData(member_id) %}
                         {% set person = data.basic_info() %}
-                        {% if person.group_end_year|lower == "present" %}
+                        {% if group_end_year not in person %}
                             <div class="col-md-4 col-sm-6">
                                 <div class="card-container manual-flip">
                                     <div class="card">
@@ -757,7 +757,7 @@
         {% for member_id in members %}
         {% set data = MemberData(member_id) %}
         {% set person = data.basic_info() %}
-            {% if person.group_end_year|lower != "present" %}
+            {% if 'group_end_year' in person %}
                 <div class="text-center" style="padding-top: 5%;">
                     <h1> Alumni </h1>
                 </div>
@@ -772,7 +772,7 @@
                     {% for member_id in members %}
                         {% set data = MemberData(member_id) %}
                         {% set person = data.basic_info() %}
-                        {% if person.group_end_year|lower != "present" %}
+                        {% if 'group_end_year' in person %}
                             <div class="col-md-4 col-sm-6">
                                 <div class="card-container manual-flip">
                                     <div class="card">
