@@ -645,7 +645,7 @@
                     {% for member_id in members %}
                         {% set data = MemberData(member_id) %}
                         {% set person = data.basic_info() %}
-                        {% if group_end_date not in person %}
+                        {% if 'group_end_date' not in person %}
                             <div class="col-md-4 col-sm-6">
                                 <div class="card-container manual-flip">
                                     <div class="card">
