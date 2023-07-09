@@ -185,7 +185,7 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         {% for person in key %}
-                        {% if person['group_end_year']|lower == "present" %}
+                        {% if person['group_end_date']|lower == "present" %}
                         <div class="col-md-4 col-sm-6">
                             <div class="card-container manual-flip">
                                 <div class="card">
@@ -326,7 +326,7 @@
                     <div class="col-sm-10 col-sm-offset-1">
                         {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
                         {% for person in key %}
-                        {% if person['group_end_year']|lower == "present" %}
+                        {% if person['group_end_date']|lower == "present" %}
                         <div class="col-md-4 col-sm-6">
                             <div class="card-container manual-flip">
                                 <div class="card">
@@ -469,7 +469,7 @@
             {% for key in [faculty, post_docs, grads, undergrads, research_engineers, researchers] %}
             {% if key|length > 0 %}
             {% for person in key %}
-            {% if person['group_end_year']|lower != "present" %}
+            {% if person['group_end_date']|lower != "present" %}
             {% set break_loop = true %}
             <div class="text-center" style="padding-top: 5%;">
                 <h1> Alumni </h1>
@@ -488,7 +488,7 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
                         {% for person in key %}
-                        {% if person['group_end_year']|lower != "present" %}
+                        {% if person['group_end_date']|lower != "present" %}
                         <div class="col-md-4 col-sm-6">
                             <div class="card-container manual-flip">
                                 <div class="card">
@@ -645,7 +645,7 @@
                     {% for member_id in members %}
                         {% set data = MemberData(member_id) %}
                         {% set person = data.basic_info() %}
-                        {% if group_end_year not in person %}
+                        {% if group_end_date not in person %}
                             <div class="col-md-4 col-sm-6">
                                 <div class="card-container manual-flip">
                                     <div class="card">
@@ -757,7 +757,7 @@
         {% for member_id in members %}
         {% set data = MemberData(member_id) %}
         {% set person = data.basic_info() %}
-            {% if 'group_end_year' in person %}
+            {% if 'group_end_date' in person %}
                 <div class="text-center" style="padding-top: 5%;">
                     <h1> Alumni </h1>
                 </div>
@@ -772,7 +772,7 @@
                     {% for member_id in members %}
                         {% set data = MemberData(member_id) %}
                         {% set person = data.basic_info() %}
-                        {% if 'group_end_year' in person %}
+                        {% if 'group_end_date' in person %}
                             <div class="col-md-4 col-sm-6">
                                 <div class="card-container manual-flip">
                                     <div class="card">

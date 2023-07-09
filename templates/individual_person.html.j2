@@ -238,7 +238,114 @@
                 {% if basic_info.org != "" and not basic_info.org.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Organization:</th>
-                    <td>{{ basic_info.org }}</td>
+                    <td>{{ basic_info.org }}
+
+{% if basic_info.group_end_date %}
+    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
+        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
+        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+
+        {% set start_month_name = '' %}
+        {% set end_month_name = '' %}
+
+        {% if start_month == 1 %}
+            {% set start_month_name = 'Jan' %}
+        {% elif start_month == 2 %}
+            {% set start_month_name = 'Feb' %}
+        {% elif start_month == 3 %}
+            {% set start_month_name = 'Mar' %}
+        {% elif start_month == 4 %}
+            {% set start_month_name = 'Apr' %}
+        {% elif start_month == 5 %}
+            {% set start_month_name = 'May' %}
+        {% elif start_month == 6 %}
+            {% set start_month_name = 'Jun' %}
+        {% elif start_month == 7 %}
+            {% set start_month_name = 'Jul' %}
+        {% elif start_month == 8 %}
+            {% set start_month_name = 'Aug' %}
+        {% elif start_month == 9 %}
+            {% set start_month_name = 'Sep' %}
+        {% elif start_month == 10 %}
+            {% set start_month_name = 'Oct' %}
+        {% elif start_month == 11 %}
+            {% set start_month_name = 'Nov' %}
+        {% elif start_month == 12 %}
+            {% set start_month_name = 'Dec' %}
+        {% endif %}
+
+        {% if end_month == 1 %}
+            {% set end_month_name = 'Jan' %}
+        {% elif end_month == 2 %}
+            {% set end_month_name = 'Feb' %}
+        {% elif end_month == 3 %}
+            {% set end_month_name = 'Mar' %}
+        {% elif end_month == 4 %}
+            {% set end_month_name = 'Apr' %}
+        {% elif end_month == 5 %}
+            {% set end_month_name = 'May' %}
+        {% elif end_month == 6 %}
+            {% set end_month_name = 'Jun' %}
+        {% elif end_month == 7 %}
+            {% set end_month_name = 'Jul' %}
+        {% elif end_month == 8 %}
+            {% set end_month_name = 'Aug' %}
+        {% elif end_month == 9 %}
+            {% set end_month_name = 'Sep' %}
+        {% elif end_month == 10 %}
+            {% set end_month_name = 'Oct' %}
+        {% elif end_month == 11 %}
+            {% set end_month_name = 'Nov' %}
+        {% elif end_month == 12 %}
+            {% set end_month_name = 'Dec' %}
+        {% endif %}
+
+
+ <i>{{ '(' }} {{ start_month_name }} {{ start_year }} - {{ end_month_name }} {{ end_year }} {{ ')' }} </i>
+
+    {% endif %}
+{% else %}
+    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
+    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+
+    {% set start_month_name = '' %}
+
+    {% if start_month == 1 %}
+        {% set start_month_name = 'Jan' %}
+    {% elif start_month == 2 %}
+        {% set start_month_name = 'Feb' %}
+    {% elif start_month == 3 %}
+        {% set start_month_name = 'Mar' %}
+    {% elif start_month == 4 %}
+        {% set start_month_name = 'Apr' %}
+    {% elif start_month == 5 %}
+        {% set start_month_name = 'May' %}
+    {% elif start_month == 6 %}
+        {% set start_month_name = 'Jun' %}
+    {% elif start_month == 7 %}
+        {% set start_month_name = 'Jul' %}
+    {% elif start_month == 8 %}
+        {% set start_month_name = 'Aug' %}
+    {% elif start_month == 9 %}
+        {% set start_month_name = 'Sep' %}
+    {% elif start_month == 10 %}
+        {% set start_month_name = 'Oct' %}
+    {% elif start_month == 11 %}
+        {% set start_month_name = 'Nov' %}
+    {% elif start_month == 12 %}
+        {% set start_month_name = 'Dec' %}
+    {% endif %}
+
+
+ <i> {{ '(' }} Since  {{ start_month_name }} {{ start_year }} {{ ')' }} </i>
+{% endif %}
+
+
+                    </td>
+
+
                 </tr>
                 {% endif %}
                 {% if basic_info.academic_role != "" and not basic_info.academic_role.strip().lower().startswith("enter") %}
@@ -259,19 +366,115 @@
                     <td>{{ basic_info.current_institute }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.group_end_year %}
-                {% if basic_info.group_end_year != "" and not basic_info.group_start_year.strip().lower().startswith("enter")  %}
-                <tr>
-                    <th scope="row">Duration:</th>
-                    <td>{{ basic_info.group_start_year }} - {{ basic_info.group_end_year }}</td>
-                </tr>
-                {% endif %}
-                {% else %}
-                <tr>
-                    <th scope="row">Duration:</th>
-                    <td>Since {{ basic_info.group_start_year }}</td>
-                </tr>
-                {% endif %}
+
+ <!--
+
+
+{% if basic_info.group_end_date %}
+    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
+        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
+        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+
+        {% set start_month_name = '' %}
+        {% set end_month_name = '' %}
+
+        {% if start_month == 1 %}
+            {% set start_month_name = 'Jan' %}
+        {% elif start_month == 2 %}
+            {% set start_month_name = 'Feb' %}
+        {% elif start_month == 3 %}
+            {% set start_month_name = 'Mar' %}
+        {% elif start_month == 4 %}
+            {% set start_month_name = 'Apr' %}
+        {% elif start_month == 5 %}
+            {% set start_month_name = 'May' %}
+        {% elif start_month == 6 %}
+            {% set start_month_name = 'Jun' %}
+        {% elif start_month == 7 %}
+            {% set start_month_name = 'Jul' %}
+        {% elif start_month == 8 %}
+            {% set start_month_name = 'Aug' %}
+        {% elif start_month == 9 %}
+            {% set start_month_name = 'Sep' %}
+        {% elif start_month == 10 %}
+            {% set start_month_name = 'Oct' %}
+        {% elif start_month == 11 %}
+            {% set start_month_name = 'Nov' %}
+        {% elif start_month == 12 %}
+            {% set start_month_name = 'Dec' %}
+        {% endif %}
+
+        {% if end_month == 1 %}
+            {% set end_month_name = 'Jan' %}
+        {% elif end_month == 2 %}
+            {% set end_month_name = 'Feb' %}
+        {% elif end_month == 3 %}
+            {% set end_month_name = 'Mar' %}
+        {% elif end_month == 4 %}
+            {% set end_month_name = 'Apr' %}
+        {% elif end_month == 5 %}
+            {% set end_month_name = 'May' %}
+        {% elif end_month == 6 %}
+            {% set end_month_name = 'Jun' %}
+        {% elif end_month == 7 %}
+            {% set end_month_name = 'Jul' %}
+        {% elif end_month == 8 %}
+            {% set end_month_name = 'Aug' %}
+        {% elif end_month == 9 %}
+            {% set end_month_name = 'Sep' %}
+        {% elif end_month == 10 %}
+            {% set end_month_name = 'Oct' %}
+        {% elif end_month == 11 %}
+            {% set end_month_name = 'Nov' %}
+        {% elif end_month == 12 %}
+            {% set end_month_name = 'Dec' %}
+        {% endif %}
+
+        <tr>
+            <th scope="row">Duration:</th>
+            <td>{{ start_month_name }} {{ start_year }} - {{ end_month_name }} {{ end_year }}</td>
+        </tr>
+    {% endif %}
+{% else %}
+    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
+    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+
+    {% set start_month_name = '' %}
+
+    {% if start_month == 1 %}
+        {% set start_month_name = 'Jan' %}
+    {% elif start_month == 2 %}
+        {% set start_month_name = 'Feb' %}
+    {% elif start_month == 3 %}
+        {% set start_month_name = 'Mar' %}
+    {% elif start_month == 4 %}
+        {% set start_month_name = 'Apr' %}
+    {% elif start_month == 5 %}
+        {% set start_month_name = 'May' %}
+    {% elif start_month == 6 %}
+        {% set start_month_name = 'Jun' %}
+    {% elif start_month == 7 %}
+        {% set start_month_name = 'Jul' %}
+    {% elif start_month == 8 %}
+        {% set start_month_name = 'Aug' %}
+    {% elif start_month == 9 %}
+        {% set start_month_name = 'Sep' %}
+    {% elif start_month == 10 %}
+        {% set start_month_name = 'Oct' %}
+    {% elif start_month == 11 %}
+        {% set start_month_name = 'Nov' %}
+    {% elif start_month == 12 %}
+        {% set start_month_name = 'Dec' %}
+    {% endif %}
+
+    <tr>
+        <th scope="row">Duration:</th>
+        <td>Since {{ start_month_name }} {{ start_year }}</td>
+    </tr>
+{% endif %}
+-->
                 
              
             </tbody>
