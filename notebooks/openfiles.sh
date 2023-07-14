@@ -4,7 +4,7 @@
 group_data_folder="../../group-data"
 
 # Find all the basic_info.json files
-json_files=$(find "$group_data_folder/members" -type f -name "basic_info.json")
+json_files=$(find "$group_data_folder/members" -type f -name "experience.json")
 
 # Check if any files were found
 if [[ -z $json_files ]]; then

@@ -485,6 +485,7 @@
     {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
         {% set category = person[data]() %}
         {% if category %}
+        {% if category[data]['display'] %}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
             {% if category[data]['section'] != "" and not category[data]['section'].strip().lower().startswith("enter") %}
                 <h3 class="w3l-title-main">{{ category[data]['section'] }}</h3>
@@ -514,7 +515,7 @@
                 {% endfor %}
             </tbody>
         </table>
-
+        {% endif %}
         {% endif %}
         {% endfor %}
     </section>
@@ -523,6 +524,7 @@
     {% for data in ["publications", "documents"] %}
         {% set category = person[data]() %}
         {% if category %}
+          {% if category[data]['display'] %}
                 {% for key, value in category[data].items() %}
                     {% if key == "section" and value %}
                         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
@@ -564,6 +566,7 @@
                     {% endif %}
                 {% endfor %}
             {% endif %}
+             {% endif %}
         {% endfor %}
     </section>
 
@@ -571,6 +574,7 @@
     <section style="padding-left: 10%; padding-right:10%;">
         {% set media = person.website_media() %}
         {% if media %}
+        {% if media['posters']['display'] %}
         <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                             <h3 class="w3l-title-main">Posters</h3>
         </div>
@@ -613,6 +617,7 @@
             </ol>
             <br><br>
         </div>
+          {% endif %}
         {% endif %}
     </section>
 
