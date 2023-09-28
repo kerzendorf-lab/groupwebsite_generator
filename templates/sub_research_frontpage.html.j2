@@ -210,7 +210,7 @@
                                 {% set author_id = project_info['author_id'] %}
                                 {% if author_id %}
                                 {% set member = MemberData(author_id) %}
-                                {% set author_info = member.basic_info() %}
+                                {% set author_info = member.info() %}
 
                                 {% if author_info.nick_name != "" and not
                                 author_info.nick_name.strip().lower().startswith("enter") %}

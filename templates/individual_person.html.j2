@@ -5,16 +5,16 @@
     <!-- Required meta tags -->
 
     {% set person = MemberData(member_id) %}
-    {% set basic_info = person.basic_info() %}
+    {% set info = person.info() %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> {% if basic_info.nick_name != "" and not
-        basic_info.nick_name.strip().lower().startswith("enter")
+    <title> {% if info.nick_name != "" and not
+        info.nick_name.strip().lower().startswith("enter")
         %}
-        {{ basic_info.nick_name }}
+        {{ info.nick_name }}
         {% else %}
-        {{basic_info.first_name}}
+        {{info.first_name}}
 
         {% endif %}| {{ general.website_title }}</title>
 
@@ -135,70 +135,60 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="content-info-in row">
                     <div class="content-gd col-lg-6 pe-lg-5">
-                        <img src="{{ basic_info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
+                        <img src="{{ info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
-                           <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if basic_info.nick_name != "" and not
-        basic_info.nick_name.strip().lower().startswith("enter")
+                           <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if info.nick_name != "" and not
+        info.nick_name.strip().lower().startswith("enter")
         %}
-        {{ basic_info.nick_name }}
+        {{ info.nick_name }}
         {% else %}
-        {{basic_info.first_name}}
+        {{info.first_name}}
 
-        {% endif %}{{basic_info.last_name}}</h4>
-                        <p class="my-4 pe-lg-5">{{ basic_info.introduction }}</p>
-                        {% set social_links = person.social_links() %}
-                        {% if social_links %}
-                            <section class="w3l-contacts-12">
+        {% endif %}{{info.last_name}}</h4>
+                        <p class="my-4 pe-lg-5">{{ info.introduction }}</p>
+                       {% set social_links = person.social_links() %}
 
-                                <div class="container py-lg-4">
+    <section class="w3l-contacts-12">
+        <div class="container py-lg-4">
+            <div class="social-icons-con" style="text-align:center; padding-top:3%;">
+                <h4 class="mb-3">Connect with me:</h4>
 
-                                    <div class="social-icons-con" style="text-align:center; padding-top:3%;">
-                                        <h4 class="mb-3">Connect with me:</h4>
-                                        {% if social_links['social_media']['website'] != "" and not
-                                        social_links['social_media']['website'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['website']}}" target="_blank"><span class="fa fa-globe"
-                                                aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['github'] != "" and not
-                                        social_links['social_media']['github'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['github']}}" target="_blank"><span
-                                                class="fab fa-github-square" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['twitter'] != "" and not
-                                        social_links['social_media']['twitter'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['twitter']}}" target="_blank"><span
-                                                class="fab fa-twitter-square" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['linkedin'] != "" and not
-                                        social_links['social_media']['linkedin'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="{{social_links['social_media']['linkedin']}}" target="_blank"><span
-                                                class="fab fa-linkedin-in" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                        {% if social_links['social_media']['orcid'] != "" and not
-                                        social_links['social_media']['orcid'].strip().lower().startswith("enter")
-                                        %}
-                                        <a href="https://orcid.org/{{social_links['social_media']['orcid']}}" target="_blank"><span
-                                                class="fa fa-newspaper" aria-hidden="true"></span></a>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                {% set docs = person.documents() %}
-                                {% if docs %}
-                                    {% if docs['curriculum_vitae'] != "" and not docs['curriculum_vitae'].strip().lower().startswith("enter") %}
-                                        <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
-                                            <a href="{{docs['curriculum_vitae']}}" target="_blank">
-                                                <button class="click_button"><span>Download CV</span></button>
-                                            </a>
-                                        </div>
-                                    {% endif %}
-                                {% endif %}
-                            </section>
-                        {% endif %}
+                {% if social_links['website'] and not social_links['website'].strip().lower().startswith("enter") %}
+                <a href="{{social_links['website']}}" target="_blank"><span class="fa fa-globe" aria-hidden="true"></span></a>
+                {% endif %}
+
+                {% if social_links['github_handle'] and not social_links['github_handle'].strip().lower().startswith("enter") %}
+                <a href="https://github.com/{{social_links['github_handle']}}" target="_blank"><span class="fab fa-github-square" aria-hidden="true"></span></a>
+                {% endif %}
+
+                {% if social_links['twitter_handle'] and not social_links['twitter_handle'].strip().lower().startswith("enter") %}
+                <a href="https://twitter.com/{{social_links['twitter_handle']}}" target="_blank"><span class="fab fa-twitter-square" aria-hidden="true"></span></a>
+                {% endif %}
+
+                {% if social_links['linkedin_handle'] and not social_links['linkedin_handle'].strip().lower().startswith("enter") %}
+                <a href="https://linkedin.com/in/{{social_links['linkedin_handle']}}" target="_blank"><span class="fab fa-linkedin-in" aria-hidden="true"></span></a>
+                {% endif %}
+
+                {% if social_links['orcid'] and not social_links['orcid'].strip().lower().startswith("enter") %}
+                <a href="https://orcid.org/{{social_links['orcid']}}" target="_blank"><span class="fa fa-newspaper" aria-hidden="true"></span></a>
+                {% endif %}
+
+                <!-- Email is not provided in the original template. If you want to include it, you can add it similarly -->
+            </div>
+        </div>
+
+        {% set docs = person.documents() %}
+        {% if docs and docs['curriculum_vitae'] and not docs['curriculum_vitae'].strip().lower().startswith("enter") %}
+            <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
+                <a href="{{docs['curriculum_vitae']}}" target="_blank">
+                    <button class="click_button"><span>Download CV</span></button>
+                </a>
+            </div>
+        {% endif %}
+    </section>
+
+
                     </div>
                 </div>
             </div>
@@ -229,23 +219,23 @@
                 </tr>
             </thead>
             <tbody>
-                {% if basic_info.project_title != "" and not basic_info.project_title.strip().lower().startswith("enter") %}
+                {% if info.project_title != "" and not info.project_title.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Project&#40;s&#41;:</th>
-                    <td>{{ basic_info.project_title }}</td>
+                    <td>{{ info.project_title }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.org != "" and not basic_info.org.strip().lower().startswith("enter") %}
+                {% if info.org != "" and not info.org.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Organization:</th>
-                    <td>{{ basic_info.org }}
+                    <td>{{ info.org }}
 
-{% if basic_info.group_end_date %}
-    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
-        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
-        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
-        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+{% if info.group_end_date %}
+    {% if info.group_end_date != "" and not info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = info.group_start_date.split('-')[0] | int %}
+        {% set start_year = info.group_start_date.split('-')[2] | int %}
+        {% set end_month = info.group_end_date.split('-')[0] | int %}
+        {% set end_year = info.group_end_date.split('-')[2] | int %}
 
         {% set start_month_name = '' %}
         {% set end_month_name = '' %}
@@ -307,8 +297,8 @@
 
     {% endif %}
 {% else %}
-    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+    {% set start_month = info.group_start_date.split('-')[0] | int %}
+    {% set start_year = info.group_start_date.split('-')[2] | int %}
 
     {% set start_month_name = '' %}
 
@@ -348,34 +338,34 @@
 
                 </tr>
                 {% endif %}
-                {% if basic_info.academic_role != "" and not basic_info.academic_role.strip().lower().startswith("enter") %}
+                {% if info.academic_role != "" and not info.academic_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Primary Role:</th>
-                    <td>{{ basic_info.academic_role }}</td>
+                    <td>{{ info.academic_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.secondary_role != "" and not basic_info.secondary_role.strip().lower().startswith("enter") %}
+                {% if info.secondary_role != "" and not info.secondary_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Secondary Role:</th>
-                    <td>{{ basic_info.secondary_role }}</td>
+                    <td>{{ info.secondary_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.current_institute != "" and not basic_info.current_institute.strip().lower().startswith("enter") %}
+                {% if info.current_institute != "" and not info.current_institute.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Current Institute:</th>
-                    <td>{{ basic_info.current_institute }}</td>
+                    <td>{{ info.current_institute }}</td>
                 </tr>
                 {% endif %}
 
  <!--
 
 
-{% if basic_info.group_end_date %}
-    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
-        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
-        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
-        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+{% if info.group_end_date %}
+    {% if info.group_end_date != "" and not info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = info.group_start_date.split('-')[0] | int %}
+        {% set start_year = info.group_start_date.split('-')[2] | int %}
+        {% set end_month = info.group_end_date.split('-')[0] | int %}
+        {% set end_year = info.group_end_date.split('-')[2] | int %}
 
         {% set start_month_name = '' %}
         {% set end_month_name = '' %}
@@ -438,8 +428,8 @@
         </tr>
     {% endif %}
 {% else %}
-    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+    {% set start_month = info.group_start_date.split('-')[0] | int %}
+    {% set start_year = info.group_start_date.split('-')[2] | int %}
 
     {% set start_month_name = '' %}
 
@@ -482,43 +472,209 @@
     </section>
 
     <section style="padding-left: 10%; padding-right:10%;">
-    {% for data in ["education", "experience", "projects", "awards", "outreach"] %}
-        {% set category = person[data]() %}
-        {% if category %}
-        {% if category[data]['display'] %}
-        <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
-            {% if category[data]['section'] != "" and not category[data]['section'].strip().lower().startswith("enter") %}
-                <h3 class="w3l-title-main">{{ category[data]['section'] }}</h3>
-            {% endif %}
-        </div>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    {% for key, value in category[data].headings.items() %}
-                    {% if value != "" and not value.strip().lower().startswith("enter") %}
-                    <th scope="col">{{ value }}</th>
-                    {% endif %}
-                    {% endfor %}
-                </tr>
-            </thead>
-            <tbody>
-                {% for key, row in category[data].items() %}
-                {% if "row" in key %}
-                <tr>
-                    {% for cell in row.values() %}
-                    {% if cell != "" and not cell.strip().lower().startswith("enter") %}
-                    <td>{{ cell }}</td>
-                    {% endif %}
-                    {% endfor %}
-                </tr>
-                {% endif %}
-                {% endfor %}
-            </tbody>
-        </table>
+
+<div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+    <h3 class="w3l-title-main">Education</h3>
+</div>
+{% for record in person['education'] %}
+<table class="table table-hover mb-5">
+    <tbody>
+        <tr>
+            <th scope="row">Degree</th>
+            <td>{{ record['degree'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Subject</th>
+            <td>{{ record['subject'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Institution</th>
+            <td>{{ record['institution'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">City</th>
+            <td>{{ record['city'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">State</th>
+            <td>{{ record['state'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Country</th>
+            <td>{{ record['country'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Start Date</th>
+            <td>{{ record['start_date'] }}</td>
+        </tr>
+        {% if 'end_date' in record %}
+        <tr>
+            <th scope="row">End Date</th>
+            <td>{{ record['end_date'] }}</td>
+        </tr>
         {% endif %}
-        {% endif %}
-        {% endfor %}
+    </tbody>
+</table>
+{% endfor %}
+
+
     </section>
+
+
+
+ <section style="padding-left: 10%; padding-right:10%;">
+    {% if person['education'] %}
+<div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+    <h3 class="w3l-title-main">Education</h3>
+</div>
+{% for record in person['education'] %}
+<table class="table table-hover mb-5">
+    <tbody>
+        <tr>
+            <th scope="row">Degree</th>
+            <td>{{ record['degree'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Subject</th>
+            <td>{{ record['subject'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Institution</th>
+            <td>{{ record['institution'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">City</th>
+            <td>{{ record['city'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">State</th>
+            <td>{{ record['state'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Country</th>
+            <td>{{ record['country'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Start Date</th>
+            <td>{{ record['start_date'] }}</td>
+        </tr>
+        {% if 'end_date' in record %}
+        <tr>
+            <th scope="row">End Date</th>
+            <td>{{ record['end_date'] }}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endfor %}
+{% endif %}
+
+    </section>
+
+<div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+    <h3 class="w3l-title-main">Experiences</h3>
+</div>
+{% for record in person['experiences'] %}
+<table class="table table-hover mb-5">
+    <tbody>
+        <tr>
+            <th scope="row">Institute</th>
+            <td>{{ record['institute'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">City</th>
+            <td>{{ record['city'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">State</th>
+            <td>{{ record['state'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Country</th>
+            <td>{{ record['country'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Role</th>
+            <td>{{ record.get('role', record.get('degree', '')) }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Start Date</th>
+            <td>{{ record['start_date'] }}</td>
+        </tr>
+        {% if 'end_date' in record %}
+        <tr>
+            <th scope="row">End Date</th>
+            <td>{{ record['end_date'] }}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endfor %}
+
+
+<div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+    <h3 class="w3l-title-main">Outreach</h3>
+</div>
+{% for record in person['outreach'] %}
+<table class="table table-hover mb-5">
+    <tbody>
+        <tr>
+            <th scope="row">Program Name</th>
+            <td>{{ record['program_name'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Start Date</th>
+            <td>{{ record['start_date'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Description</th>
+            <td>{{ record['description'] }}</td>
+        </tr>
+    </tbody>
+</table>
+{% endfor %}
+
+<div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+    <h3 class="w3l-title-main">Roles</h3>
+</div>
+{% for record in person['roles'] %}
+<table class="table table-hover mb-5">
+    <tbody>
+        <tr>
+            <th scope="row">Institute</th>
+            <td>{{ record['institute'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">City</th>
+            <td>{{ record['city'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">State</th>
+            <td>{{ record['state'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Country</th>
+            <td>{{ record['country'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Role</th>
+            <td>{{ record['role'] }}</td>
+        </tr>
+        <tr>
+            <th scope="row">Start Date</th>
+            <td>{{ record['start_date'] }}</td>
+        </tr>
+        {% if 'end_date' in record %}
+        <tr>
+            <th scope="row">End Date</th>
+            <td>{{ record['end_date'] }}</td>
+        </tr>
+        {% endif %}
+    </tbody>
+</table>
+{% endfor %}
+
+
 
     <section style="padding-left: 10%; padding-right:10%;">
     {% for data in ["publications", "documents"] %}

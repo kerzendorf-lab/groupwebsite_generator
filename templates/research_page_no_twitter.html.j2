@@ -162,7 +162,7 @@
 					{% set project_info = content_data.load_json() %}
 					{% set author_id = project_info['author_id'] %}
 					{% set author = MemberData(author_id) %}
-					{% set author_info = author.basic_info() %}
+					{% set author_info = author.info() %}
 
 					{% if author_info.nick_name != "" and not
 					author_info.nick_name.strip().lower().startswith("enter") %}
@@ -224,7 +224,7 @@
 											{% for person_id in project_info.people_involved_ids %}
 											{% if person_id in member_ids.values.tolist() %}
 											{% set member_data = MemberData(person_id) %}
-											{% set member_info = member_data.basic_info() %}
+											{% set member_info = member_data.info() %}
 
 											{% if member_info.nick_name != "" and not
 											member_info.nick_name.strip().lower().startswith("enter") %}
@@ -249,7 +249,7 @@
 										<!-- For false value members-->
 										{% elif person_id in nonmem_ids.values.tolist() %}
 										{% set member_data = MemberData(person_id) %}
-										{% set member_info = member_data.basic_info() %}
+										{% set member_info = member_data.info() %}
 										{% if member_info.nick_name != "" and not
 										member_info.nick_name.strip().lower().startswith("enter") %}
 										{% set member_name = member_info.nick_name %}
