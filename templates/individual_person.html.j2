@@ -5,16 +5,16 @@
     <!-- Required meta tags -->
 
     {% set person = MemberData(member_id) %}
-    {% set basic_info = person.basic_info() %}
+    {% set info = person.info() %}
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title> {% if basic_info.nick_name != "" and not
-        basic_info.nick_name.strip().lower().startswith("enter")
+    <title> {% if info.nick_name != "" and not
+        info.nick_name.strip().lower().startswith("enter")
         %}
-        {{ basic_info.nick_name }}
+        {{ info.nick_name }}
         {% else %}
-        {{basic_info.first_name}}
+        {{info.first_name}}
 
         {% endif %}| {{ general.website_title }}</title>
 
@@ -135,18 +135,18 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="content-info-in row">
                     <div class="content-gd col-lg-6 pe-lg-5">
-                        <img src="{{ basic_info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
+                        <img src="{{ info.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
-                           <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if basic_info.nick_name != "" and not
-        basic_info.nick_name.strip().lower().startswith("enter")
+                           <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if info.nick_name != "" and not
+        info.nick_name.strip().lower().startswith("enter")
         %}
-        {{ basic_info.nick_name }}
+        {{ info.nick_name }}
         {% else %}
-        {{basic_info.first_name}}
+        {{info.first_name}}
 
-        {% endif %}{{basic_info.last_name}}</h4>
-                        <p class="my-4 pe-lg-5">{{ basic_info.introduction }}</p>
+        {% endif %}{{info.last_name}}</h4>
+                        <p class="my-4 pe-lg-5">{{ info.introduction }}</p>
                         {% set social_links = person.social_links() %}
                         {% if social_links %}
                             <section class="w3l-contacts-12">
@@ -229,23 +229,23 @@
                 </tr>
             </thead>
             <tbody>
-                {% if basic_info.project_title != "" and not basic_info.project_title.strip().lower().startswith("enter") %}
+                {% if info.project_title != "" and not info.project_title.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Project&#40;s&#41;:</th>
-                    <td>{{ basic_info.project_title }}</td>
+                    <td>{{ info.project_title }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.org != "" and not basic_info.org.strip().lower().startswith("enter") %}
+                {% if info.org != "" and not info.org.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Organization:</th>
-                    <td>{{ basic_info.org }}
+                    <td>{{ info.org }}
 
-{% if basic_info.group_end_date %}
-    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
-        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
-        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
-        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+{% if info.group_end_date %}
+    {% if info.group_end_date != "" and not info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = info.group_start_date.split('-')[0] | int %}
+        {% set start_year = info.group_start_date.split('-')[2] | int %}
+        {% set end_month = info.group_end_date.split('-')[0] | int %}
+        {% set end_year = info.group_end_date.split('-')[2] | int %}
 
         {% set start_month_name = '' %}
         {% set end_month_name = '' %}
@@ -307,8 +307,8 @@
 
     {% endif %}
 {% else %}
-    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+    {% set start_month = info.group_start_date.split('-')[0] | int %}
+    {% set start_year = info.group_start_date.split('-')[2] | int %}
 
     {% set start_month_name = '' %}
 
@@ -348,34 +348,34 @@
 
                 </tr>
                 {% endif %}
-                {% if basic_info.academic_role != "" and not basic_info.academic_role.strip().lower().startswith("enter") %}
+                {% if info.academic_role != "" and not info.academic_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Primary Role:</th>
-                    <td>{{ basic_info.academic_role }}</td>
+                    <td>{{ info.academic_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.secondary_role != "" and not basic_info.secondary_role.strip().lower().startswith("enter") %}
+                {% if info.secondary_role != "" and not info.secondary_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Secondary Role:</th>
-                    <td>{{ basic_info.secondary_role }}</td>
+                    <td>{{ info.secondary_role }}</td>
                 </tr>
                 {% endif %}
-                {% if basic_info.current_institute != "" and not basic_info.current_institute.strip().lower().startswith("enter") %}
+                {% if info.current_institute != "" and not info.current_institute.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Current Institute:</th>
-                    <td>{{ basic_info.current_institute }}</td>
+                    <td>{{ info.current_institute }}</td>
                 </tr>
                 {% endif %}
 
  <!--
 
 
-{% if basic_info.group_end_date %}
-    {% if basic_info.group_end_date != "" and not basic_info.group_start_date.strip().lower().startswith("enter") %}
-        {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-        {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
-        {% set end_month = basic_info.group_end_date.split('-')[0] | int %}
-        {% set end_year = basic_info.group_end_date.split('-')[2] | int %}
+{% if info.group_end_date %}
+    {% if info.group_end_date != "" and not info.group_start_date.strip().lower().startswith("enter") %}
+        {% set start_month = info.group_start_date.split('-')[0] | int %}
+        {% set start_year = info.group_start_date.split('-')[2] | int %}
+        {% set end_month = info.group_end_date.split('-')[0] | int %}
+        {% set end_year = info.group_end_date.split('-')[2] | int %}
 
         {% set start_month_name = '' %}
         {% set end_month_name = '' %}
@@ -438,8 +438,8 @@
         </tr>
     {% endif %}
 {% else %}
-    {% set start_month = basic_info.group_start_date.split('-')[0] | int %}
-    {% set start_year = basic_info.group_start_date.split('-')[2] | int %}
+    {% set start_month = info.group_start_date.split('-')[0] | int %}
+    {% set start_year = info.group_start_date.split('-')[2] | int %}
 
     {% set start_month_name = '' %}
 

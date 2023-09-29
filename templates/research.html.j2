@@ -209,7 +209,7 @@
                                 {% set author_id = project_info['author_id'] %}
                                 {% if author_id %}
                                 {% set member = MemberData(author_id) %}
-                                {% set author_info = member.basic_info() %}
+                                {% set author_info = member.info() %}
                                 {% set author_name = author_info['nick_name'] if author_info['nick_name'] else
                                 author_info['first_name'] + ' ' + author_info['last_name'] %}
                                 <div class="author align-items-center">
