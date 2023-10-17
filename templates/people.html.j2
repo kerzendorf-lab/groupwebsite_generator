@@ -160,22 +160,22 @@
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                            {% if person.website and person.website != "" %}
+                                                             {% if person.website and person.website != "" %}
                                                             <a href="{{ person.website }}" target="_blank">
                                                                 <i class="fa fa-globe fa-fw"></i></a>
                                                             {% endif %}
                                                             {% if person.twitter_handle and person.twitter_handle != ""
                                                             %}
-                                                            <a href="{{ person.twitter_handle}}" target="_blank">
+                                                            <a href="https://www.twitter.com/{{ person.twitter_handle}}" target="_blank">
                                                                 <i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
                                                             {% if person.linkedin_handle and person.linkedin_handle !=
                                                             "" %}
-                                                            <a href="{{person.linkedin_handle }}" target="_blank">
+                                                            <a href="https://www.linkedin.com/in/{{person.linkedin_handle }}" target="_blank">
                                                                 <i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
                                                             {% if person.github_handle and person.github_handle != "" %}
-                                                            <a href="{{ person.github_handle }}" target="_blank">
+                                                            <a href="https://www.github.com/{{ person.github_handle }}" target="_blank">
                                                                 <i class="fa fa-github"></i></a>
                                                             {% endif %}
                                                             {% if person.email and person.email != "" %}
@@ -305,11 +305,11 @@
                                                             {% endif %}
                                                             {% if person.linkedin_handle and person.linkedin_handle !=
                                                             "" %}
-                                                            <a href="https://www.linkedin.com/{{person.linkedin_handle }}" target="_blank">
+                                                            <a href="https://www.linkedin.com/in/{{person.linkedin_handle }}" target="_blank">
                                                                 <i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
                                                             {% if person.github_handle and person.github_handle != "" %}
-                                                            <a href="https://www.gihub.com/{{ person.github_handle }}" target="_blank">
+                                                            <a href="https://www.github.com/{{ person.github_handle }}" target="_blank">
                                                                 <i class="fa fa-github"></i></a>
                                                             {% endif %}
                                                             {% if person.email and person.email != "" %}
