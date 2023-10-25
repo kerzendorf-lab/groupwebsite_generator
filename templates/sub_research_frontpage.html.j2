@@ -156,15 +156,15 @@
 
     <section class="w3l-blog">
         <div class="blog py-5" id="Newsblog">
-            {% set project_list = content[(content['category'] == category)] %}
-            {% if project_list.shape[0] > 0 %}
+            {% set writeup_list = content[(content['category'] == category)] %}
+            {% if writeup_list.shape[0] > 0 %}
             <div class="text-center" style="padding-top: 5%;">
                 <h1>{{ category }}</h1>
                 <br>
                 <div class="container py-lg-5 py-md-4 py-2">
                     <div class="row">
                         <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{
-                            research_general[category]['about'] }}</p>
+                            research[category]['about'] }}</p>
                     </div>
                 </div>
             </div>
