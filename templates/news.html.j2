@@ -96,7 +96,7 @@
                                             src="{{ news_info.cover_image }}" alt="array">
                                     </a>
                                     <div class="date">
-                                        <p>{{ news_info.date.strftime('%d-%m-%Y') }}</p>
+                                        <p>{{ news_info.date.strftime('%m-%d-%Y') }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -133,23 +133,18 @@
                                         <li>
                                             <a style="font-size:10px">Contributer(s):</a>
                                         </li>
-                                        <!-- Check for loop -->
                                         {% for person_id in news_info.people_involved_ids %}
-                                        <!-- Check if loop -->
                                         {% if person_id in member_data %}
 
                                             {% set member_info = member_data[person_id] %}
-                                            <!-- Check here -->
-                                            {{ member_data[name]}}
 
                                             {% set member_name = member_info.get('name') %}
                                         <li>
                                             <a href="/members/{{ person_id }}/{{ person_id }}.html" target="_blank">
-                                                <p style="font-size: 10px; height:35px"> {{member_name}}</p>
+                                                <p style="font-size: 10px; height:35px"> {{member_name.strip().split(" ")[0]}}</p>
                                             </a>
                                         </li>
 
-                                        {# 
                                             {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
                                             person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
                                             <li>
@@ -158,25 +153,6 @@
                                                     {{ person_id.strip().split(' ')[0] }}
                                                 </a>
                                             </li>
-                                        #}
-
-                                        {#
-                                            {% elif person_id in nonmem_ids.values.tolist() %}
-                                            {% set member_info = member_data.basic_info() %}
-                                            {% if member_info.nick_name != "" and not
-                                            member_info.nick_name.strip().lower().startswith("enter") %}
-                                                {% set member_name = member_info.nick_name %}
-                                            {% elif member_info.first_name != "" and not
-                                            member_info.first_name.strip().lower().startswith("enter") %}
-                                                {% set member_name = member_info.first_name %}
-                                            {% endif %}
-                                            <li>
-                                                <a href="/members/{{ person_id }}/{{ person_id }}.html" target="_blank"
-                                                    style="font-size: 10px; ">
-                                                    {{ member_name }}
-                                                </a>
-                                            </li>
-                                                #}
                                         
                                         {% else %}
                                         <li>
