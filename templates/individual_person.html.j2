@@ -59,19 +59,19 @@
                                                     class="fa fa-globe"
                                                     aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "github" in social_links and social_links['github'] != "" and not
-                                        social_links['github'].strip().lower().startswith("enter") %}
-                                            <a href="{{ social_links['github'] }}" target="_blank"><span
+                                        {% if "github_handle" in social_links and social_links['github_handle'] != "" and not
+                                        social_links['github_handle'].strip().lower().startswith("enter") %}
+                                            <a href="https://github.com/{{ social_links['github_handle'] }}" target="_blank"><span
                                                     class="fab fa-github-square" aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "twitter" in social_links and social_links['twitter'] != "" and not
-                                        social_links['twitter'].strip().lower().startswith("enter") %}
-                                            <a href="{{ social_links['twitter'] }}" target="_blank"><span
+                                        {% if "twitter_handle" in social_links and social_links['twitter_handle'] != "" and not
+                                        social_links['twitter_handle'].strip().lower().startswith("enter") %}
+                                            <a href="https://twitter.com/{{ social_links['twitter_handle'] }}" target="_blank"><span
                                                     class="fab fa-twitter-square" aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "linkedin" in social_links and social_links['linkedin'] != "" and not
-                                        social_links['linkedin'].strip().lower().startswith("enter") %}
-                                            <a href="{{ social_links['linkedin'] }}" target="_blank"><span
+                                        {% if "linkedin_handle" in social_links and social_links['linkedin_handle'] != "" and not
+                                        social_links['linkedin_handle'].strip().lower().startswith("enter") %}
+                                            <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}" target="_blank"><span
                                                     class="fab fa-linkedin-in" aria-hidden="true"></span></a>
                                         {% endif %}
                                         {% if "orcid" in social_links and social_links['orcid'] != "" and not
