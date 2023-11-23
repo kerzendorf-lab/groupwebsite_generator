@@ -3,15 +3,15 @@ name: Update Group Website
 on:
   workflow_dispatch:
   workflow_run:
-     workflows: ["Check Webhook Dispatch"]
-     types: 
-       - completed
+    workflows: ["Check Webhook Dispatch"]
+    types:
+      - completed
   push:
-     branches:
-       - main
-     paths-ignore:
-       - 'group-data/**'
-: '
+    branches:
+      - main
+    paths-ignore:
+      - "group-data/**"
+
 jobs:
   Update_website:
     name: Updating website
@@ -25,9 +25,9 @@ jobs:
 
       - name: Clone repositories
         run: |
-          git clone git@github.com:kerzendorf-group/group-data.git
-          git clone git@github.com:kerzendorf-group/groupwebsite_generator.git
-          git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
+          git clone git@github.com:KasukabeDefenceForce/group-data.git
+          git clone git@github.com:KasukabeDefenceForce/groupwebsite_generator.git
+          git clone git@github.com:KasukabeDefenceForce/kerzendorf-group.github.io.git
 
       - name: List clones
         run: |
@@ -50,8 +50,8 @@ jobs:
 
           source_directory="../group-data/members/"
           destination_directory="members"
-          
-          
+
+
           for dir in "$source_directory"/*; do
               if [ -d "$dir" ]; then
                   directory_name=$(basename "$dir")
@@ -95,4 +95,3 @@ jobs:
           git add .
           git commit --allow-empty -m "Pushed from website generator"
           git push
-'
