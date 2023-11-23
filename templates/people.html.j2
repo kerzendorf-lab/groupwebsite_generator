@@ -83,33 +83,36 @@
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                             {% if person.website and person.website != "" %}
-                                                            <a href="{{ person.website }}" target="_blank">
+                                                        {% set social_links = person.social_links %}
+                                                        {% if social_links %}
+                                                            {% if social_links.website and social_links.website != "" %}
+                                                            <a href="{{ social_links.website }}" target="_blank">
                                                                 <i class="fa fa-globe fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.twitter_handle and person.twitter_handle != ""
+                                                            {% if social_links.twitter_handle and social_links.twitter_handle != ""
                                                             %}
-                                                            <a href="https://www.twitter.com/{{ person.twitter_handle}}" target="_blank">
+                                                            <a href="https://www.twitter.com/{{ social_links.twitter_handle}}" target="_blank">
                                                                 <i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.linkedin_handle and person.linkedin_handle !=
+                                                            {% if social_links.linkedin_handle and social_links.linkedin_handle !=
                                                             "" %}
-                                                            <a href="https://www.linkedin.com/in/{{person.linkedin_handle }}" target="_blank">
+                                                            <a href="https://www.linkedin.com/in/{{social_links.linkedin_handle }}" target="_blank">
                                                                 <i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
-                                                            {% if person.github_handle and person.github_handle != "" %}
-                                                            <a href="https://www.github.com/{{ person.github_handle }}" target="_blank">
+                                                            {% if social_links.github_handle and social_links.github_handle != "" %}
+                                                            <a href="https://www.github.com/{{ social_links.github_handle }}" target="_blank">
                                                                 <i class="fa fa-github"></i></a>
                                                             {% endif %}
-                                                            {% if person.email and person.email != "" %}
-                                                            <a href="{{ person.email }}" target="_blank">
+                                                            {% if social_links.email and social_links.email != "" %}
+                                                            <a href="mailto:{{ social_links.email }}" target="_blank">
                                                                 <i class="fa fa-envelope"></i></a>
                                                             {% endif %}
-                                                            {% if person.orcid and person.orcid != "" %}
-                                                            <a href="https://orcid.org/{{ person.orcid  }}"
-                                                                target="_blank">
-                                                                <i class="fa fa-newspaper"></i></a>
+                                                            {% if social_links.orcid and social_links.orcid != "" %}
+                                                                <a href="https://orcid.org/{{ social_links.orcid  }}"
+                                                                    target="_blank">
+                                                                    <i class="fa fa-newspaper"></i></a>
                                                             {% endif %}
+                                                        {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
@@ -217,33 +220,36 @@
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                            {% if person.website and person.website != "" %}
-                                                            <a href="{{ person.website }}" target="_blank">
+                                                            {% set social_links = person.social_links %}
+                                                        {% if social_links %}
+                                                            {% if social_links.website and social_links.website != "" %}
+                                                            <a href="{{ social_links.website }}" target="_blank">
                                                                 <i class="fa fa-globe fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.twitter_handle and person.twitter_handle != ""
+                                                            {% if social_links.twitter_handle and social_links.twitter_handle != ""
                                                             %}
-                                                            <a href="https://www.twitter.com/{{ person.twitter_handle}}" target="_blank">
+                                                            <a href="https://www.twitter.com/{{ social_links.twitter_handle}}" target="_blank">
                                                                 <i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if person.linkedin_handle and person.linkedin_handle !=
+                                                            {% if social_links.linkedin_handle and social_links.linkedin_handle !=
                                                             "" %}
-                                                            <a href="https://www.linkedin.com/in/{{person.linkedin_handle }}" target="_blank">
+                                                            <a href="https://www.linkedin.com/in/{{social_links.linkedin_handle }}" target="_blank">
                                                                 <i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
-                                                            {% if person.github_handle and person.github_handle != "" %}
-                                                            <a href="https://www.github.com/{{ person.github_handle }}" target="_blank">
+                                                            {% if social_links.github_handle and social_links.github_handle != "" %}
+                                                            <a href="https://www.github.com/{{ social_links.github_handle }}" target="_blank">
                                                                 <i class="fa fa-github"></i></a>
                                                             {% endif %}
-                                                            {% if person.email and person.email != "" %}
-                                                            <a href="{{ person.email }}" target="_blank">
+                                                            {% if social_links.email and social_links.email != "" %}
+                                                            <a href="mailto:{{ social_links.email }}" target="_blank">
                                                                 <i class="fa fa-envelope"></i></a>
                                                             {% endif %}
-                                                            {% if person.orcid and person.orcid != "" %}
-                                                            <a href="https://orcid.org/{{ person.orcid  }}"
-                                                                target="_blank">
-                                                                <i class="fa fa-newspaper"></i></a>
+                                                            {% if social_links.orcid and social_links.orcid != "" %}
+                                                                <a href="https://orcid.org/{{ social_links.orcid  }}"
+                                                                    target="_blank">
+                                                                    <i class="fa fa-newspaper"></i></a>
                                                             {% endif %}
+                                                        {% endif %}
                                                         </div>
                                                     </div>
                                                 </div>
