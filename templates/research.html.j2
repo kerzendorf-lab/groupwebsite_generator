@@ -85,7 +85,8 @@
                         {% for _, writeup in writeup_list.iterrows() %}
                         
                         
-                        {% if counter < 3 %} <div class="col-lg-4 col-md-6 item">
+                        {% if counter < 3 %} 
+                        <div class="col-lg-4 col-md-6 item">
                             <div class="card">
                                 <div class="card-header p-0 position-relative">
                                     <a href="sub_research/{{ category|replace(' ', '_')|lower }}/{{ writeup['article_id']|lower }}.html"
@@ -94,7 +95,7 @@
                                             src="{{ writeup.cover_image }}" alt="array">
                                     </a>
                                     <div class="date">
-                                        <p>{{ writeup.date }}</p>
+                                        <p>{{ writeup.date.strftime('%m-%d-%Y') }}</p>
                                     </div>
                                 </div>
                                 <div class="card-body blog-details" style="max-height: 220px">
