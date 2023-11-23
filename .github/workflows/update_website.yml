@@ -33,38 +33,10 @@ jobs:
         run: |
           ls -a
 
-      - name: Clear cloned website repo
+      - name: Clear and setup directories inside kerzendorf-group.github.io
         run: |
-          cd kerzendorf-group.github.io
-          rm -rf index.html Research.html Contact.html People.html Support.html News.html
-          rm -rf assets website_files members sub_research support_images news
-
-      - name: Setup directories inside kerzendorf-group.github.io
-        run: |
-          cd kerzendorf-group.github.io
-          mkdir members sub_research news
-          cp -r ../group-data/website_data/website_files ./
-          cp -r ../groupwebsite_generator/assets ./
-          # rsync -av  --exclude 'jsons' ../group-data/members/ ./members
-
-
-          source_directory="../group-data/members/"
-          destination_directory="members"
-
-
-          for dir in "$source_directory"/*; do
-              if [ -d "$dir" ]; then
-                  directory_name=$(basename "$dir")
-                  
-                  if [ -f "$dir/jsons/basic_info.json" ]; then
-                      kg_value=$(jq -r '.display.kg' "$dir/jsons/basic_info.json")
-                      
-                      if [ "$kg_value" == "true" ]; then
-                          rsync -av --exclude 'jsons' "$dir/" "$destination_directory/$directory_name"
-                      fi
-                  fi
-              fi
-          done
+          cd groupwebsite_generator
+          ./notebooks/setup.sh
 
       - name: Install Jupyter and Python3
         run: |
@@ -77,14 +49,9 @@ jobs:
       - name: Run Notebooks
         run: |
           cd groupwebsite_generator
-          jupyter nbconvert --to python notebooks/*.ipynb
-          # python3 notebooks/jsons_prep.py
           cd notebooks
+          jupyter nbconvert --to python create_htmls.ipynb
           python3 create_htmls.py
-          #for python_file_name in $(find notebooks -name "*.py")
-          # do
-          #    python3 "$python_file_name"
-          #  done
 
       - name: Push Website
         env:
