@@ -4,48 +4,7 @@
     {{ general.website_title }}
 {% endblock %}
 
-{% block top_header %}
-    <!-- top header >
-    <section class="w3l-top-header">
-        <div class="container">
-            <div class="top-content-w3ls d-flex align-items-center justify-content-between">
-                <div class="top-headers">
-                    <ul>
-                        <li>
-                            <i class="fa fa-map-marker-alt"></i><a href="#address">London, 235 Terry, 10001</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-phone"></i><a href="tel:+1(21) 234 4567">+1(21) 234 4567</a>
-                        </li>
-                        <li>
-                            <i class="fa fa-envelope"></i><a href="mailto:mail@example.com">mail@example.com</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="top-headers top-headers-2">
-                    <ul>
-                        <li>
-                            <a href="#facebook"><span class="fab fa-facebook-f"></span></a>
-                        </li>
-                        <li>
-                            <a href="#twitter"><span class="fab fa-twitter"></span></a>
-                        </li>
-                        <li>
-                            <a href="#instagram"><span class="fab fa-instagram"></span></a>
-                        </li>
-                        <li class=" mr-0">
-                            <a href="#linkedin"><span class="fab fa-linkedin-in"></span></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //top header -->
-{% endblock %}
-
 {% block content %}
-
     <!-- about banner -->
     <section class="w3l-about-breadcrumb text-center">
         <div class="breadcrumb-bg breadcrumb-bg-people py-5">
@@ -60,8 +19,6 @@
     </section>
     <!-- //about banner -->
 
-
-
     <!-- About Section-->
         <section class="w3l-about py-5" id="about">
             <div class="container py-md-5 py-2">
@@ -72,12 +29,8 @@
                         <img src="{{ homepage.about_images.img_2 }}" alt="" class="img-fluid">
                     </div>
                     <div class="col-lg-6 w3l-about-info px-lg-4 align-center">
-
                         <h3 class="w3l-title-main mb-2">{{ homepage.header }}</h3>
                         <p class="my-4 pe-lg-5" style=" font-size: 18px;">{{ homepage.main_paragraph }}</p>
-
-        
-
                     </div>
                 </div>
             </div>
@@ -124,167 +77,4 @@
             </div>
         </section>
     <!-- //Projects Section -->
-
-    <!-- Stats Section>
-    <section class="w3l-stats-section py-5" id="stats">
-        <div class="container py-lg-5 py-md-4 py-3">
-            <div class="w3l-stats-inner-inf py-lg-4">
-                <div class="row stats-con">
-                    <div class="col-lg-3 col-6 stats_info counter_grid">
-                        <div class="d-flex">
-                            <i class="fas fa-chalkboard-teacher"></i>
-                            <p class="counter"> 10 </p>
-                        </div>
-                        <h3>Institutions</h3>
-                    </div>
-                    <div class="col-lg-3 col-6 stats_info counter_grid">
-                        <div class="d-flex">
-                            <i class="fas fa-users"></i>
-                            <p class="counter"> 20 </p>
-                        </div>
-                        <h3>Group Members</h3>
-                    </div>
-                    <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-sm-5 mt-5">
-                        <div class="d-flex">
-                            <i class="fas fa-code"></i>
-                            <p class="counter"> 10000 </p>
-                        </div>
-                        <h3>Lines of code</h3>
-                    </div>
-                    <div class="col-lg-3 col-6 stats_info counter_grid mt-lg-0 mt-sm-5 mt-5">
-                        <div class="d-flex">
-                            <i class="fas fa-project-diagram"></i>
-                            <p class="counter"> 14 </p>
-                        </div>
-                        <h3>Projects </h3>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //Stats Section-->
-
-
-    <!--/testimonials>
-    <section class="w3l-clients py-5" id="testimonials">
-        <div class="container py-sm-5 py-2">
-            <div class="text-center mb-sm-5 mb-4">
-                <h6 class="w3l-title-small mb-2">Testimonials</h6>
-                <h3 class="w3l-title-main mb-2">What people say about us</h3>
-            </div>
-            <div class="w3-testimonial-grids align-items-center pt-md-4">
-                <div class="w3-testimonial-content-top">
-                    <div id="owl-demo1" class="owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="testimonial-content">
-                                <div class="test-img"><img src="website_files/images/homepage/team1.jpg" class="img-fluid"
-                                        alt="client-img">
-
-                                </div>
-                                <div class="testimonial">
-                                    <blockquote>
-                                        <q>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae
-                                            laudantium
-                                            voluptate rem ullam dolore nisi esse quasi, doloribus tempora. voluptate rem
-                                            ullam dolore nisi voluptatibus esse quasi, tempora. Lorem ipsum dolor amet
-                                            elit in ligula.</q>
-
-                                    </blockquote>
-                                    <div class="testi-des">
-
-                                        <div class="peopl align-self">
-                                            <h3>Charlotte Lucy</h3>
-                                            <p class="indentity">UI/UX Designer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-content">
-                                <div class="test-img"><img src="website_files/images/homepage/team2.jpg" class="img-fluid"
-                                        alt="client-img">
-
-                                </div>
-                                <div class="testimonial">
-                                    <blockquote>
-                                        <q>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae
-                                            laudantium
-                                            voluptate rem ullam dolore nisi esse quasi, doloribus tempora. voluptate rem
-                                            ullam dolore nisi voluptatibus esse quasi, tempora. Lorem ipsum dolor amet
-                                            elit in ligula.</q>
-
-                                    </blockquote>
-                                    <div class="testi-des">
-
-                                        <div class="peopl align-self">
-                                            <h3>Olivia Stella</h3>
-                                            <p class="indentity">Marketing officer</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-content">
-                                <div class="test-img"><img src="website_files/images/homepage/team3.jpg" class="img-fluid"
-                                        alt="client-img">
-
-                                </div>
-                                <div class="testimonial">
-                                    <blockquote>
-                                        <q>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae
-                                            laudantium
-                                            voluptate rem ullam dolore nisi esse quasi, doloribus tempora. voluptate rem
-                                            ullam dolore nisi voluptatibus esse quasi, tempora. Lorem ipsum dolor amet
-                                            elit in ligula.</q>
-
-                                    </blockquote>
-                                    <div class="testi-des">
-
-                                        <div class="peopl align-self">
-                                            <h3>Jackson Jack</h3>
-                                            <p class="indentity">Co-Manager</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="testimonial-content">
-                                <div class="test-img"><img src="website_files/images/homepage/team4.jpg" class="img-fluid"
-                                        alt="client-img">
-
-                                </div>
-                                <div class="testimonial">
-                                    <blockquote>
-                                        <q>
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit beatae
-                                            laudantium
-                                            voluptate rem ullam dolore nisi esse quasi, doloribus tempora. voluptate rem
-                                            ullam dolore nisi voluptatibus esse quasi, tempora. Lorem ipsum dolor amet
-                                            elit in ligula.</q>
-
-                                    </blockquote>
-                                    <div class="testi-des">
-
-                                        <div class="peopl align-self">
-                                            <h3>David Samuel</h3>
-                                            <p class="indentity">Co-Founder</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- //testimonials -->
-
 {% endblock %}

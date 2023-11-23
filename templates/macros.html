@@ -1,0 +1,11 @@
+{%- macro relativize_link(link) -%}
+    {%- if TEMPLATE_LEVEL == 0 -%}
+        {{- link -}}
+    {%- else -%}
+        {%- set parts = [] -%}
+        {%- for idx in range(TEMPLATE_LEVEL) -%}
+            {%- do parts.append("..") -%}
+        {%- endfor -%}
+        {{- parts|join("/") ~ "/" ~ link -}}
+    {%- endif -%}
+{%- endmacro -%}

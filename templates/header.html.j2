@@ -2,14 +2,10 @@
     <div class="container">
         <nav class="navbar navbar-expand-lg stroke">
             <h1>
-                <a class="navbar-brand" href="/index.html">
+                <a class="navbar-brand" href="{{ relativize_link('./index.html') }}">
                     <!--span class="fa fa-lightbulb"></span--> {{ general.logo_title }}
                 </a>
             </h1>
-            <!-- if logo is image enable this
-        <a class="navbar-brand" href="#index.html">
-            <img src="image-path" alt="Your logo" title="Your logo" style="height:35px;" />
-        </a> -->
             <button class="navbar-toggler collapsed bg-gradient" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -20,41 +16,38 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav ms-lg-auto">
                     {% for page in general["navigation_bar"] %}
-                        {% if page not in general %}
-                            <!--<li class="nav-item active">-->
-                            {% if page == "index" %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/{{ page_link(page) }}.html">Home<span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-
-                            {% else %}
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/{{ page_link(page) }}.html">{{ page }} <span
-                                            class="sr-only">(current)</span></a>
-                                </li>
-
-                            {% endif %}
-                        {% else %}
-                            {% if page in general %}
-                                <li class="nav-item">
-
-                                    <a class="nav-link dropdown-toggle" href="/{{ page_link(page) }}.html"
-                                       id="navbarDropdown"
-                                       role="button" data-bs-toggle="dropdown" aria-haspopup="true"
-                                       aria-expanded="false">
-                                        {{ page }} <span class="fas fa-angle-down"></span>
+                        {% set link = "./" ~ page_link(page) ~ ".html" %}
+                        <li class="nav-item">
+                            {% if page not in general %}
+                                {% if page == "index" %}
+                                    <a class="nav-link" href="{{ relativize_link(link) }}">
+                                        Home <span class="sr-only">(current)</span>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        {% for sub_page in general[page] %}
-                                            <a class="dropdown-item"
-                                               href="/sub_research/{{ page_link(sub_page)|lower }}.html">{{ sub_page }}</a>
-                                        {% endfor %}
-                                    </div>
-                                </li>
+                                {% else %}
+                                    <a class="nav-link" href="{{ relativize_link(link) }}">
+                                        {{ page }} <span class="sr-only">(current)</span>
+                                    </a>
+                                {% endif %}
+                            {% else %}
+                                <a class="nav-link dropdown-toggle"
+                                   href="{{ relativize_link(link) }}"
+                                   id="navbarDropdown"
+                                   role="button"
+                                   data-bs-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false">
+                                    {{ page }} <span class="fas fa-angle-down"></span>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    {% for sub_page in general[page] %}
+                                        {% set sub_page_link = "./sub_research/" ~ page_link(sub_page) ~ ".html" %}
+                                        <a class="dropdown-item" href="{{ relativize_link(sub_page_link) }}">
+                                            {{ sub_page }}
+                                        </a>
+                                    {% endfor %}
+                                </div>
                             {% endif %}
-
-                        {% endif %}
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
