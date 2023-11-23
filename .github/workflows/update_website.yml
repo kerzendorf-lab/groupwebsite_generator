@@ -79,7 +79,8 @@ jobs:
           cd groupwebsite_generator
           jupyter nbconvert --to python notebooks/*.ipynb
           # python3 notebooks/jsons_prep.py
-          python3 notebooks/create_htmls.py
+          cd notebooks
+          python3 create_htmls.py
           #for python_file_name in $(find notebooks -name "*.py")
           # do
           #    python3 "$python_file_name"
