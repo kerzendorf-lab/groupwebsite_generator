@@ -40,7 +40,7 @@
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     {% for sub_page in general[page] %}
-                                        {% set sub_page_link = "./sub_research/" ~ page_link(sub_page) ~ ".html" %}
+                                        {% set sub_page_link = "./sub_research/" ~ page_link(sub_page)|lower ~ ".html" %}
                                         <a class="dropdown-item" href="{{ relativize_link(sub_page_link) }}">
                                             {{ sub_page }}
                                         </a>
