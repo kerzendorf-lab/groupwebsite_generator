@@ -1,4 +1,5 @@
 {% extends 'base.html.j2' %}
+{% from 'macros.html.j2' import format_years %}
 
 {% block title %}
     {% if "nick_name" in basic_info and basic_info.nick_name != "" and not basic_info.nick_name.strip().lower().startswith("enter") %}
@@ -62,17 +63,20 @@
                                         {% endif %}
                                         {% if "github_handle" in social_links and social_links['github_handle'] != "" and not
                                         social_links['github_handle'].strip().lower().startswith("enter") %}
-                                            <a href="https://github.com/{{ social_links['github_handle'] }}" target="_blank"><span
+                                            <a href="https://github.com/{{ social_links['github_handle'] }}"
+                                               target="_blank"><span
                                                     class="fab fa-github-square" aria-hidden="true"></span></a>
                                         {% endif %}
                                         {% if "twitter_handle" in social_links and social_links['twitter_handle'] != "" and not
                                         social_links['twitter_handle'].strip().lower().startswith("enter") %}
-                                            <a href="https://twitter.com/{{ social_links['twitter_handle'] }}" target="_blank"><span
+                                            <a href="https://twitter.com/{{ social_links['twitter_handle'] }}"
+                                               target="_blank"><span
                                                     class="fab fa-twitter-square" aria-hidden="true"></span></a>
                                         {% endif %}
                                         {% if "linkedin_handle" in social_links and social_links['linkedin_handle'] != "" and not
                                         social_links['linkedin_handle'].strip().lower().startswith("enter") %}
-                                            <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}" target="_blank"><span
+                                            <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}"
+                                               target="_blank"><span
                                                     class="fab fa-linkedin-in" aria-hidden="true"></span></a>
                                         {% endif %}
                                         {% if "orcid" in social_links and social_links['orcid'] != "" and not
@@ -121,242 +125,132 @@
                     <td>{{ member_data.current_project_title }}</td>
                 </tr>
             {% endif %}
-{#            {% if "org" in member_data and member_data.org != "" and not member_data.org.strip().lower().startswith("enter") %}#}
-{#                <tr>#}
-{#                    <th scope="row">Organization:</th>#}
-{#                    <td>{{ member_data.org }}#}
-{##}
-{#                        {% if "group_end_date" in member_data and member_data.group_end_date %}#}
-{#                            {% if "group_end_date" in member_data and member_data.group_end_date != "" and not member_data.group_start_date.strip().lower().startswith("enter") %}#}
-{#                                {% set start_month = member_data.group_start_date.split('-')[0] | int %}#}
-{#                                {% set start_year = member_data.group_start_date.split('-')[2] | int %}#}
-{#                                {% set end_month = member_data.group_end_date.split('-')[0] | int %}#}
-{#                                {% set end_year = member_data.group_end_date.split('-')[2] | int %}#}
-{##}
-{#                                {% set start_month_name = '' %}#}
-{#                                {% set end_month_name = '' %}#}
-{##}
-{#                                {% if start_month == 1 %}#}
-{#                                    {% set start_month_name = 'Jan' %}#}
-{#                                {% elif start_month == 2 %}#}
-{#                                    {% set start_month_name = 'Feb' %}#}
-{#                                {% elif start_month == 3 %}#}
-{#                                    {% set start_month_name = 'Mar' %}#}
-{#                                {% elif start_month == 4 %}#}
-{#                                    {% set start_month_name = 'Apr' %}#}
-{#                                {% elif start_month == 5 %}#}
-{#                                    {% set start_month_name = 'May' %}#}
-{#                                {% elif start_month == 6 %}#}
-{#                                    {% set start_month_name = 'Jun' %}#}
-{#                                {% elif start_month == 7 %}#}
-{#                                    {% set start_month_name = 'Jul' %}#}
-{#                                {% elif start_month == 8 %}#}
-{#                                    {% set start_month_name = 'Aug' %}#}
-{#                                {% elif start_month == 9 %}#}
-{#                                    {% set start_month_name = 'Sep' %}#}
-{#                                {% elif start_month == 10 %}#}
-{#                                    {% set start_month_name = 'Oct' %}#}
-{#                                {% elif start_month == 11 %}#}
-{#                                    {% set start_month_name = 'Nov' %}#}
-{#                                {% elif start_month == 12 %}#}
-{#                                    {% set start_month_name = 'Dec' %}#}
-{#                                {% endif %}#}
-{##}
-{#                                {% if end_month == 1 %}#}
-{#                                    {% set end_month_name = 'Jan' %}#}
-{#                                {% elif end_month == 2 %}#}
-{#                                    {% set end_month_name = 'Feb' %}#}
-{#                                {% elif end_month == 3 %}#}
-{#                                    {% set end_month_name = 'Mar' %}#}
-{#                                {% elif end_month == 4 %}#}
-{#                                    {% set end_month_name = 'Apr' %}#}
-{#                                {% elif end_month == 5 %}#}
-{#                                    {% set end_month_name = 'May' %}#}
-{#                                {% elif end_month == 6 %}#}
-{#                                    {% set end_month_name = 'Jun' %}#}
-{#                                {% elif end_month == 7 %}#}
-{#                                    {% set end_month_name = 'Jul' %}#}
-{#                                {% elif end_month == 8 %}#}
-{#                                    {% set end_month_name = 'Aug' %}#}
-{#                                {% elif end_month == 9 %}#}
-{#                                    {% set end_month_name = 'Sep' %}#}
-{#                                {% elif end_month == 10 %}#}
-{#                                    {% set end_month_name = 'Oct' %}#}
-{#                                {% elif end_month == 11 %}#}
-{#                                    {% set end_month_name = 'Nov' %}#}
-{#                                {% elif end_month == 12 %}#}
-{#                                    {% set end_month_name = 'Dec' %}#}
-{#                                {% endif %}#}
-{#                                <i>{{ '(' }} {{ start_month_name }} {{ start_year }}#}
-{#                                    - {{ end_month_name }} {{ end_year }} {{ ')' }} </i>#}
-{#                            {% endif %}#}
-{#                        {% else %}#}
-{#                            {% set start_month = member_data.group_start_date.split('-')[0] | int %}#}
-{#                            {% set start_year = member_data.group_start_date.split('-')[2] | int %}#}
-{##}
-{#                            {% set start_month_name = '' %}#}
-{##}
-{#                            {% if start_month == 1 %}#}
-{#                                {% set start_month_name = 'Jan' %}#}
-{#                            {% elif start_month == 2 %}#}
-{#                                {% set start_month_name = 'Feb' %}#}
-{#                            {% elif start_month == 3 %}#}
-{#                                {% set start_month_name = 'Mar' %}#}
-{#                            {% elif start_month == 4 %}#}
-{#                                {% set start_month_name = 'Apr' %}#}
-{#                            {% elif start_month == 5 %}#}
-{#                                {% set start_month_name = 'May' %}#}
-{#                            {% elif start_month == 6 %}#}
-{#                                {% set start_month_name = 'Jun' %}#}
-{#                            {% elif start_month == 7 %}#}
-{#                                {% set start_month_name = 'Jul' %}#}
-{#                            {% elif start_month == 8 %}#}
-{#                                {% set start_month_name = 'Aug' %}#}
-{#                            {% elif start_month == 9 %}#}
-{#                                {% set start_month_name = 'Sep' %}#}
-{#                            {% elif start_month == 10 %}#}
-{#                                {% set start_month_name = 'Oct' %}#}
-{#                            {% elif start_month == 11 %}#}
-{#                                {% set start_month_name = 'Nov' %}#}
-{#                            {% elif start_month == 12 %}#}
-{#                                {% set start_month_name = 'Dec' %}#}
-{#                            {% endif %}#}
-{#                            <i> {{ '(' }} Since {{ start_month_name }} {{ start_year }} {{ ')' }} </i>#}
-{#                        {% endif %}#}
-{#                    </td>#}
-{#                </tr>#}
-{#            {% endif %}#}
             {% if "academic_role" in member_data and member_data.academic_role and member_data.academic_role != "" and not member_data.academic_role.strip().lower().startswith("enter") %}
                 <tr>
                     <th scope="row">Primary Role:</th>
                     <td>{{ member_data.academic_role }}</td>
                 </tr>
             {% endif %}
-{#            {% if "secondary_role" in member_data and member_data.secondary_role != "" and not member_data.secondary_role.strip().lower().startswith("enter") %}#}
-{#                <tr>#}
-{#                    <th scope="row">Secondary Role:</th>#}
-{#                    <td>{{ member_data.secondary_role }}</td>#}
-{#                </tr>#}
-{#            {% endif %}#}
-{#            {% if "current_institute" in member_data and member_data.current_institute != "" and not member_data.current_institute.strip().lower().startswith("enter") %}#}
-{#                <tr>#}
-{#                    <th scope="row">Current Institute:</th>#}
-{#                    <td>{{ member_data.current_institute }}</td>#}
-{#                </tr>#}
-{#            {% endif %}#}
-{##}
-{#                        <!--#}
-{##}
-{##}
-{#                {% if member_data.group_end_date %}#}
-{##}
-{#                            {% if "group_end_date" in member_data and member_data.group_end_date != "" and not member_data.group_start_date.strip().lower().startswith("enter") %}#}
-{#                        {% set start_month = member_data.group_start_date.split('-')[0] | int %}#}
-{#                        {% set start_year = member_data.group_start_date.split('-')[2] | int %}#}
-{#                        {% set end_month = member_data.group_end_date.split('-')[0] | int %}#}
-{#                        {% set end_year = member_data.group_end_date.split('-')[2] | int %}#}
-{##}
-{#                        {% set start_month_name = '' %}#}
-{#                        {% set end_month_name = '' %}#}
-{##}
-{#                        {% if start_month == 1 %}#}
-{#                            {% set start_month_name = 'Jan' %}#}
-{#                        {% elif start_month == 2 %}#}
-{#                            {% set start_month_name = 'Feb' %}#}
-{#                        {% elif start_month == 3 %}#}
-{#                            {% set start_month_name = 'Mar' %}#}
-{#                        {% elif start_month == 4 %}#}
-{#                            {% set start_month_name = 'Apr' %}#}
-{#                        {% elif start_month == 5 %}#}
-{#                            {% set start_month_name = 'May' %}#}
-{#                        {% elif start_month == 6 %}#}
-{#                            {% set start_month_name = 'Jun' %}#}
-{#                        {% elif start_month == 7 %}#}
-{#                            {% set start_month_name = 'Jul' %}#}
-{#                        {% elif start_month == 8 %}#}
-{#                            {% set start_month_name = 'Aug' %}#}
-{#                        {% elif start_month == 9 %}#}
-{#                            {% set start_month_name = 'Sep' %}#}
-{#                        {% elif start_month == 10 %}#}
-{#                            {% set start_month_name = 'Oct' %}#}
-{#                        {% elif start_month == 11 %}#}
-{#                            {% set start_month_name = 'Nov' %}#}
-{#                        {% elif start_month == 12 %}#}
-{#                            {% set start_month_name = 'Dec' %}#}
-{#                        {% endif %}#}
-{##}
-{#                        {% if end_month == 1 %}#}
-{#                            {% set end_month_name = 'Jan' %}#}
-{#                        {% elif end_month == 2 %}#}
-{#                            {% set end_month_name = 'Feb' %}#}
-{#                        {% elif end_month == 3 %}#}
-{#                            {% set end_month_name = 'Mar' %}#}
-{#                        {% elif end_month == 4 %}#}
-{#                            {% set end_month_name = 'Apr' %}#}
-{#                        {% elif end_month == 5 %}#}
-{#                            {% set end_month_name = 'May' %}#}
-{#                        {% elif end_month == 6 %}#}
-{#                            {% set end_month_name = 'Jun' %}#}
-{#                        {% elif end_month == 7 %}#}
-{#                            {% set end_month_name = 'Jul' %}#}
-{#                        {% elif end_month == 8 %}#}
-{#                            {% set end_month_name = 'Aug' %}#}
-{#                        {% elif end_month == 9 %}#}
-{#                            {% set end_month_name = 'Sep' %}#}
-{#                        {% elif end_month == 10 %}#}
-{#                            {% set end_month_name = 'Oct' %}#}
-{#                        {% elif end_month == 11 %}#}
-{#                            {% set end_month_name = 'Nov' %}#}
-{#                        {% elif end_month == 12 %}#}
-{#                            {% set end_month_name = 'Dec' %}#}
-{#                        {% endif %}#}
-{##}
-{#                        <tr>#}
-{#                            <th scope="row">Duration:</th>#}
-{#                            <td>{{ start_month_name }} {{ start_year }} - {{ end_month_name }} {{ end_year }}</td>#}
-{#                        </tr>#}
-{#                    {% endif %}#}
-{#                {% else %}#}
-{#                    {% set start_month = member_data.group_start_date.split('-')[0] | int %}#}
-{#                    {% set start_year = member_data.group_start_date.split('-')[2] | int %}#}
-{##}
-{#                    {% set start_month_name = '' %}#}
-{##}
-{#                    {% if start_month == 1 %}#}
-{#                        {% set start_month_name = 'Jan' %}#}
-{#                    {% elif start_month == 2 %}#}
-{#                        {% set start_month_name = 'Feb' %}#}
-{#                    {% elif start_month == 3 %}#}
-{#                        {% set start_month_name = 'Mar' %}#}
-{#                    {% elif start_month == 4 %}#}
-{#                        {% set start_month_name = 'Apr' %}#}
-{#                    {% elif start_month == 5 %}#}
-{#                        {% set start_month_name = 'May' %}#}
-{#                    {% elif start_month == 6 %}#}
-{#                        {% set start_month_name = 'Jun' %}#}
-{#                    {% elif start_month == 7 %}#}
-{#                        {% set start_month_name = 'Jul' %}#}
-{#                    {% elif start_month == 8 %}#}
-{#                        {% set start_month_name = 'Aug' %}#}
-{#                    {% elif start_month == 9 %}#}
-{#                        {% set start_month_name = 'Sep' %}#}
-{#                    {% elif start_month == 10 %}#}
-{#                        {% set start_month_name = 'Oct' %}#}
-{#                    {% elif start_month == 11 %}#}
-{#                        {% set start_month_name = 'Nov' %}#}
-{#                    {% elif start_month == 12 %}#}
-{#                        {% set start_month_name = 'Dec' %}#}
-{#                    {% endif %}#}
-{##}
-{#                    <tr>#}
-{#                        <th scope="row">Duration:</th>#}
-{#                        <td>Since {{ start_month_name }} {{ start_year }}</td>#}
-{#                    </tr>#}
-{#                {% endif %}#}
-{#                -->#}
-
             </tbody>
         </table>
+    </section>
+
+    <section style="padding-left: 10%; padding-right:10%;">
+        {% if category_data["education"] %}
+            <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+                <h3 class="w3l-title-main">{{ section_headings["education"] }}</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Institution</th>
+                        <th scope="col">Years</th>
+                        <th scope="col">Qualification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in category_data["education"] %}
+                        <tr>
+                            <td>{{ row["institution"] }}</td>
+                            <td>{{ format_years(row) }}</td>
+                            <td>{{ row["degree"] }} in {{ row["subject"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if category_data["experiences"] %}
+            <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+                <h3 class="w3l-title-main">{{ section_headings["experiences"] }}</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Institute</th>
+                        <th scope="col">Years</th>
+                        <th scope="col">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in category_data["experiences"] %}
+                        <tr>
+                            <td>{{ row["institution"] }}</td>
+                            <td>{{ format_years(row) }}</td>
+                            <td>{{ row["role"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if category_data["projects"] %}
+            <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+                <h3 class="w3l-title-main">{{ section_headings["projects"] }}</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Project</th>
+                        <th scope="col">Years</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in category_data["projects"] %}
+                        <tr>
+                            <td>{{ row["project_title"] }}</td>
+                            <td>{{ format_years(row) }}</td>
+                            <td>{{ row["description"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if category_data["awards"] %}
+            <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+                <h3 class="w3l-title-main">{{ section_headings["awards"] }}</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Given For</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in category_data["awards"] %}
+                        <tr>
+                            <td>{{ row["award_name"] }}</td>
+                            <td>{{ format_years(row) }}</td>
+                            <td>{{ row["description"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+        {% if category_data["outreach"] %}
+            <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
+                <h3 class="w3l-title-main">{{ section_headings["outreach"] }}</h3>
+            </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Program Name</th>
+                        <th scope="col">Year</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in category_data["outreach"] %}
+                        <tr>
+                            <td>{{ row["program_name"] }}</td>
+                            <td>{{ format_years(row) }}</td>
+                            <td>{{ row["description"] }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
     </section>
 
     <!-- Research and News -->
@@ -429,7 +323,7 @@
 
 {% block additional_script %}
     <!-- magnific popup -->
-    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="../../assets/js/jquery.magnific-popup.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.popup-with-zoom-anim').magnificPopup({
