@@ -2,18 +2,14 @@ name: Update Group Website
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Check Webhook Dispatch"]
-    types:
-      - completed
+  repository_dispatch:
+    types: [repo-push]
   push:
     branches:
       - main
-    paths-ignore:
-      - "group-data/**"
 
 jobs:
-  Update_website:
+  update_website:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
@@ -45,9 +41,6 @@ jobs:
           sudo -H pip3 install --upgrade pip
           pip3 install jupyter
           pip3 install pandas
-
-      - name: Run Notebooks
-        run: |
           cd groupwebsite_generator
           cd notebooks
           jupyter nbconvert --to python create_htmls.ipynb
