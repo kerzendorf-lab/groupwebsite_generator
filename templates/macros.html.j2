@@ -1,0 +1,24 @@
+{%- macro relativize_link(link) -%}
+    {%- if TEMPLATE_LEVEL == 0 -%}
+        {{- link -}}
+    {%- else -%}
+        {%- set parts = [] -%}
+        {%- for idx in range(TEMPLATE_LEVEL) -%}
+            {%- do parts.append("..") -%}
+        {%- endfor -%}
+        {{- parts|join("/") ~ "/" ~ link -}}
+    {%- endif -%}
+{%- endmacro -%}
+
+{%- macro format_years(row) -%}
+    {%- if row.get("date") -%}
+        {{ row["date"][:4] }}
+    {%- elif row.get("start_date") -%}
+        {{ row["start_date"][:4] }} - {{ " " }}
+        {%- if row.get("end_date") -%}
+            {{ row["end_date"][:4] }}
+        {%- else -%}
+            Present
+        {%- endif -%}
+    {%- endif -%}
+{%- endmacro -%}

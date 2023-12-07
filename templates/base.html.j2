@@ -1,0 +1,156 @@
+{% from 'macros.html.j2' import relativize_link with context %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- google-fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;500;700;900&display=swap" rel="stylesheet">
+    {% block additional_fonts %}
+    {% endblock %}
+    <!-- //google-fonts -->
+
+    <!-- Template CSS Style link -->
+    <link rel="stylesheet" href="{{ relativize_link('./assets/css/style-liberty.css') }}">
+
+    {% block additional_style %}
+    {% endblock %}
+</head>
+
+<body>
+
+    {% block top_header %}
+    {% endblock %}
+
+    <!--header-->
+    {% include 'header.html.j2' %}
+    <!--//header-->
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- footer block -->
+    {% include 'footer.html.j2' %}
+    <!-- //footer block -->
+
+    <!-- Js scripts -->
+    <!-- move top -->
+    <button onclick="topFunction()" id="movetop" title="Go to top">
+        <span class="fas fa-level-up-alt" aria-hidden="true"></span>
+    </button>
+
+    <script>
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function () {
+            scrollFunction()
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                document.getElementById("movetop").style.display = "block";
+            } else {
+                document.getElementById("movetop").style.display = "none";
+            }
+        }
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+    <!-- //move top -->
+
+    <!-- common jquery plugin -->
+    <script src="{{ relativize_link('./assets/js/jquery-3.3.1.min.js') }}"></script>
+    <!-- //common jquery plugin -->
+
+    <!-- theme switch js (light and dark)-->
+    <script src="{{ relativize_link('./assets/js/theme-change.js') }}"></script>
+    <!-- //theme switch js (light and dark)-->
+
+    <!--/stats-number-counter-->
+    <script src="{{ relativize_link('./assets/js/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ relativize_link('./assets/js/jquery.countup.js') }}"></script>
+    <script>
+        $('.counter').countUp();
+    </script>
+    <!--//stats-number-counter-->
+
+    <!--bootstrap-->
+    <script src="{{ relativize_link('./assets/js/bootstrap.min.js') }}"></script>
+    <!-- //bootstrap-->
+
+    <!--/owlcarousel-->
+    <script src="{{ relativize_link('./assets/js/owl.carousel.js') }}"></script>
+    <!-- //tesimonials-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo1").owlCarousel({
+                loop: true,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: false
+                    },
+                    736: {
+                        items: 1,
+                        nav: false
+                    }
+                }
+            })
+        })
+    </script>
+    <!-- //tesimonials-->
+
+    {% block additional_script %}
+    {% endblock %}
+
+    <!-- MENU-JS -->
+    <script>
+        $(window).on("scroll", function () {
+            var scroll = $(window).scrollTop();
+
+            if (scroll >= 80) {
+                $("#site-header").addClass("nav-fixed");
+            } else {
+                $("#site-header").removeClass("nav-fixed");
+            }
+        });
+
+        //Main navigation Active Class Add Remove
+        $(".navbar-toggler").on("click", function () {
+            $("header").toggleClass("active");
+        });
+        $(document).on("ready", function () {
+            if ($(window).width() > 991) {
+                $("header").removeClass("active");
+            }
+            $(window).on("resize", function () {
+                if ($(window).width() > 991) {
+                    $("header").removeClass("active");
+                }
+            });
+        });
+    </script>
+    <!-- //MENU-JS -->
+
+    <!-- disable body scroll which navbar is in active -->
+    <script>
+        $(function () {
+            $('.navbar-toggler').click(function () {
+                $('body').toggleClass('noscroll');
+            })
+        });
+    </script>
+    <!-- //disable body scroll which navbar is in active -->
+
+    <!-- //Js scripts -->
+
+</body>
+</html>
