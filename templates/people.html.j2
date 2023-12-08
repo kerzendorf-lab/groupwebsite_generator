@@ -61,8 +61,13 @@
                                         <div class="user">
                                             <a
                                                 href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                {% if person.image_path %}
                                                 <img class="img-circle"
                                                     src="members/{{ page_link(person.id) }}/{{ person.image_path }}">
+                                                {% else %}
+                                                 <img class="img-circle"
+                                                    src="website_files/images/default_face_image.jpeg">
+                                                {% endif %}
                                             </a>
                                         </div>
                                         <div class="content">
