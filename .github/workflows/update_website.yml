@@ -13,17 +13,25 @@ jobs:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
-        with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      - name: Clone repositories
-        run: |
-          git clone git@github.com:kerzendorf-group/group-data.git
-          git clone git@github.com:kerzendorf-group/groupwebsite_generator.git
-          git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
+      - name: Clone groupwebsite_generator
+        uses: actions/checkout@v4
+        with:
+          path: groupwebsite_generator
+
+      - name: Clone group-data
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-group/group-data
+          path: group-data
+          token: ${{ secrets.TARDIS_BOT_TOKEN }}
+
+      - name: Clone kerzendorf-group.github.io
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-group/kerzendorf-group.github.io
+          path: kerzendorf-group.github.io
+          token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
       - name: Set up Python3
         uses: actions/setup-python@v4
@@ -46,8 +54,6 @@ jobs:
         working-directory: ./groupwebsite_generator/notebooks
 
       - name: Push Website
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
