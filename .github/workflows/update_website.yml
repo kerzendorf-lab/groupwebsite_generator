@@ -13,15 +13,6 @@ jobs:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Python3
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.12"
-
-      - name: Update pip and install Jupyter and Pandas
-        run: |
-          pip install --upgrade pip jupyter pandas
-
       - name: Setup SSH
         uses: MrSquaare/ssh-setup-action@v1
         with:
@@ -33,6 +24,15 @@ jobs:
           git clone git@github.com:kerzendorf-group/group-data.git
           git clone git@github.com:kerzendorf-group/groupwebsite_generator.git
           git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
+
+      - name: Set up Python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Update pip and install Jupyter and Pandas
+        run: |
+          pip install --upgrade pip jupyter pandas
 
       - name: Clear and setup directories inside kerzendorf-group.github.io
         run: |
