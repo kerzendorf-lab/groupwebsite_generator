@@ -41,8 +41,7 @@ jobs:
 
       - name: Update pip and install Jupyter and Pandas
         run: |
-          pip3 install --upgrade pip
-          pip3 install jupyter pandas
+          pip install --upgrade pip jupyter pandas
 
       - name: Run Notebooks
         run: |
