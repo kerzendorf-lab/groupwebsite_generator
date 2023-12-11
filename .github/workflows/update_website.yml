@@ -36,22 +36,22 @@ jobs:
 
       - name: Clear and setup directories inside kerzendorf-group.github.io
         run: |
-          cd groupwebsite_generator
           ./notebooks/setup.sh
+        working-directory: ./groupwebsite_generator
 
       - name: Run Notebooks
         run: |
-          cd groupwebsite_generator/notebooks
           jupyter nbconvert --to python create_htmls.ipynb
           python3 create_htmls.py
+        working-directory: ./groupwebsite_generator/notebooks
 
       - name: Push Website
         env:
           ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd kerzendorf-group.github.io
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
           git commit --allow-empty -m "Push from website generator"
           git push
+        working-directory: ./kerzendorf-group.github.io
