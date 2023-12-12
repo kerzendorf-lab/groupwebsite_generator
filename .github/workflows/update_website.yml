@@ -13,7 +13,6 @@ jobs:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
-
       - name: Clone groupwebsite_generator
         uses: actions/checkout@v4
         with:
@@ -55,8 +54,8 @@ jobs:
 
       - name: Push Website
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .
           git commit --allow-empty -m "Push from website generator"
           git push
