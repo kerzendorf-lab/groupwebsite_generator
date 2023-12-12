@@ -2,97 +2,61 @@ name: Update Group Website
 
 on:
   workflow_dispatch:
-  workflow_run:
-     workflows: ["Check Webhook Dispatch"]
-     types: 
-       - completed
+  repository_dispatch:
+    types: [repo-push]
   push:
-     branches:
-       - main
-     paths-ignore:
-       - 'group-data/**'
-: '
+    branches:
+      - main
+
 jobs:
-  Update_website:
+  update_website:
     name: Updating website
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
+      - name: Clone groupwebsite_generator
+        uses: actions/checkout@v4
         with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          path: groupwebsite_generator
 
-      - name: Clone repositories
+      - name: Clone group-data
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-group/group-data
+          path: group-data
+          token: ${{ secrets.TARDIS_BOT_TOKEN }}
+
+      - name: Clone kerzendorf-group.github.io
+        uses: actions/checkout@v4
+        with:
+          repository: kerzendorf-group/kerzendorf-group.github.io
+          path: kerzendorf-group.github.io
+          token: ${{ secrets.TARDIS_BOT_TOKEN }}
+
+      - name: Set up Python3
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Update pip and install Jupyter and Pandas
         run: |
-          git clone git@github.com:kerzendorf-group/group-data.git
-          git clone git@github.com:kerzendorf-group/groupwebsite_generator.git
-          git clone git@github.com:kerzendorf-group/kerzendorf-group.github.io.git
+          pip install --upgrade pip jupyter pandas
 
-      - name: List clones
+      - name: Clear and setup directories inside kerzendorf-group.github.io
         run: |
-          ls -a
-
-      - name: Clear cloned website repo
-        run: |
-          cd kerzendorf-group.github.io
-          rm -rf index.html Research.html Contact.html People.html Support.html News.html
-          rm -rf assets website_files members sub_research support_images news
-
-      - name: Setup directories inside kerzendorf-group.github.io
-        run: |
-          cd kerzendorf-group.github.io
-          mkdir members sub_research news
-          cp -r ../group-data/website_data/website_files ./
-          cp -r ../groupwebsite_generator/assets ./
-          # rsync -av  --exclude 'jsons' ../group-data/members/ ./members
-
-
-          source_directory="../group-data/members/"
-          destination_directory="members"
-          
-          
-          for dir in "$source_directory"/*; do
-              if [ -d "$dir" ]; then
-                  directory_name=$(basename "$dir")
-                  
-                  if [ -f "$dir/jsons/basic_info.json" ]; then
-                      kg_value=$(jq -r '.display.kg' "$dir/jsons/basic_info.json")
-                      
-                      if [ "$kg_value" == "true" ]; then
-                          rsync -av --exclude 'jsons' "$dir/" "$destination_directory/$directory_name"
-                      fi
-                  fi
-              fi
-          done
-
-      - name: Install Jupyter and Python3
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-pip
-          sudo -H pip3 install --upgrade pip
-          pip3 install jupyter
-          pip3 install pandas
+          ./notebooks/setup.sh
+        working-directory: ./groupwebsite_generator
 
       - name: Run Notebooks
         run: |
-          cd groupwebsite_generator
-          jupyter nbconvert --to python notebooks/*.ipynb
-          # python3 notebooks/jsons_prep.py
-          python3 notebooks/create_htmls.py
-          #for python_file_name in $(find notebooks -name "*.py")
-          # do
-          #    python3 "$python_file_name"
-          #  done
+          jupyter nbconvert --to python create_htmls.ipynb
+          python3 create_htmls.py
+        working-directory: ./groupwebsite_generator/notebooks
 
       - name: Push Website
-        env:
-          ACCESS_DATA: ${{ secrets.ACCESS_DATA }}
         run: |
-          cd kerzendorf-group.github.io
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add .
-          git commit --allow-empty -m "Pushed from website generator"
+          git commit --allow-empty -m "Push from website generator"
           git push
-'
+        working-directory: ./kerzendorf-group.github.io
