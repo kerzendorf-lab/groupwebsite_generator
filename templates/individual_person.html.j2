@@ -59,32 +59,27 @@
 
                                     <div class="social-icons-con" style="text-align:center; padding-top:3%;">
                                         <h4 class="mb-3">Connect with me:</h4>
-                                        {% if "website" in social_links and social_links['website'] != "" and not
-                                        social_links['website'].strip().lower().startswith("enter") %}
+                                        {% if "website" in social_links  %}
                                             <a href="{{ social_links['website'] }}" target="_blank"><span
                                                     class="fa fa-globe"
                                                     aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "github_handle" in social_links and social_links['github_handle'] != "" and not
-                                        social_links['github_handle'].strip().lower().startswith("enter") %}
+                                        {% if "github_handle" in social_links  %}
                                             <a href="https://github.com/{{ social_links['github_handle'] }}"
                                                target="_blank"><span
                                                     class="fab fa-github-square" aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "twitter_handle" in social_links and social_links['twitter_handle'] != "" and not
-                                        social_links['twitter_handle'].strip().lower().startswith("enter") %}
+                                        {% if "twitter_handle" in social_links %}
                                             <a href="https://twitter.com/{{ social_links['twitter_handle'] }}"
                                                target="_blank"><span
                                                     class="fab fa-twitter-square" aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "linkedin_handle" in social_links and social_links['linkedin_handle'] != "" and not
-                                        social_links['linkedin_handle'].strip().lower().startswith("enter") %}
+                                        {% if "linkedin_handle" in social_links %}
                                             <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}"
                                                target="_blank"><span
                                                     class="fab fa-linkedin-in" aria-hidden="true"></span></a>
                                         {% endif %}
-                                        {% if "orcid" in social_links and social_links['orcid'] != "" and not
-                                        social_links['orcid'].strip().lower().startswith("enter") %}
+                                        {% if "orcid" in social_links  %}
                                             <a href="https://orcid.org/{{ social_links['orcid'] }}"
                                                target="_blank"><span
                                                     class="fa fa-newspaper" aria-hidden="true"></span></a>
@@ -178,7 +173,11 @@
                 <tbody>
                     {% for row in category_data["experiences"] %}
                         <tr>
-                            <td>{{ row["institution"] }}</td>
+                            <td>   {% if row["institution"] %}
+                {{ row["institution"] }}
+            {% else %}
+                 {{ row["group"] }}
+            {% endif %}</td>
                             <td>{{ format_years(row) }}</td>
                             <td>{{ row["role"] }}</td>
                         </tr>
