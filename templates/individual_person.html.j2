@@ -36,7 +36,11 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="content-info-in row">
                     <div class="content-gd col-lg-6 pe-lg-5">
-                        <img src="{{ member_data.image_path }}" alt="" class="img-fluid" style="max-width: 80%;"/>
+                        {% if member_data.image_path %}
+                            <img src="{{ member_data.image_path }}" alt="" class="img-fluid" style="max-width: 80%;"/>
+                        {% else %}
+                            <img src="../../website_files/images/default_face_image.jpeg" alt="" class="img-fluid" style="max-width: 80%;"/>
+                        {% endif %}         
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
                         <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">{% if "nick_name" in basic_info and basic_info.nick_name != "" and not
