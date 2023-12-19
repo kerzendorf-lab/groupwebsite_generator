@@ -15,6 +15,20 @@
             background-color: rgb(177, 143, 232);
             inline-size: 100%;
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px; /* Increased padding for better spacing */
+            text-align: left;
+            font-size: 18px; /* Increased font size for table cells */
+        }
+        th {
+            background-color: #f2f2f2; /* Background color for table header */
+            font-size: 20px; /* Increased font size for table headers */
+        }
     </style>
     <!-- Rotating card-->
     <link href="assets/css/bootstrap.css" rel="stylesheet">
@@ -47,132 +61,18 @@
             <div class="cardtainer" style="padding-top: 3%;">
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
-                        {% for person in alumni_members %}
-                        <div class="col-md-4 col-sm-6">
-                            <div class="card-container manual-flip">
-                                <div class="card">
-                                    <div class="front">
-                                        <div class="cover">
-                                            <a
-                                                href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
-                                                <img
-                                                    src="members/{{ page_link(person.id) }}/{{ person.cover_image_path }}">
-                                            </a>
-                                        </div>
-                                        <div class="user">
-                                            <a
-                                                href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
-                                                {% if person.image_path %}
-                                                <img class="img-circle"
-                                                    src="members/{{ page_link(person.id) }}/{{ person.image_path }}">
-                                                {% else %}
-                                                 <img class="img-circle"
-                                                    src="website_files/images/default_face_image.jpeg">
-                                                {% endif %}
-                                            </a>
-                                        </div>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h3 class="name">
-                                                    <a href="members/{{ person.id }}/{{ person.id }}.html">
-                                                        {{ person.name }}</a>
-                                                </h3>
-                                                {% if person.academic_role %}
-                                                <p class="profession">{{ person.academic_role }}</p>
-                                                {% endif %}
-                                                {% if person.current_project_title %}
-                                                <p class="text-center" style="color:black; line-height: 16px;">{{
-                                                    person.current_project_title }}
-                                                </p>
-                                                {% endif %}
-                                                <br><br>
-                                                <div class="social-icon w3l-contacts-12">
-                                                    <div class="stats-container">
-                                                        <div class="social-links text-center">
-                                                            {% set social_links = person.social_links %}
-                                                        {% if social_links %}
-                                                            {% if social_links.website and social_links.website != "" %}
-                                                            <a href="{{ social_links.website }}" target="_blank">
-                                                                <i class="fa fa-globe fa-fw"></i></a>
-                                                            {% endif %}
-                                                            {% if social_links.twitter_handle and social_links.twitter_handle != ""
-                                                            %}
-                                                            <a href="https://www.twitter.com/{{ social_links.twitter_handle}}" target="_blank">
-                                                                <i class="fa fa-twitter fa-fw"></i></a>
-                                                            {% endif %}
-                                                            {% if social_links.linkedin_handle and social_links.linkedin_handle !=
-                                                            "" %}
-                                                            <a href="https://www.linkedin.com/in/{{social_links.linkedin_handle }}" target="_blank">
-                                                                <i class="fab fa-linkedin-in"></i></a>
-                                                            {% endif %}
-                                                            {% if social_links.github_handle and social_links.github_handle != "" %}
-                                                            <a href="https://www.github.com/{{ social_links.github_handle }}" target="_blank">
-                                                                <i class="fa fa-github"></i></a>
-                                                            {% endif %}
-                                                            {% if social_links.email and social_links.email != "" %}
-                                                            <a href="mailto:{{ social_links.email }}" target="_blank">
-                                                                <i class="fa fa-envelope"></i></a>
-                                                            {% endif %}
-                                                            {% if social_links.orcid and social_links.orcid != "" %}
-                                                                <a href="https://orcid.org/{{ social_links.orcid  }}"
-                                                                    target="_blank">
-                                                                    <i class="fa fa-newspaper"></i></a>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer">
-                                                <button class="btn btn-simple" onclick="rotateCard(this)">
-                                                    <i class="fa fa-mail-forward">More</i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- end front panel -->
-                                    <div class="back">
-                                        <!-- <div class="back">
-                                        <div class="header">
-                                            {% if person.secondary_role !=
-                                            "" %}
-                                            <h5 class="motto">{{
-                                                person.secondary_role }}</h5>
-                                            {% endif %}
-                                        </div>
-                                        <div class="content">
-                                            <div class="main">
-                                                <h4 class="text-center">Areas
-                                                    of Interests</h4>
-                                                <p class="text-center">{{
-                                                    person.interests }}</p>
-
-                                                <br><br><br><br>
-                                                {% if
-                                                person.current_institute !=
-                                                "Michigan State University"
-                                                %}
-                                                <p class="text-center external_affiliation"
-                                                    style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute
-                                                    }} </p>
-                                                {% else%}
-                                                <!--p class="text-center" style="color:black;  line-height: 16px;">{{
-                                                    person.current_institute }} </p>
-                                                {% endif %}
-                                            </div>
-                                        </div> -->
-                                        <div class="footer">
-                                            <button class="btn btn-simple" rel="tooltip" title
-                                                onclick="rotateCard(this)" data-original-title="Flip Card">
-                                                <i class="fa fa-reply">Back</i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {% endfor %}
+                        <table>
+                            <tr>
+                                <th>Name</th>
+                                <th>Academic Role</th>
+                            </tr>
+                            {% for person in alumni_members %}
+                            <tr>
+                                <td>{{ person["name"] }}</td>
+                                <td>{{ person["academic_role"] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </table>
                     </div>
                     <!-- end row -->
                 </div>
