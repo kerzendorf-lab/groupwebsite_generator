@@ -60,91 +60,91 @@
     </style>
 {% endblock %}
 
-
 {% block content %}
     <!-- about banner -->
-        <section class="w3l-about-breadcrumb text-center">
-            <div class="breadcrumb-bg breadcrumb-bg-people py-5">
-                <div class="container py-lg-5 py-md-4">
-                    <div class="banner-info-grid px-md-5" style="margin-top: 2%;">
-                        <h2 class="w3l-title-breadcrumb mb-3">News</h2>
-                    </div>
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5" style="margin-top: 2%;">
+                    <h2 class="w3l-title-breadcrumb mb-3">News</h2>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
     <!-- //about banner -->
 
     <!-- Blog Section -->
-
-        <section class="w3l-blog shift">
-            <div class="blog py-5" id="Newsblog">
-                <div class="container py-lg-5 py-md-4 py-2">
-                    {% for news_info in content.itertuples() %}
-                    <div class="row" style="padding-top: 5%;">
-                        <div class="col-lg-6 col-md-6 item" style="width: 520px;">
-                            <div class="card">
-                                <div class="card-header p-0 position-relative">
-                                    {% if news_info.category == category %}
-                                <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
-                                    class="zoom d-block">
-                                    {% endif %}
-                                    {% if news_info.category != category %}
-                                    <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
-                                        class="zoom d-block">
-                                        {% endif %}
-                                        <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
-                                            src="{{ news_info.cover_image }}" alt="array">
-                                    </a>
-                                    <div class="date">
-                                        <p>{{ news_info.date.strftime('%m-%d-%Y') }}</p>
-                                    </div>
+    <section class="w3l-blog shift">
+        <div class="blog py-5" id="Newsblog">
+            <div class="container py-lg-5 py-md-4 py-2">
+                {% for news in content.itertuples() %}
+                <div class="row" style="padding-top: 5%;">
+                    <div class="col-lg-6 col-md-6 item" style="width: 520px;">
+                        <div class="card" id="card">
+                            <div class="card-header p-0 position-relative">
+                                <a class="zoom d-flex">
+                                    <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
+                                        id="news-cover-image" src="{{ news.cover_image }}" alt="array">
+                                </a>
+                                <div class="date">
+                                    <p>{{ news["date"].strftime('%d') }}{% if news["date"].day % 10 == 1 and news["date"].day != 11 %}st{% elif news["date"].day % 10 == 2 and news["date"].day != 12 %}nd{% elif news["date"].day % 10 == 3 and news["date"].day != 13 %}rd{% else %}th{% endif %} {{ news["date"].strftime('%b, %Y') }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-4 col-md-6 item">
-                            <div class="card">
-                                <div class="card-body blog-details" style="max-height: 330px">
-                                    {% if news_info.category == category %}
-                                    <a href="news/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
-                                        class="zoom d-blog">
-                                        {% endif %}
-                                        {% if news_info.category != category %}
-                                        <a href="sub_research/{{ news_info.category|replace(' ', '_')|lower  }}/{{ news_info.article_id|replace(' ', '_')|lower  }}.html"
-                                            class="zoom d-blog">
-                                            {% endif %}
-                                            <div class="heading">
-                                                <h5
-                                                    style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
-                                                    {{ news_info.title }}
-                                                </h5>
-                                        </a>
-                                </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6 item">
+                        <div class="card">
+                            <div class="card-body blog-details" style="max-height: 330px">
+                                <a class="zoom d-blog">
+                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
+                                    {{ news.title }}
+                                    </h5>
+                                </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                <div class="price-review mb-1 align-items-center">
-                                    <p
-                                        style="font-size: 15px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; height:109px">
-                                        {{ news_info.short_description }}
-                                    </p>
+                                <div class="description-container price-review mb-1 align-items-center">
+                                    <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
+                                        {%- for key, value in news.content.items() -%}
+                                        {%- if key.endswith('para') -%}
+                                            <p>{{value}}</p>
+                                        {%- endif -%}
+                                        {%- endfor -%}
+                                    </div>
                                 </div>
                             </div>
+                            {% if "Internship" in news['tags']%}
+                                <div class="card-footer">
+                                {% set author_id = news['author_id'] %}
+                                {% if author_id in member_data%}
+                                    {% set member = member_data[author_id]%}
+                                    {% set author_name = member['name'] %}
+                                    <div class="author align-items-center">
+                                        <ul class="blog-meta">
+                                            <li>
+                                                <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
+                                            </li>
+                                        </ul>
+                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author ms-auto" target="_blank">
+                                            <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
+                                        </a>
+                                    </div>
+                                {% endif %}
+                                </div>
+                            {% else %}
                             <div class="card-footer">
                                 <div>
                                     <ul class="blog-meta">
                                         <li>
                                             <a style="font-size:10px">Contributer(s):</a>
                                         </li>
-                                        {% for person_id in news_info.people_involved_ids %}
+                                        {% for person_id in news.people_involved_ids %}
                                         {% if person_id in member_data %}
-
                                             {% set member_info = member_data[person_id] %}
-
                                             {% set member_name = member_info.get('name') %}
                                         <li>
                                             <a href="members/{{ person_id }}/{{ person_id }}.html" target="_blank">
                                                 <p style="font-size: 10px; height:35px"> {{member_name.strip().split(" ")[0]}}</p>
                                             </a>
                                         </li>
-
                                             {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
                                             person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
                                             <li>
@@ -161,7 +161,6 @@
                                             </a>
                                         </li>
                                         {% endif %}
-
                                         {% if not loop.last %}
                                         <li>, </li>
                                         {% endif %}
@@ -169,13 +168,99 @@
                                     </ul>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
-            </div>
-        </section>
-
+        </div>
+    </section>
     <!-- //Blog Section -->
 {% endblock %}
+
+{% block additional_script %}
+    /*Getting average color of image*/
+    <script>
+    const allCards = document.querySelectorAll('[id=card]');
+    allCards.forEach(cover => {
+        var coverImage = cover.querySelector('#news-cover-image')
+        var rgb = getAverageRGB(coverImage);
+        cover.style.backgroundColor = 'rgb('+rgb.r+','+rgb.g+','+rgb.b+')';
+    })
+    function getAverageRGB(imgEl) {
+        var blockSize = 5, // only visit every 5 pixels
+            defaultRGB = {r:0,g:0,b:0}, // for non-supporting envs
+            canvas = document.createElement('canvas'),
+            context = canvas.getContext && canvas.getContext('2d'),
+            data, width, height,
+            i = -4,
+            length,
+            rgb = {r:0,g:0,b:0},
+            count = 0;
+            
+        if (!context) {
+            return defaultRGB;
+        }
+        
+        height = canvas.height = imgEl.naturalHeight || imgEl.offsetHeight || imgEl.height;
+        width = canvas.width = imgEl.naturalWidth || imgEl.offsetWidth || imgEl.width;
+        
+        context.drawImage(imgEl, 0, 0);
+        
+        try {
+            data = context.getImageData(0, 0, width, height);
+        } catch(e) {
+            /* security error, img on diff domain */alert('x');
+            return defaultRGB;
+        }
+        
+        length = data.data.length;
+        
+        while ( (i += blockSize * 4) < length ) {
+            ++count;
+            rgb.r += data.data[i];
+            rgb.g += data.data[i+1];
+            rgb.b += data.data[i+2];
+        }
+        
+        // ~~ used to floor values
+        rgb.r = ~~(rgb.r/count);
+        rgb.g = ~~(rgb.g/count);
+        rgb.b = ~~(rgb.b/count);
+        return rgb;            
+    }
+
+    /*Read more functionality*/
+        $(function () {
+        var maxL = 150;
+        $('.description').each(function () {
+            var text = $(this).text();
+            if (text.length > maxL) {
+            var begin = text.substr(0, maxL),
+                end = text.substr(maxL);
+            $(this).html(begin)
+                .append($('<span class="hidden"/>').html(end))
+                .append($('<a class="readmore"/>').html(' ...Read more')); 
+            }
+        });
+
+        $('.readmore').on('click', function () {
+            var hiddenContent = $(this).prev('.hidden');
+var thisDescription = $(this).parent(); // Reference parent container
+
+    if (hiddenContent.css('display') === 'none') {
+      // Toggle overflow and text on click (Read more)
+      hiddenContent.slideToggle(400);
+      thisDescription.css('overflow', 'auto'); // Set overflow: auto
+      $(this).text('Read less');
+    } else {
+      // Toggle overflow and text on click (Read less)
+      hiddenContent.slideToggle(400);
+      thisDescription.css('overflow', 'hidden'); // Set overflow: hidden
+      $(this).text(' ...Read more');
+    }
+  });
+});
+    </script>
+{%endblock%}
