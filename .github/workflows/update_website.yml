@@ -32,6 +32,13 @@ jobs:
           path: kerzendorf-group.github.io
           token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
+      - name: Clone Research and News data
+        uses: actions/checkout@v4
+        with:
+          repository: tardis-sn/research_news
+          path: research_news
+          token: ${{ secrets.TARDIS_BOT_TOKEN }}
+
       - name: Set up Python3
         uses: actions/setup-python@v4
         with:
