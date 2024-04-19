@@ -104,7 +104,7 @@
                                 <div class="description-container price-review mb-1 align-items-center">
                                     <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
                                         {%- for key, value in news.content.items() -%}
-                                        {%- if key.startswith('para') -%}
+                                        {%- if key.endswith('para') -%}
                                             <p>{{value}}</p>
                                         {%- endif -%}
                                         {%- endfor -%}
