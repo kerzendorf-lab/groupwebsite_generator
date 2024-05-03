@@ -96,20 +96,31 @@
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                                 <a class="zoom d-blog">
-                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
+                                    <h5 style="font-weight: bold; overflow: auto; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
                                     {{ news.title }}
                                     </h5>
                                 </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                                <div class="description-container price-review mb-1 align-items-center">
-                                    <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
-                                        {%- for key, value in news.content.items() -%}
+                            {# Read more
+                            <div class="description-container price-review mb-1 align-items-center">
+                                <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
+                                    {%- for key, value in news.content.items() -%}
                                         {%- if key.endswith('para') -%}
-                                            <p>{{value}}</p>
+                                            <div>{{value | safe}}</div>
                                         {%- endif -%}
-                                        {%- endfor -%}
-                                    </div>
+                                    {%- endfor -%}
                                 </div>
+                            </div>
+                            #}
+                            <div class="price-review mb-1 align-items-center">
+                                <div style="font-size: 13px; overflow: auto; height:110px">
+                                    {%- for key, value in news.content.items() -%}
+                                        {%- if key.endswith('para') -%}
+                                            <div>{{value | safe}}</div>
+                                        {%- endif -%}
+                                    {%- endfor -%}
+                                </div>
+                            </div>
                             </div>
                             {% if "Internship" in news['tags']%}
                                 <div class="card-footer">
