@@ -55,15 +55,19 @@
                                             <a
                                                 href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
                                                 <img
-                                                    src="members/{{ page_link(person.id) }}/{{ person.cover_image_path }}">
+                                                    src="members/{{ page_link(person.id) }}/{{ person.cover_image_path }}"
+                                                    onerror="this.src='website_files/images/default_face_image.jpeg'"
+                                                >
                                             </a>
                                         </div>
                                         <div class="user">
                                             <a
                                                 href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
                                                 {% if person.image_path %}
-                                                <img class="img-circle"
-                                                    src="members/{{ page_link(person.id) }}/{{ person.image_path }}">
+                                                <img  class="img-circle"
+                                                    src="members/{{ page_link(person.id) }}/{{ person.image_path }}"
+                                                    onerror="this.src='website_files/images/default_face_image.jpeg'"
+                                                    >
                                                 {% else %}
                                                  <img class="img-circle"
                                                     src="website_files/images/default_face_image.jpeg">
@@ -188,5 +192,10 @@
                 $card.addClass('hover');
             }
         }
+    </script>
+    <script>
+    function handleError(img, id) {
+        img.src = 'website_files/images/default_face_image.jpeg';
+    }
     </script>
 {% endblock %}
