@@ -178,7 +178,13 @@
                 <tbody>
                     {% for row in category_data["experiences"] %}
                         <tr>
-                            <td>{{ row["institution"] }}</td>
+                            <td>
+                            {% if row["institution"] %}
+                                {{ row["institution"] }}
+                            {% else %}
+                                {{ row["group"] }} (group)
+                            {% endif %}
+                            </td>
                             <td>{{ format_years(row) }}</td>
                             <td>{{ row["role"] }}</td>
                         </tr>
