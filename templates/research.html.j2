@@ -126,7 +126,7 @@
                                 {% if author_id %}
                                     {% set member = current_members | selectattr("id", "equalto", author_id) | list | first %}
                                     {% if member %}
-                                        {% set author_name = member['name'] %}
+                                        {% set author_name = member['full_name'] %}
                                         <div class="author align-items-center">
                                             <a href="members/{{ member['id'] }}/{{ member['id'] }}.html" class="post-author" target="_blank">
                                                 <img src="members/{{ member['id'] }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">

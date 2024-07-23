@@ -65,26 +65,34 @@
 					<div class="blog-posthny-info mx-auto" style="max-width:800px">
 						{% set project_info = content %}
 						{% set author_id = project_info['author_id'] %}
+						{% if author_id in member_data%}
 						{% set author_info = member_data[author_id] %}
-						{% set author_name = author_info['name'] %}
+						{%else%}
+						{% set author_info = "" %}
+						{%endif%}
+						{% set author_name = author_info['full_name'] %}
 
 						<div class="style-title position-relative">
 							<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
 						</div>
 						<div class="single-post-image mb-4">
 							<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-
-
+								{% if author_id %}
 								<li class="circle avatar"><img
 										src="../../members/{{ author_id}}/{{ author_info.image_path }}" class="img-fluid"
 										alt=""></li>
-								<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html"
-										target="_blank">{{ author_name }}</a></li>
-								<li>{{ project_info["date"].strftime('%d') }}{% if project_info["date"].day % 10 == 1 and project_info["date"].day != 11 %}st{% elif project_info["date"].day % 10 == 2 and project_info["date"].day != 12 %}nd{% elif project_info["date"].day % 10 == 3 and project_info["date"].day != 13 %}rd{% else %}th{% endif %} {{ project_info["date"].strftime('%b, %Y') }}</li>
+								{% if project_info.category == 'Software' %}
+								<li>Principal Investigator: <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name | upper}}</a></li>
+								{% else %}
+								<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a></li>
+								{% endif %}
+								{% endif %}
+								<li>{{ project_info['date'].strftime('%d') }}{% if project_info["date"].day % 10 == 1 and project_info["date"].day != 11 %}st{% elif project_info["date"].day % 10 == 2 and project_info["date"].day != 12 %}nd{% elif project_info["date"].day % 10 == 3 and project_info["date"].day != 13 %}rd{% else %}th{% endif %} {{ project_info["date"].strftime('%b, %Y') }}</li>
 							</ul>
+							{% if 'pacman' not in project_info.title.lower() %}
 							<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
 								alt="blog-post-image">
-
+							{%endif%}
 						</div>
 
 						<div class="single-post-content">
@@ -122,11 +130,11 @@
 												{% if person_id in member_data %}
 													{% set member_info = member_data[person_id] %}
 
-													{% set member_name = member_info.get('name') %}
+													{% set member_name = member_info.get('full_name') %}
 
 												<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank"
 													style="font-size: 15px; display: inline;">
-													<span class="fas fa-user"></span> {{ member_name.strip().split(" ")[0] }}
+													<span class="fas fa-user"></span> {{ member_name}}
 												</a>
 												{% elif person_id.strip().split('
 												')[-1].strip().lower().startswith("http://") or person_id.strip().split('
