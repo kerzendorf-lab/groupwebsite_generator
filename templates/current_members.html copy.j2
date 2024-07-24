@@ -55,7 +55,6 @@
                                                 href="members/{{ page_link(person_id) }}/{{ page_link(person_id) }}.html">
                                                 <img
                                                     src="members/{{ page_link(person_id) }}/{{ person_info["cover_image_path"] }}">
-                                                    onerror="this.src='website_files/images/default_face_image.jpeg'"
                                             </a>
                                         </div>
                                         <div class="user">
@@ -63,9 +62,7 @@
                                                 href="members/{{ page_link(person_id) }}/{{ page_link(person_id) }}.html">
                                                 {% if person_info["image_path"] %}
                                                 <img class="img-circle"
-                                                    src="members/{{ page_link(person_id) }}/{{ person_info["image_path"] }}"
-                                                    onerror="this.src='website_files/images/default_face_image.jpeg'"
-                                                     >
+                                                    src="members/{{ page_link(person_id) }}/{{ person_info["image_path"] }}">
                                                 {% else %}
                                                  <img class="img-circle"
                                                     src="website_files/images/default_face_image.jpeg">
