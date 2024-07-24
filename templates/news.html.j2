@@ -82,7 +82,7 @@
                     <div class="col-lg-6 col-md-6 item" style="width: 520px;">
                         <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
-                                <a class="zoom d-flex">
+                               <a class="zoom d-flex" href="../../news/{{ news.article_id|lower }}.html">
                                     <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
                                         id="news-cover-image" src="{{ news.cover_image }}" alt="array">
                                 </a>
@@ -95,7 +95,7 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
-                                <a class="zoom d-blog">
+                                <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
                                     <h5 style="font-weight: bold; overflow: auto; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
                                     {{ news.title }}
                                     </h5>
