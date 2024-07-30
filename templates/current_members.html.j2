@@ -45,7 +45,7 @@
             <div class="cardtainer" style="padding-top: 3%;">
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
-                        {% for person_id, person_info in current_members.items() %}
+                        {% for person_id, person_info in current_members.iterrows() %}
                         <div class="col-md-4 col-sm-6">
                             <div class="card-container manual-flip">
                                 <div class="card">
@@ -61,15 +61,10 @@
                                         <div class="user">
                                             <a
                                                 href="members/{{ page_link(person_id) }}/{{ page_link(person_id) }}.html">
-                                                {% if person_info["image_path"] %}
                                                 <img class="img-circle"
                                                     src="members/{{ page_link(person_id) }}/{{ person_info["image_path"] }}"
                                                     onerror="this.src='website_files/images/default_face_image.jpeg'"
                                                      >
-                                                {% else %}
-                                                 <img class="img-circle"
-                                                    src="website_files/images/default_face_image.jpeg">
-                                                {% endif %}
                                             </a>
                                         </div>
                                         <div class="content">
@@ -78,8 +73,8 @@
                                                     <a href="members/{{ person_id }}/{{ person_id }}.html">
                                                         {{ person_info["full_name"] }}</a>
                                                 </h3>
-                                                {% if person_info["academic_role"] %}
-                                                <p class="profession">{{ person_info["academic_role"]  }}</p>
+                                                {% if person_info["current_role"] %}
+                                                <p class="profession">{{ person_info["current_role"]  }}</p>
                                                 {% endif %}
                                                 {% if person_info["current_project_title"] %}
                                                 <p class="text-center" style="color:black; line-height: 16px;">{{

@@ -37,7 +37,9 @@
                         <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">
                         {{member_data["full_name"]}}
                         </h4>
-                        <p class="my-4 pe-lg-5">{{ member_data["introduction"] }}</p>
+                        {%- if member_data["introduction"] is not none and member_data["introduction"] != 'nan' -%}
+                            <p class="my-4 pe-lg-5">{{ member_data["introduction"] }}</p>
+                        {%- endif -%}
                         {% set social_links = socials[member_id] %}
                         {% if social_links %}
                         <section class="w3l-contacts-12">
@@ -59,7 +61,10 @@
                                     {% if 'linkedin_handle' in social_links and social_links['linkedin_handle'] != "" %}
                                         <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}" target="_blank"><span class="fab fa-linkedin-in" aria-hidden="true"></span></a>
                                     {% endif %}
-
+                                     {% if social_links.email and social_links.email != "" %}
+                                    <a href="mailto:{{ social_links.email }}" target="_blank">
+                                        <i class="fa fa-envelope"></i></a>
+                                    {% endif %}
                                     {% if 'orcid' in social_links and social_links['orcid'] != "" %}
                                         <a href="https://orcid.org/{{ social_links['orcid'] }}" target="_blank"><span class="fa fa-newspaper" aria-hidden="true"></span></a>
                                     {% endif %}
@@ -163,8 +168,13 @@
                 </thead>
                 <tbody>
                     {% for row in experience[member_id]['info'] %}
-                        <tr>
+                        {% if row['institution'] and row['institution']|length > 0 %}
                             <td>{{ row['institution'] }}</td>
+                        {% elif row['group'] and row['group']|length > 0 %}
+                            <td>{{ row['group'] }} (group)</td>
+                        {% else %}
+                            <td></td>
+                        {% endif %}
                             <td>{{ format_years(row) }}</td>
                             <td>{{ row["role"] }}</td>
                         </tr>
