@@ -36,8 +36,7 @@
         </div>
     </section>
     <!-- //about banner -->
-    
-    <!-- Team Section -->
+
     <div class="team-area py-5" id="people">
         <div class="container py-lg-5 py-md-4 py-2">
             <div class="text-center" style="padding-top: 5%;">
@@ -46,53 +45,47 @@
             <div class="cardtainer" style="padding-top: 3%;">
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1">
-                        {% for person in current_members %}
+                        {% for person_id, person_info in current_members.iterrows() %}
                         <div class="col-md-4 col-sm-6">
                             <div class="card-container manual-flip">
                                 <div class="card">
                                     <div class="front">
                                         <div class="cover">
                                             <a
-                                                href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
+                                                href="members/{{ page_link(person_id) }}/{{ page_link(person_id) }}.html">
                                                 <img
-                                                    src="members/{{ page_link(person.id) }}/{{ person.cover_image_path }}"
+                                                    src="members/{{ page_link(person_id) }}/{{ person_info["cover_image_path"] }}">
                                                     onerror="this.src='website_files/images/default_face_image.jpeg'"
-                                                >
                                             </a>
                                         </div>
                                         <div class="user">
                                             <a
-                                                href="members/{{ page_link(person.id) }}/{{ page_link(person.id) }}.html">
-                                                {% if person.image_path %}
-                                                <img  class="img-circle"
-                                                    src="members/{{ page_link(person.id) }}/{{ person.image_path }}"
+                                                href="members/{{ page_link(person_id) }}/{{ page_link(person_id) }}.html">
+                                                <img class="img-circle"
+                                                    src="members/{{ page_link(person_id) }}/{{ person_info["image_path"] }}"
                                                     onerror="this.src='website_files/images/default_face_image.jpeg'"
-                                                    >
-                                                {% else %}
-                                                 <img class="img-circle"
-                                                    src="website_files/images/default_face_image.jpeg">
-                                                {% endif %}
+                                                     >
                                             </a>
                                         </div>
                                         <div class="content">
                                             <div class="main">
                                                 <h3 class="name">
-                                                    <a href="members/{{ person.id }}/{{ person.id }}.html">
-                                                        {{ person.name }}</a>
+                                                    <a href="members/{{ person_id }}/{{ person_id }}.html">
+                                                        {{ person_info["full_name"] }}</a>
                                                 </h3>
-                                                {% if person.academic_role %}
-                                                <p class="profession">{{ person.academic_role }}</p>
+                                                {% if person_info["current_role"] %}
+                                                <p class="profession">{{ person_info["current_role"]  }}</p>
                                                 {% endif %}
-                                                {% if person.current_project_title %}
+                                                {% if person_info["current_project_title"] %}
                                                 <p class="text-center" style="color:black; line-height: 16px;">{{
-                                                    person.current_project_title }}
+                                                    person_info["current_project_title"]}}
                                                 </p>
                                                 {% endif %}
                                                 <br><br>
                                                 <div class="social-icon w3l-contacts-12">
                                                     <div class="stats-container">
                                                         <div class="social-links text-center">
-                                                        {% set social_links = person.social_links %}
+                                                        {% set social_links = socials[person_id] %}
                                                         {% if social_links %}
                                                             {% if social_links.website and social_links.website != "" %}
                                                             <a href="{{ social_links.website }}" target="_blank">
@@ -103,8 +96,7 @@
                                                             <a href="https://www.twitter.com/{{ social_links.twitter_handle}}" target="_blank">
                                                                 <i class="fa fa-twitter fa-fw"></i></a>
                                                             {% endif %}
-                                                            {% if social_links.linkedin_handle and social_links.linkedin_handle !=
-                                                            "" %}
+                                                            {% if social_links.linkedin_handle %}
                                                             <a href="https://www.linkedin.com/in/{{social_links.linkedin_handle }}" target="_blank">
                                                                 <i class="fab fa-linkedin-in"></i></a>
                                                             {% endif %}
@@ -138,7 +130,6 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
 
 {% block additional_script %}

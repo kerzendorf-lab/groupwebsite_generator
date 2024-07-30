@@ -127,7 +127,7 @@
                                 {% set author_id = news['author_id'] %}
                                 {% if author_id in member_data%}
                                     {% set member = member_data[author_id]%}
-                                    {% set author_name = member['name'] %}
+                                    {% set author_name = member['full_name'] %}
                                     <div class="author align-items-center">
                                         <ul class="blog-meta">
                                             <li>
@@ -150,10 +150,10 @@
                                         {% for person_id in news.people_involved_ids %}
                                         {% if person_id in member_data %}
                                             {% set member_info = member_data[person_id] %}
-                                            {% set member_name = member_info.get('name') %}
+                                            {% set member_name = member_info.get('full_name') %}
                                         <li>
                                             <a href="members/{{ person_id }}/{{ person_id }}.html" target="_blank">
-                                                <p style="font-size: 10px; height:35px"> {{member_name.strip().split(" ")[0]}}</p>
+                                                <p style="font-size: 10px; height:35px"> {{member_name}}</p>
                                             </a>
                                         </li>
                                             {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or

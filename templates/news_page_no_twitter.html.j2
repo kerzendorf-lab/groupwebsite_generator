@@ -26,7 +26,7 @@
 						{% set project_info = content %}
 						{% set author_id = project_info['author_id'] %}
 						{% set author_info = member_data[author_id] %}
-						{% set author_name = author_info['name'] %}
+						{% set author_name = author_info['full_name'] %}
 						
 						<div class="style-title position-relative">
 							<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
@@ -85,7 +85,7 @@
 
 													{% set member_info = member_data[person_id] %}
 
-													{% set member_name = member_info.get('name') %}
+													{% set member_name = member_info.get('full_name') %}
 
 												<a href="../members/{{ person_id }}/{{ person_id }}.html" target="_blank"
 													style="font-size: 15px; display: inline;">

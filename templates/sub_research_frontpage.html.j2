@@ -118,30 +118,24 @@
                                                         </p>
                                                     </div>
                                             </div>
-                                            <div class="card-footer">
-                                                {% set author_id = writeup.author_id %}
-                                                {% if author_id %}
-                                                    {% set member = current_members | selectattr("id", "equalto", author_id) | list | first
-                                                    %}
-                                                    {% if member %}
-                                                        {% set author_name = member['name'] %}
-                                                        <div class="author align-items-center">
-                                                            <a href="members/{{ member['id'] }}/{{ member['id'] }}.html" class="post-author"
-                                                                target="_blank">
-                                                                <img src="../members/{{ member['id'] }}/{{ member['image_path'] }}"
-                                                                    alt="Author's Image" class="img-fluid rounded-circle">
-                                                            </a>
-                                                            <ul class="blog-meta">
-                                                                <li>
-                                                                    <span class="meta-value">Article by </span>
-                                                                    <a href="../members/{{ member['id'] }}/{{ member['id'] }}.html"
-                                                                        target="_blank">{{ author_name }}</a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    {% endif %}
-                                                {% endif %}
+                                        <div class="card-footer">
+                                        {% set author_id = writeup.author_id %}
+                                        {% if author_id in current_members%}
+                                            {% set member = current_members[author_id]%}
+                                            {% set author_name = member['full_name'] %}
+                                            <div class="author align-items-center">
+                                                <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author" target="_blank">
+                                                    <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
+                                                </a>
+                                                <ul class="blog-meta">
+                                                    <li>
+                                                        <span class="meta-value">Article by </span>
+                                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
+                                                    </li>
+                                                </ul>
                                             </div>
+                                        {% endif %}
+                                        </div>
                                         </div>
                                     </div>
                                     {% set counter = counter + 1 %}
