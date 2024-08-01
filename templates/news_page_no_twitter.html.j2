@@ -1,5 +1,15 @@
 {% extends 'base.html.j2' %}
 
+{% block meta %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ content.title }}">
+<meta name="twitter:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta name="twitter:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+<meta property="og:title" content="{{ content.title }}">
+<meta property="og:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta property="og:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+{% endblock %}
+
 {% block title %}
     News | {{ general.website_title }}
 {% endblock %}
@@ -27,14 +37,11 @@
 						{% set author_id = project_info['author_id'] %}
 						{% set author_info = member_data[author_id] %}
 						{% set author_name = author_info['full_name'] %}
-						
 						<div class="style-title position-relative">
 							<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
 						</div>
 						<div class="single-post-image mb-4">
 							<ul class="blog-author-date mt-3 d-flex align-items-center mb-4">
-
-
 								<li class="circle avatar"><img
 										src="../members/{{ author_id}}/{{ author_info.image_path }}"
 										class="img-fluid" alt=""></li>
@@ -43,16 +50,25 @@
 										target="_blank">{{ author_name }}</a></li>
 								<li>{{ project_info["date"].strftime('%d') }}{% if project_info["date"].day % 10 == 1 and project_info["date"].day != 11 %}st{% elif project_info["date"].day % 10 == 2 and project_info["date"].day != 12 %}nd{% elif project_info["date"].day % 10 == 3 and project_info["date"].day != 13 %}rd{% else %}th{% endif %} {{ project_info["date"].strftime('%b, %Y') }}</li>
 							</ul>
+							<ul class="share-articles d-flex">
+								Share On:
+								<li class="me-2">
+									<a href="https://twitter.com/intent/tweet?url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }}" class="twitter" title="Share on Twitter" target="_blank">
+										<i class="social-button bi bi-twitter-x"></i>
+									</a>
+								</li>
+								<li class="me-2">
+									<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }} target="_blank">
+										<i class="social-button bi bi-linkedin"></i>
+									</a>
+								</li>
+							</ul>
 							<img src="../{{ project_info.cover_image }}" class="img-fluid img-responsive"
-								
 								alt="blog-post-image">
-
 						</div>
-
 						<div class="single-post-content">
 							<p class="mb-4"> {{ project_info.long_description }}</p>
 						</div>
-
 						<div class="content-text-9">
 							<div class="single-post-content-1 row mt-5 no-gutters">
 								{% for key, value in project_info.content.items() %}
@@ -69,9 +85,7 @@
 								{% endif %}
 								{% endfor %}
 							</div>
-						</div>
-
-						
+						</div>		
 						<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
 							<div class="row">
 								{% if project_info.people_involved_ids %}

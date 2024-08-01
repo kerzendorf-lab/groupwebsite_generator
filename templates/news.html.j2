@@ -101,26 +101,11 @@
                                     </h5>
                                 </a>
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
-                            {# Read more
-                            <div class="description-container price-review mb-1 align-items-center">
-                                <div class="description" style="font-size: 13px; overflow: hidden; height:110px">
-                                    {%- for key, value in news.content.items() -%}
-                                        {%- if key.endswith('para') -%}
-                                            <div>{{value | safe}}</div>
-                                        {%- endif -%}
-                                    {%- endfor -%}
+                                <div class="price-review mb-1 align-items-center">
+                                    <div style="font-size: 13px; overflow: auto; height:110px">
+                                        <div>{{ news['short_description'] | safe}}</div>
+                                    </div>
                                 </div>
-                            </div>
-                            #}
-                            <div class="price-review mb-1 align-items-center">
-                                <div style="font-size: 13px; overflow: auto; height:110px">
-                                    {%- for key, value in news.content.items() -%}
-                                        {%- if key.endswith('para') -%}
-                                            <div>{{value | safe}}</div>
-                                        {%- endif -%}
-                                    {%- endfor -%}
-                                </div>
-                            </div>
                             </div>
                             {% if "Internship" in news['tags']%}
                                 <div class="card-footer">
@@ -191,7 +176,6 @@
 {% endblock %}
 
 {% block additional_script %}
-    /*Getting average color of image*/
     <script>
     const allCards = document.querySelectorAll('[id=card]');
     allCards.forEach(cover => {
