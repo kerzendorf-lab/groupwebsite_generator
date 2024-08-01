@@ -1,5 +1,15 @@
 {% extends 'base.html.j2' %}
 
+{% block meta %}
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ content.title }}">
+<meta name="twitter:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta name="twitter:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+<meta property="og:title" content="{{ content.title }}">
+<meta property="og:image" content="https://kerzendorf-lab.github.io/website_files/images/article_content/{{ content.image_name }}">
+<meta property="og:url" content="https://kerzendorf-lab.github.io/news/{{ content.article_id }}">
+{% endblock %}
+
 {% block title %}
     News | {{ general.website_title }}
 {% endblock %}
@@ -42,17 +52,17 @@
 							</ul>
 							<ul class="share-articles d-flex">
 								Share On:
-									<li class="me-2">
-										<a href="https://twitter.com/intent/tweet?url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }}&text={{ project_info.title }}&via=YourTwitterHandle&image=https://kerzendorf-lab.github.io/{{ project_info.cover_image }}" class="twitter" title="Share on Twitter" target="_blank">
-											<i class="social-button bi bi-twitter-x"></i>
-										</a>
-									</li>
-									<li class="me-2">
-										<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }}&title={{ project_info.title }}&summary=Your%20Article%20Summary&source=https://kerzendorf-lab.github.io" class="linkedin" title="Share on LinkedIn" target="_blank">
-											<i class="social-button bi bi-linkedin"></i>
-										</a>
-									</li>
-								</ul>
+								<li class="me-2">
+									<a href="https://twitter.com/intent/tweet?url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }}" class="twitter" title="Share on Twitter" target="_blank">
+										<i class="social-button bi bi-twitter-x"></i>
+									</a>
+								</li>
+								<li class="me-2">
+									<a href="https://www.linkedin.com/shareArticle?mini=true&url=https://kerzendorf-lab.github.io/news/{{ project_info.article_id }} target="_blank">
+										<i class="social-button bi bi-linkedin"></i>
+									</a>
+								</li>
+							</ul>
 							<img src="../{{ project_info.cover_image }}" class="img-fluid img-responsive"
 								alt="blog-post-image">
 						</div>
