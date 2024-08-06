@@ -13,7 +13,7 @@
 {%- macro format_years(row) -%}
     {%- if row.get("start_date") is not none -%}
         {{ row["start_date"].year }} - 
-        {%- if row.get("end_date") is not none -%}
+        {%- if row.get("end_date") is not none and row.get("end_date") == row.get("end_date") -%}
             {{ row["end_date"].year }}
         {%- else -%}
             Present
