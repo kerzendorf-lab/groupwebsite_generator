@@ -68,21 +68,40 @@
     </section>
     <!-- //about banner -->
 
-    <!-- Top Hardcoded Paragraphs -->
-    <div class="top-paragraphs container py-5">
-        <p>Welcome to our community! We are excited to have you join us. Here, you will find a wealth of information and opportunities to connect with others.</p>
-    </div>
-
     <!-- Research Opportunities Loop -->
-    {% for opportunity in opportunities %}        
-        <div class="text-center heading" style="padding-top: 2%;">
-            <h1 style="padding-bottom: 30px; text-decoration: none;">{{ opportunity.title }}</h1>
-        </div>        
-        <div class="description container">
-            {% for paragraph in opportunity.description %}
-                <p>{{ paragraph }}</p>
-            {% endfor %}
+    {% for opp_key,  opp_value in opportunities.items() %}
+     <section class="w3l-blog">
+        <div class="blog py-2" id="Newsblog">
+            <div class="text-center" style="padding-top: 2%;">
+                <h2 style="padding-bottom: 30px; text-decoration: none;">{{ opp_value.title }}</h2>
+            </div>
+            <div class="container py-lg-4 py-md-4 py-1">
+                <div class="row">
+                    {% for paragraph in opp_value.description %}
+                        <p>{{ paragraph }}</p>
+                    {% endfor %}
+                    <h6 class="py-2" >{{opp_value.opportunities_heading}}</h6>
+                    <ul style="list-style-type: disc; padding-left: 20px; margin: 0; list-style-position: outside;">
+                        {% for project in opp_value.opportunities %}
+                            <li style="margin-bottom: 10px;">
+                             - 
+                                {% if project.title %}
+                                    {% if project.hyperlink %}
+                                        <a href="{{ project.hyperlink }}">{{ project.title }}</a>: {{ project.description }}
+                                    {% else %}
+                                        <strong>{{ project.title }}</strong>: {{ project.description }}
+                                    {% endif %}
+                                {% else %}
+                                    {{ project.description }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                    <p>{{opp_value.requirements}}</p>
+                </div>
+            </div>
         </div>
+        </section>
     {% endfor %}
 {% endblock %}
 
