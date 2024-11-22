@@ -49,6 +49,28 @@
             text-decoration: none;
         }
 
+        h5:hover {
+            color: #673ab7 !important;
+            text-decoration: underline;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #673ab7; /* Background color of the badge */
+            color: white;          /* Text color */
+            padding: 4px 8px;     /* Padding around the text */
+            border-radius: 5px;   /* Rounded corners *
+            text-align: center;    /* Center the text */
+        }
+
+        .badge-tray {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 10px;
+            overflow: auto;
+            overflow-x: auto;
+        }
+
         .heading:hover {
             background-image: linear-gradient(to left, #673ab7, #673ab7);
             /* Gradient from right to left */
@@ -95,8 +117,15 @@
                     <div class="col-lg-4 col-md-6 item">
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
+                                <div class='badge-tray'>
+                                    {%for tag in news['tags']%}
+                                    {%if tag.lower() != "news"%}
+                                    <span class="badge">{{tag.title()}}</span>
+                                    {%endif%}
+                                    {%endfor%}
+                                </div>
                                 <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
-                                    <h5 style="font-weight: bold; overflow: auto; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; font-size:19px; height:70px ">
+                                    <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; font-size:19px; height:auto;">
                                     {{ news.title }}
                                     </h5>
                                 </a>
