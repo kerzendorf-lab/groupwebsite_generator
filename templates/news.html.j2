@@ -100,14 +100,16 @@
                                     {{ news.title }}
                                     </h5>
                                 </a>
+                                {#
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
                                     <div style="font-size: 13px; overflow: auto; height:110px">
                                         <div>{{ news['short_description'] | safe}}</div>
                                     </div>
                                 </div>
+                                #}
                             </div>
-                            {% if "Internship" in news['tags']%}
+                            {% if "achievement" in news['tags']%}
                                 <div class="card-footer">
                                 {% set author_id = news['author_id'] %}
                                 {% if author_id in member_data%}
