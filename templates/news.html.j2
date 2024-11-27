@@ -101,20 +101,17 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 {% for news in content.itertuples() %}
                 <div class="row" style="padding-top: 5%;">
-                    <div class="col-lg-6 col-md-6 item" style="width: 520px;">
+                    <div class="col-lg-6 col-md-6 item" style="width: 550px;">
                         <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
                                <a class="zoom d-flex" href="../../news/{{ news.article_id|lower }}.html">
-                                    <img style="width: 520px; height: 330px" class="card-img-bottom d-block"
+                                    <img style="width: 520px; height: 330px; margin: auto;" class="card-img-bottom d-block"
                                         id="news-cover-image" src="{{ news.cover_image }}" alt="array">
                                 </a>
-                                <div class="date">
-                                    <p>{{ news["date"].strftime('%d') }}{% if news["date"].day % 10 == 1 and news["date"].day != 11 %}st{% elif news["date"].day % 10 == 2 and news["date"].day != 12 %}nd{% elif news["date"].day % 10 == 3 and news["date"].day != 13 %}rd{% else %}th{% endif %} {{ news["date"].strftime('%b, %Y') }}</p>
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-6 item">
+                    <div class="col-lg-4 col-md-6 item" style="width: 550px; height: 330px;">
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                                 <div class='badge-tray'>
@@ -129,6 +126,10 @@
                                     {{ news.title }}
                                     </h5>
                                 </a>
+                                <div style="margin-top: 10px; gap: 5px; display: flex; align-items: center; font-size: small;">
+                                    <i class="bi bi-clock"></i>
+                                    <p style="font-size: small;">{{ news["date"].strftime('%d') }}{% if news["date"].day % 10 == 1 and news["date"].day != 11 %}st{% elif news["date"].day % 10 == 2 and news["date"].day != 12 %}nd{% elif news["date"].day % 10 == 3 and news["date"].day != 13 %}rd{% else %}th{% endif %} {{ news["date"].strftime('%b, %Y') }}</p>
+                                </div>
                                 {#
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
