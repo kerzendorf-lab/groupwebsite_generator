@@ -120,7 +120,7 @@
                                 <div class='badge-tray'>
                                     {%for tag in news['tags']%}
                                     {%if tag.lower() != "news"%}
-                                    <span class="badge">{{tag.title()}}</span>
+                                    <span class="badge" style="background-color: {{ tag_colors[tag.lower()] }}">{{tag.title()}}</span>
                                     {%endif%}
                                     {%endfor%}
                                 </div>
@@ -138,7 +138,6 @@
                                 </div>
                                 #}
                             </div>
-                            {% if "achievement" in news['tags']%}
                                 <div class="card-footer">
                                 {% set author_id = news['author_id'] %}
                                 {% if author_id in member_data%}
@@ -156,46 +155,46 @@
                                     </div>
                                 {% endif %}
                                 </div>
-                            {% else %}
-                            <div class="card-footer">
-                                <div>
-                                    <ul class="blog-meta">
-                                        <li>
-                                            <a style="font-size:10px">Contributer(s):</a>
-                                        </li>
-                                        {% for person_id in news.people_involved_ids %}
-                                        {% if person_id in member_data %}
-                                            {% set member_info = member_data[person_id] %}
-                                            {% set member_name = member_info.get('full_name') %}
-                                        <li>
-                                            <a href="members/{{ person_id }}/{{ person_id }}.html" target="_blank">
-                                                <p style="font-size: 10px; height:35px"> {{member_name}}</p>
-                                            </a>
-                                        </li>
-                                            {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-                                            person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-                                            <li>
-                                                <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
-                                                    style="font-size: 10px;">
-                                                    {{ person_id.strip().split(' ')[0] }}
-                                                </a>
-                                            </li>
-                                        
-                                        {% else %}
-                                        <li>
-                                            <a style="font-size: 10px;">
-                                                {{ person_id }}
-                                            </a>
-                                        </li>
-                                        {% endif %}
-                                        {% if not loop.last %}
-                                        <li>, </li>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                            </div>
-                            {% endif %}
+                                {#
+                                    <div class="card-footer">
+                                        <div>
+                                            <ul class="blog-meta">
+                                                <li>
+                                                    <a style="font-size:10px">Contributer(s):</a>
+                                                </li>
+                                                {% for person_id in news.people_involved_ids %}
+                                                {% if person_id in member_data %}
+                                                    {% set member_info = member_data[person_id] %}
+                                                    {% set member_name = member_info.get('full_name') %}
+                                                <li>
+                                                    <a href="members/{{ person_id }}/{{ person_id }}.html" target="_blank">
+                                                        <p style="font-size: 10px; height:35px"> {{member_name}}</p>
+                                                    </a>
+                                                </li>
+                                                    {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
+                                                    person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
+                                                    <li>
+                                                        <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
+                                                            style="font-size: 10px;">
+                                                            {{ person_id.strip().split(' ')[0] }}
+                                                        </a>
+                                                    </li>
+                                                
+                                                {% else %}
+                                                <li>
+                                                    <a style="font-size: 10px;">
+                                                        {{ person_id }}
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                                {% if not loop.last %}
+                                                <li>, </li>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                #}
                         </div>
                     </div>
                 </div>
