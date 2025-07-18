@@ -1,0 +1,120 @@
+{% extends "base.html.j2" %}
+
+{% block additional_style %}
+<style>
+/* Updated Grid Layout */
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.grid-container a {
+    flex: 1 1 calc(33.333% - 10px); /* Adjust the width as needed */
+    max-width: calc(33.333% - 10px); /* Adjust the width as needed */
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.grid-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .grid-container a {
+        flex: 1 1 calc(50% - 10px); /* Two columns on smaller screens */
+        max-width: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 576px) {
+    .grid-container a {
+        flex: 1 1 100%; /* Single column on mobile */
+        max-width: 100%;
+    }
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+    <!-- about banner -->
+    <section class="w3l-about-breadcrumb text-center">
+        <div class="breadcrumb-bg breadcrumb-bg-people py-5">
+            <div class="container py-lg-5 py-md-4">
+                <div class="banner-info-grid px-md-5" style="margin-top: 3%;">
+                    <h2 class="w3l-title-breadcrumb mb-3">Gallery</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- //about banner -->
+    
+    <section class="w3l-blog shift">
+        <div class="blog py-5" id="Events">
+            <div class="container py-lg-5 py-md-4 py-2">
+                <div class="gallery-container text-center">
+                    {% for event in events %}
+                    <div class="event card shadow-sm p-4 mb-5">
+                        <h1 style="text-align: center;">{{ event.title }}</h1>
+                        <div style="margin-top: 10px; gap: 5px; display: flex; align-items: center; justify-content: center; font-size: small;">
+                            <i class="bi bi-clock"></i>
+                            <p style="font-size: small;">{{ event.date.strftime('%d') }}{% if event.date.day % 10 == 1 and event.date.day != 11 %}st{% elif event.date.day % 10 == 2 and event.date.day != 12 %}nd{% elif event.date.day % 10 == 3 and event.date.day != 13 %}rd{% else %}th{% endif %} {{ event.date.strftime('%b, %Y') }}</p>
+                        </div>
+                        <p>{{ event.description }}</p>
+                        
+                        <div class="pswp-gallery custom-grid-layout" id="gallery-{{ loop.index }}">
+                            <div class="grid-container grid-standard">
+                                {% for image in event.images %}
+                                    <a href="/website_files/images/gallery/{{ event.event_id }}/{{ image.image_path }}" data-pswp-width={{image.scaled_width}} data-pswp-height={{image.scaled_height}}>
+                                        <img src="/website_files/images/gallery/{{ event.event_id }}/{{ image.image_path }}" 
+                                             alt="{{ image.caption }}" 
+                                             class="img-fluid rounded">
+                                        <span class="pswp-caption-content">{{ image.caption }}</span>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <script type="module">
+    import PhotoSwipeLightbox from './assets/js/photoswipe-lightbox.esm.js';
+    import PhotoSwipe from './assets/js/photoswipe.esm.js';
+    import PhotoSwipeDynamicCaption from './assets/js/photoswipe-dynamic-caption-plugin.esm.js';
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initializePhotoSwipe();
+    });
+    
+    function initializePhotoSwipe() {
+        const galleries = document.querySelectorAll('.pswp-gallery');
+        galleries.forEach(gallery => {
+            const lightbox = new PhotoSwipeLightbox({
+                gallery: gallery,
+                children: 'a',
+                pswpModule: PhotoSwipe,
+                showHideAnimationType: 'zoom',
+                clickToCloseNonZoomable: false,
+            });
+
+            const captionPlugin = new PhotoSwipeDynamicCaption(lightbox, {
+            // Plugins options, for example:
+            type: 'auto',
+            });
+            lightbox.init();
+        });
+    }
+    
+    </script>
+
+{% endblock %}
+
