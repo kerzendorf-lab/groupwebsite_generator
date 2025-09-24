@@ -44,9 +44,9 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Update pip and install Jupyter and Pandas
+      - name: Update pip and install Jupyter, Pandas and Pillow
         run: |
-          pip install --upgrade pip jupyter pandas
+          pip install --upgrade pip jupyter pandas Pillow
 
       - name: Clear and setup directories inside kerzendorf-group.github.io
         run: |
