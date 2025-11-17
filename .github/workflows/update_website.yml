@@ -25,11 +25,11 @@ jobs:
           path: group-data
           token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
-      - name: Clone kerzendorf-group.github.io
+      - name: Clone kerzendorf-lab.github.io
         uses: actions/checkout@v4
         with:
-          repository: kerzendorf-group/kerzendorf-group.github.io
-          path: kerzendorf-group.github.io
+          repository: kerzendorf-lab/kerzendorf-lab.github.io
+          path: kerzendorf-lab.github.io
           token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
       - name: Clone Research and News data
@@ -48,7 +48,7 @@ jobs:
         run: |
           pip install --upgrade pip jupyter pandas Pillow
 
-      - name: Clear and setup directories inside kerzendorf-group.github.io
+      - name: Clear and setup directories inside kerzendorf-lab.github.io
         run: |
           ./notebooks/setup.sh
         working-directory: ./groupwebsite_generator
@@ -66,4 +66,4 @@ jobs:
           git add .
           git commit --allow-empty -m "Push from website generator"
           git push
-        working-directory: ./kerzendorf-group.github.io
+        working-directory: ./kerzendorf-lab.github.io
