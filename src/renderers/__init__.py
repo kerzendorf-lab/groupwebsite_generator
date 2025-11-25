@@ -17,6 +17,7 @@ from .article_pages import (
     NewsFrontPageRenderer,
     IndividualNewsPageRenderer
 )
+from .gallery_page import GalleryPageRenderer
 
 __all__ = [
     'BasePageRenderer',
@@ -31,5 +32,6 @@ __all__ = [
     'SubResearchFrontPageRenderer',
     'IndividualResearchPageRenderer',
     'NewsFrontPageRenderer',
-    'IndividualNewsPageRenderer'
+    'IndividualNewsPageRenderer',
+    'GalleryPageRenderer'
 ]
