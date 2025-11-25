@@ -10,6 +10,13 @@ from .member_pages import (
     AlumniMembersRenderer,
     IndividualMemberRenderer
 )
+from .article_pages import (
+    ResearchFrontPageRenderer,
+    SubResearchFrontPageRenderer,
+    IndividualResearchPageRenderer,
+    NewsFrontPageRenderer,
+    IndividualNewsPageRenderer
+)
 
 __all__ = [
     'BasePageRenderer',
@@ -19,5 +26,10 @@ __all__ = [
     'JoinUsPageRenderer',
     'CurrentMembersRenderer',
     'AlumniMembersRenderer',
-    'IndividualMemberRenderer'
+    'IndividualMemberRenderer',
+    'ResearchFrontPageRenderer',
+    'SubResearchFrontPageRenderer',
+    'IndividualResearchPageRenderer',
+    'NewsFrontPageRenderer',
+    'IndividualNewsPageRenderer'
 ]
