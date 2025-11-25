@@ -5,11 +5,19 @@ from .simple_pages import (
     SupportPageRenderer,
     JoinUsPageRenderer
 )
+from .member_pages import (
+    CurrentMembersRenderer,
+    AlumniMembersRenderer,
+    IndividualMemberRenderer
+)
 
 __all__ = [
     'BasePageRenderer',
     'HomepageRenderer',
     'ContactPageRenderer',
     'SupportPageRenderer',
-    'JoinUsPageRenderer'
+    'JoinUsPageRenderer',
+    'CurrentMembersRenderer',
+    'AlumniMembersRenderer',
+    'IndividualMemberRenderer'
 ]
