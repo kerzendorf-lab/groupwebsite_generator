@@ -18,6 +18,7 @@ from .article_pages import (
     IndividualNewsPageRenderer
 )
 from .gallery_page import GalleryPageRenderer
+from .assets import AssetCopier
 
 __all__ = [
     'BasePageRenderer',
@@ -33,5 +34,6 @@ __all__ = [
     'IndividualResearchPageRenderer',
     'NewsFrontPageRenderer',
     'IndividualNewsPageRenderer',
-    'GalleryPageRenderer'
+    'GalleryPageRenderer',
+    'AssetCopier'
 ]
