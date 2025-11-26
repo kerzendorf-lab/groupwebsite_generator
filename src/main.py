@@ -118,6 +118,105 @@ class SiteGenerator:
             self.data['current_members_df']
         )
 
+    def render_homepage(self) -> None:
+        renderer = HomepageRenderer(self.logger)
+        renderer.render(
+            self.data['general'],
+            self.data['homepage'],
+            self.data['recent_content_df']
+        )
+
+    def render_contact(self) -> None:
+        renderer = ContactPageRenderer(self.logger)
+        renderer.render(self.data['general'], self.data['contact'])
+
+    def render_support(self) -> None:
+        renderer = SupportPageRenderer(self.logger)
+        renderer.render(self.data['general'], self.data['support'])
+
+    def render_join_us(self) -> None:
+        renderer = JoinUsPageRenderer(self.logger)
+        renderer.render(self.data['general'], self.data['opportunities'])
+
+    def render_member_pages(self) -> None:
+        current_renderer = CurrentMembersRenderer(self.logger)
+        current_renderer.render(
+            self.data['general'],
+            self.data['current_members_df'],
+            self.data['social_links_df']
+        )
+
+        alumni_renderer = AlumniMembersRenderer(self.logger)
+        alumni_renderer.render(
+            self.data['general'],
+            self.data['alumni_members_df']
+        )
+
+        individual_renderer = IndividualMemberRenderer(self.logger)
+        individual_renderer.render(
+            self.data['general'],
+            self.data['member_info_df'],
+            self.data['social_links_df'],
+            self.data['documents_df'],
+            self.data['education_grouped'],
+            self.data['experiences_grouped'],
+            self.data['projects_grouped'],
+            self.data['awards_grouped'],
+            self.data['outreach_grouped'],
+            self.data['articles_df']
+        )
+
+    def render_research_pages(self) -> None:
+        front_renderer = ResearchFrontPageRenderer(self.logger)
+        front_renderer.render(
+            self.data['general'],
+            self.data['research_df'],
+            self.data['research'],
+            self.data['info_dict']
+        )
+
+        sub_front_renderer = SubResearchFrontPageRenderer(self.logger)
+        sub_front_renderer.render(
+            self.data['general'],
+            self.data['research'],
+            self.data['research_df'],
+            self.data['info_dict']
+        )
+
+        individual_renderer = IndividualResearchPageRenderer(self.logger)
+        individual_renderer.render(
+            self.data['general'],
+            self.data['research_df'],
+            self.data['info_dict']
+        )
+
+    def render_news_pages(self) -> None:
+        front_renderer = NewsFrontPageRenderer(self.logger)
+        front_renderer.render(
+            self.data['general'],
+            self.data['news_df'],
+            self.data['info_dict']
+        )
+
+        individual_renderer = IndividualNewsPageRenderer(self.logger)
+        individual_renderer.render(
+            self.data['general'],
+            self.data['news_df'],
+            self.data['info_dict']
+        )
+
+    def render_gallery(self) -> None:
+        renderer = GalleryPageRenderer(self.logger)
+        renderer.render(
+            self.data['general'],
+            self.data['info_dict'],
+            self.data['gallery_events']
+        )
+
+    def copy_assets(self) -> None:
+        copier = AssetCopier(self.logger)
+        copier.copy_assets()
+
     def run(self) -> None:
         stages = [
             ("Load Articles", self.load_articles),
@@ -156,3 +255,23 @@ class SiteGenerator:
         self.logger.info("="*80)
         self.logger.info("Website Generation Complete!")
         self.logger.info("="*80)
+
+
+def main():
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Generate static website")
+    parser.add_argument(
+        "--log-level",
+        default="INFO",
+        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
+        help="Set logging level"
+    )
+
+    args = parser.parse_args()
+
+    generator = SiteGenerator(log_level=args.log_level)
+    generator.run()
+
+if __name__ == "__main__":
+    main()
