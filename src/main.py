@@ -66,6 +66,58 @@ class SiteGenerator:
 
         self.data['gallery_events'] = loader.load_gallery_events()
 
+    def process_article_categories(self) -> None:
+        processor = ArticleProcessor(self.logger)
+
+        news_df, research_df = processor.split_by_category(self.data['articles_df'])
+        self.data['news_df'] = news_df
+        self.data['research_df'] = research_df
+
+        self.data['recent_content_df'] = processor.get_recent_content_by_category(
+            self.data['articles_df']
+        )
+
+    def process_member_roles(self) -> None:
+        processor = MemberProcessor(self.logger)
+
+        current_df, alumni_df = processor.process_member_status(
+            self.data['member_info_df'],
+            self.data['experiences_df'],
+            self.data['education_df'],
+            self.data['projects_df']
+        )
+
+        self.data['current_members_df'] = processor.sort_by_role_hierarchy(
+            current_df,
+            self.data['role_hierarchy']
+        )
+        self.data['alumni_members_df'] = alumni_df
+
+        self.data['info_dict'] = self.data['member_info_df'].to_dict('index')
+
+        self.data['education_grouped'] = processor.group_dataframe_by_id(
+            self.data['education_df']
+        )
+        self.data['experiences_grouped'] = processor.group_dataframe_by_id(
+            self.data['experiences_df']
+        )
+        self.data['projects_grouped'] = processor.group_dataframe_by_id(
+            self.data['projects_df']
+        )
+        self.data['awards_grouped'] = processor.group_dataframe_by_id(
+            self.data['awards_df']
+        )
+        self.data['outreach_grouped'] = processor.group_dataframe_by_id(
+            self.data['outreach_df']
+        )
+
+        article_processor = ArticleProcessor(self.logger)
+        self.data['news_df'] = article_processor.process_news_content_links(
+            self.data['news_df'],
+            self.data['member_info_df'],
+            self.data['current_members_df']
+        )
+
     def run(self) -> None:
         stages = [
             ("Load Articles", self.load_articles),
