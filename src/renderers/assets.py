@@ -19,15 +19,9 @@ class AssetCopier:
                 f"Expected at: {self.source_assets.absolute()}"
             )
 
-        try:
-            shutil.copytree(
-                self.source_assets,
-                self.destination_assets,
-                dirs_exist_ok=True
-            )
-            self.logger.info(f"Assets copied to {self.destination_assets}")
-        except Exception as e:
-            raise IOError(
-                f"Failed to copy assets from {self.source_assets} "
-                f"to {self.destination_assets}. Error: {e}"
-            ) from e
+        shutil.copytree(
+            self.source_assets,
+            self.destination_assets,
+            dirs_exist_ok=True
+        )
+        self.logger.info(f"Assets copied to {self.destination_assets}")

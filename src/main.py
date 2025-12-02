@@ -242,14 +242,8 @@ class SiteGenerator:
             self.logger.info(f"[{idx}/{total_stages}] Starting: {stage_name}")
             self.logger.info("-" * 80)
 
-            try:
-                stage_fn()
-                self.logger.info(f"✓ Completed: {stage_name}")
-            except Exception as e:
-                self.logger.error(f"✗ Failed: {stage_name}")
-                self.logger.error(f"Error: {e}")
-                self.logger.exception("Full traceback:")
-                sys.exit(1)
+            stage_fn()
+            self.logger.info(f"✓ Completed: {stage_name}")
 
         self.logger.info("")
         self.logger.info("="*80)

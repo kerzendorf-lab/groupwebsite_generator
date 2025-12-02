@@ -14,13 +14,8 @@ class GalleryPageRenderer(BasePageRenderer):
         processed_events = []
 
         for event_file, event_data in gallery_events:
-            try:
-                processed_event = self._process_gallery_event(event_file, event_data)
-                processed_events.append(processed_event)
-            except Exception as e:
-                self.logger.error(
-                    f"Failed to process gallery event {event_data.get('event_id', 'unknown')}: {e}"
-                )
+            processed_event = self._process_gallery_event(event_file, event_data)
+            processed_events.append(processed_event)
 
         if "date" in processed_events[0] if processed_events else {}:
             for event in processed_events:
@@ -62,17 +57,12 @@ class GalleryPageRenderer(BasePageRenderer):
                 )
                 continue
 
-            try:
-                with Image.open(image_path) as img:
-                    width, height = img.size
-                    new_width = int(width * 0.7)
-                    new_height = int(height * 0.7)
+            with Image.open(image_path) as img:
+                width, height = img.size
+                new_width = int(width * 0.7)
+                new_height = int(height * 0.7)
 
-                    image["scaled_width"] = new_width
-                    image["scaled_height"] = new_height
-            except Exception as e:
-                self.logger.error(
-                    f"Failed to process image {image_path}: {e}"
-                )
+                image["scaled_width"] = new_width
+                image["scaled_height"] = new_height
 
         return event_data

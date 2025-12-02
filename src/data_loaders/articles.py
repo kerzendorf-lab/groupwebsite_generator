@@ -31,17 +31,12 @@ class ArticleLoader(BaseDataLoader):
         self.logger.info(f"Found {len(info_files)} article info.json files")
 
         for content_file_path in info_files:
-            try:
-                article_content = self._load_single_article(
-                    content_file_path,
-                    today_datetime
-                )
-                if article_content:
-                    article_content_list.append(article_content)
-            except Exception as e:
-                self.logger.error(
-                    f"Failed to load article {content_file_path.parent.name}: {e}"
-                )
+            article_content = self._load_single_article(
+                content_file_path,
+                today_datetime
+            )
+            if article_content:
+                article_content_list.append(article_content)
 
         if not article_content_list:
             self.logger.warning("No articles loaded successfully")

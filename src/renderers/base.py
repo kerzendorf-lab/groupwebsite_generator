@@ -30,28 +30,14 @@ class BasePageRenderer(ABC):
         output_path: str,
         **context
     ) -> None:
-        try:
-            template = self.environment.get_template(template_name)
-        except Exception as e:
-            raise ValueError(
-                f"Failed to load template '{template_name}'. "
-                f"Check that file exists in {TEMPLATE_DIR_PATH}. "
-                f"Error: {e}"
-            ) from e
+        template = self.environment.get_template(template_name)
 
         template_level = output_path.count("/")
 
         full_output_path = self.hosting_path / output_path
         full_output_path.parent.mkdir(parents=True, exist_ok=True)
 
-        try:
-            content = template.render(TEMPLATE_LEVEL=template_level, **context)
-        except Exception as e:
-            raise ValueError(
-                f"Failed to render template '{template_name}' for '{output_path}'. "
-                f"Check template syntax and context variables. "
-                f"Error: {e}"
-            ) from e
+        content = template.render(TEMPLATE_LEVEL=template_level, **context)
 
         try:
             with open(full_output_path, mode="w", encoding="utf-8") as f:
