@@ -12,13 +12,13 @@
 
 {%- macro format_years(row) -%}
     {%- if row.get("start_date") is not none -%}
-        {{ row["start_date"].year }} - 
+        {{ row["start_date"].year }} -
         {%- if row.get("end_date") is not none -%}
             {{ row["end_date"].year }}
         {%- else -%}
             Present
         {%- endif -%}
-    {%- elif row.get("date") is string -%}
-        {{ row["date"][:4] }}
+    {%- elif row.get("date") is not none -%}
+        {{ row["date"].year }}
     {%- endif -%}
 {%- endmacro -%}
