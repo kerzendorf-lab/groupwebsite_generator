@@ -1,6 +1,14 @@
 {% extends 'base.html.j2' %}
 {% from 'macros.html.j2' import format_years %}
 
+{% set section_headings = {
+    "education": "Education",
+    "experiences": "Experience",
+    "projects": "Projects",
+    "awards": "Awards & Recognition",
+    "outreach": "Outreach Programs"
+} %}
+
 {% block title %}
 {{member_data["full_name"]}} | {{ general.website_title }}
 {% endblock %}
