@@ -55,6 +55,10 @@ jobs:
 
       - name: Run Notebooks
         run: |
+          jupyter nbconvert --to python members.ipynb
+          python3 members.py
+          jupyter nbconvert --to python articles.ipynb
+          python3 articles.py
           jupyter nbconvert --to python create_htmls.ipynb
           python3 create_htmls.py
         working-directory: ./groupwebsite_generator/notebooks
