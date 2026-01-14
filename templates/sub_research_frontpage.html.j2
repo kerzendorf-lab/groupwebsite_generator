@@ -77,8 +77,10 @@
                         <br>
                         <div class="container py-lg-5 py-md-4 py-2">
                             <div class="row">
+                                {% if category in research %}
                                 <p class="mb-4" style="padding-bottom: 3%; text-align:left; font-size: 18px;">{{
                                     research[category]['about'] }}</p>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
