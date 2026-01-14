@@ -1,0 +1,41 @@
+{
+  "group": "kerzendorf_lab",
+  "platform_filter": "kg",
+  "institution_filter": "Michigan State University",
+  "group_filter": ["DTI", "TARDIS", "kerzendorf"],
+  "paths": {
+    "group_data_dir": "/Users/atharva/workspace/code/tardis-main/lab/group-data",
+    "hosting_path": "/Users/atharva/workspace/code/tardis-main/kerzendorf-lab.github.io",
+    "template_dir": "/Users/atharva/workspace/code/tardis-main/lab/groupwebsite_generator/templates",
+    "article_dir": "/Users/atharva/workspace/code/tardis-main/website/research_news/articles",
+    "source_assets": "/Users/atharva/workspace/code/tardis-main/lab/groupwebsite_generator/assets"
+  },
+  "category_replacements": {
+    "Overview": "Computational Metascience"
+  },
+  "default_cover_image_height": "330px",
+  "default_cover_image_width": "520px",
+  "templates": {
+    "research": "research.html.j2"
+  },
+  "pages": {
+    "research": "Research.html"
+  },
+  "tag_colors": {
+    "paper": "#FF6B6B",
+    "poster": "#4ECDC4",
+    "talk": "#45B7D1",
+    "award": "#96CEB4",
+    "new team member": "#FFBE0B",
+    "phd": "#9B5DE5",
+    "conference": "#FF006E",
+    "undergraduate": "#8338EC",
+    "event": "#3A86FF",
+    "achievement": "#FB5607",
+    "astrophysics": "#2EC4B6",
+    "machine learning": "#FF9F1C",
+    "software": "#E71D36",
+    "research": "#011627",
+    "news": "#41EAD4"
+  }
+}
