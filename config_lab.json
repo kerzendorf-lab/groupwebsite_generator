@@ -4,11 +4,11 @@
   "institution_filter": "Michigan State University",
   "group_filter": ["DTI", "TARDIS", "kerzendorf"],
   "paths": {
-    "group_data_dir": "/Users/atharva/workspace/code/tardis-main/lab/group-data",
-    "hosting_path": "/Users/atharva/workspace/code/tardis-main/kerzendorf-lab.github.io",
-    "template_dir": "/Users/atharva/workspace/code/tardis-main/lab/groupwebsite_generator/templates",
-    "article_dir": "/Users/atharva/workspace/code/tardis-main/website/research_news/articles",
-    "source_assets": "/Users/atharva/workspace/code/tardis-main/lab/groupwebsite_generator/assets"
+    "group_data_dir": "../group-data",
+    "hosting_path": "../kerzendorf-lab.github.io",
+    "template_dir": "templates",
+    "article_dir": "../research_news/articles",
+    "source_assets": "assets"
   },
   "category_replacements": {
     "Overview": "Computational Metascience"

@@ -2,7 +2,7 @@
   "group": "dti",
   "platform_filter": "dti",
   "institution_filter": "Michigan State University",
-  "group_filter": ["DTI", "TARDIS", "ICER", "kerzendorf"],
+  "group_filter": ["DTI", "TARDIS", "kerzendorf"],
   "paths": {
     "group_data_dir": "/Users/atharva/workspace/code/tardis-main/dti-website/group-data",
     "hosting_path": "/Users/atharva/workspace/code/tardis-main/dti-website/deepthought-initiative.github.io",

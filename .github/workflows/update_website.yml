@@ -7,6 +7,9 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   update_website:
@@ -21,7 +24,7 @@ jobs:
       - name: Clone group-data
         uses: actions/checkout@v4
         with:
-          repository: kerzendorf-group/group-data
+          repository: kerzendorf-lab/group-data
           path: group-data
           token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
@@ -53,6 +56,17 @@ jobs:
           ./notebooks/setup.sh
         working-directory: ./groupwebsite_generator
 
+      - name: Determine target branch
+        id: determine-branch
+        run: |
+          if [ "${{ github.event_name }}" == "pull_request" ]; then
+            BRANCH_NAME="pull-request-${{ github.head_ref }}"
+          else
+            BRANCH_NAME="main"
+          fi
+          echo "TARGET_BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
+          echo "Target branch: $BRANCH_NAME"
+
       - name: Run Notebooks
         run: |
           jupyter nbconvert --to python members.ipynb
@@ -67,7 +81,23 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          # Create or switch to target branch
+          TARGET_BRANCH="test${{ env.TARGET_BRANCH }}"
+          git fetch origin
+
+          # Discard any local changes before checkout
+          git reset --hard HEAD
+          git clean -fd
+
+          if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
+            git checkout -f "$TARGET_BRANCH"
+            git pull origin "$TARGET_BRANCH"
+          else
+            git checkout -b "$TARGET_BRANCH"
+          fi
+
           git add .
-          git commit --allow-empty -m "Push from website generator"
-          git push
+          git commit --allow-empty -m "Push from website generator (branch: ${{ github.ref_name }})"
+          git push origin "$TARGET_BRANCH"
         working-directory: ./kerzendorf-lab.github.io
