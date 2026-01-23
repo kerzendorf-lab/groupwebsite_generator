@@ -77,6 +77,13 @@ jobs:
           python3 create_htmls.py
         working-directory: ./groupwebsite_generator/notebooks
 
+      - name: Debug - Check what changed
+        run: |
+          git status
+          git diff --stat
+          git diff --name-only | wc -l
+        working-directory: ./kerzendorf-lab.github.io
+
       - name: Push Website
         run: |
           git config user.name 'github-actions[bot]'
@@ -86,13 +93,11 @@ jobs:
           TARGET_BRANCH="test${{ env.TARGET_BRANCH }}"
           git fetch origin
 
-          # Discard any local changes before checkout
-          git reset --hard HEAD
-          git clean -fd
+          # Add changes before switching branches
+          git add .
 
           if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
-            git checkout -f "$TARGET_BRANCH"
-            git pull origin "$TARGET_BRANCH"
+            git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
           else
             git checkout -b "$TARGET_BRANCH"
           fi
