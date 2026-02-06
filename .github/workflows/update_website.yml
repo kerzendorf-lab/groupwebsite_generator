@@ -21,7 +21,7 @@ jobs:
       - name: Clone group-data
         uses: actions/checkout@v4
         with:
-          repository: kerzendorf-group/group-data
+          repository: kerzendorf-lab/group-data
           path: group-data
           token: ${{ secrets.TARDIS_BOT_TOKEN }}
 
@@ -55,13 +55,19 @@ jobs:
 
       - name: Run Notebooks
         run: |
-          jupyter nbconvert --to python members.ipynb
-          python3 members.py
-          jupyter nbconvert --to python articles.ipynb
-          python3 articles.py
-          jupyter nbconvert --to python create_htmls.ipynb
-          python3 create_htmls.py
+          jupyter nbconvert --execute --to html members.ipynb
+          jupyter nbconvert --execute --to html articles.ipynb
+          jupyter nbconvert --execute --to html create_htmls.ipynb
         working-directory: ./groupwebsite_generator/notebooks
+
+      - name: Upload executed notebooks as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: executed-notebooks
+          path: |
+            ./groupwebsite_generator/notebooks/members.html
+            ./groupwebsite_generator/notebooks/articles.html
+            ./groupwebsite_generator/notebooks/create_htmls.html
 
       - name: Push Website
         run: |

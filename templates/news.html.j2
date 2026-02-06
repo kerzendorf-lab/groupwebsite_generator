@@ -117,7 +117,7 @@
                                 <div class='badge-tray'>
                                     {%for tag in news['tags']%}
                                     {%if tag.lower() != "news"%}
-                                    <span class="badge" style="background-color: {{ tag_colors[tag.lower()] }}">{{tag.title()}}</span>
+                                    <span class="badge" style="background-color: {{ get_tag_color(tag) }}">{{tag.title()}}</span>
                                     {%endif%}
                                     {%endfor%}
                                 </div>
