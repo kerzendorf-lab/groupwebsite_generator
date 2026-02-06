@@ -7,9 +7,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
   update_website:
@@ -56,17 +53,6 @@ jobs:
           ./notebooks/setup.sh
         working-directory: ./groupwebsite_generator
 
-      - name: Determine target branch
-        id: determine-branch
-        run: |
-          if [ "${{ github.event_name }}" == "pull_request" ]; then
-            BRANCH_NAME="pull-request-${{ github.head_ref }}"
-          else
-            BRANCH_NAME="main"
-          fi
-          echo "TARGET_BRANCH=$BRANCH_NAME" >> $GITHUB_ENV
-          echo "Target branch: $BRANCH_NAME"
-
       - name: Run Notebooks
         run: |
           jupyter nbconvert --execute --to html members.ipynb
@@ -82,30 +68,12 @@ jobs:
             ./groupwebsite_generator/notebooks/members.html
             ./groupwebsite_generator/notebooks/articles.html
             ./groupwebsite_generator/notebooks/create_htmls.html
-          retention-days: 30
-
-      - name: Debug - Check what changed
-        run: |
-          git status
-          git diff --stat
-          git diff --name-only | wc -l
-        working-directory: ./kerzendorf-lab.github.io
 
       - name: Push Website
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          # Create or switch to target branch
-          TARGET_BRANCH="test${{ env.TARGET_BRANCH }}"
-          git fetch origin
-          # Add changes before switching branches
           git add .
-          if git ls-remote --heads origin "$TARGET_BRANCH" | grep -q "$TARGET_BRANCH"; then
-            git checkout -B "$TARGET_BRANCH" "origin/$TARGET_BRANCH"
-          else
-            git checkout -b "$TARGET_BRANCH"
-          fi
-          git add .
-          git commit --allow-empty -m "Push from website generator (branch: ${{ github.ref_name }})"
-          git push origin "$TARGET_BRANCH"
+          git commit --allow-empty -m "Push from website generator"
+          git push
         working-directory: ./kerzendorf-lab.github.io
