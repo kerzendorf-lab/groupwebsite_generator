@@ -9,13 +9,3 @@
         {{- parts|join("/") ~ "/" ~ link -}}
     {%- endif -%}
 {%- endmacro -%}
-
-{%- macro format_years(row) -%}
-    {%- if row.get("start_date") is not none and row["start_date"]|string != 'NaT' -%}
-        {{ row["start_date"].year }} - {{ row["end_date"].year if (row.get("end_date") is not none and row["end_date"]|string != 'NaT') else "Present" }}
-    {%- elif row.get("end_date") is not none and row["end_date"]|string != 'NaT' -%}
-        {{ row["end_date"].year }}
-    {%- elif row.get("date") is not none and row["date"]|string != 'NaT' -%}
-        {{ row["date"].year }}
-    {%- endif -%}
-{%- endmacro -%}

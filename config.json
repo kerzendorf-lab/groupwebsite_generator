@@ -1,8 +1,7 @@
 {
   "group": "kerzendorf_lab",
   "platform_filter": "kg",
-  "institution_filter": "Michigan State University",
-  "group_filter": ["DTI", "TARDIS", "kerzendorf"],
+  "group_filter": ["kerzendorf"],
   "paths": {
     "group_data_dir": "../group-data",
     "hosting_path": "../kerzendorf-lab.github.io",

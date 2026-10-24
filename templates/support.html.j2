@@ -50,10 +50,10 @@
     <div class="container py-md-4">
     <p>Our work and achievements are made possible by the invaluable support extended by the following organizations and programs. If you would like to contribute, please contact Wolfgang Kerzendorf at wkerzend@msu.edu</p>
         <div class="row py-5 justify-content-center d-flex align-items-center">
-                {% for key, value in support.items() %}
+                {% for value in support %}
                     <div class="col-lg-2 col-md-3 col-4">
                         <a href={{ value['link'] }} target="_blank">
-                            <img src="{{ value['image_path'] }}" alt={{ key }} class="img-fluid">
+                            <img src="{{ value['image_path'] }}" alt={{ value['name'] }} class="img-fluid">
                         </a>
                     </div>
                 {% endfor %}    
