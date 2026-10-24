@@ -66,10 +66,10 @@
                                 <th>Name</th>
                                 <th>Academic Role</th>
                             </tr>
-                            {% for person_id, person_value in alumni_members.iterrows() %}
+                            {% for person_value in alumni_members %}
                             <tr>
                                 <td>{{ person_value["full_name"] }}</td>
-                                <td>{{ person_value["current_role"] }}</td>
+                                <td>{{ person_value.role }}{% if person_value.role_detail %}<br><small>{{ person_value.role_detail }}</small>{% endif %}</td>
                             </tr>
                             {% endfor %}
                         </table>
