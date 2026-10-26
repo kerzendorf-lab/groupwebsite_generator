@@ -64,13 +64,13 @@
 				<div class="container py-lg-5 py-md-4 py-2">
 					<div class="blog-posthny-info mx-auto" style="max-width:800px">
 						{% set project_info = content %}
-						{% set author_id = project_info['author_id'] %}
-						{% if author_id in member_data%}
-						{% set author_info = member_data[author_id] %}
+						{% set author_info = project_info.author %}
+						{% if author_info %}
+						{% set author_id = author_info.id %}
+						{% set author_name = project_info.author_name %}
 						{%else%}
-						{% set author_info = "" %}
+						{% set author_id = none %}
 						{%endif%}
-						{% set author_name = author_info['full_name'] %}
 
 						<div class="style-title position-relative">
 							<h3 class="title-style mb-sm-3 mb-2">{{ project_info.title }}</h3>
@@ -82,14 +82,14 @@
 										src="../../members/{{ author_id}}/{{ author_info.image_path }}" class="img-fluid"
 										alt=""></li>
 								{% if project_info.category == 'Software' %}
-								<li>Principal Investigator: <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name | upper}}</a></li>
+								<li>Principal Investigator: <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a></li>
 								{% else %}
 								<li>Article by <a href="../../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a></li>
 								{% endif %}
 								{% endif %}
-								<li>{{ project_info['date'].strftime('%d') }}{% if project_info["date"].day % 10 == 1 and project_info["date"].day != 11 %}st{% elif project_info["date"].day % 10 == 2 and project_info["date"].day != 12 %}nd{% elif project_info["date"].day % 10 == 3 and project_info["date"].day != 13 %}rd{% else %}th{% endif %} {{ project_info["date"].strftime('%b, %Y') }}</li>
+								<li>{{ project_info.date }}</li>
 							</ul>
-							{% if 'pacman' not in project_info.title.lower() %}
+							{% if project_info.show_cover_image %}
 							<img src="../../{{ project_info.cover_image }}" class="img-fluid img-responsive"
 								alt="blog-post-image">
 							{%endif%}
@@ -102,16 +102,16 @@
 
 						<div class="content-text-9">
 							<div class="single-post-content-1 row mt-5 no-gutters">
-								{% for key, value in project_info.content.items() %}
-								{% if key.endswith('img') %}
+								{% for block in project_info.content %}
+								{% if block.kind == "image" %}
 								<div class="single-post-image mb-4"
 									style="max-width:fit-content; display: block; margin: auto;">
-									<img src="../../{{ value }}" class="img-fluid img-responsive mt-3"
+									<img src="../../{{ block.value }}" class="img-fluid img-responsive mt-3"
 										alt="blog-post-image">
 								</div>
-								{% elif key.endswith('para') %}
+								{% elif block.kind == "paragraph" %}
 								<div class="single-post-content">
-									<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ value }}</p>
+									<p class="mt-md-0 mt-4 ml-md-4 ml-0">{{ block.value }}</p>
 								</div>
 								{% endif %}
 								{% endfor %}
@@ -120,33 +120,31 @@
 
 						<div class="col-lg-10 right-side-bar mt-lg-0 mt-5 ps-lg-5" style="padding-top: 5%;">
 							<div class="row">
-								{% if project_info.people_involved_ids %}
+								{% if project_info.people %}
 								<div class="col text-center">
 									<aside class="posts p-6" style="overflow-x: scroll;">
 										<h3 class="aside-title">People Associated</h3>
 										<ul class="category">
 											<li>
-												{% for person_id in project_info.people_involved_ids %}
-												{% if person_id in member_data %}
-													{% set member_info = member_data[person_id] %}
+												{% for person in project_info.people %}
+												{% if person.kind == "member" %}
+													{% set person_id = person.id %}
 
-													{% set member_name = member_info.get('full_name') %}
+													{% set member_name = person.name %}
 
 												<a href="../../members/{{ person_id }}/{{ person_id }}.html" target="_blank"
 													style="font-size: 15px; display: inline;">
 													<span class="fas fa-user"></span> {{ member_name}}
 												</a>
-												{% elif person_id.strip().split('
-												')[-1].strip().lower().startswith("http://") or person_id.strip().split('
-												')[-1].strip().lower().startswith("https://") %}
-												<a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
+												{% elif person.kind == "link" %}
+												<a href="{{ person.url }}" target="_blank"
 													style="font-size: 15px;  display: inline;">
 													<span class="fas fa-external-link-alt"></span>{{
-													person_id.strip().split(' ')[0] }}
+													person.name }}
 												</a>
 											</li>
 											{% else %}
-											{{ person_id }}
+											{{ person.name }}
 											{% endif %}
 											{% endfor %}
 											</li>
@@ -163,15 +161,12 @@
 								<aside class="posts p-6">
 									<h3 class="aside-title">References & Resources</h3>
 									<ul class="category">
-										{% for link_key, link_value in project_info.links.items() %}
-										{% if link_value.strip().lower().startswith("http://") or
-										link_value.strip().lower().startswith("https://") %}
+										{% for link in project_info.links %}
 										<li>
-											<a href="{{ link_value.strip() }}" target="_blank">
-												<span class="fas fa-external-link-alt"></span>{{ link_key }}
+											<a href="{{ link.url }}" target="_blank">
+												<span class="fas fa-external-link-alt"></span>{{ link.name }}
 											</a>
 										</li>
-										{% endif %}
 										{% endfor %}
 									</ul>
 								</aside>

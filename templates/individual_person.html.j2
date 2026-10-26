@@ -1,5 +1,4 @@
 {% extends 'base.html.j2' %}
-{% from 'macros.html.j2' import format_years %}
 
 {% set section_headings = {
     "education": "Education",
@@ -10,7 +9,7 @@
 } %}
 
 {% block title %}
-{{member_data["full_name"]}} | {{ general.website_title }}
+{{member.full_name}} | {{ general.website_title }}
 {% endblock %}
 
 {% block additional_style %}
@@ -39,58 +38,46 @@
             <div class="container py-lg-5 py-md-4 py-2">
                 <div class="content-info-in row">
                     <div class="content-gd col-lg-6 pe-lg-5">
-                        <img src="{{ member_data["image_path"] }}" alt="" class="img-fluid" style="max-width: 80%;" />
+                        <img src="{{ member.image_path }}" alt="" class="img-fluid" style="max-width: 80%;" />
                     </div>
                     <div class="content-gd col-lg-6 mt-lg-0 mt-5 align-self ps-lg-5">
                         <h4 class="w3l-title-main mb-lg-4 mb-3" style="color: black;">
-                        {{member_data["full_name"]}}
+                        {{member.full_name}}
                         </h4>
-                        {%- if member_data["introduction"] is not none and member_data["introduction"] != 'nan' -%}
-                            <p class="my-4 pe-lg-5">{{ member_data["introduction"] }}</p>
+                        {%- if member.introduction -%}
+                            <p class="my-4 pe-lg-5">{{ member.introduction }}</p>
                         {%- endif -%}
-                        {% set social_links = socials[member_id] %}
+                        {% set social_links = member.socials %}
                         {% if social_links %}
                         <section class="w3l-contacts-12">
                             <div class="container py-lg-4">
                                 <div class="social-icons-con" style="text-align:center; padding-top:3%;">
                                     <h4 class="mb-3">Connect with me:</h4>
-                                    {% if 'website' in social_links and social_links['website'] != "" %}
+                                    {% if social_links.website %}
                                         <a href="{{ social_links['website'] }}" target="_blank"><span class="fa fa-globe" aria-hidden="true"></span></a>
                                     {% endif %}
 
-                                    {% if 'github_handle' in social_links and social_links['github_handle'] != "" %}
+                                    {% if social_links.github_handle %}
                                         <a href="https://github.com/{{ social_links['github_handle'] }}" target="_blank"><span class="fab fa-github-square" aria-hidden="true"></span></a>
                                     {% endif %}
 
-                                    {% if 'twitter_handle' in social_links and social_links['twitter_handle'] != "" %}
+                                    {% if social_links.twitter_handle %}
                                         <a href="https://twitter.com/{{ social_links['twitter_handle'] }}" target="_blank"><span class="fab fa-twitter-square" aria-hidden="true"></span></a>
                                     {% endif %}
 
-                                    {% if 'linkedin_handle' in social_links and social_links['linkedin_handle'] != "" %}
+                                    {% if social_links.linkedin_handle %}
                                         <a href="https://linkedin.com/in/{{ social_links['linkedin_handle'] }}" target="_blank"><span class="fab fa-linkedin-in" aria-hidden="true"></span></a>
                                     {% endif %}
-                                     {% if social_links.email and social_links.email != "" %}
+                                     {% if social_links.email %}
                                     <a href="mailto:{{ social_links.email }}" target="_blank">
                                         <i class="fa fa-envelope"></i></a>
                                     {% endif %}
-                                    {% if 'orcid' in social_links and social_links['orcid'] != "" %}
+                                    {% if social_links.orcid %}
                                         <a href="https://orcid.org/{{ social_links['orcid'] }}" target="_blank"><span class="fa fa-newspaper" aria-hidden="true"></span></a>
                                     {% endif %}
                                 </div>
                             </div>
-                            {#
-                            {% set docs = documents[member_id] %}
-                            {% if docs %}
-                            {% if docs['curriculum_vitae'] != "" and not
-                            docs['curriculum_vitae'].strip().lower().startswith("enter") %}
-                            <div style="text-align:center; padding-top:0%; padding-bottom:5%;">
-                                <a href="{{docs['curriculum_vitae']}}" target="_blank">
-                                    <button class="click_button"><span>Download CV</span></button>
-                                </a>
-                            </div>
-                            {% endif %}
-                            {% endif %}
-                            #}
+                            {# Download CV button: member documents are not part of the member page view yet #}
                         </section>
                         {% endif %}
                     </div>
@@ -122,16 +109,16 @@
                 </tr>
             </thead>
             <tbody>
-                {% if "current_project_title" in member_data %}
+                {% if member.current_project_title %}
                     <tr>
                         <th scope="row">Project&#40;s&#41;:</th>
-                        <td>{{ member_data.current_project_title }}</td>
+                        <td>{{ member.current_project_title }}</td>
                     </tr>
                 {% endif %}
-                {% if "academic_role" in member_data and member_data.academic_role and member_data.academic_role != "" and not member_data.academic_role.strip().lower().startswith("enter") %}
+                {% if member.role %}
                     <tr>
                         <th scope="row">Primary Role:</th>
-                        <td>{{ member_data.academic_role }}</td>
+                        <td>{{ member.role }}{% if member.role_detail %}<br><small>{{ member.role_detail }}</small>{% endif %}</td>
                     </tr>
                 {% endif %}
             </tbody>
@@ -139,7 +126,7 @@
     </section>
 
     <section style="padding-left: 10%; padding-right:10%;">
-        {% if education[member_id] %}
+        {% if member.education %}
             <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                 <h3 class="w3l-title-main">{{ section_headings["education"] }}</h3>
             </div>
@@ -152,17 +139,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in education[member_id]['info'] %}
+                    {% for row in member.education %}
                         <tr>
-                            <td>{{ row['institution'] }}</td>
-                            <td>{{ format_years(row) }}</td>
-                            <td>{{ row["degree"] }} in {{ row["subject"] }}</td>
+                            <td>{{ row.institution }}</td>
+                            <td>{{ row.years }}</td>
+                            <td>{{ row.qualification }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
-        {% if experience[member_id] %}
+        {% if member.experiences %}
             <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                 <h3 class="w3l-title-main">{{ section_headings["experiences"] }}</h3>
             </div>
@@ -175,22 +162,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in experience[member_id]['info'] %}
-                        {% if row['institution'] and row['institution']|length > 0 %}
-                            <td>{{ row['institution'] }}</td>
-                        {% elif row['group'] and row['group']|length > 0 %}
-                            <td>{{ row['group'] }} (group)</td>
-                        {% else %}
-                            <td></td>
-                        {% endif %}
-                            <td>{{ format_years(row) }}</td>
-                            <td>{{ row["role"] }}</td>
+                    {% for row in member.experiences %}
+                        <tr>
+                            <td>{{ row.place }}</td>
+                            <td>{{ row.years }}</td>
+                            <td>{{ row.role }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
-        {% if projects[member_id] %}
+        {% if member.projects %}
             <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                 <h3 class="w3l-title-main">{{ section_headings["projects"] }}</h3>
             </div>
@@ -203,17 +185,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in projects[member_id]['info']  %}
+                    {% for row in member.projects %}
                         <tr>
-                            <td>{{ row["project_title"] }}</td>
-                            <td>{{ format_years(row) }}</td>
-                            <td>{{ row["description"] }}</td>
+                            <td>{{ row.project_title }}</td>
+                            <td>{{ row.years }}</td>
+                            <td>{{ row.description }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
-        {% if awards[member_id] %}
+        {% if member.awards %}
             <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                 <h3 class="w3l-title-main">{{ section_headings["awards"] }}</h3>
             </div>
@@ -226,17 +208,17 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in awards[member_id]["info"] %}
+                    {% for row in member.awards %}
                         <tr>
-                            <td>{{ row["award_name"] }}</td>
-                            <td>{{ format_years(row) }}</td>
-                            <td>{{ row["description"] }}</td>
+                            <td>{{ row.award_name }}</td>
+                            <td>{{ row.years }}</td>
+                            <td>{{ row.description }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
-        {% if outreach[member_id] %}
+        {% if member.outreach %}
             <div style="padding-top:5%;" class="title-heading-w3 mx-auto text-center mb-sm-5 mb-4 pb-xl-4">
                 <h3 class="w3l-title-main">{{ section_headings["outreach"] }}</h3>
             </div>
@@ -249,11 +231,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for row in outreach[member_id]['info'] %}
+                    {% for row in member.outreach %}
                         <tr>
-                            <td>{{ row["program_name"] }}</td>
-                            <td>{{ format_years(row) }}</td>
-                            <td>{{ row["description"] }}</td>
+                            <td>{{ row.program_name }}</td>
+                            <td>{{ row.years }}</td>
+                            <td>{{ row.description }}</td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -263,18 +245,8 @@
 
     <!-- Research and News -->
     <div class="content-info-in row">
-        {% set research_articles = [] %}
-        {% set news_articles = [] %}
-
-        {% for key, article in content.items() %}
-            {% if member_id in article.people_involved_ids %}
-                {% if article.category != 'News' %}
-                    {% set _ = research_articles.append(article) %}
-                {% else %}
-                    {% set _ = news_articles.append(article) %}
-                {% endif %}
-            {% endif %}
-        {% endfor %}
+        {% set research_articles = articles.research %}
+        {% set news_articles = articles.news %}
 
         {% if research_articles %}
             <section style="padding-left: 10%; padding-right:10%;">
@@ -287,13 +259,8 @@
                             </div>
                             <ul class="category">
                                 {% for article in research_articles %}
-                                    {% if article.category == 'Software' %}
-                                        {% set link_path = '../../sub_research'|replace(' ', '_')|lower %}
-                                    {% else %}
-                                        {% set link_path = '../../sub_research/'+ article.category|replace(' ', '_')|lower %}
-                                    {%endif%}
                                     <li>
-                                        <a href="{{link_path}}/{{ article.article_id|lower }}.html"
+                                        <a href="../../{{ article.page }}"
                                            style="width: 100%; display: flex; justify-content: center;">
                                             <span class="fas fa-angle-right"
                                                   style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ article.title }}</span>
@@ -318,7 +285,7 @@
                             <ul class="category">
                                 {% for article in news_articles %}
                                     <li>
-                                        <a href="../../news/{{ article.article_id|lower }}.html"
+                                        <a href="../../{{ article.page }}"
                                            style="width: 100%; display: flex; justify-content: center;">
                                             <span class="fas fa-angle-right"
                                                   style="vertical-align: middle; text-overflow: ellipsis; white-space: nowrap; padding-right: 5px;"> {{ article.title }}</span>

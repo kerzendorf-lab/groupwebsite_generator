@@ -99,14 +99,14 @@
     <section class="w3l-blog shift">
         <div class="blog py-5" id="Newsblog">
             <div class="container py-lg-5 py-md-4 py-2">
-                {% for news in content.itertuples() %}
+                {% for article in news %}
                 <div class="row" style="padding-top: 5%;">
                     <div class="col-lg-6 col-md-6 item" style="width: 550px;">
                         <div class="card" id="card">
                             <div class="card-header p-0 position-relative">
-                               <a class="zoom d-flex" href="../../news/{{ news.article_id|lower }}.html">
+                               <a class="zoom d-flex" href="{{ article.page }}">
                                     <img style="width: 520px; height: 330px; margin: auto;" class="card-img-bottom d-block"
-                                        id="news-cover-image" src="{{ news.cover_image }}" alt="array">
+                                        id="news-cover-image" src="{{ article.cover_image }}" alt="array">
                                 </a>
                             </div>
                         </div>
@@ -115,87 +115,46 @@
                         <div class="card">
                             <div class="card-body blog-details" style="max-height: 330px">
                                 <div class='badge-tray'>
-                                    {%for tag in news['tags']%}
-                                    {%if tag.lower() != "news"%}
-                                    <span class="badge" style="background-color: {{ get_tag_color(tag) }}">{{tag.title()}}</span>
-                                    {%endif%}
+                                    {%for tag in article.tags%}
+                                    <span class="badge" style="background-color: {{ tag.color }}">{{ tag.name }}</span>
                                     {%endfor%}
                                 </div>
-                                <a class="zoom d-blog" href="../../news/{{ news.article_id|lower }}.html">
+                                <a class="zoom d-blog" href="{{ article.page }}">
                                     <h5 style="font-weight: bold; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 7; -webkit-box-orient: vertical; font-size:19px; height:auto;">
-                                    {{ news.title }}
+                                    {{ article.title }}
                                     </h5>
                                 </a>
                                 <div style="margin-top: 10px; gap: 5px; display: flex; align-items: center; font-size: small;">
                                     <i class="bi bi-clock"></i>
-                                    <p style="font-size: small;">{{ news["date"].strftime('%d') }}{% if news["date"].day % 10 == 1 and news["date"].day != 11 %}st{% elif news["date"].day % 10 == 2 and news["date"].day != 12 %}nd{% elif news["date"].day % 10 == 3 and news["date"].day != 13 %}rd{% else %}th{% endif %} {{ news["date"].strftime('%b, %Y') }}</p>
+                                    <p style="font-size: small;">{{ article.date }}</p>
                                 </div>
                                 {#
                                 <hr style="border-top: 1px dotted rgba(143, 143, 143);">
                                 <div class="price-review mb-1 align-items-center">
                                     <div style="font-size: 13px; overflow: auto; height:110px">
-                                        <div>{{ news['short_description'] | safe}}</div>
+                                        <div>{{ article['short_description'] | safe}}</div>
                                     </div>
                                 </div>
                                 #}
                             </div>
                                 <div class="card-footer">
-                                {% set author_id = news['author_id'] %}
-                                {% if author_id in member_data%}
-                                    {% set member = member_data[author_id]%}
+                                {% set member = article.author %}
+                                {% if member %}
+                                    {% set author_id = member.id %}
                                     {% set author_name = member['full_name'] %}
                                     <div class="author align-items-center">
                                         <ul class="blog-meta">
                                             <li>
-                                                <a href="../members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
+                                                <a href="members/{{ author_id }}/{{ author_id }}.html" target="_blank">{{ author_name }}</a>
                                             </li>
                                         </ul>
-                                        <a href="../members/{{ author_id }}/{{ author_id }}.html" class="post-author ms-auto" target="_blank">
-                                            <img src="../members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
+                                        <a href="members/{{ author_id }}/{{ author_id }}.html" class="post-author ms-auto" target="_blank">
+                                            <img src="members/{{ author_id }}/{{ member['image_path'] }}" alt="Author's Image" class="img-fluid rounded-circle">
                                         </a>
                                     </div>
                                 {% endif %}
                                 </div>
-                                {#
-                                    <div class="card-footer">
-                                        <div>
-                                            <ul class="blog-meta">
-                                                <li>
-                                                    <a style="font-size:10px">Contributer(s):</a>
-                                                </li>
-                                                {% for person_id in news.people_involved_ids %}
-                                                {% if person_id in member_data %}
-                                                    {% set member_info = member_data[person_id] %}
-                                                    {% set member_name = member_info.get('full_name') %}
-                                                <li>
-                                                    <a href="members/{{ person_id }}/{{ person_id }}.html" target="_blank">
-                                                        <p style="font-size: 10px; height:35px"> {{member_name}}</p>
-                                                    </a>
-                                                </li>
-                                                    {% elif person_id.strip().split(' ')[-1].strip().lower().startswith("http://") or
-                                                    person_id.strip().split(' ')[-1].strip().lower().startswith("https://") %}
-                                                    <li>
-                                                        <a href="{{ person_id.strip().split(' ')[-1] }}" target="_blank"
-                                                            style="font-size: 10px;">
-                                                            {{ person_id.strip().split(' ')[0] }}
-                                                        </a>
-                                                    </li>
-                                                
-                                                {% else %}
-                                                <li>
-                                                    <a style="font-size: 10px;">
-                                                        {{ person_id }}
-                                                    </a>
-                                                </li>
-                                                {% endif %}
-                                                {% if not loop.last %}
-                                                <li>, </li>
-                                                {% endif %}
-                                                {% endfor %}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                #}
+                                {# Contributor list: not shown on the news cards #}
                         </div>
                     </div>
                 </div>
